@@ -9,15 +9,21 @@
 #include "MatrixStack.h"
 #include "Light.h"
 #include "Utility.h"
-#include "Obj.h"
 
 class SP2 : public Scene
 {
 	enum GEOMETRY_TYPE
 	{
-		// Shapes
 		GEO_AXES,
 		GEO_TEXT,
+
+		// Outer skybox
+		GEO_OUTER_FRONT,
+		GEO_OUTER_BACK,
+		GEO_OUTER_LEFT,
+		GEO_OUTER_RIGHT,
+		GEO_OUTER_TOP,
+		GEO_OUTER_BOTTOM,
 
 		NUM_GEOMETRY,
 	};
@@ -83,14 +89,18 @@ private:
 	void RenderMesh(Mesh *mesh, bool enableLight);
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
-	
-	void InitObj(Mesh* _obj, float _translateX, float _translateY, float _translateZ, float _rotateX, float _rotateY, float _rotateZ, float _scaleX, float _scaleY, float _scaleZ, int _shape);
-	void RenderObj(CObj *_obj);
 
-	std::vector<CObj*> objList;
-	CObj *pObj;
+	void setLights();
+	void getHandle();
+	void lightParameters();
+	void initValues();
+	void initOuterSkybox();
+	void renderOuterSkybox();
+
 	bool togglelight;
 	double fps;
+	Vector3 skyboxSize;
+	float skyboxOffset;
 };
 
 #endif

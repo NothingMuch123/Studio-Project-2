@@ -57,7 +57,6 @@ Update the Camera's position, target, up and view location based on the time pas
 void Camera3::Update(double dt)
 {
 	static const float CAMERA_SPEED = 50.f;
-	CObj *pObj;
 
 	if(Application::IsKeyPressed('W'))
 	{

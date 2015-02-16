@@ -12,7 +12,6 @@ Header file for Camera3 Class. It is the current camera that the scene uses.
 
 #include "Camera.h"
 #include "Mtx44.h"
-#include "Obj.h"
 #include <vector>
 
 /******************************************************************************/

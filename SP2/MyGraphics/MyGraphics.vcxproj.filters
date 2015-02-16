@@ -48,10 +48,10 @@
     <ClCompile Include="Source\LoadOBJ.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Obj.cpp">
+    <ClCompile Include="Source\SP2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SP2.cpp">
+    <ClCompile Include="Source\Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,10 +98,10 @@
     <ClInclude Include="Source\LoadOBJ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Obj.h">
+    <ClInclude Include="Source\SP2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SP2.h">
+    <ClInclude Include="Source\Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

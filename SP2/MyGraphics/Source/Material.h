@@ -24,8 +24,8 @@ struct Material
 	float kShininess;
 	Material() // Constructor
 	{
-		kAmbient = kDiffuse = kSpecular = 0.01;
-		kShininess = 0.01;
+		kAmbient = kDiffuse = kSpecular = 0.1;
+		kShininess = 1;
 	}
 };
 

@@ -20,8 +20,8 @@ SP2::~SP2()
 
 void SP2::Init()
 {
-	fps = 60;
-	togglelight = false;
+	initValues();
+
 	// Init VBO here
 
 	// Set background color to dark blue
@@ -43,9 +43,61 @@ void SP2::Init()
 	// Generate a default VAO for now
 	glGenVertexArrays(1, &m_vertexArrayID);
 	glBindVertexArray(m_vertexArrayID);
+
+	//Initialize camera settings
+	camera.Init(Vector3(0,50,0), Vector3(0,50,-5), Vector3(0,1,0));
 	
 	//Load vertex and fragment shaders
 	m_programID = LoadShaders( "Shader//Texture.vertexshader", "Shader//Text.fragmentshader" );
+
+	getHandle();
+	setLights();
+	lightParameters();
+
+	Mtx44 projection;
+	projection.SetToPerspective(45.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
+	projectionStack.LoadMatrix(projection);
+
+	meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
+
+	//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("lightball", Color(1, 1, 1), 1, 0);
+	//meshList[GEO_LIGHTBALL2] = MeshBuilder::GenerateSphere("lightball2", Color(1, 1, 1), 1, 0);
+
+	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
+	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
+
+	initOuterSkybox();
+}
+
+void SP2::setLights()
+{
+	lights[0].type = Light::LIGHT_SPOT;
+	lights[0].position.Set(0, 0, 0);
+	lights[0].color.Set(1, 1, 1);
+	lights[0].power = 5;
+	lights[0].kC = 1.0f;
+	lights[0].kL = 0.01f;
+	lights[0].kQ = 0.000f;
+	lights[0].cosCutoff = cos(Math::DegreeToRadian(5));
+	lights[0].cosInner = cos(Math::DegreeToRadian(1));
+	lights[0].exponent = 3.f;
+	lights[0].spotDirection.Set(0,1,0);
+
+	lights[1].type = Light::LIGHT_POINT;
+	lights[1].position.Set(0, 0, 0);
+	lights[1].color.Set(1, 1, 1);
+	lights[1].power = 1;
+	lights[1].kC = 1.f;
+	lights[1].kL = 0.01f;
+	lights[1].kQ = 0.001f;
+	lights[1].cosCutoff = cos(Math::DegreeToRadian(45));
+	lights[1].cosInner = cos(Math::DegreeToRadian(30));
+	lights[1].exponent = 3.f;
+	lights[1].spotDirection.Set(0.f, 1.f, 0.f);
+}
+
+void SP2::getHandle()
+{
 	// Get a handle for our "MVP" uniform
 	m_parameters[U_NUMLIGHTS] = glGetUniformLocation(m_programID, "numLights");
 	m_parameters[U_MVP] = glGetUniformLocation(m_programID, "MVP");
@@ -86,31 +138,10 @@ void SP2::Init()
 	m_parameters[U_TEXT_COLOR] = glGetUniformLocation(m_programID, "textColor");
 	glUseProgram(m_programID);
 	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
+}
 
-	lights[0].type = Light::LIGHT_SPOT;
-	lights[0].position.Set(0, 0, 0);
-	lights[0].color.Set(1, 1, 1);
-	lights[0].power = 5;
-	lights[0].kC = 1.0f;
-	lights[0].kL = 0.01f;
-	lights[0].kQ = 0.000f;
-	lights[0].cosCutoff = cos(Math::DegreeToRadian(5));
-	lights[0].cosInner = cos(Math::DegreeToRadian(1));
-	lights[0].exponent = 3.f;
-	lights[0].spotDirection.Set(0,1,0);
-
-	lights[1].type = Light::LIGHT_POINT;
-	lights[1].position.Set(0, 0, 0);
-	lights[1].color.Set(1, 1, 1);
-	lights[1].power = 1;
-	lights[1].kC = 1.f;
-	lights[1].kL = 0.01f;
-	lights[1].kQ = 0.001f;
-	lights[1].cosCutoff = cos(Math::DegreeToRadian(45));
-	lights[1].cosInner = cos(Math::DegreeToRadian(30));
-	lights[1].exponent = 3.f;
-	lights[1].spotDirection.Set(0.f, 1.f, 0.f);
-
+void SP2::lightParameters()
+{
 	// Make sure you pass uniform parameters after glUseProgram()
 	// Light 1
 	glUniform1i(m_parameters[U_LIGHT0_TYPE], lights[0].type);
@@ -132,21 +163,35 @@ void SP2::Init()
 	glUniform1f(m_parameters[U_LIGHT1_COSCUTOFF], lights[1].cosCutoff);
 	glUniform1f(m_parameters[U_LIGHT1_COSINNER], lights[1].cosInner);
 	glUniform1f(m_parameters[U_LIGHT1_EXPONENT], lights[1].exponent);
+}
 
-	Mtx44 projection;
-	projection.SetToPerspective(45.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
-	projectionStack.LoadMatrix(projection);
+void SP2::initValues()
+{
+	fps = 60;
+	togglelight = false;
+	skyboxSize.Set(1000,1000,1000);
+	skyboxOffset = 10;
+}
 
-	meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
+void SP2::initOuterSkybox()
+{
+	meshList[GEO_OUTER_FRONT] = MeshBuilder::GenerateQuad("Outer skybox front", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_OUTER_FRONT]->textureID = LoadTGA("Image//OuterSkybox//front.tga");
 
-	//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("lightball", Color(1, 1, 1), 1, 0);
-	//meshList[GEO_LIGHTBALL2] = MeshBuilder::GenerateSphere("lightball2", Color(1, 1, 1), 1, 0);
+	meshList[GEO_OUTER_BACK] = MeshBuilder::GenerateQuad("Outer skybox back", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_OUTER_BACK]->textureID = LoadTGA("Image//OuterSkybox//back.tga");
 
-	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
-	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
-	
-	//Initialize camera settings
-	camera.Init(Vector3(0,0,0), Vector3(0,0,-5), Vector3(0,1,0));
+	meshList[GEO_OUTER_LEFT] = MeshBuilder::GenerateQuad("Outer skybox left", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_OUTER_LEFT]->textureID = LoadTGA("Image//OuterSkybox//left.tga");
+
+	meshList[GEO_OUTER_RIGHT] = MeshBuilder::GenerateQuad("Outer skybox right", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_OUTER_RIGHT]->textureID = LoadTGA("Image//OuterSkybox//right.tga");
+
+	meshList[GEO_OUTER_TOP] = MeshBuilder::GenerateQuad("Outer skybox top", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_OUTER_TOP]->textureID = LoadTGA("Image//OuterSkybox//top.tga");
+
+	meshList[GEO_OUTER_BOTTOM] = MeshBuilder::GenerateQuad("Outer skybox bottom", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_OUTER_BOTTOM]->textureID = LoadTGA("Image//OuterSkybox//bottom.tga");
 }
 
 void SP2::Update(double dt)
@@ -230,16 +275,57 @@ void SP2::Render()
 
 	RenderMesh(meshList[GEO_AXES], false);
 
-	// Render obj
-	for (int i = 0; i < objList.size(); i++)
-	{
-		RenderObj(objList[i]);
-	}
+	renderOuterSkybox();
 
 	std::ostringstream sFPS;
 	sFPS << fps;
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
 	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
+}
+
+void SP2::renderOuterSkybox()
+{
+	float translateY = 10;
+	modelStack.PushMatrix();
+	modelStack.Translate(0, translateY, -skyboxSize.z/2 + skyboxOffset);
+	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	RenderMesh(meshList[GEO_OUTER_FRONT], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, translateY, skyboxSize.z/2 - skyboxOffset);
+	modelStack.Rotate(180, 0, 1, 0);
+	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	RenderMesh(meshList[GEO_OUTER_BACK], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-skyboxSize.z/2 + skyboxOffset, translateY, 0);
+	modelStack.Rotate(90, 0, 1, 0);
+	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	RenderMesh(meshList[GEO_OUTER_LEFT], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(skyboxSize.z/2 - skyboxOffset, translateY, 0);
+	modelStack.Rotate(-90,0,1,0);
+	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	RenderMesh(meshList[GEO_OUTER_RIGHT], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, skyboxSize.y/2 + translateY - skyboxOffset, 0);
+	modelStack.Rotate(90, 1, 0, 0);
+	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	RenderMesh(meshList[GEO_OUTER_TOP], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(0, skyboxOffset, 0);
+	modelStack.Rotate(-90, 1, 0, 0);
+	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	RenderMesh(meshList[GEO_OUTER_BOTTOM], togglelight);
+	modelStack.PopMatrix();
 }
 
 void SP2::Exit()
@@ -356,25 +442,4 @@ void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float si
 	viewStack.PopMatrix();
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST);
-}
-
-void SP2::RenderObj(CObj *_obj)
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(_obj->getTranslateX(), _obj->getTranslateY(), _obj->getTranslateZ());
-	modelStack.Rotate(_obj->getRotateX(), 1, 0, 0);
-	modelStack.Rotate(_obj->getRotateY(), 0, 1, 0);
-	modelStack.Rotate(_obj->getRotateZ(), 0, 0, 1);
-	modelStack.PushMatrix();
-	modelStack.Scale(_obj->getScaleX(), _obj->getScaleY(), _obj->getScaleZ());
-	RenderMesh(_obj->getObj(), togglelight);
-	modelStack.PopMatrix();
-	modelStack.PopMatrix();
-}
-
-void SP2::InitObj(Mesh* _obj, float _translateX, float _translateY, float _translateZ, float _rotateX, float _rotateY, float _rotateZ, float _scaleX, float _scaleY, float _scaleZ, int _shape)
-{
-	pObj = new CObj(_obj, _translateX, _translateY, _translateZ, _rotateX, _rotateY, _rotateZ, _scaleX, _scaleY, _scaleZ, _shape);
-	objList.push_back(pObj);
-	pObj->init();
 }
