@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGraphics", "MyGraphics\MyGraphics.vcxproj", "{13E2A4A4-56E4-440D-9CA8-F88C7859D888}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A1716515-871C-4980-BE9B-B467D955E34B} = {A1716515-871C-4980-BE9B-B467D955E34B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxproj", "{A1716515-871C-4980-BE9B-B467D955E34B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13E2A4A4-56E4-440D-9CA8-F88C7859D888}.Debug|Win32.ActiveCfg = Debug|Win32
+		{13E2A4A4-56E4-440D-9CA8-F88C7859D888}.Debug|Win32.Build.0 = Debug|Win32
+		{13E2A4A4-56E4-440D-9CA8-F88C7859D888}.Release|Win32.ActiveCfg = Release|Win32
+		{13E2A4A4-56E4-440D-9CA8-F88C7859D888}.Release|Win32.Build.0 = Release|Win32
+		{A1716515-871C-4980-BE9B-B467D955E34B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A1716515-871C-4980-BE9B-B467D955E34B}.Debug|Win32.Build.0 = Debug|Win32
+		{A1716515-871C-4980-BE9B-B467D955E34B}.Release|Win32.ActiveCfg = Release|Win32
+		{A1716515-871C-4980-BE9B-B467D955E34B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
