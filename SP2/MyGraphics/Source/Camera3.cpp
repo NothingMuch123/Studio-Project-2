@@ -57,6 +57,7 @@ Update the Camera's position, target, up and view location based on the time pas
 void Camera3::Update(double dt)
 {
 	static const float CAMERA_SPEED = 50.f;
+	static const float ROTATION_SPEED = 75.f;
 
 	if(Application::IsKeyPressed('W'))
 	{
@@ -263,7 +264,7 @@ void Camera3::Update(double dt)
 	// tilt up
 	if(Application::IsKeyPressed(VK_UP))
 	{
-		float pitch = (float)(CAMERA_SPEED * dt);
+		float pitch = (float)(ROTATION_SPEED * dt);
 		view = (target - position).Normalized();
 		Vector3 right = view.Cross(up);
 		right.y = 0;
@@ -277,7 +278,7 @@ void Camera3::Update(double dt)
 	// tilt down
 	if(Application::IsKeyPressed(VK_DOWN))
 	{
-		float pitch = (float)(-CAMERA_SPEED * dt);
+		float pitch = (float)(-ROTATION_SPEED * dt);
 		view = (target - position).Normalize();
 		Vector3 right = view.Cross(up);
 		right.y = 0;
@@ -291,7 +292,7 @@ void Camera3::Update(double dt)
 	// tilt left
 	if(Application::IsKeyPressed(VK_LEFT))
 	{
-		float pitch = (float)(CAMERA_SPEED * dt);
+		float pitch = (float)(ROTATION_SPEED * dt);
 		view = (target - position).Normalize();
 		rotation.SetToRotation(pitch, 0, 1, 0);
 		view = rotation * view;
@@ -302,7 +303,7 @@ void Camera3::Update(double dt)
 	// tilt right
 	if(Application::IsKeyPressed(VK_RIGHT))
 	{
-		float pitch = (float)(-CAMERA_SPEED * dt);
+		float pitch = (float)(-ROTATION_SPEED * dt);
 		view = (target - position).Normalize();
 		rotation.SetToRotation(pitch, 0, 1, 0);
 		view = rotation * view;
