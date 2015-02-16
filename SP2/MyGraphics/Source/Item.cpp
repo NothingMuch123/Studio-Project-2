@@ -5,7 +5,7 @@ CItem::CItem(void) : itemID(-1), item(0), translate(0, 0, 0), rotate(0, 0, 0), s
 {
 }
 
-CItem::CItem(int _itemID, Mesh *_item, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _maxBound, Vector3 _minBound, Vector3 _interactMaxBound, Vector3 _interactMinBound, Vector3 _itemSize) : itemID(_itemID), item(_item), translate(_translate), rotate(_rotate), scale(_scale), maxBound(_maxBound), minBound(_minBound), interactMaxBound(_interactMaxBound), interactMinBound(_interactMinBound), itemSize(_itemSize)
+CItem::CItem(int _itemID, Mesh *_item, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _itemSize) : itemID(_itemID), item(_item), translate(_translate), rotate(_rotate), scale(_scale), itemSize(_itemSize)
 {
 }
 
@@ -61,4 +61,13 @@ Mesh *CItem::getItem()
 int CItem::getItemID()
 {
 	return itemID;
+}
+
+void CItem::calcBound()
+{
+	float offset = 0;
+	maxBound.Set(((itemSize.x * scale.x) / 2) + translate.x + offset, ((itemSize.y * scale.y) / 2) + translate.y + offset, ((itemSize.z * scale.z) / 2) + translate.z + offset);
+	minBound.Set(((itemSize.x * scale.x) / 2) - translate.x - offset, ((itemSize.y * scale.y) / 2) - translate.y - offset, ((itemSize.z * scale.z) / 2) - translate.z - offset);
+	interactMaxBound.Set(((itemSize.x * scale.x) / 2) + translate.x + offset, ((itemSize.y * scale.y) / 2) + translate.y + offset, ((itemSize.z * scale.z) / 2) + translate.z + offset);
+	interactMinBound.Set(((itemSize.x * scale.x) / 2) - translate.x - offset, ((itemSize.y * scale.y) / 2) - translate.y - offset, ((itemSize.z * scale.z) / 2) - translate.z - offset);
 }

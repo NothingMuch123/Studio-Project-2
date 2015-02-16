@@ -12,12 +12,14 @@ public:
 
 	};
 	CItem(void);
-	CItem(int _itemID, Mesh *_item, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _maxBound, Vector3 _minBound, Vector3 _interactMaxBound, Vector3 _interactMinBound, Vector3 _itemSize);
+	CItem(int _itemID, Mesh *_item, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _itemSize);
 	~CItem(void);
 
 	Vector3 getTranslate(), getRotate(), getScale(), getMaxBound(), getMinBound(), getInteractMaxBound(), getInteractMinBound(), getItemSize();
 	Mesh *getItem();
 	int getItemID();
+
+	void calcBound();
 
 private:
 	int itemID;
