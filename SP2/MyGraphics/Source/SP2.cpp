@@ -25,7 +25,7 @@ void SP2::Init()
 	// Init VBO here
 
 	// Set background color to dark blue
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.0f, 1.0f, 0.0f, 0.0f);
 
 	// Enable blending
 	glEnable(GL_BLEND);
@@ -62,11 +62,29 @@ void SP2::Init()
 
 	//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("lightball", Color(1, 1, 1), 1, 0);
 	//meshList[GEO_LIGHTBALL2] = MeshBuilder::GenerateSphere("lightball2", Color(1, 1, 1), 1, 0);
+	initCar();
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
 
 	initOuterSkybox();
+}
+
+void SP2::initCar()
+{
+	meshList[GEO_CAR] = MeshBuilder::GenerateOBJ("Car", "OBJ//Car.obj");
+	meshList[GEO_CAR]->textureID = LoadTGA("Image//CarTexture.tga");
+	meshList[GEO_CAR]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_CAR]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR]->material.kShininess = 1.f;
+
+	meshList[GEO_CAR_TYRE] = MeshBuilder::GenerateOBJ("Car", "OBJ//CarTyre.obj");
+	meshList[GEO_CAR_TYRE]->textureID = LoadTGA("Image//CarTyreTexture.tga");
+	meshList[GEO_CAR_TYRE]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR_TYRE]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
 }
 
 void SP2::setLights()
@@ -196,7 +214,7 @@ void SP2::initOuterSkybox()
 
 void SP2::Update(double dt)
 {
-
+	updateCar();
 	if(Application::IsKeyPressed('1')) //enable back face culling
 		glEnable(GL_CULL_FACE);
 	if(Application::IsKeyPressed('2')) //disable back face culling
@@ -223,6 +241,10 @@ void SP2::Update(double dt)
 		fps = 1 / dt;
 		fpsRefresh = 0;
 	}
+}
+void SP2::updateCar()
+{
+
 }
 
 void SP2::Render()
@@ -272,6 +294,7 @@ void SP2::Render()
 		Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
 		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}*/
+	renderCar();
 
 	RenderMesh(meshList[GEO_AXES], false);
 
@@ -282,7 +305,27 @@ void SP2::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
 	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
 }
+void SP2::renderCar()
+{
+	modelStack.PushMatrix();
+	modelStack.Scale(5,5,5);
+	modelStack.Translate(0,1,0);
+	modelStack.PushMatrix();
+	RenderMesh(meshList[GEO_CAR], false);
+	modelStack.PopMatrix();
+	for(int x = -5;x<11;x+=10)
+	{
+		for(int y = -3;y<4;y+=6)
+		{
+	modelStack.PushMatrix();
+	modelStack.Translate(x,0,y);
+	RenderMesh(meshList[GEO_CAR_TYRE], false);
+	modelStack.PopMatrix();
+		}
+	}
+	modelStack.PopMatrix();
 
+}
 void SP2::renderOuterSkybox()
 {
 	float translateY = 10;
@@ -321,11 +364,12 @@ void SP2::renderOuterSkybox()
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(0, skyboxOffset, 0);
+	modelStack.Translate(0, 0, 0);
 	modelStack.Rotate(-90, 1, 0, 0);
 	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
 	RenderMesh(meshList[GEO_OUTER_BOTTOM], togglelight);
 	modelStack.PopMatrix();
+
 }
 
 void SP2::Exit()

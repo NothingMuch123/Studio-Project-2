@@ -25,6 +25,11 @@ class SP2 : public Scene
 		GEO_OUTER_TOP,
 		GEO_OUTER_BOTTOM,
 
+		// Car
+		GEO_CAR,
+		GEO_CAR_TYRE,
+		
+
 		NUM_GEOMETRY,
 	};
 	enum UNIFORM_TYPE
@@ -78,6 +83,7 @@ public:
 	virtual void Update(double dt);
 	virtual void Render();
 	virtual void Exit();
+
 private:
 	unsigned m_vertexArrayID;
 	Mesh *meshList[NUM_GEOMETRY];
@@ -96,6 +102,10 @@ private:
 	void initValues();
 	void initOuterSkybox();
 	void renderOuterSkybox();
+
+	void initCar();
+	void updateCar();
+	void renderCar();
 
 	bool togglelight;
 	double fps;
