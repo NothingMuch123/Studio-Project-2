@@ -42,8 +42,6 @@ void Camera3::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
 	right.y = 0;
 	right.Normalize();
 	this->up = defaultUp = right.Cross(view).Normalized();
-	BoundMax.Set(0, 0, 0);
-	BoundMin.Set(0, 0, 0);
 
 	rotation.SetToIdentity();
 }
@@ -56,12 +54,10 @@ Update the Camera's position, target, up and view location based on the time pas
 	the time passed since the last update.
 */
 /******************************************************************************/
-void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMaxBound, Vector3 _skyboxMinBound)
+void Camera3::Update(double dt)
 {
 	static const float CAMERA_SPEED = 50.f;
 	CObj *pObj;
-	skyboxMaxBound = _skyboxMaxBound;
-	skyboxMinBound = _skyboxMinBound;
 
 	if(Application::IsKeyPressed('W'))
 	{
@@ -73,7 +69,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (_objList.size() != 0)
+		/*if (_objList.size() != 0)
 		{
 			for (int i = 0; i < _objList.size(); i++)
 			{
@@ -94,7 +90,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 				target = tempTarget;
 				position = tempPosition;
 			}
-		}
+		}*/
 	}
 
 	if(Application::IsKeyPressed('S'))
@@ -107,7 +103,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (_objList.size() != 0)
+		/*if (_objList.size() != 0)
 		{
 			for (int i = 0; i < _objList.size(); i++)
 			{
@@ -128,7 +124,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 				target = tempTarget;
 				position = tempPosition;
 			}
-		}
+		}*/
 	}
 
 	if(Application::IsKeyPressed('A'))
@@ -139,7 +135,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
-		if (_objList.size() != 0)
+		/*if (_objList.size() != 0)
 		{
 			for (int i = 0; i < _objList.size(); i++)
 			{
@@ -160,7 +156,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 				target = tempTarget;
 				position = tempPosition;
 			}
-		}
+		}*/
 	}
 
 	if(Application::IsKeyPressed('D'))
@@ -171,7 +167,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
-		if (_objList.size() != 0)
+		/*if (_objList.size() != 0)
 		{
 			for (int i = 0; i < _objList.size(); i++)
 			{
@@ -192,7 +188,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 				target = tempTarget;
 				position = tempPosition;
 			}
-		}
+		}*/
 	}
 
 	if(Application::IsKeyPressed('Q'))
@@ -206,7 +202,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 		position += (view.Cross(right) * yaw);
 		target += (view.Cross(right) * yaw);
 
-		if (_objList.size() != 0)
+		/*if (_objList.size() != 0)
 		{
 			for (int i = 0; i < _objList.size(); i++)
 			{
@@ -227,7 +223,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 				target = tempTarget;
 				position = tempPosition;
 			}
-		}
+		}*/
 	}
 
 	if(Application::IsKeyPressed('E'))
@@ -241,7 +237,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 		position += (view.Cross(right) * yaw);
 		target += (view.Cross(right) * yaw);
 
-		if (_objList.size() != 0)
+		/*if (_objList.size() != 0)
 		{
 			for (int i = 0; i < _objList.size(); i++)
 			{
@@ -262,7 +258,7 @@ void Camera3::Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMax
 				target = tempTarget;
 				position = tempPosition;
 			}
-		}
+		}*/
 	}
 
 	// tilt up
@@ -338,12 +334,13 @@ void Camera3::Reset()
 
 bool Camera3::boundCheck()
 {
-	if ((target.x < BoundMax.x && target.x > BoundMin.x && target.y < BoundMax.y && target.y > BoundMin.y && target.z < BoundMax.z && target.z > BoundMin.z) || (target.x >= skyboxMaxBound.x || target.x <= skyboxMinBound.x || target.y >= skyboxMaxBound.y || target.y <= skyboxMinBound.y || target.z >= skyboxMaxBound.z || target.z <= skyboxMinBound.z))
+	/*if ((target.x < BoundMax.x && target.x > BoundMin.x && target.y < BoundMax.y && target.y > BoundMin.y && target.z < BoundMax.z && target.z > BoundMin.z) || (target.x >= skyboxMaxBound.x || target.x <= skyboxMinBound.x || target.y >= skyboxMaxBound.y || target.y <= skyboxMinBound.y || target.z >= skyboxMaxBound.z || target.z <= skyboxMinBound.z))
 	{
 		return true;
 	}
 	else
 	{
 		return false;
-	}
+	}*/
+	return true;
 }

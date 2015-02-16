@@ -28,16 +28,13 @@ public:
 	Vector3 defaultTarget;
 	Vector3 defaultUp;
 	Vector3 defaultView;
-	Vector3 BoundMax;
-	Vector3 BoundMin;
-	Vector3 skyboxMaxBound, skyboxMinBound;
 
 	Mtx44 rotation;
 
 	Camera3();
 	~Camera3();
 	virtual void Init(const Vector3& pos, const Vector3& target, const Vector3& up);
-	virtual void Update(double dt, std::vector<CObj*> &_objList, Vector3 _skyboxMaxBound, Vector3 _skyboxMinBound);
+	virtual void Update(double dt);
 	virtual void Reset();
 	bool boundCheck();
 };

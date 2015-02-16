@@ -90,8 +90,8 @@
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshBuilder.cpp" />
     <ClCompile Include="Source\Obj.cpp" />
-    <ClCompile Include="Source\Assignment03.cpp" />
     <ClCompile Include="Source\shader.cpp" />
+    <ClCompile Include="Source\SP2.cpp" />
     <ClCompile Include="Source\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -107,8 +107,8 @@
     <ClInclude Include="Source\MeshBuilder.h" />
     <ClInclude Include="Source\Obj.h" />
     <ClInclude Include="Source\Scene.h" />
-    <ClInclude Include="Source\Assignment03.h" />
     <ClInclude Include="Source\shader.hpp" />
+    <ClInclude Include="Source\SP2.h" />
     <ClInclude Include="Source\Utility.h" />
     <ClInclude Include="Source\Vertex.h" />
   </ItemGroup>
