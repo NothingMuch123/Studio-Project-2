@@ -62,12 +62,13 @@ void SP2::Init()
 
 	//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("lightball", Color(1, 1, 1), 1, 0);
 	//meshList[GEO_LIGHTBALL2] = MeshBuilder::GenerateSphere("lightball2", Color(1, 1, 1), 1, 0);
-	initCar();
+	
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
-
+	initCar();
 	initOuterSkybox();
+	initSuperMarket();
 }
 
 void SP2::initCar()
@@ -85,6 +86,12 @@ void SP2::initCar()
 	meshList[GEO_CAR_TYRE]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
 	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
 	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
+}
+
+void SP2::initSuperMarket()
+{
+	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
+	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
 }
 
 void SP2::setLights()
@@ -294,6 +301,8 @@ void SP2::Render()
 		Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
 		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}*/
+	renderSuperMarket();
+
 	renderCar();
 
 	RenderMesh(meshList[GEO_AXES], false);
@@ -305,11 +314,20 @@ void SP2::Render()
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
 	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
 }
-void SP2::renderCar()
+void SP2::renderSuperMarket()
 {
 	modelStack.PushMatrix();
 	modelStack.Scale(5,5,5);
-	modelStack.Translate(0,1,0);
+	modelStack.Translate(0,0,0);
+	RenderMesh(meshList[GEO_SM], false);
+	modelStack.PopMatrix();
+}
+void SP2::renderCar()
+{
+	modelStack.PushMatrix();
+	modelStack.Scale(4,4,4);
+	modelStack.Translate(25,1,0);
+	modelStack.Rotate(90, 0, 1, 0);
 	modelStack.PushMatrix();
 	RenderMesh(meshList[GEO_CAR], false);
 	modelStack.PopMatrix();

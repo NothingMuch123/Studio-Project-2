@@ -29,6 +29,8 @@ class SP2 : public Scene
 		GEO_CAR,
 		GEO_CAR_TYRE,
 		
+		//SuperMarket
+		GEO_SM,
 
 		NUM_GEOMETRY,
 	};
@@ -101,7 +103,10 @@ private:
 	void lightParameters();
 	void initValues();
 	void initOuterSkybox();
+	void initSuperMarket();
+
 	void renderOuterSkybox();
+	void renderSuperMarket();
 
 	void initCar();
 	void updateCar();
