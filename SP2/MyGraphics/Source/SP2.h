@@ -9,7 +9,7 @@
 #include "MatrixStack.h"
 #include "Light.h"
 #include "Utility.h"
-#include "Human.h"
+
 
 class SP2 : public Scene
 {
@@ -32,6 +32,24 @@ class SP2 : public Scene
 		
 		//SuperMarket
 		GEO_SM,
+
+		//Human
+		//SHOPPER
+		GEO_HUMAN_SHOPPER_BODY,
+		GEO_HUMAN_SHOPPER_ARM,
+		GEO_HUMAN_SHOPPER_HAND,
+		GEO_HUMAN_SHOPPER_LEG,
+		//POLICE
+		GEO_HUMAN_POLICE_BODY,
+		GEO_HUMAN_POLICE_ARM,
+		GEO_HUMAN_POLICE_HAND,
+		GEO_HUMAN_POLICE_LEG,
+		//STAFF
+		GEO_HUMAN_STAFF_BODY,
+		GEO_HUMAN_STAFF_ARM,
+		GEO_HUMAN_STAFF_HAND,
+		GEO_HUMAN_STAFF_LEG,
+
 
 		//Size referance - unit cube
 		GEO_CUBE,
@@ -116,14 +134,14 @@ private:
 	void updateCar();
 	void renderCar();
 
-	void RenderHuman();
+	void initHuman();
+	void RenderHuman(int type); // 1 - shopper , 2 - police , 3 - staff
 	void UpdateHuman(double dt);
 
 	bool togglelight;
 	double fps;
 	Vector3 skyboxSize;
 	float skyboxOffset;
-	CHuman human;
 };
 
 #endif

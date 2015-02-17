@@ -70,7 +70,7 @@ void SP2::Init()
 	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("cube" , "OBJ//Wall.obj");
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//Wall.tga");
 
-	human.InitStaff();
+	initHuman(); 
 	initOuterSkybox();
 	initSuperMarket();
 }
@@ -96,6 +96,94 @@ void SP2::initSuperMarket()
 {
 	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
 	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
+}
+
+void SP2::initHuman()
+{
+	meshList[GEO_HUMAN_SHOPPER_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
+	meshList[GEO_HUMAN_SHOPPER_BODY]->textureID = LoadTGA("Image//shopper_texture.tga");
+	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_SHOPPER_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
+	meshList[GEO_HUMAN_SHOPPER_ARM]->textureID = LoadTGA ("Image//shopper_texture.tga");
+	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_SHOPPER_HAND] = MeshBuilder::GenerateOBJ ( "l_hand" , "OBJ//humanModel_lefthand.obj");
+	meshList[GEO_HUMAN_SHOPPER_HAND]->textureID = LoadTGA ("Image//shopper_texture.tga");
+	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_SHOPPER_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//humanModel_leftleg.obj");
+	meshList[GEO_HUMAN_SHOPPER_LEG]->textureID = LoadTGA ("Image//shopper_texture.tga");
+	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kShininess = 1.f;
+
+
+	meshList[GEO_HUMAN_POLICE_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
+	meshList[GEO_HUMAN_POLICE_BODY]->textureID = LoadTGA("Image//police_texture.tga");
+	meshList[GEO_HUMAN_POLICE_BODY]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_BODY]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_POLICE_BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_BODY]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_POLICE_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
+	meshList[GEO_HUMAN_POLICE_ARM]->textureID = LoadTGA ("Image//police_texture.tga");
+	meshList[GEO_HUMAN_POLICE_ARM]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_ARM]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_POLICE_ARM]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_ARM]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_POLICE_HAND] = MeshBuilder::GenerateOBJ ( "l_hand" , "OBJ//humanModel_lefthand.obj");
+	meshList[GEO_HUMAN_POLICE_HAND]->textureID = LoadTGA ("Image//police_texture.tga");
+	meshList[GEO_HUMAN_POLICE_HAND]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_HAND]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_POLICE_HAND]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_HAND]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_POLICE_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//humanModel_leftleg.obj");
+	meshList[GEO_HUMAN_POLICE_LEG]->textureID = LoadTGA ("Image//police_texture.tga");
+	meshList[GEO_HUMAN_POLICE_LEG]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_LEG]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_POLICE_LEG]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_POLICE_LEG]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_STAFF_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
+	meshList[GEO_HUMAN_STAFF_BODY]->textureID = LoadTGA("Image//staff_texture.tga");
+	meshList[GEO_HUMAN_STAFF_BODY]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_BODY]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_STAFF_BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_BODY]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_STAFF_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
+	meshList[GEO_HUMAN_STAFF_ARM]->textureID = LoadTGA ("Image//staff_texture.tga");
+	meshList[GEO_HUMAN_STAFF_ARM]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_ARM]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_STAFF_ARM]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_ARM]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_STAFF_HAND] = MeshBuilder::GenerateOBJ ( "l_hand" , "OBJ//humanModel_lefthand.obj");
+	meshList[GEO_HUMAN_STAFF_HAND]->textureID = LoadTGA ("Image//staff_texture.tga");
+	meshList[GEO_HUMAN_STAFF_HAND]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_HAND]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_STAFF_HAND]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_HAND]->material.kShininess = 1.f;
+
+	meshList[GEO_HUMAN_STAFF_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//humanModel_leftleg.obj");
+	meshList[GEO_HUMAN_STAFF_LEG]->textureID = LoadTGA ("Image//staff_texture.tga");
+	meshList[GEO_HUMAN_STAFF_LEG]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_LEG]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_HUMAN_STAFF_LEG]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_HUMAN_STAFF_LEG]->material.kShininess = 1.f;
 }
 
 void SP2::setLights()
@@ -260,63 +348,169 @@ void SP2::updateCar()
 
 }
 
-void SP2::RenderHuman()
+void SP2::RenderHuman(int type)// 1- shopper , 2 - police, 3 - staff
 {
-	modelStack.PushMatrix();
+	if( type == 1)
 	{
-		//===================================== BODY ===========================
-		modelStack.Translate(0,5,20);
-		RenderMesh(human.GetHuman(0), false); 
 		modelStack.PushMatrix();
 		{
-			// ================================ L_SHOULDERs =======================
-			modelStack.Translate(1.5,2.8,0);
-			RenderMesh(human.GetHuman(1), false); 
+			//===================================== BODY ===========================
+			modelStack.Translate(0,2.5,0);
+			RenderMesh(meshList[GEO_HUMAN_SHOPPER_BODY], false); 
 			modelStack.PushMatrix();
 			{
-				//=============================== L_HANDS =========================
-				modelStack.Translate(0,-0.9,0);
-				RenderMesh(human.GetHuman(2), false);
+				// ================================ L_SHOULDERs =======================
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], false); 
+				modelStack.PushMatrix();
+				{
+					//=============================== L_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], false);
+				}
+				modelStack.PopMatrix();
 			}
 			modelStack.PopMatrix();
-		}
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
-		{
-			// ================================ R_SHOULDER =======================
-			modelStack.Translate(-1.5,2.8, 0);
-			RenderMesh(human.GetHuman(1), false);
 			modelStack.PushMatrix();
 			{
-				//=============================== R_HANDS =========================
-				modelStack.Translate(0,-0.9,0);
-				RenderMesh(human.GetHuman(2), false);
+				// ================================ R_SHOULDER =======================
+				modelStack.Translate(-1.5,2.8, 0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], false);
+				modelStack.PushMatrix();
+				{
+					//=============================== R_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], false);
+				}
+				modelStack.PopMatrix();
 			}
 			modelStack.PopMatrix();
-		}
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
-		{
-			// ================================== R_LEGS ========================
-			modelStack.Translate(-0.6,0.75,0);
-			RenderMesh(human.GetHuman(3) , false);
-		}
-		modelStack.PopMatrix();
-		modelStack.PushMatrix();
-		{
-			// =========================== L_LEGS ==============================
-			modelStack.Translate(0.6,0.75,0);
-			RenderMesh(human.GetHuman(3), false);
+			modelStack.PushMatrix();
+			{
+				// ================================== R_LEGS ========================
+				modelStack.Translate(-0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG] , false);
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// =========================== L_LEGS ==============================
+				modelStack.Translate(0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG], false);
+			}
+			modelStack.PopMatrix();
 		}
 		modelStack.PopMatrix();
 	}
-	modelStack.PopMatrix();
-
+	if(type == 2)
+	{
+		modelStack.PushMatrix();
+		{
+			//===================================== BODY ===========================
+			modelStack.Translate(0,2.5,0);
+			RenderMesh(meshList[GEO_HUMAN_POLICE_BODY], false); 
+			modelStack.PushMatrix();
+			{
+				// ================================ L_SHOULDERs =======================
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_ARM], false); 
+				modelStack.PushMatrix();
+				{
+					//=============================== L_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_POLICE_HAND], false);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================ R_SHOULDER =======================
+				modelStack.Translate(-1.5,2.8, 0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_ARM], false);
+				modelStack.PushMatrix();
+				{
+					//=============================== R_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_POLICE_HAND], false);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================== R_LEGS ========================
+				modelStack.Translate(-0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_LEG] , false);
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// =========================== L_LEGS ==============================
+				modelStack.Translate(0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_LEG], false);
+			}
+			modelStack.PopMatrix();
+		}
+		modelStack.PopMatrix();
+	}
+	if(type == 3)
+	{
+		modelStack.PushMatrix();
+		{
+			//===================================== BODY ===========================
+			modelStack.Translate(0,2.5,0);
+			RenderMesh(meshList[GEO_HUMAN_STAFF_BODY], false); 
+			modelStack.PushMatrix();
+			{
+				// ================================ L_SHOULDERs =======================
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_ARM], false); 
+				modelStack.PushMatrix();
+				{
+					//=============================== L_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_STAFF_HAND], false);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================ R_SHOULDER =======================
+				modelStack.Translate(-1.5,2.8, 0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_ARM], false);
+				modelStack.PushMatrix();
+				{
+					//=============================== R_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_STAFF_HAND], false);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================== R_LEGS ========================
+				modelStack.Translate(-0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_LEG] , false);
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// =========================== L_LEGS ==============================
+				modelStack.Translate(0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_LEG], false);
+			}
+			modelStack.PopMatrix();
+		}
+		modelStack.PopMatrix();
+	}
 }
 
 void SP2::UpdateHuman(double dt)
 {
-	
+
 }
 
 void SP2::Render()
@@ -373,13 +567,10 @@ void SP2::Render()
 	renderCar();
 
 	RenderMesh(meshList[GEO_AXES], false);
-
-	modelStack.PushMatrix();
-	{
-		modelStack.Translate(0,0,20);
-		RenderHuman();
-	}
-	modelStack.PopMatrix();
+	
+	//RenderHuman(1);
+	//RenderHuman(2);
+	RenderHuman(3);
 
 	std::ostringstream sFPS;
 	sFPS << fps;
