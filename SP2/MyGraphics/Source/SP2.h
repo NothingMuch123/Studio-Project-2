@@ -9,6 +9,7 @@
 #include "MatrixStack.h"
 #include "Light.h"
 #include "Utility.h"
+#include "Human.h"
 
 class SP2 : public Scene
 {
@@ -112,10 +113,13 @@ private:
 	void updateCar();
 	void renderCar();
 
+	void RenderHuman();
+
 	bool togglelight;
 	double fps;
 	Vector3 skyboxSize;
 	float skyboxOffset;
+	CHuman human;
 };
 
 #endif
