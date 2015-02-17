@@ -78,111 +78,64 @@ void SP2::initCar()
 {
 	meshList[GEO_CAR] = MeshBuilder::GenerateOBJ("Car", "OBJ//Car.obj");
 	meshList[GEO_CAR]->textureID = LoadTGA("Image//CarTexture.tga");
-	meshList[GEO_CAR]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_CAR]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR]->material.kShininess = 1.f;
 
 	meshList[GEO_CAR_TYRE] = MeshBuilder::GenerateOBJ("Car", "OBJ//CarTyre.obj");
 	meshList[GEO_CAR_TYRE]->textureID = LoadTGA("Image//CarTyreTexture.tga");
-	meshList[GEO_CAR_TYRE]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR_TYRE]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
 }
 
 void SP2::initSuperMarket()
 {
 	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
 	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
+
+	meshList[GEO_CASHIERT] = MeshBuilder::GenerateOBJ("CashierTable" , "OBJ//cashiertable.obj");
+	meshList[GEO_CASHIERT]->textureID = LoadTGA("Image//cashier table.tga");
+
+	meshList[GEO_CAMERA] = MeshBuilder::GenerateOBJ("Camera" , "OBJ//camera.obj");
+	meshList[GEO_CAMERA]->textureID = LoadTGA("Image//camera_texture.tga");
+
+	meshList[GEO_SCREEN] = MeshBuilder::GenerateOBJ("Camera Screen" , "OBJ//cameraScreen.obj");
+	meshList[GEO_SCREEN]->textureID = LoadTGA("Image//cameraScreen_texture.tga");
+
 }
 
 void SP2::initHuman()
 {
 	meshList[GEO_HUMAN_SHOPPER_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_SHOPPER_BODY]->textureID = LoadTGA("Image//shopper_texture.tga");
-	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_BODY]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_SHOPPER_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
 	meshList[GEO_HUMAN_SHOPPER_ARM]->textureID = LoadTGA ("Image//shopper_texture.tga");
-	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_ARM]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_SHOPPER_HAND] = MeshBuilder::GenerateOBJ ( "l_hand" , "OBJ//humanModel_lefthand.obj");
 	meshList[GEO_HUMAN_SHOPPER_HAND]->textureID = LoadTGA ("Image//shopper_texture.tga");
-	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_HAND]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_SHOPPER_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//humanModel_leftleg.obj");
 	meshList[GEO_HUMAN_SHOPPER_LEG]->textureID = LoadTGA ("Image//shopper_texture.tga");
-	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_SHOPPER_LEG]->material.kShininess = 1.f;
-
 
 	meshList[GEO_HUMAN_POLICE_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_POLICE_BODY]->textureID = LoadTGA("Image//police_texture.tga");
-	meshList[GEO_HUMAN_POLICE_BODY]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_BODY]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_POLICE_BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_BODY]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_POLICE_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
 	meshList[GEO_HUMAN_POLICE_ARM]->textureID = LoadTGA ("Image//police_texture.tga");
-	meshList[GEO_HUMAN_POLICE_ARM]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_ARM]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_POLICE_ARM]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_ARM]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_POLICE_HAND] = MeshBuilder::GenerateOBJ ( "l_hand" , "OBJ//humanModel_lefthand.obj");
 	meshList[GEO_HUMAN_POLICE_HAND]->textureID = LoadTGA ("Image//police_texture.tga");
-	meshList[GEO_HUMAN_POLICE_HAND]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_HAND]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_POLICE_HAND]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_HAND]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_POLICE_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//humanModel_leftleg.obj");
 	meshList[GEO_HUMAN_POLICE_LEG]->textureID = LoadTGA ("Image//police_texture.tga");
-	meshList[GEO_HUMAN_POLICE_LEG]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_LEG]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_POLICE_LEG]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_POLICE_LEG]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_STAFF_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_STAFF_BODY]->textureID = LoadTGA("Image//staff_texture.tga");
-	meshList[GEO_HUMAN_STAFF_BODY]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_BODY]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_STAFF_BODY]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_BODY]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_STAFF_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
 	meshList[GEO_HUMAN_STAFF_ARM]->textureID = LoadTGA ("Image//staff_texture.tga");
-	meshList[GEO_HUMAN_STAFF_ARM]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_ARM]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_STAFF_ARM]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_ARM]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_STAFF_HAND] = MeshBuilder::GenerateOBJ ( "l_hand" , "OBJ//humanModel_lefthand.obj");
 	meshList[GEO_HUMAN_STAFF_HAND]->textureID = LoadTGA ("Image//staff_texture.tga");
-	meshList[GEO_HUMAN_STAFF_HAND]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_HAND]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_STAFF_HAND]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_HAND]->material.kShininess = 1.f;
 
 	meshList[GEO_HUMAN_STAFF_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//humanModel_leftleg.obj");
 	meshList[GEO_HUMAN_STAFF_LEG]->textureID = LoadTGA ("Image//staff_texture.tga");
-	meshList[GEO_HUMAN_STAFF_LEG]->material.kAmbient.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_LEG]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_HUMAN_STAFF_LEG]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_HUMAN_STAFF_LEG]->material.kShininess = 1.f;
 }
 
 void SP2::setLights()
@@ -563,13 +516,19 @@ void SP2::Render()
 
 	renderSuperMarket();
 
+	modelStack.PushMatrix();
+	modelStack.Translate(0,1,0);
 	renderCar();
+	modelStack.PopMatrix();
+
+	RenderMesh(meshList[GEO_SCREEN], false);
 
 	RenderMesh(meshList[GEO_AXES], false);
 	
 	//renderHuman(1);
-	//renderHuman(2);
-	renderHuman(3);
+	renderHuman(2);
+	//renderHuman(3);
+
 
 	std::ostringstream sFPS;
 	sFPS << fps;
@@ -583,6 +542,7 @@ void SP2::renderSuperMarket()
 	modelStack.Scale(10,10,10);
 	RenderMesh(meshList[GEO_SM], false);
 	modelStack.PopMatrix();
+
 }
 void SP2::renderCar()
 {

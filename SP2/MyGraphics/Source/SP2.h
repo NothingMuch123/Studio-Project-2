@@ -39,6 +39,9 @@ class SP2 : public Scene
 		
 		//SuperMarket
 		GEO_SM,
+		GEO_CASHIERT,
+		GEO_CAMERA,
+		GEO_SCREEN,
 
 		//Human
 		//SHOPPER
@@ -56,7 +59,6 @@ class SP2 : public Scene
 		GEO_HUMAN_STAFF_ARM,
 		GEO_HUMAN_STAFF_HAND,
 		GEO_HUMAN_STAFF_LEG,
-
 
 		//Size referance - unit cube
 		GEO_CUBE,
