@@ -86,12 +86,14 @@
     <ClCompile Include="Source\Camera3.cpp" />
     <ClCompile Include="Source\Human.cpp" />
     <ClCompile Include="Source\Item.cpp" />
+    <ClCompile Include="Source\Obj.cpp" />
     <ClCompile Include="Source\LoadOBJ.cpp" />
     <ClCompile Include="Source\LoadTGA.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshBuilder.cpp" />
     <ClCompile Include="Source\shader.cpp" />
+    <ClCompile Include="Source\Shelf.cpp" />
     <ClCompile Include="Source\SP2.cpp" />
     <ClCompile Include="Source\Utility.cpp" />
   </ItemGroup>
@@ -102,6 +104,7 @@
     <ClInclude Include="Source\Camera3.h" />
     <ClInclude Include="Source\Human.h" />
     <ClInclude Include="Source\Item.h" />
+    <ClInclude Include="Source\Obj.h" />
     <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\LoadOBJ.h" />
     <ClInclude Include="Source\LoadTGA.h" />
@@ -110,6 +113,7 @@
     <ClInclude Include="Source\MeshBuilder.h" />
     <ClInclude Include="Source\Scene.h" />
     <ClInclude Include="Source\shader.hpp" />
+    <ClInclude Include="Source\Shelf.h" />
     <ClInclude Include="Source\SP2.h" />
     <ClInclude Include="Source\Utility.h" />
     <ClInclude Include="Source\Vertex.h" />

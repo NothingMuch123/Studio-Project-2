@@ -51,10 +51,17 @@
     <ClCompile Include="Source\SP2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Obj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
     <ClCompile Include="Source\Human.cpp">
+=======
+    <ClCompile Include="Source\Shelf.cpp">
+>>>>>>> 14de45c19b3a4696e78a826399890eb4ee60a54e
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,10 +111,17 @@
     <ClInclude Include="Source\SP2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Obj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
     <ClInclude Include="Source\Human.h">
+=======
+    <ClInclude Include="Source\Shelf.h">
+>>>>>>> 14de45c19b3a4696e78a826399890eb4ee60a54e
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,24 +1,19 @@
-#include "Item.h"
+#include "Shelf.h"
 
 
-CItem::CItem(void) : item(0)
+CShelf::CShelf(void) : limit(0)
 {
 }
 
-CItem::CItem(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, Mesh *_item) : item(_item), CObj(_ID, _translate, _rotate, _scale, _size)
+CShelf::CShelf(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, int _limit) : limit(_limit), CObj(_ID, _translate, _rotate, _scale, _size)
 {
 }
 
-CItem::~CItem(void)
+CShelf::~CShelf(void)
 {
 }
 
-Mesh *CItem::getItem()
-{
-	return item;
-}
-
-void CItem::calcBound()
+void CShelf::calcBound()
 {
 	float offset = 0;
 	maxBound.Set(((size.x * scale.x) / 2) + translate.x + offset, ((size.y * scale.y) / 2) + translate.y + offset, ((size.z * scale.z) / 2) + translate.z + offset);

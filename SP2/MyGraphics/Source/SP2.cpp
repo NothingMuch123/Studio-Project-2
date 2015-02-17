@@ -46,7 +46,7 @@ void SP2::Init()
 
 	//Initialize camera settings
 	camera.Init(Vector3(0,50,0), Vector3(0,50,-5), Vector3(0,1,0));
-
+	
 	//Load vertex and fragment shaders
 	m_programID = LoadShaders( "Shader//Texture.vertexshader", "Shader//Text.fragmentshader" );
 
@@ -67,14 +67,23 @@ void SP2::Init()
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
 
+<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
 	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("cube" , "OBJ//Wall.obj");
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//Wall.tga");
 
+<<<<<<< 5a07bce53e35b8c4fd98f04087ff7b83e59d5b17
+	initHuman(); 
+=======
+	human.InitStaff();
+=======
+	meshList[GEO_WALL] = MeshBuilder::GenerateOBJ("Wall", "OBJ//Wall.obj");
+	meshList[GEO_WALL]->textureID = LoadTGA("Image//MazeWall.tga");
+
+>>>>>>> 14de45c19b3a4696e78a826399890eb4ee60a54e
 	initHuman(); 
 	initOuterSkybox();
 	initSuperMarket();
 }
-
 void SP2::initCar()
 {
 	meshList[GEO_CAR] = MeshBuilder::GenerateOBJ("Car", "OBJ//Car.obj");
@@ -517,7 +526,7 @@ void SP2::Render()
 {
 	// Render VBO here
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+		
 	viewStack.LoadIdentity();
 	viewStack.LookAt(camera.position.x, camera.position.y, camera.position.z, camera.target.x, camera.target.y, camera.target.z, camera.up.x, camera.up.y, camera.up.z);
 	modelStack.LoadIdentity();
@@ -525,41 +534,42 @@ void SP2::Render()
 	/*// Light 1
 	if(lights[0].type == Light::LIGHT_DIRECTIONAL)
 	{
-	Vector3 lightDir(lights[0].position.x, lights[0].position.y, lights[0].position.z);
-	Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
-	glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightDirection_cameraspace.x);
+		Vector3 lightDir(lights[0].position.x, lights[0].position.y, lights[0].position.z);
+		Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
+		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightDirection_cameraspace.x);
 	}
 	else if(lights[0].type == Light::LIGHT_SPOT)
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
-	glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
-	Vector3 spotDirection_cameraspace = viewStack.Top() * lights[0].spotDirection;
-	glUniform3fv(m_parameters[U_LIGHT0_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
+		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
+		Vector3 spotDirection_cameraspace = viewStack.Top() * lights[0].spotDirection;
+		glUniform3fv(m_parameters[U_LIGHT0_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
 	}
 	else
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
-	glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
+		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
 	}
 	// Light 2
 	if(lights[1].type == Light::LIGHT_DIRECTIONAL)
 	{
-	Vector3 lightDir(lights[1].position.x, lights[1].position.y, lights[1].position.z);
-	Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
-	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightDirection_cameraspace.x);
+		Vector3 lightDir(lights[1].position.x, lights[1].position.y, lights[1].position.z);
+		Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightDirection_cameraspace.x);
 	}
 	else if(lights[1].type == Light::LIGHT_SPOT)
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
-	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
-	Vector3 spotDirection_cameraspace = viewStack.Top() * lights[1].spotDirection;
-	glUniform3fv(m_parameters[U_LIGHT1_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
+		Vector3 spotDirection_cameraspace = viewStack.Top() * lights[1].spotDirection;
+		glUniform3fv(m_parameters[U_LIGHT1_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
 	}
 	else
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
-	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}*/
+<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
 	renderOuterSkybox();
 
 	renderSuperMarket();
@@ -579,8 +589,10 @@ void SP2::Render()
 }
 void SP2::renderSuperMarket()
 {
-	modelStack.PushMatrix();
+	modelStack.PushMatrix();								// Start of car
+	modelStack.Translate(0,5,0);
 	modelStack.Scale(5,5,5);
+<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
 	modelStack.Translate(0,0,0);
 	RenderMesh(meshList[GEO_SM], false);
 	modelStack.PopMatrix();
@@ -592,11 +604,14 @@ void SP2::renderCar()
 	modelStack.Translate(25,1,0);
 	modelStack.Rotate(90, 0, 1, 0);
 	modelStack.PushMatrix();
+=======
+	modelStack.PushMatrix();								// Start of car body
+>>>>>>> 14de45c19b3a4696e78a826399890eb4ee60a54e
 	RenderMesh(meshList[GEO_CAR], false);
-	modelStack.PopMatrix();
-	for(int x = -5;x<11;x+=10)
+	modelStack.PopMatrix();									// End of car body
+	for(int x = -5; x < 11; x += 10)						// Car tyres
 	{
-		for(int y = -3;y<4;y+=6)
+		for(int y = -3; y < 4; y += 6)
 		{
 			modelStack.PushMatrix();
 			modelStack.Translate(x,0,y);
@@ -604,7 +619,7 @@ void SP2::renderCar()
 			modelStack.PopMatrix();
 		}
 	}
-	modelStack.PopMatrix();
+	modelStack.PopMatrix();									// End of car
 
 }
 void SP2::renderOuterSkybox()
@@ -706,7 +721,7 @@ void SP2::RenderText(Mesh* mesh, std::string text, Color color)
 {
 	if(!mesh || mesh->textureID <= 0) //Proper error check
 		return;
-
+	
 	glDisable(GL_DEPTH_TEST);
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 1);
 	glUniform3fv(m_parameters[U_TEXT_COLOR], 1, &color.r);
@@ -721,7 +736,7 @@ void SP2::RenderText(Mesh* mesh, std::string text, Color color)
 		characterSpacing.SetToTranslation(i * 1.0f, 0, 0); //1.0f is the spacing of each character, you may change this value
 		Mtx44 MVP = projectionStack.Top() * viewStack.Top() * modelStack.Top() * characterSpacing;
 		glUniformMatrix4fv(m_parameters[U_MVP], 1, GL_FALSE, &MVP.a[0]);
-
+	
 		mesh->Render((unsigned)text[i] * 6, 6);
 	}
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -733,7 +748,7 @@ void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float si
 {
 	if(!mesh || mesh->textureID <= 0) //Proper error check
 		return;
-
+	
 	glDisable(GL_DEPTH_TEST);
 	Mtx44 ortho;
 	ortho.SetToOrtho(0, 80, 0, 60, -10, 10); //size of screen UI

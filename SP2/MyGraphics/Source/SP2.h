@@ -9,14 +9,22 @@
 #include "MatrixStack.h"
 #include "Light.h"
 #include "Utility.h"
-
+#include "Obj.h"
 
 class SP2 : public Scene
 {
+	enum OBJ_ID
+	{
+		OBJ_CAR,
+		OBJ_TROLLEY,
+		OBJ_ITEM,
+		OBJ_AI,
+	};
 	enum GEOMETRY_TYPE
 	{
 		GEO_AXES,
 		GEO_TEXT,
+		GEO_WALL,
 
 		// Outer skybox
 		GEO_OUTER_FRONT,
@@ -142,6 +150,11 @@ private:
 	double fps;
 	Vector3 skyboxSize;
 	float skyboxOffset;
+<<<<<<< 5a07bce53e35b8c4fd98f04087ff7b83e59d5b17
+=======
+	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
+	CObj *pObj;						// Points to an obj from the list
+>>>>>>> 27c5021c66516611255695b623b7d77edab1465c
 };
 
 #endif
