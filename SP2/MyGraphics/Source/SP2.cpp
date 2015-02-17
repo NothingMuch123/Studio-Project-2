@@ -46,7 +46,7 @@ void SP2::Init()
 
 	//Initialize camera settings
 	camera.Init(Vector3(0,50,0), Vector3(0,50,-5), Vector3(0,1,0));
-	
+
 	//Load vertex and fragment shaders
 	m_programID = LoadShaders( "Shader//Texture.vertexshader", "Shader//Text.fragmentshader" );
 
@@ -66,8 +66,11 @@ void SP2::Init()
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
-	human.InitStaff();
 
+	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("cube" , "OBJ//Wall.obj");
+	meshList[GEO_CUBE]->textureID = LoadTGA("Image//Wall.tga");
+
+	human.InitStaff();
 	initOuterSkybox();
 	initSuperMarket();
 }
@@ -311,6 +314,8 @@ void SP2::Render()
 	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
 	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}*/
+	renderOuterSkybox();
+
 	renderSuperMarket();
 
 	renderCar();
@@ -318,12 +323,11 @@ void SP2::Render()
 	RenderMesh(meshList[GEO_AXES], false);
 
 	modelStack.PushMatrix();
-	modelStack.Translate(0,0,20);
-	modelStack.Scale(5,5,5);	
-	RenderHuman();
+	{
+		modelStack.Translate(0,0,20);
+		RenderHuman();
+	}
 	modelStack.PopMatrix();
-
-	renderOuterSkybox();
 
 	std::ostringstream sFPS;
 	sFPS << fps;
@@ -360,7 +364,6 @@ void SP2::renderCar()
 	modelStack.PopMatrix();
 
 }
-
 void SP2::renderOuterSkybox()
 {
 	float translateY = 10;

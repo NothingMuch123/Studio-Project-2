@@ -33,6 +33,9 @@ class SP2 : public Scene
 		//SuperMarket
 		GEO_SM,
 
+		//Size referance - unit cube
+		GEO_CUBE,
+
 		NUM_GEOMETRY,
 	};
 	enum UNIFORM_TYPE
