@@ -236,6 +236,7 @@ void SP2::Update(double dt)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 
 	camera.Update(dt);
+	UpdateHuman(dt);
 
 	if(Application::IsKeyPressed('Z'))
 	{
@@ -261,10 +262,61 @@ void SP2::updateCar()
 
 void SP2::RenderHuman()
 {
-	for(int x = 0 ; x < 7; x++)
+	modelStack.PushMatrix();
 	{
-		RenderMesh(human.GetHuman(x), false);
+		//===================================== BODY ===========================
+		modelStack.Translate(0,5,20);
+		RenderMesh(human.GetHuman(0), false); 
+		modelStack.PushMatrix();
+		{
+			// ================================ L_SHOULDERs =======================
+			modelStack.Translate(1.5,2.8,0);
+			RenderMesh(human.GetHuman(1), false); 
+			modelStack.PushMatrix();
+			{
+				//=============================== L_HANDS =========================
+				modelStack.Translate(0,-0.9,0);
+				RenderMesh(human.GetHuman(2), false);
+			}
+			modelStack.PopMatrix();
+		}
+		modelStack.PopMatrix();
+		modelStack.PushMatrix();
+		{
+			// ================================ R_SHOULDER =======================
+			modelStack.Translate(-1.5,2.8, 0);
+			RenderMesh(human.GetHuman(1), false);
+			modelStack.PushMatrix();
+			{
+				//=============================== R_HANDS =========================
+				modelStack.Translate(0,-0.9,0);
+				RenderMesh(human.GetHuman(2), false);
+			}
+			modelStack.PopMatrix();
+		}
+		modelStack.PopMatrix();
+		modelStack.PushMatrix();
+		{
+			// ================================== R_LEGS ========================
+			modelStack.Translate(-0.6,0.75,0);
+			RenderMesh(human.GetHuman(3) , false);
+		}
+		modelStack.PopMatrix();
+		modelStack.PushMatrix();
+		{
+			// =========================== L_LEGS ==============================
+			modelStack.Translate(0.6,0.75,0);
+			RenderMesh(human.GetHuman(3), false);
+		}
+		modelStack.PopMatrix();
 	}
+	modelStack.PopMatrix();
+
+}
+
+void SP2::UpdateHuman(double dt)
+{
+	
 }
 
 void SP2::Render()

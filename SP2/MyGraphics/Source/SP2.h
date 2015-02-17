@@ -117,6 +117,7 @@ private:
 	void renderCar();
 
 	void RenderHuman();
+	void UpdateHuman(double dt);
 
 	bool togglelight;
 	double fps;
