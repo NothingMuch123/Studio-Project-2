@@ -42,6 +42,7 @@ class SP2 : public Scene
 		GEO_CASHIERT,
 		GEO_CAMERA,
 		GEO_SCREEN,
+		GEO_SHELF,
 
 		//Human
 		//SHOPPER

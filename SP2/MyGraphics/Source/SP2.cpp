@@ -97,6 +97,8 @@ void SP2::initSuperMarket()
 	meshList[GEO_SCREEN] = MeshBuilder::GenerateOBJ("Camera Screen" , "OBJ//cameraScreen.obj");
 	meshList[GEO_SCREEN]->textureID = LoadTGA("Image//cameraScreen_texture.tga");
 
+	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
+	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
 }
 
 void SP2::initHuman()
@@ -521,7 +523,7 @@ void SP2::Render()
 	renderCar();
 	modelStack.PopMatrix();
 
-	RenderMesh(meshList[GEO_SCREEN], false);
+	RenderMesh(meshList[GEO_SHELF], false);
 
 	RenderMesh(meshList[GEO_AXES], false);
 	
