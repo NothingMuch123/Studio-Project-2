@@ -60,6 +60,9 @@
     <ClCompile Include="Source\Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Car.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\shader.hpp">
@@ -116,13 +119,18 @@
     <ClInclude Include="Source\Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Car.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
       <UniqueIdentifier>{460975b5-1d7d-4275-a692-f2126567b69a}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{40d0b35a-31c7-4bcd-845b-50902fa033d8}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asm</Extensions>
     </Filter>
   </ItemGroup>
 </Project>

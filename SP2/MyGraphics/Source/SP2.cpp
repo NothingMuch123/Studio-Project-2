@@ -45,7 +45,7 @@ void SP2::Init()
 	glBindVertexArray(m_vertexArrayID);
 
 	//Initialize camera settings
-	camera.Init(Vector3(0,50,0), Vector3(0,50,-5), Vector3(0,1,0));
+	camera.Init(Vector3(0,50,0), Vector3(0,50,-15), Vector3(0,1,0));
 	
 	//Load vertex and fragment shaders
 	m_programID = LoadShaders( "Shader//Texture.vertexshader", "Shader//Text.fragmentshader" );
@@ -78,9 +78,24 @@ void SP2::initCar()
 {
 	meshList[GEO_CAR] = MeshBuilder::GenerateOBJ("Car", "OBJ//Car.obj");
 	meshList[GEO_CAR]->textureID = LoadTGA("Image//CarTexture.tga");
+	meshList[GEO_CAR]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_CAR]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR]->material.kShininess = 1.f;
 
 	meshList[GEO_CAR_TYRE] = MeshBuilder::GenerateOBJ("Car", "OBJ//CarTyre.obj");
 	meshList[GEO_CAR_TYRE]->textureID = LoadTGA("Image//CarTyreTexture.tga");
+	meshList[GEO_CAR_TYRE]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR_TYRE]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
+	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
+
+	car = false;
+	pObj = new CCar(OBJ_CAR, Vector3(-200,0,0), Vector3(0,0,0), Vector3(5,5,5), Vector3(17,8,7));
+	pObj->calcBound();
+	static_cast<CCar*>(pObj)->setCamera();
+	objList.push_back(pObj);
+	pToCar = pObj;
 }
 
 void SP2::initSuperMarket()
@@ -240,8 +255,6 @@ void SP2::initValues()
 {
 	fps = 60;
 	togglelight = false;
-	skyboxSize.Set(1000,1000,1000);
-	skyboxOffset = 10;
 }
 
 void SP2::initOuterSkybox()
@@ -263,11 +276,15 @@ void SP2::initOuterSkybox()
 
 	meshList[GEO_OUTER_BOTTOM] = MeshBuilder::GenerateQuad("Outer skybox bottom", Color(1,1,1), TexCoord(1,1));
 	meshList[GEO_OUTER_BOTTOM]->textureID = LoadTGA("Image//OuterSkybox//bottom.tga");
+
+	outerSkyboxSize.Set(1000,1000,1000);
+	skyboxOffset = 10;
+	outerSkyboxMaxBound.Set(outerSkyboxSize.x/2 - skyboxOffset*2, outerSkyboxSize.y/2 - skyboxOffset*2, outerSkyboxSize.z/2 - skyboxOffset*2);
+	outerSkyboxMinBound.Set(-outerSkyboxSize.x/2 + skyboxOffset*2, 0, -outerSkyboxSize.z/2 + skyboxOffset*2);
 }
 
 void SP2::Update(double dt)
 {
-	updateCar();
 	if(Application::IsKeyPressed('1')) //enable back face culling
 		glEnable(GL_CULL_FACE);
 	if(Application::IsKeyPressed('2')) //disable back face culling
@@ -277,8 +294,9 @@ void SP2::Update(double dt)
 	if(Application::IsKeyPressed('4'))
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 
-	camera.Update(dt);
+	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList);
 	updateHuman(dt);
+	updateCar();
 
 	if(Application::IsKeyPressed('Z'))
 	{
@@ -299,166 +317,19 @@ void SP2::Update(double dt)
 
 void SP2::updateCar()
 {
-
-}
-
-void SP2::renderHuman(int type)// 1- shopper , 2 - police, 3 - staff
-{
-	if( type == 1)
+	if (Application::IsKeyPressed('C') && !car)
 	{
-		modelStack.PushMatrix();
-		{
-			//===================================== BODY ===========================
-			modelStack.Translate(0,0,0);
-			RenderMesh(meshList[GEO_HUMAN_SHOPPER_BODY], false); 
-			modelStack.PushMatrix();
-			{
-				// ================================ L_SHOULDERs =======================
-				modelStack.Translate(1.5,2.8,0);
-				RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], false); 
-				modelStack.PushMatrix();
-				{
-					//=============================== L_HANDS =========================
-					modelStack.Translate(0,-0.9,0);
-					RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], false);
-				}
-				modelStack.PopMatrix();
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// ================================ R_SHOULDER =======================
-				modelStack.Translate(-1.5,2.8, 0);
-				RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], false);
-				modelStack.PushMatrix();
-				{
-					//=============================== R_HANDS =========================
-					modelStack.Translate(0,-0.9,0);
-					RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], false);
-				}
-				modelStack.PopMatrix();
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// ================================== R_LEGS ========================
-				modelStack.Translate(-0.6,0.75,0);
-				RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG] , false);
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// =========================== L_LEGS ==============================
-				modelStack.Translate(0.6,0.75,0);
-				RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG], false);
-			}
-			modelStack.PopMatrix();
-		}
-		modelStack.PopMatrix();
+		car = true;
+		pToCar->setRender(false);
+		saved = camera;
+		camera = static_cast<CCar*>(pObj)->carCamera;
 	}
-	if(type == 2)
+	if (Application::IsKeyPressed('V') && car)
 	{
-		modelStack.PushMatrix();
-		{
-			//===================================== BODY ===========================
-			modelStack.Translate(0,0,0);
-			RenderMesh(meshList[GEO_HUMAN_POLICE_BODY], false); 
-			modelStack.PushMatrix();
-			{
-				// ================================ L_SHOULDERs =======================
-				modelStack.Translate(1.5,2.8,0);
-				RenderMesh(meshList[GEO_HUMAN_POLICE_ARM], false); 
-				modelStack.PushMatrix();
-				{
-					//=============================== L_HANDS =========================
-					modelStack.Translate(0,-0.9,0);
-					RenderMesh(meshList[GEO_HUMAN_POLICE_HAND], false);
-				}
-				modelStack.PopMatrix();
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// ================================ R_SHOULDER =======================
-				modelStack.Translate(-1.5,2.8, 0);
-				RenderMesh(meshList[GEO_HUMAN_POLICE_ARM], false);
-				modelStack.PushMatrix();
-				{
-					//=============================== R_HANDS =========================
-					modelStack.Translate(0,-0.9,0);
-					RenderMesh(meshList[GEO_HUMAN_POLICE_HAND], false);
-				}
-				modelStack.PopMatrix();
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// ================================== R_LEGS ========================
-				modelStack.Translate(-0.6,0.75,0);
-				RenderMesh(meshList[GEO_HUMAN_POLICE_LEG] , false);
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// =========================== L_LEGS ==============================
-				modelStack.Translate(0.6,0.75,0);
-				RenderMesh(meshList[GEO_HUMAN_POLICE_LEG], false);
-			}
-			modelStack.PopMatrix();
-		}
-		modelStack.PopMatrix();
-	}
-	if(type == 3)
-	{
-		modelStack.PushMatrix();
-		{
-			//===================================== BODY ===========================
-			modelStack.Translate(0,0,0);
-			RenderMesh(meshList[GEO_HUMAN_STAFF_BODY], false); 
-			modelStack.PushMatrix();
-			{
-				// ================================ L_SHOULDERs =======================
-				modelStack.Translate(1.5,2.8,0);
-				RenderMesh(meshList[GEO_HUMAN_STAFF_ARM], false); 
-				modelStack.PushMatrix();
-				{
-					//=============================== L_HANDS =========================
-					modelStack.Translate(0,-0.9,0);
-					RenderMesh(meshList[GEO_HUMAN_STAFF_HAND], false);
-				}
-				modelStack.PopMatrix();
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// ================================ R_SHOULDER =======================
-				modelStack.Translate(-1.5,2.8, 0);
-				RenderMesh(meshList[GEO_HUMAN_STAFF_ARM], false);
-				modelStack.PushMatrix();
-				{
-					//=============================== R_HANDS =========================
-					modelStack.Translate(0,-0.9,0);
-					RenderMesh(meshList[GEO_HUMAN_STAFF_HAND], false);
-				}
-				modelStack.PopMatrix();
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// ================================== R_LEGS ========================
-				modelStack.Translate(-0.6,0.75,0);
-				RenderMesh(meshList[GEO_HUMAN_STAFF_LEG] , false);
-			}
-			modelStack.PopMatrix();
-			modelStack.PushMatrix();
-			{
-				// =========================== L_LEGS ==============================
-				modelStack.Translate(0.6,0.75,0);
-				RenderMesh(meshList[GEO_HUMAN_STAFF_LEG], false);
-			}
-			modelStack.PopMatrix();
-		}
-		modelStack.PopMatrix();
+		car = false;
+		pToCar->setRender(true);
+		static_cast<CCar*>(pObj)->carCamera = camera;
+		camera = saved;
 	}
 }
 
@@ -518,41 +389,56 @@ void SP2::Render()
 
 	renderSuperMarket();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(0,1,0);
-	renderCar();
-	modelStack.PopMatrix();
+	for (int i = 0; i < objList.size(); ++i)
+	{
+		pObj = objList[i];
+		if (pObj->getID() == OBJ_CAR)
+		{
+			if (pObj->getRender())
+			{
+				renderCar();
+			}
+		}
+	}
 
-	RenderMesh(meshList[GEO_SHELF], false);
+	// Target test
+	/*modelStack.PushMatrix();
+	modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
+	modelStack.Scale(5,5,5);
+	RenderMesh(meshList[GEO_CUBE], togglelight);
+	modelStack.PopMatrix();*/
 
 	RenderMesh(meshList[GEO_AXES], false);
 	
 	//renderHuman(1);
-	renderHuman(2);
-	//renderHuman(3);
-
+	//renderHuman(2);
+	renderHuman(3);
 
 	std::ostringstream sFPS;
 	sFPS << fps;
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
 	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
 }
+
 void SP2::renderSuperMarket()
 {
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -500);
-	modelStack.Scale(10,10,10);
-	RenderMesh(meshList[GEO_SM], false);
+	modelStack.Translate(0, 0, -100);
+	modelStack.Scale(1,1,1);
+	RenderMesh(meshList[GEO_SM], togglelight);
 	modelStack.PopMatrix();
-
 }
+
 void SP2::renderCar()
 {
 	modelStack.PushMatrix();								// Start of car
-	modelStack.Translate(-200,5,0);
-	modelStack.Scale(5,5,5);
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y + 5, pObj->getTranslate().z);
+	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+	modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+	modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
 	modelStack.PushMatrix();								// Start of car body
-	RenderMesh(meshList[GEO_CAR], false);
+	RenderMesh(meshList[GEO_CAR], togglelight);
 	modelStack.PopMatrix();									// End of car body
 	for(int x = -5; x < 11; x += 10)						// Car tyres
 	{
@@ -560,54 +446,214 @@ void SP2::renderCar()
 		{
 			modelStack.PushMatrix();
 			modelStack.Translate(x,0,y);
-			RenderMesh(meshList[GEO_CAR_TYRE], false);
+			RenderMesh(meshList[GEO_CAR_TYRE], togglelight);
 			modelStack.PopMatrix();
 		}
 	}
 	modelStack.PopMatrix();									// End of car
-
 }
+
+
+void SP2::renderHuman(int type)// 1- shopper , 2 - police, 3 - staff
+{
+	if( type == 1)
+	{
+		modelStack.PushMatrix();
+		{
+			//===================================== BODY ===========================
+			modelStack.Translate(0,0,0);
+			RenderMesh(meshList[GEO_HUMAN_SHOPPER_BODY], togglelight); 
+			modelStack.PushMatrix();
+			{
+				// ================================ L_SHOULDERs =======================
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], togglelight); 
+				modelStack.PushMatrix();
+				{
+					//=============================== L_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], togglelight);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================ R_SHOULDER =======================
+				modelStack.Translate(-1.5,2.8, 0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], togglelight);
+				modelStack.PushMatrix();
+				{
+					//=============================== R_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], togglelight);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================== R_LEGS ========================
+				modelStack.Translate(-0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG] , togglelight);
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// =========================== L_LEGS ==============================
+				modelStack.Translate(0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG], togglelight);
+			}
+			modelStack.PopMatrix();
+		}
+		modelStack.PopMatrix();
+	}
+	if(type == 2)
+	{
+		modelStack.PushMatrix();
+		{
+			//===================================== BODY ===========================
+			modelStack.Translate(0,0,0);
+			RenderMesh(meshList[GEO_HUMAN_POLICE_BODY], togglelight); 
+			modelStack.PushMatrix();
+			{
+				// ================================ L_SHOULDERs =======================
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_ARM], togglelight); 
+				modelStack.PushMatrix();
+				{
+					//=============================== L_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_POLICE_HAND], togglelight);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================ R_SHOULDER =======================
+				modelStack.Translate(-1.5,2.8, 0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_ARM], togglelight);
+				modelStack.PushMatrix();
+				{
+					//=============================== R_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_POLICE_HAND], togglelight);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================== R_LEGS ========================
+				modelStack.Translate(-0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_LEG] , togglelight);
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// =========================== L_LEGS ==============================
+				modelStack.Translate(0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_POLICE_LEG], togglelight);
+			}
+			modelStack.PopMatrix();
+		}
+		modelStack.PopMatrix();
+	}
+	if(type == 3)
+	{
+		modelStack.PushMatrix();
+		{
+			//===================================== BODY ===========================
+			modelStack.Translate(0,0,0);
+			RenderMesh(meshList[GEO_HUMAN_STAFF_BODY], togglelight); 
+			modelStack.PushMatrix();
+			{
+				// ================================ L_SHOULDERs =======================
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_ARM], togglelight); 
+				modelStack.PushMatrix();
+				{
+					//=============================== L_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_STAFF_HAND], togglelight);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================ R_SHOULDER =======================
+				modelStack.Translate(-1.5,2.8, 0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_ARM], togglelight);
+				modelStack.PushMatrix();
+				{
+					//=============================== R_HANDS =========================
+					modelStack.Translate(0,-0.9,0);
+					RenderMesh(meshList[GEO_HUMAN_STAFF_HAND], togglelight);
+				}
+				modelStack.PopMatrix();
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// ================================== R_LEGS ========================
+				modelStack.Translate(-0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_LEG] , togglelight);
+			}
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			{
+				// =========================== L_LEGS ==============================
+				modelStack.Translate(0.6,0.75,0);
+				RenderMesh(meshList[GEO_HUMAN_STAFF_LEG], togglelight);
+			}
+			modelStack.PopMatrix();
+		}
+		modelStack.PopMatrix();
+	}
+}
+
 void SP2::renderOuterSkybox()
 {
-	float translateY = 10;
 	modelStack.PushMatrix();
-	modelStack.Translate(0, translateY, -skyboxSize.z/2 + skyboxOffset);
-	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	modelStack.Translate(0, 0, -outerSkyboxSize.z/2 + skyboxOffset);
+	modelStack.Scale(outerSkyboxSize.x, outerSkyboxSize.y, 1);
 	RenderMesh(meshList[GEO_OUTER_FRONT], togglelight);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(0, translateY, skyboxSize.z/2 - skyboxOffset);
+	modelStack.Translate(0, 0, outerSkyboxSize.z/2 - skyboxOffset);
 	modelStack.Rotate(180, 0, 1, 0);
-	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	modelStack.Scale(outerSkyboxSize.x, outerSkyboxSize.y, 1);
 	RenderMesh(meshList[GEO_OUTER_BACK], togglelight);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(-skyboxSize.z/2 + skyboxOffset, translateY, 0);
+	modelStack.Translate(-outerSkyboxSize.z/2 + skyboxOffset, 0, 0);
 	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	modelStack.Scale(outerSkyboxSize.x, outerSkyboxSize.y, 1);
 	RenderMesh(meshList[GEO_OUTER_LEFT], togglelight);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(skyboxSize.z/2 - skyboxOffset, translateY, 0);
+	modelStack.Translate(outerSkyboxSize.z/2 - skyboxOffset, 0, 0);
 	modelStack.Rotate(-90,0,1,0);
-	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	modelStack.Scale(outerSkyboxSize.x, outerSkyboxSize.y, 1);
 	RenderMesh(meshList[GEO_OUTER_RIGHT], togglelight);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
-	modelStack.Translate(0, skyboxSize.y/2 + translateY - skyboxOffset, 0);
+	modelStack.Translate(0, outerSkyboxSize.y/2 - skyboxOffset, 0);
 	modelStack.Rotate(90, 1, 0, 0);
-	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	modelStack.Scale(outerSkyboxSize.x, outerSkyboxSize.y, 1);
 	RenderMesh(meshList[GEO_OUTER_TOP], togglelight);
 	modelStack.PopMatrix();
 
 	modelStack.PushMatrix();
 	modelStack.Translate(0, 0, 0);
 	modelStack.Rotate(-90, 1, 0, 0);
-	modelStack.Scale(skyboxSize.x, skyboxSize.y, 1);
+	modelStack.Scale(outerSkyboxSize.x, outerSkyboxSize.y, 1);
 	RenderMesh(meshList[GEO_OUTER_BOTTOM], togglelight);
 	modelStack.PopMatrix();
 

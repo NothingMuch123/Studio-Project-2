@@ -54,9 +54,9 @@ Update the Camera's position, target, up and view location based on the time pas
 	the time passed since the last update.
 */
 /******************************************************************************/
-void Camera3::Update(double dt)
+void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList)
 {
-	static const float CAMERA_SPEED = 50.f;
+	static const float CAMERA_SPEED = 5.f;
 	static const float ROTATION_SPEED = 75.f;
 
 	if(Application::IsKeyPressed('W'))
@@ -65,9 +65,15 @@ void Camera3::Update(double dt)
 		float yaw = (float)(CAMERA_SPEED * dt);
 		Vector3 zeroTarget = target;
 		zeroTarget.y = position.y;
-		view = (zeroTarget - position).Normalized();
+		view = (zeroTarget - position);
 		position += (view * yaw);
 		target += (view * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
 
 		/*if (_objList.size() != 0)
 		{
@@ -99,9 +105,15 @@ void Camera3::Update(double dt)
 		float yaw = (float)(-CAMERA_SPEED * dt);
 		Vector3 zeroTarget = target;
 		zeroTarget.y = position.y;
-		view = (zeroTarget - position).Normalized();
+		view = (zeroTarget - position);
 		position += (view * yaw);
 		target += (view * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
 
 		/*if (_objList.size() != 0)
 		{
@@ -131,9 +143,15 @@ void Camera3::Update(double dt)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
-		view = (target - position).Normalized();
+		view = (target - position);
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
 
 		/*if (_objList.size() != 0)
 		{
@@ -163,9 +181,15 @@ void Camera3::Update(double dt)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(CAMERA_SPEED * dt);
-		view = (target - position).Normalized();
+		view = (target - position);
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
 
 		/*if (_objList.size() != 0)
 		{
@@ -195,12 +219,18 @@ void Camera3::Update(double dt)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
-		view = (target - position).Normalized();
+		view = (target - position);
 		Vector3 right = view.Cross(up);
 		right.y = 0;
 		right.Normalize();
 		position += (view.Cross(right) * yaw);
 		target += (view.Cross(right) * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
 
 		/*if (_objList.size() != 0)
 		{
@@ -230,12 +260,18 @@ void Camera3::Update(double dt)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(CAMERA_SPEED * dt);
-		view = (target - position).Normalized();
+		view = (target - position);
 		Vector3 right = view.Cross(up);
 		right.y = 0;
 		right.Normalize();
 		position += (view.Cross(right) * yaw);
 		target += (view.Cross(right) * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
 
 		/*if (_objList.size() != 0)
 		{
@@ -265,7 +301,7 @@ void Camera3::Update(double dt)
 	if(Application::IsKeyPressed(VK_UP))
 	{
 		float pitch = (float)(ROTATION_SPEED * dt);
-		view = (target - position).Normalized();
+		view = (target - position);
 		Vector3 right = view.Cross(up);
 		right.y = 0;
 		right.Normalize();
@@ -279,7 +315,7 @@ void Camera3::Update(double dt)
 	if(Application::IsKeyPressed(VK_DOWN))
 	{
 		float pitch = (float)(-ROTATION_SPEED * dt);
-		view = (target - position).Normalize();
+		view = (target - position);
 		Vector3 right = view.Cross(up);
 		right.y = 0;
 		right.Normalize();
@@ -293,7 +329,7 @@ void Camera3::Update(double dt)
 	if(Application::IsKeyPressed(VK_LEFT))
 	{
 		float pitch = (float)(ROTATION_SPEED * dt);
-		view = (target - position).Normalize();
+		view = (target - position);
 		rotation.SetToRotation(pitch, 0, 1, 0);
 		view = rotation * view;
 		target = (position + view);
@@ -304,7 +340,7 @@ void Camera3::Update(double dt)
 	if(Application::IsKeyPressed(VK_RIGHT))
 	{
 		float pitch = (float)(-ROTATION_SPEED * dt);
-		view = (target - position).Normalize();
+		view = (target - position);
 		rotation.SetToRotation(pitch, 0, 1, 0);
 		view = rotation * view;
 		target = (position + view);
@@ -332,7 +368,7 @@ void Camera3::Reset()
 	rotation.SetToIdentity();
 }
 
-bool Camera3::boundCheck()
+bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList)
 {
 	/*if ((target.x < BoundMax.x && target.x > BoundMin.x && target.y < BoundMax.y && target.y > BoundMin.y && target.z < BoundMax.z && target.z > BoundMin.z) || (target.x >= skyboxMaxBound.x || target.x <= skyboxMinBound.x || target.y >= skyboxMaxBound.y || target.y <= skyboxMinBound.y || target.z >= skyboxMaxBound.z || target.z <= skyboxMinBound.z))
 	{
@@ -342,5 +378,30 @@ bool Camera3::boundCheck()
 	{
 		return false;
 	}*/
-	return true;
+	if (_objList.size() != 0)
+	{
+		for (int i = 0; i < _objList.size(); ++i)
+		{
+			CObj *pObj = _objList[i];
+			if ((position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || (position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	else
+	{
+		if (position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

@@ -84,6 +84,7 @@
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Camera2.cpp" />
     <ClCompile Include="Source\Camera3.cpp" />
+    <ClCompile Include="Source\Car.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Obj.cpp" />
     <ClCompile Include="Source\LoadOBJ.cpp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\Camera2.h" />
     <ClInclude Include="Source\Camera3.h" />
+    <ClInclude Include="Source\Car.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Obj.h" />
     <ClInclude Include="Source\Light.h" />

@@ -13,6 +13,7 @@ Header file for Camera3 Class. It is the current camera that the scene uses.
 #include "Camera.h"
 #include "Mtx44.h"
 #include <vector>
+#include "Obj.h"
 
 /******************************************************************************/
 /*!
@@ -33,9 +34,9 @@ public:
 	Camera3();
 	~Camera3();
 	virtual void Init(const Vector3& pos, const Vector3& target, const Vector3& up);
-	virtual void Update(double dt);
+	virtual void Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList);
 	virtual void Reset();
-	bool boundCheck();
+	bool boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList);
 };
 
 #endif

@@ -2,14 +2,14 @@
 #define _SP2_H_
 
 #include "Scene.h"
-#include "Camera.h"
-#include "Camera2.h"
 #include "Camera3.h"
 #include "MeshBuilder.h"
 #include "MatrixStack.h"
 #include "Light.h"
 #include "Utility.h"
+
 #include "Obj.h"
+#include "Car.h"
 
 class SP2 : public Scene
 {
@@ -123,7 +123,7 @@ private:
 	Mesh *meshList[NUM_GEOMETRY];
 	unsigned m_programID;
 	unsigned m_parameters[U_TOTAL];
-	Camera3 camera;
+	Camera3 camera, saved;
 	MS modelStack, viewStack, projectionStack;
 	Light lights[2];
 	void RenderMesh(Mesh *mesh, bool enableLight);
@@ -150,8 +150,16 @@ private:
 
 	bool togglelight;
 	double fps;
-	Vector3 skyboxSize;
+
+	// Skybox variables
+	Vector3 outerSkyboxSize, outerSkyboxMaxBound, outerSkyboxMinBound;
 	float skyboxOffset;
+
+	// Car variables
+	CObj *pToCar;
+	bool car; // True = Inside || False = Outside
+
+	// CObj variables
 	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
 	CObj *pObj;						// Points to an obj from the list
 };
