@@ -67,19 +67,9 @@ void SP2::Init()
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
 
-<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
 	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("cube" , "OBJ//Wall.obj");
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//Wall.tga");
 
-<<<<<<< 5a07bce53e35b8c4fd98f04087ff7b83e59d5b17
-	initHuman(); 
-=======
-	human.InitStaff();
-=======
-	meshList[GEO_WALL] = MeshBuilder::GenerateOBJ("Wall", "OBJ//Wall.obj");
-	meshList[GEO_WALL]->textureID = LoadTGA("Image//MazeWall.tga");
-
->>>>>>> 14de45c19b3a4696e78a826399890eb4ee60a54e
 	initHuman(); 
 	initOuterSkybox();
 	initSuperMarket();
@@ -333,7 +323,7 @@ void SP2::Update(double dt)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 
 	camera.Update(dt);
-	UpdateHuman(dt);
+	updateHuman(dt);
 
 	if(Application::IsKeyPressed('Z'))
 	{
@@ -357,14 +347,14 @@ void SP2::updateCar()
 
 }
 
-void SP2::RenderHuman(int type)// 1- shopper , 2 - police, 3 - staff
+void SP2::renderHuman(int type)// 1- shopper , 2 - police, 3 - staff
 {
 	if( type == 1)
 	{
 		modelStack.PushMatrix();
 		{
 			//===================================== BODY ===========================
-			modelStack.Translate(0,2.5,0);
+			modelStack.Translate(0,0,0);
 			RenderMesh(meshList[GEO_HUMAN_SHOPPER_BODY], false); 
 			modelStack.PushMatrix();
 			{
@@ -416,7 +406,7 @@ void SP2::RenderHuman(int type)// 1- shopper , 2 - police, 3 - staff
 		modelStack.PushMatrix();
 		{
 			//===================================== BODY ===========================
-			modelStack.Translate(0,2.5,0);
+			modelStack.Translate(0,0,0);
 			RenderMesh(meshList[GEO_HUMAN_POLICE_BODY], false); 
 			modelStack.PushMatrix();
 			{
@@ -468,7 +458,7 @@ void SP2::RenderHuman(int type)// 1- shopper , 2 - police, 3 - staff
 		modelStack.PushMatrix();
 		{
 			//===================================== BODY ===========================
-			modelStack.Translate(0,2.5,0);
+			modelStack.Translate(0,0,0);
 			RenderMesh(meshList[GEO_HUMAN_STAFF_BODY], false); 
 			modelStack.PushMatrix();
 			{
@@ -517,7 +507,7 @@ void SP2::RenderHuman(int type)// 1- shopper , 2 - police, 3 - staff
 	}
 }
 
-void SP2::UpdateHuman(double dt)
+void SP2::updateHuman(double dt)
 {
 
 }
@@ -569,7 +559,6 @@ void SP2::Render()
 		Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
 		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}*/
-<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
 	renderOuterSkybox();
 
 	renderSuperMarket();
@@ -578,9 +567,9 @@ void SP2::Render()
 
 	RenderMesh(meshList[GEO_AXES], false);
 	
-	//RenderHuman(1);
-	//RenderHuman(2);
-	RenderHuman(3);
+	//renderHuman(1);
+	//renderHuman(2);
+	renderHuman(3);
 
 	std::ostringstream sFPS;
 	sFPS << fps;
@@ -589,24 +578,18 @@ void SP2::Render()
 }
 void SP2::renderSuperMarket()
 {
-	modelStack.PushMatrix();								// Start of car
-	modelStack.Translate(0,5,0);
-	modelStack.Scale(5,5,5);
-<<<<<<< 1f53e559b594bf9a8f0e246902743a378fecf39b
-	modelStack.Translate(0,0,0);
+	modelStack.PushMatrix();
+	modelStack.Translate(0, 0, -500);
+	modelStack.Scale(10,10,10);
 	RenderMesh(meshList[GEO_SM], false);
 	modelStack.PopMatrix();
 }
 void SP2::renderCar()
 {
-	modelStack.PushMatrix();
-	modelStack.Scale(4,4,4);
-	modelStack.Translate(25,1,0);
-	modelStack.Rotate(90, 0, 1, 0);
-	modelStack.PushMatrix();
-=======
+	modelStack.PushMatrix();								// Start of car
+	modelStack.Translate(-200,5,0);
+	modelStack.Scale(5,5,5);
 	modelStack.PushMatrix();								// Start of car body
->>>>>>> 14de45c19b3a4696e78a826399890eb4ee60a54e
 	RenderMesh(meshList[GEO_CAR], false);
 	modelStack.PopMatrix();									// End of car body
 	for(int x = -5; x < 11; x += 10)						// Car tyres

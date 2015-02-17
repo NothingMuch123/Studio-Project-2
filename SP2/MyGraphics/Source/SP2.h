@@ -24,7 +24,6 @@ class SP2 : public Scene
 	{
 		GEO_AXES,
 		GEO_TEXT,
-		GEO_WALL,
 
 		// Outer skybox
 		GEO_OUTER_FRONT,
@@ -143,18 +142,15 @@ private:
 	void renderCar();
 
 	void initHuman();
-	void RenderHuman(int type); // 1 - shopper , 2 - police , 3 - staff
-	void UpdateHuman(double dt);
+	void renderHuman(int type); // 1 - shopper , 2 - police , 3 - staff
+	void updateHuman(double dt);
 
 	bool togglelight;
 	double fps;
 	Vector3 skyboxSize;
 	float skyboxOffset;
-<<<<<<< 5a07bce53e35b8c4fd98f04087ff7b83e59d5b17
-=======
 	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
 	CObj *pObj;						// Points to an obj from the list
->>>>>>> 27c5021c66516611255695b623b7d77edab1465c
 };
 
 #endif
