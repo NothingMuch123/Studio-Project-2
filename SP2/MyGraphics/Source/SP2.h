@@ -10,6 +10,7 @@
 
 #include "Obj.h"
 #include "Car.h"
+#include "Shelf.h"
 
 class SP2 : public Scene
 {
@@ -19,6 +20,7 @@ class SP2 : public Scene
 		OBJ_TROLLEY,
 		OBJ_ITEM,
 		OBJ_AI,
+		OBJ_SHELF,
 	};
 	enum GEOMETRY_TYPE
 	{
@@ -43,6 +45,16 @@ class SP2 : public Scene
 		GEO_CAMERA,
 		GEO_SCREEN,
 		GEO_SHELF,
+		GEO_ITEM_1,
+		GEO_ITEM_2,
+		GEO_ITEM_3,
+		GEO_ITEM_4,
+		GEO_ITEM_5,
+		GEO_ITEM_6,
+		GEO_ITEM_7,
+		GEO_ITEM_8,
+		GEO_ITEM_9,
+		GEO_ITEM_10,
 
 		//Human
 		//SHOPPER
@@ -63,6 +75,9 @@ class SP2 : public Scene
 
 		//Size referance - unit cube
 		GEO_CUBE,
+
+		//player
+		GEO_PLAYER,
 
 		NUM_GEOMETRY,
 	};
@@ -162,6 +177,11 @@ private:
 	// CObj variables
 	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
 	CObj *pObj;						// Points to an obj from the list
+
+	std::vector<CShelf*> shelfList; // Holds all shelf class
+
+	//TODO : initialize shelf values , put in extra limit and mesh for items
+	//TODO: generate item from inside shelf to outisde.
 };
 
 #endif
