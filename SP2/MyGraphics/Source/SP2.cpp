@@ -118,7 +118,6 @@ void SP2::initSuperMarket()
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
 
-
 	//======================================================= ITEMS ====================================================================
 	meshList[GEO_ITEM_1] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-1.obj");
 	meshList[GEO_ITEM_1]->textureID = LoadTGA("Image//ITEMS//box-1.tga");
@@ -444,15 +443,17 @@ void SP2::Render()
 	RenderMesh(meshList[GEO_CUBE], togglelight);
 	modelStack.PopMatrix();
 	*/
-
 	RenderMesh(meshList[GEO_AXES], false);
 
 	//renderHuman(1);
-	renderHuman(2);
+	//renderHuman(2);
 	//renderHuman(3);
 
-	RenderMesh(meshList[GEO_PLAYER] , togglelight);
+	RenderMesh(meshList[GEO_ITEM_4] , togglelight);
 
+	modelStack.Translate(0,0,0);
+	modelStack.Scale(0.2,0.3,0.2);
+	RenderMesh(meshList[GEO_CUBE] , togglelight);
 	std::ostringstream sFPS;
 	sFPS << fps;
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
