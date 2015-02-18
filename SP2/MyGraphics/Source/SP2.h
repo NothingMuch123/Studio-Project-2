@@ -41,6 +41,9 @@ class SP2 : public Scene
 		
 		//SuperMarket
 		GEO_SM,
+		//SuperMarketDoor
+		GEO_SMD,
+		//SuperMarket Items
 		GEO_CASHIERT,
 		GEO_CAMERA,
 		GEO_SCREEN,
@@ -72,6 +75,8 @@ class SP2 : public Scene
 		GEO_HUMAN_STAFF_ARM,
 		GEO_HUMAN_STAFF_HAND,
 		GEO_HUMAN_STAFF_LEG,
+
+		
 
 		//Size referance - unit cube
 		GEO_CUBE,
@@ -150,9 +155,11 @@ private:
 	void lightParameters();
 	void initValues();
 	void initOuterSkybox();
-	void initSuperMarket();
 
 	void renderOuterSkybox();
+	
+	void initSuperMarket();
+	void updateSuperMarket(double dt);
 	void renderSuperMarket();
 
 	void initCar();
@@ -165,6 +172,9 @@ private:
 
 	bool togglelight;
 	double fps;
+
+	bool isDoorOpen; // Automated Door Check
+	float translateX;
 
 	// Skybox variables
 	Vector3 outerSkyboxSize, outerSkyboxMaxBound, outerSkyboxMinBound;

@@ -9,6 +9,11 @@
 #include "LoadTGA.h"
 #include <sstream>
 #include <fstream>
+#include <iostream>
+
+using namespace std;
+
+int GetMagnitude(int CamPos,int ObjPos);
 
 SP2::SP2()
 {
@@ -103,6 +108,10 @@ void SP2::initCar()
 
 void SP2::initSuperMarket()
 {
+
+	isDoorOpen = false;
+	translateX = 0;
+
 	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
 	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
 
@@ -117,7 +126,9 @@ void SP2::initSuperMarket()
 
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
-
+		
+	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//SuperMarketDoor.obj");
+	meshList[GEO_SMD]->textureID = LoadTGA("Image//SuperMarketDoorTexture.tga");
 	//======================================================= ITEMS ====================================================================
 	meshList[GEO_ITEM_1] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-1.obj");
 	meshList[GEO_ITEM_1]->textureID = LoadTGA("Image//ITEMS//box-1.tga");
@@ -331,6 +342,7 @@ void SP2::Update(double dt)
 	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList);
 	updateHuman(dt);
 	updateCar();
+	updateSuperMarket(dt);
 
 	if(Application::IsKeyPressed('Z'))
 	{
@@ -347,6 +359,30 @@ void SP2::Update(double dt)
 		fps = 1 / dt;
 		fpsRefresh = 0;
 	}
+}
+void SP2::updateSuperMarket(double dt)
+{
+	/*cout<<camera.position.x<<" "<<camera.position.z<<" x:"<<GetMagnitude(camera.position.x,0)<<" z:"<<GetMagnitude(camera.position.z,100);
+*/
+	if(GetMagnitude(camera.position.x,0)<50 && GetMagnitude(camera.position.z,100)<80)
+	{
+		cout<<" "<<"hi"<<endl;
+		isDoorOpen = true;
+		if(translateX<2)
+		{
+		translateX+=0.1;
+		}
+	}
+	else
+	{
+		isDoorOpen = false;
+	
+		if(translateX>0)
+		{
+		translateX-=0.1;
+		}
+	}
+	cout<<translateX<<" "<<isDoorOpen<<endl;
 }
 
 void SP2::updateCar()
@@ -463,16 +499,34 @@ void SP2::Render()
 void SP2::renderSuperMarket()
 {
 	modelStack.PushMatrix();
-	modelStack.Translate(0, 0, -100);
-	modelStack.Scale(1,1,1);
+	modelStack.Translate(0, -0.5, -100);
+	modelStack.Scale(20,20,20);
+	
+	modelStack.PushMatrix();
 	RenderMesh(meshList[GEO_SM], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(-1.55-translateX,0,10);
+	modelStack.Scale(0.6,0.5,0.5);
+	RenderMesh(meshList[GEO_SMD], togglelight);//right Door
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(1.55+translateX,0,10);
+	modelStack.Scale(0.6,0.5,0.5);
+	RenderMesh(meshList[GEO_SMD], togglelight);//left Door
+	modelStack.PopMatrix();
+
+
+
 	modelStack.PopMatrix();
 }
 
 void SP2::renderCar()
 {
 	modelStack.PushMatrix();								// Start of car
-	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y + 5, pObj->getTranslate().z);
+	modelStack.Translate(pObj->getTranslate().x-150, pObj->getTranslate().y + 5, pObj->getTranslate().z);
 	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
 	modelStack.Rotate(pObj->getRotate().z, 0,0,1);
@@ -812,4 +866,16 @@ void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float si
 	viewStack.PopMatrix();
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST);
+}
+
+int GetMagnitude(int CamPos,int ObjPos)
+{
+	int Magnitude = CamPos - ObjPos;
+
+	if(Magnitude<0)
+	{
+		Magnitude = Magnitude*-1;
+	}
+
+	return Magnitude;
 }
