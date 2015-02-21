@@ -56,7 +56,7 @@ Update the Camera's position, target, up and view location based on the time pas
 /******************************************************************************/
 void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList)
 {
-	static const float CAMERA_SPEED = 5.f;
+	static const float CAMERA_SPEED = 50.f;
 	static const float ROTATION_SPEED = 75.f;
 
 	if(Application::IsKeyPressed('W'))
@@ -65,7 +65,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		float yaw = (float)(CAMERA_SPEED * dt);
 		Vector3 zeroTarget = target;
 		zeroTarget.y = position.y;
-		view = (zeroTarget - position);
+		view = (zeroTarget - position).Normalized();
 		position += (view * yaw);
 		target += (view * yaw);
 
@@ -105,7 +105,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		float yaw = (float)(-CAMERA_SPEED * dt);
 		Vector3 zeroTarget = target;
 		zeroTarget.y = position.y;
-		view = (zeroTarget - position);
+		view = (zeroTarget - position).Normalized();
 		position += (view * yaw);
 		target += (view * yaw);
 
@@ -143,7 +143,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
-		view = (target - position);
+		view = (target - position).Normalized();
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
@@ -181,7 +181,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(CAMERA_SPEED * dt);
-		view = (target - position);
+		view = (target - position).Normalized();
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
@@ -219,7 +219,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
-		view = (target - position);
+		view = (target - position).Normalized();
 		Vector3 right = view.Cross(up);
 		right.y = 0;
 		right.Normalize();
@@ -260,7 +260,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(CAMERA_SPEED * dt);
-		view = (target - position);
+		view = (target - position).Normalized();
 		Vector3 right = view.Cross(up);
 		right.y = 0;
 		right.Normalize();
@@ -383,15 +383,15 @@ bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMin
 		for (int i = 0; i < _objList.size(); ++i)
 		{
 			CObj *pObj = _objList[i];
-			if ((position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || (position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z))
+			if (pObj->getRender())
 			{
-				return true;
-			}
-			else
-			{
-				return false;
+				if ((position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || (position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z))
+				{
+					return true;
+				}
 			}
 		}
+		return false;
 	}
 	else
 	{

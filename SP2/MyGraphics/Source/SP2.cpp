@@ -98,12 +98,12 @@ void SP2::initCar()
 	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
 	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
 
-	car = false;
-	pObj = new CCar(OBJ_CAR, Vector3(-200,0,0), Vector3(0,0,0), Vector3(5,5,5), Vector3(17,8,7));
+	inCar = NULL;
+	pObj = new CCar(OBJ_CAR, Vector3(-200,0,0), Vector3(0,0,0), Vector3(5,5,5), Vector3(17,8,17));
 	pObj->calcBound();
 	static_cast<CCar*>(pObj)->setCamera();
 	objList.push_back(pObj);
-	pToCar = pObj;
+	carList.push_back(static_cast<CCar*>(pObj));
 }
 
 void SP2::initSuperMarket()
@@ -325,7 +325,7 @@ void SP2::initOuterSkybox()
 	outerSkyboxSize.Set(1000,1000,1000);
 	skyboxOffset = 10;
 	outerSkyboxMaxBound.Set(outerSkyboxSize.x/2 - skyboxOffset*2, outerSkyboxSize.y/2 - skyboxOffset*2, outerSkyboxSize.z/2 - skyboxOffset*2);
-	outerSkyboxMinBound.Set(-outerSkyboxSize.x/2 + skyboxOffset*2, 0, -outerSkyboxSize.z/2 + skyboxOffset*2);
+	outerSkyboxMinBound.Set(-outerSkyboxSize.x/2 + skyboxOffset*2, skyboxOffset, -outerSkyboxSize.z/2 + skyboxOffset*2);
 }
 
 void SP2::Update(double dt)
@@ -339,9 +339,33 @@ void SP2::Update(double dt)
 	if(Application::IsKeyPressed('4'))
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 
+	// Interactions
+	for (int i = 0; i < objList.size(); ++i)
+	{
+		pObj = objList[i];
+		if (pObj->getRender())
+		{
+			if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
+			{
+				if (pObj->getID() == OBJ_CAR)
+				{
+					if (Application::IsKeyPressed('C') && inCar == NULL)
+					{
+						inCar = static_cast<CCar*>(pObj);
+						pObj->setRender(false);
+						camera = static_cast<CCar*>(pObj)->carCamera;
+					}
+				}
+			}
+		}
+	}
+	if (inCar != NULL)
+	{
+		updateCar(dt);
+	}
+
 	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList);
 	updateHuman(dt);
-	updateCar();
 	updateSuperMarket(dt);
 
 	if(Application::IsKeyPressed('Z'))
@@ -385,21 +409,29 @@ void SP2::updateSuperMarket(double dt)
 	cout<<translateX<<" "<<isDoorOpen<<endl;
 }
 
-void SP2::updateCar()
+void SP2::updateCar(double dt)
 {
-	if (Application::IsKeyPressed('C') && !car)
+	if (Application::IsKeyPressed('V'))
 	{
-		car = true;
-		pToCar->setRender(false);
-		saved = camera;
-		camera = static_cast<CCar*>(pObj)->carCamera;
+		inCar->setRender(true);
+		inCar->carCamera = camera;
+		Vector3 right = ((inCar->carCamera.target - inCar->carCamera.position).Cross(inCar->carCamera.up)).Normalized();
+		Mtx44 Rotation;
+		Rotation.SetToRotation(90,0,1,0);
+		camera.Init(camera.position - (right * 65), (camera.position - (right * 65)) + ((Rotation * (camera.position - camera.target))), Vector3(0,1,0));
+		inCar->updatePosition();
+		inCar->calcBound();
+		inCar = NULL;
 	}
-	if (Application::IsKeyPressed('V') && car)
+	if (Application::IsKeyPressed(VK_LEFT))
 	{
-		car = false;
-		pToCar->setRender(true);
-		static_cast<CCar*>(pObj)->carCamera = camera;
-		camera = saved;
+		float rotateY = inCar->getRotate().y + (75*dt);
+		inCar->setRotateY(rotateY);
+	}
+	if (Application::IsKeyPressed(VK_RIGHT))
+	{
+		float rotateY = inCar->getRotate().y - (75*dt);
+		inCar->setRotateY(rotateY);
 	}
 }
 
@@ -462,9 +494,9 @@ void SP2::Render()
 	for (int i = 0; i < objList.size(); ++i)
 	{
 		pObj = objList[i];
-		if (pObj->getID() == OBJ_CAR)
+		if (pObj->getRender())
 		{
-			if (pObj->getRender())
+			if (pObj->getID() == OBJ_CAR)
 			{
 				renderCar();
 			}
@@ -477,8 +509,8 @@ void SP2::Render()
 	modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
 	modelStack.Scale(5,5,5);
 	RenderMesh(meshList[GEO_CUBE], togglelight);
-	modelStack.PopMatrix();
-	*/
+	modelStack.PopMatrix();*/
+	
 	RenderMesh(meshList[GEO_AXES], false);
 
 	//renderHuman(1);
@@ -500,7 +532,7 @@ void SP2::renderSuperMarket()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(0, -0.5, -100);
-	modelStack.Scale(20,20,20);
+	modelStack.Scale(1,1,1);
 	
 	modelStack.PushMatrix();
 	RenderMesh(meshList[GEO_SM], togglelight);
@@ -526,7 +558,7 @@ void SP2::renderSuperMarket()
 void SP2::renderCar()
 {
 	modelStack.PushMatrix();								// Start of car
-	modelStack.Translate(pObj->getTranslate().x-150, pObj->getTranslate().y + 5, pObj->getTranslate().z);
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y + 5, pObj->getTranslate().z);
 	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
 	modelStack.Rotate(pObj->getRotate().z, 0,0,1);

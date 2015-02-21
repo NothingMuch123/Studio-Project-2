@@ -76,3 +76,8 @@ void CObj::setRender(bool _render)
 {
 	render = _render;
 }
+
+void CObj::setRotateY(float _rotateY)
+{
+	rotate.y = _rotateY;
+}

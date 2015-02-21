@@ -13,6 +13,7 @@ public:
 	Camera3 carCamera;
 	virtual void calcBound();
 	void setCamera();
+	void updatePosition();
 };
 
 #endif

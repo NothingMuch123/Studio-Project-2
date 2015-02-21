@@ -14,6 +14,7 @@ public:
 	int getID();
 	bool getRender();
 	void setRender(bool _render);
+	void setRotateY(float _rotateY);
 
 	virtual void calcBound();
 

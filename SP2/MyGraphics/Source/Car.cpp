@@ -27,3 +27,9 @@ void CCar::setCamera()
 	carCamera.target.x += 15;
 	carCamera.up.Set(0, 1, 0);
 }
+
+void CCar::updatePosition()
+{
+	translate = carCamera.position;
+	translate.y -= 20;
+}

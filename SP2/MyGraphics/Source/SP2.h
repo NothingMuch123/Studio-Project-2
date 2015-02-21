@@ -8,7 +8,7 @@
 #include "Light.h"
 #include "Utility.h"
 
-#include "Obj.h"
+#include "Item.h"
 #include "Car.h"
 #include "Shelf.h"
 
@@ -163,7 +163,7 @@ private:
 	void renderSuperMarket();
 
 	void initCar();
-	void updateCar();
+	void updateCar(double dt);
 	void renderCar();
 
 	void initHuman();
@@ -181,8 +181,8 @@ private:
 	float skyboxOffset;
 
 	// Car variables
-	CObj *pToCar;
-	bool car; // True = Inside || False = Outside
+	std::vector<CCar*> carList;
+	CCar* inCar;		// NULL - Not inside
 
 	// CObj variables
 	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
