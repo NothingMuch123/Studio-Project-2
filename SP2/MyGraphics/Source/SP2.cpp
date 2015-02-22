@@ -73,7 +73,7 @@ void SP2::Init()
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
 
 	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("cube" , "OBJ//Wall.obj");
-	meshList[GEO_CUBE]->textureID = LoadTGA("Image//Wall.tga");
+	meshList[GEO_CUBE]->textureID = LoadTGA("Image//MazeWall.tga");
 
 	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Wall.obj");
 	meshList[GEO_PLAYER]->textureID = LoadTGA("Image//player_texture.tga");
@@ -98,6 +98,9 @@ void SP2::initCar()
 	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
 	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
 
+	meshList[GEO_CAR_SCREEN] = MeshBuilder::GenerateQuad("Car screen", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_CAR_SCREEN]->textureID = LoadTGA("Image//Driver'sScreenTexture[Test].tga");
+
 	inCar = NULL;
 	pObj = new CCar(OBJ_CAR, Vector3(-200,0,0), Vector3(0,0,0), Vector3(5,5,5), Vector3(17,8,17));
 	pObj->calcBound();
@@ -108,14 +111,19 @@ void SP2::initCar()
 
 void SP2::initSuperMarket()
 {
-
+	// Supermarket
+	supermarketSize.Set(30,20,20);
+	supermarketPosition.Set(0,0,0);
+	supermarketScale.Set(10,10,10);
+	// Door
+	Vector3 doorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
+	supermarketDoorMaxBound.Set(doorPosition.x + (3 * supermarketScale.x), doorPosition.y, doorPosition.z + (5 * supermarketScale.z));
+	supermarketDoorMinBound.Set(doorPosition.x - (3 * supermarketScale.x), doorPosition.y, doorPosition.z - (5 * supermarketScale.z));
 	isDoorOpen = false;
 	translateX = 0;
-	// To load Supermarket wall OBJs 
-	/*
+	
 	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
 	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
-	*/ 
 
 	meshList[GEO_CASHIERT] = MeshBuilder::GenerateOBJ("CashierTable" , "OBJ//cashiertable.obj");
 	meshList[GEO_CASHIERT]->textureID = LoadTGA("Image//cashier table.tga");
@@ -390,13 +398,13 @@ void SP2::updateSuperMarket(double dt)
 {
 	/*cout<<camera.position.x<<" "<<camera.position.z<<" x:"<<GetMagnitude(camera.position.x,0)<<" z:"<<GetMagnitude(camera.position.z,100);
 */
-	if(GetMagnitude(camera.position.x,0)<50 && GetMagnitude(camera.position.z,100)<80)
+	//if(GetMagnitude(camera.position.x,0)<((supermarketPosition.x+2.5)*supermarketScale.x) && GetMagnitude(camera.position.z,(supermarketPosition.z+3)*supermarketScale.z)<((supermarketPosition.z - (supermarketScale.z*supermarketSize.z))*supermarketScale.z))
+	if (camera.position.x < supermarketDoorMaxBound.x && camera.position.x > supermarketDoorMinBound.x && camera.position.z < supermarketDoorMaxBound.z && camera.position.z > supermarketDoorMinBound.z)
 	{
-		cout<<" "<<"hi"<<endl;
 		isDoorOpen = true;
 		if(translateX<2)
 		{
-		translateX+=0.1;
+			translateX+=0.1;
 		}
 	}
 	else
@@ -405,10 +413,9 @@ void SP2::updateSuperMarket(double dt)
 	
 		if(translateX>0)
 		{
-		translateX-=0.1;
+			translateX-=0.1;
 		}
 	}
-	cout<<translateX<<" "<<isDoorOpen<<endl;
 }
 
 void SP2::updateCar(double dt)
@@ -489,10 +496,12 @@ void SP2::Render()
 	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
 	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}*/
+
 	renderOuterSkybox();
 
 	renderSuperMarket();
 
+	// Render objList
 	for (int i = 0; i < objList.size(); ++i)
 	{
 		pObj = objList[i];
@@ -503,6 +512,17 @@ void SP2::Render()
 				renderCar();
 			}
 		}
+	}
+
+	// Car screen
+	if (inCar != NULL)
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
+		modelStack.Rotate(inCar->getRotate().y - 90, 0, 1, 0);
+		modelStack.Scale(3.4 * inCar->getScale().x, 3 * inCar->getScale().y, 1);
+		RenderMesh(meshList[GEO_CAR_SCREEN], togglelight);
+		modelStack.PopMatrix();
 	}
 
 	// Target test
@@ -519,43 +539,49 @@ void SP2::Render()
 	//renderHuman(2);
 	//renderHuman(3);
 
-	RenderMesh(meshList[GEO_ITEM_4] , togglelight);
-
+	// Please do the proper modelStack method, else anything below it will be ruined -Fang Shu
+	/*RenderMesh(meshList[GEO_ITEM_4] , togglelight);
 	modelStack.Translate(0,0,0);
 	modelStack.Scale(0.2,0.3,0.2);
-	RenderMesh(meshList[GEO_CUBE] , togglelight);
-	std::ostringstream sFPS;
+	RenderMesh(meshList[GEO_CUBE] , togglelight);*/
+
+	std::ostringstream sFPS, sX, sY, sZ;
 	sFPS << fps;
+	sX << camera.position.x;
+	sY << camera.position.y;
+	sZ << camera.position.z;
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
-	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
+	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 4, 1);
+	RenderTextOnScreen(meshList[GEO_TEXT], "X: ", Color(0, 1, 0), 2, 1, 4);
+	RenderTextOnScreen(meshList[GEO_TEXT], sX.str(), Color(0, 1, 0), 2, 4, 4);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Y: ", Color(0, 1, 0), 2, 1, 3);
+	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 1, 0), 2, 4, 3);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 1, 0), 2, 1, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 1, 0), 2, 4, 2);
 }
 
 void SP2::renderSuperMarket()
 {
 	
 	modelStack.PushMatrix();
-	/*
-	modelStack.Translate(0, -0.5, -100);
-	modelStack.Scale(1,1,1);
+	modelStack.Translate(supermarketPosition.x,supermarketPosition.y,supermarketPosition.z);
+	modelStack.Scale(supermarketScale.x,supermarketScale.y,supermarketScale.z);
 	
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_SM], togglelight);
+		modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	RenderMesh(meshList[GEO_SM], togglelight);
-	modelStack.PopMatrix();
-	*/
-	modelStack.PushMatrix();
-	modelStack.Translate(-1.55-translateX,0,10);
-	modelStack.Scale(0.6,0.5,0.5);
-	RenderMesh(meshList[GEO_SMD], togglelight);//right Door
-	modelStack.PopMatrix();
+		modelStack.PushMatrix();
+		modelStack.Translate(-1.55-translateX,0,10);
+		modelStack.Scale(0.6,0.5,0.5);
+		RenderMesh(meshList[GEO_SMD], togglelight);//right Door
+		modelStack.PopMatrix();
 
-	modelStack.PushMatrix();
-	modelStack.Translate(1.55+translateX,0,10);
-	modelStack.Scale(0.6,0.5,0.5);
-	RenderMesh(meshList[GEO_SMD], togglelight);//left Door
-	modelStack.PopMatrix();
-
-
+		modelStack.PushMatrix();
+		modelStack.Translate(1.55+translateX,0,10);
+		modelStack.Scale(0.6,0.5,0.5);
+		RenderMesh(meshList[GEO_SMD], togglelight);//left Door
+		modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
 }

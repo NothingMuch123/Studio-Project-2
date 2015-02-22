@@ -38,6 +38,7 @@ class SP2 : public Scene
 		// Car
 		GEO_CAR,
 		GEO_CAR_TYRE,
+		GEO_CAR_SCREEN,
 		
 		//SuperMarket
 		GEO_SM,
@@ -175,6 +176,7 @@ private:
 
 	bool isDoorOpen; // Automated Door Check
 	float translateX;
+	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound;
 
 	// Skybox variables
 	Vector3 outerSkyboxSize, outerSkyboxMaxBound, outerSkyboxMinBound;
