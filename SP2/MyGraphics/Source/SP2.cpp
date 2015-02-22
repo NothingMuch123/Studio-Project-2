@@ -111,9 +111,11 @@ void SP2::initSuperMarket()
 
 	isDoorOpen = false;
 	translateX = 0;
-
+	// To load Supermarket wall OBJs 
+	/*
 	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
 	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
+	*/ 
 
 	meshList[GEO_CASHIERT] = MeshBuilder::GenerateOBJ("CashierTable" , "OBJ//cashiertable.obj");
 	meshList[GEO_CASHIERT]->textureID = LoadTGA("Image//cashier table.tga");
@@ -530,14 +532,17 @@ void SP2::Render()
 
 void SP2::renderSuperMarket()
 {
+	
 	modelStack.PushMatrix();
+	/*
 	modelStack.Translate(0, -0.5, -100);
 	modelStack.Scale(1,1,1);
 	
+
 	modelStack.PushMatrix();
 	RenderMesh(meshList[GEO_SM], togglelight);
 	modelStack.PopMatrix();
-
+	*/
 	modelStack.PushMatrix();
 	modelStack.Translate(-1.55-translateX,0,10);
 	modelStack.Scale(0.6,0.5,0.5);
