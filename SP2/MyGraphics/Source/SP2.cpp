@@ -78,7 +78,83 @@ void SP2::Init()
 	initHuman(); 
 	initOuterSkybox();
 	initSuperMarket();
+	initShelf();
+	initHands();
 }
+
+void SP2::initHands()
+{
+	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Wall.obj");
+	meshList[GEO_PLAYER]->textureID = LoadTGA("Image//player_texture.tga");
+	rotateHandX = 0;
+	rotateHandY = 0;
+}
+
+void SP2::initShelf()
+{
+	initItems();
+	
+	CItem* pItem;
+
+	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ("Shelf" , "OBJ//shelf.obj");
+	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
+
+	pObj= new CShelf(OBJ_SHELF,Vector3(0,0,0),Vector3(0,0,0),Vector3(10,10,10),Vector3(1,1,1),10);
+
+	pObj->calcBound();
+
+
+
+	/*for(int minimum=0 ; minimum < static_cast<CShelf*> (pObj)->limit ; ++minimum)
+	{*/
+		for(int x = -1;x<2;++x)
+		{
+			for(int y = -1;y<2;++y)
+			{
+				pItem = new CItem(OBJ_ITEM,Vector3(x,y,0),Vector3(0,0,0),Vector3(5,5,5),Vector3(1,1,1),meshList[GEO_ITEM_1]);
+				static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+			}
+		}
+	//}
+
+	objList.push_back(pObj);
+	
+	shelfList.push_back(static_cast<CShelf*>(pObj));
+}
+
+void SP2::initItems()
+{
+	meshList[GEO_ITEM_1] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-1.obj");
+	meshList[GEO_ITEM_1]->textureID = LoadTGA("Image//ITEMS//box-1.tga");
+
+	meshList[GEO_ITEM_2] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-2.obj");
+	meshList[GEO_ITEM_2]->textureID = LoadTGA("Image//ITEMS//can-2.tga");
+	
+	meshList[GEO_ITEM_3] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-3.obj");
+	meshList[GEO_ITEM_3]->textureID = LoadTGA("Image//ITEMS//box-3.tga");
+	
+	meshList[GEO_ITEM_4] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-4.obj");
+	meshList[GEO_ITEM_4]->textureID = LoadTGA("Image//ITEMS//can-4.tga");
+
+	meshList[GEO_ITEM_5] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-5.obj");
+	meshList[GEO_ITEM_5]->textureID = LoadTGA("Image//ITEMS//box-5.tga");
+
+	meshList[GEO_ITEM_6] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-6.obj");
+	meshList[GEO_ITEM_6]->textureID = LoadTGA("Image//ITEMS//box-6.tga");
+
+	meshList[GEO_ITEM_7] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-7.obj");
+	meshList[GEO_ITEM_7]->textureID = LoadTGA("Image//ITEMS//box-7.tga");
+
+	meshList[GEO_ITEM_8] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-8.obj");
+	meshList[GEO_ITEM_8]->textureID = LoadTGA("Image//ITEMS//can-8.tga");
+
+	meshList[GEO_ITEM_9] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//packet-9.obj");
+	meshList[GEO_ITEM_9]->textureID = LoadTGA("Image//ITEMS//packet-9.tga");
+
+	meshList[GEO_ITEM_10] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-10.obj");
+	meshList[GEO_ITEM_10]->textureID = LoadTGA("Image//ITEMS//box-10.tga");
+}
+
 void SP2::initCar()
 {
 	meshList[GEO_CAR] = MeshBuilder::GenerateOBJ("Car", "OBJ//Car.obj");
@@ -183,11 +259,7 @@ void SP2::initSuperMarket()
 	//Shelf OBJ
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
-	pObj = new CObj(OBJ_SHELF, Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(2.6,1.5,2));
-	pObj->calcBound();
-	objList.push_back(pObj);
-
-	//SuperMarket Door OBJ, not suck my d*ck
+		
 	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Door" ,"OBJ//SuperMarketDoor.obj");
 	meshList[GEO_SMD]->textureID = LoadTGA("Image//SuperMarketDoorTexture.tga");
 
@@ -369,8 +441,6 @@ void SP2::lightParameters()
 
 void SP2::initValues()
 {
-	rotateHandX = 0;
-	rotateHandY = 0;
 	fps = 60;
 	togglelight = false;
 }
@@ -403,7 +473,6 @@ void SP2::initOuterSkybox()
 
 void SP2::Update(double dt)
 {
-	static const float ROTATE_SPEED = 100.f;
 	if(Application::IsKeyPressed('1')) //enable back face culling
 		glEnable(GL_CULL_FACE);
 	if(Application::IsKeyPressed('2')) //disable back face culling
@@ -428,6 +497,8 @@ void SP2::Update(double dt)
 						inCar = static_cast<CCar*>(pObj);
 						pObj->setRender(false);
 						camera = static_cast<CCar*>(pObj)->carCamera;
+						rotateHandX = 0;
+						rotateHandY = inCar->getRotate().y -90;
 					}
 				}
 			}
@@ -439,8 +510,11 @@ void SP2::Update(double dt)
 	}
 
 	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, static_cast<CObj*>(inCar));
-	//updateHuman(dt);
+	updateHuman(dt);
 	updateSuperMarket(dt);
+	updateShelf();
+	updateItems();
+	updateHands(dt);
 
 	if(Application::IsKeyPressed('Z'))
 	{
@@ -450,16 +524,6 @@ void SP2::Update(double dt)
 	{
 		togglelight = false;
 	}
-	if(Application::IsKeyPressed('R'))
-	{
-		rotateHandX = 0;
-		rotateHandY = 0;
-	}
-	if(Application::IsKeyPressed('V'))
-	{
-		rotateHandX = 0;
-		rotateHandY = 180;
-	}
 	static double fpsRefresh;
 	fpsRefresh += dt;
 	if (fpsRefresh >= 1)
@@ -467,7 +531,11 @@ void SP2::Update(double dt)
 		fps = 1 / dt;
 		fpsRefresh = 0;
 	}
+}
 
+void SP2::updateHands(double dt)
+{
+	static const float ROTATE_SPEED = 100.f;
 	if (Application::IsKeyPressed(VK_LEFT))
 	{
 		rotateHandY += ROTATE_SPEED*dt;
@@ -475,19 +543,53 @@ void SP2::Update(double dt)
 	}
 	if (Application::IsKeyPressed(VK_RIGHT))
 	{
-		rotateHandY -= (float)ROTATE_SPEED*dt;
+		rotateHandY -= ROTATE_SPEED*dt;
 	}
 
-	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30)
+	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30 && inCar == NULL)
 	{
 		rotateHandX += ROTATE_SPEED*dt;
-
 	}
-	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -10)
+	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -10 && inCar == NULL)
 	{
-		rotateHandX -= (float)ROTATE_SPEED*dt;
+		rotateHandX -= ROTATE_SPEED*dt;
 	}
+	if(Application::IsKeyPressed('R') && inCar == NULL)
+	{
+		rotateHandX = 0;
+		rotateHandY = 0;
+	}
+	/*Vector3 targetToZ(camera.position), cameraYTarget(camera.target), cameraXTarget(camera.target);
+	cameraXTarget.x = camera.position.x;
+	cameraYTarget.y = camera.position.y;
+	targetToZ.z -= 1;
+	if (camera.target.x < targetToZ.x)
+	{
+		rotateHandY = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length())));
+	}
+	else
+	{
+		rotateHandY = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length()))));
+	}
+	if (camera.target.y > targetToZ.y)
+	{
+		rotateHandX = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length())));
+	}
+	else
+	{
+		rotateHandX = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length()))));
+	}*/
 }
+
+void SP2::updateShelf()
+{
+
+}
+
+void SP2::updateItems()
+{
+}
+
 void SP2::updateSuperMarket(double dt)
 {
 	if (camera.position.x < supermarketDoorMaxBound.x && camera.position.x > supermarketDoorMinBound.x && camera.position.z < supermarketDoorMaxBound.z && camera.position.z > supermarketDoorMinBound.z)
@@ -511,7 +613,7 @@ void SP2::updateSuperMarket(double dt)
 
 void SP2::updateCar(double dt)//updating car
 {
-	static const float ROTATE_SPEED = 100.f;
+	float ROTATE_SPEED = 100.f;
 	if (Application::IsKeyPressed('V'))
 	{
 		inCar->setRender(true);
@@ -523,6 +625,8 @@ void SP2::updateCar(double dt)//updating car
 		inCar->updatePosition();
 		inCar->calcBound();
 		inCar = NULL;
+		rotateHandX = 0;
+		rotateHandY -= 90;
 	}
 	if (Application::IsKeyPressed(VK_LEFT))
 	{
@@ -542,7 +646,6 @@ void SP2::updateHuman(double dt)
 }
 
 void SP2::Render()
-
 {
 	// Render VBO here
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -604,6 +707,11 @@ void SP2::Render()
 			{
 				renderCar();
 			}
+			else if(pObj->getID() == OBJ_SHELF)
+			{
+				renderShelf();
+			}
+
 		}
 	}
 
@@ -617,7 +725,11 @@ void SP2::Render()
 		RenderMesh(meshList[GEO_CAR_SCREEN], togglelight);
 		modelStack.PopMatrix();
 	}
-
+	else
+	{
+		renderHands();
+	}
+	
 	// Target test
 	/*
 	modelStack.PushMatrix();
@@ -627,59 +739,38 @@ void SP2::Render()
 	modelStack.PopMatrix();*/
 
 	RenderMesh(meshList[GEO_AXES], false);
-	/*
-	// SHOPPER
-	modelStack.PushMatrix();
-	{
-		for(int i = 0 ; i < objList.size(); ++i)
-		{
-			pObj = objList[i];
-			if(pObj->getRender())
-			{
-				if(pObj->getID() == OBJ_POLICE)
-				{
-					renderHuman(1);
-				}
-			}
-		}
-	}
-	// POLICE
-	modelStack.PushMatrix();
-	{
-		for(int i = 0 ; i < objList.size(); ++i)
-		{
-			pObj = objList[i];
-			if(pObj->getRender())
-			{
-				if(pObj->getID() == OBJ_POLICE)
-				{
-					renderHuman(2);
-				}
-			}
-		}
-	}
-	*/
-	// STAFF
-	modelStack.PushMatrix();
-	{
-		for (int i = 0; i < objList.size(); ++i)
-		{
-			pObj = objList[i];
-			if (pObj->getRender())
-			{
-				if (pObj->getID() == OBJ_STAFF)
-				{
-					renderHuman(3);	
-				}
-			}
-		}
-	}
-	modelStack.PopMatrix();
 
-	//RENDER HOMOSAPIEN RIGHT HAND FOR FAPS
+	//renderHuman(1);
+	//renderHuman(2);
+	//renderHuman(3);
+
+	renderText();
+}
+
+void SP2::renderText()
+{
+	std::ostringstream sFPS, sX, sY, sZ;
+	sFPS << fps;
+	sX << camera.position.x;
+	sY << camera.position.y;
+	sZ << camera.position.z;
+
+	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
+	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
+	RenderTextOnScreen(meshList[GEO_TEXT], "X: ", Color(0, 1, 0), 2, 1, 4);
+	RenderTextOnScreen(meshList[GEO_TEXT], sX.str(), Color(0, 1, 0), 2, 4, 4);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Y: ", Color(0, 1, 0), 2, 1, 3);
+	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 1, 0), 2, 4, 3);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 1, 0), 2, 1, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 1, 0), 2, 4, 2);
+}
+
+void SP2::renderHands()
+{
+	// Left hands
 	modelStack.PushMatrix();
 		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
-	
+		
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
 		modelStack.Scale(.4,.4,1.5);
@@ -691,10 +782,10 @@ void SP2::Render()
 
 	modelStack.PopMatrix();
 
-	//RENDER HOMOSAPIEN LEFT HAND FOR FAPS
+	// Right hands
 	modelStack.PushMatrix();
 		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
-	
+		
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
 		modelStack.Scale(.4,.4,1.5);
@@ -705,20 +796,109 @@ void SP2::Render()
 		modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
+}
 
-	std::ostringstream sFPS, sX, sY, sZ;
-	sFPS << fps;
-	sX << camera.position.x;
-	sY << camera.position.y;
-	sZ << camera.position.z;
-	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
-	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 4, 1);
-	RenderTextOnScreen(meshList[GEO_TEXT], "X: ", Color(0, 1, 0), 2, 1, 4);
-	RenderTextOnScreen(meshList[GEO_TEXT], sX.str(), Color(0, 1, 0), 2, 4, 4);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Y: ", Color(0, 1, 0), 2, 1, 3);
-	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 1, 0), 2, 4, 3);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 1, 0), 2, 1, 2);
-	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 1, 0), 2, 4, 2);
+void SP2::renderShelf()
+{
+	modelStack.PushMatrix();
+	
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+	modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+	modelStack.PushMatrix();
+	modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
+	RenderMesh(meshList[GEO_SHELF], togglelight);
+	modelStack.PopMatrix();
+
+	CItem* pItem;
+
+	for(int a = 0; a < static_cast<CShelf*>(pObj)->itemList.size();++a)
+	{
+		pItem = static_cast<CShelf*>(pObj)->itemList[a];
+
+		modelStack.PushMatrix();
+		modelStack.Translate(pItem->getTranslate().x, pItem->getTranslate().y, pItem->getTranslate().z);
+		modelStack.Rotate(pItem->getRotate().x, 1,0,0);
+		modelStack.Rotate(pItem->getRotate().y, 0,1,0);
+		modelStack.Rotate(pItem->getRotate().z, 0,0,1);
+		modelStack.Scale(pItem->getScale().x, pItem->getScale().y, pItem->getScale().z);
+		RenderMesh(pItem->getItem(),togglelight);
+		modelStack.PopMatrix();
+	}
+	modelStack.PopMatrix();
+	
+	
+}
+void SP2::renderItems(int choice)
+{
+	modelStack.PushMatrix();
+	modelStack.Scale(5,5,5);
+
+	switch (choice)
+	{
+	case 1:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_1], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 2:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_2], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 3:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_3], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 4:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_4], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 5:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_5], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 6:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_6], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 7:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_7], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 8:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_8], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 9:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_9], togglelight);
+		modelStack.PopMatrix();
+		}
+	case 10:
+		{
+		modelStack.PushMatrix();
+		RenderMesh(meshList[GEO_ITEM_10], togglelight);
+		modelStack.PopMatrix();
+		}
+	}
+	modelStack.PopMatrix();
 }
 
 void SP2::renderSuperMarket()
@@ -751,8 +931,6 @@ void SP2::renderSuperMarket()
 	modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
-
-	// render items and shelf
 }
 
 void SP2::renderCar()

@@ -163,9 +163,10 @@ private:
 	void getHandle();
 	void lightParameters();
 	void initValues();
+	
 	void initOuterSkybox();
-
 	void renderOuterSkybox();
+	void renderText();
 	
 	void initSuperMarket();
 	void updateSuperMarket(double dt);
@@ -187,9 +188,14 @@ private:
 	void updateShelf();
 	void renderShelf();
 
+	void initHands();
+	void updateHands(double dt);
+	void renderHands();
+
 	bool togglelight;
 	double fps;
 
+	// Supermarket variables
 	bool isDoorOpen; // Automated Door Check
 	float translateX;
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound;
@@ -206,14 +212,10 @@ private:
 	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
 	CObj *pObj;						// Points to an obj from the list
 
-	std::vector<CShelf*> shelfList; // Holds all item obj on shelf - 
+	std::vector<CShelf*> shelfList;
 
-	//TODO : initialize shelf values , put in extra limit and mesh for items
-	//TODO: generate item from inside shelf to outisde.
-
-	//for hand rotation
-	float rotateHandX;
-	float rotateHandY;
+	//Hand variables
+	float rotateHandX, rotateHandY;
 };
 
 #endif
