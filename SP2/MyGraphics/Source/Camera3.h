@@ -37,6 +37,7 @@ public:
 	virtual void Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar);
 	virtual void Reset();
 	bool boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar);
+	bool IN_CAR;
 };
 
 #endif

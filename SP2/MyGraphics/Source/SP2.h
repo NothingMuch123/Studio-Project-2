@@ -28,6 +28,7 @@ class SP2 : public Scene
 		OBJ_SHOPPER,
 		OBJ_POLICE,
 		OBJ_STAFF,
+		OBJ_PLAYER,
 	};
 	enum GEOMETRY_TYPE
 	{
@@ -209,6 +210,10 @@ private:
 
 	//TODO : initialize shelf values , put in extra limit and mesh for items
 	//TODO: generate item from inside shelf to outisde.
+
+	//for hand rotation
+	float rotateHandX;
+	float rotateHandY;
 };
 
 #endif

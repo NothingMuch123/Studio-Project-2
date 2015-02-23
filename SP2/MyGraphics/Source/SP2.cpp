@@ -429,6 +429,8 @@ void SP2::lightParameters()
 
 void SP2::initValues()
 {
+	rotateHandX = 0;
+	rotateHandY = 0;
 	fps = 60;
 	togglelight = false;
 }
@@ -461,6 +463,7 @@ void SP2::initOuterSkybox()
 
 void SP2::Update(double dt)
 {
+	static const float ROTATE_SPEED = 100.f;
 	if(Application::IsKeyPressed('1')) //enable back face culling
 		glEnable(GL_CULL_FACE);
 	if(Application::IsKeyPressed('2')) //disable back face culling
@@ -509,12 +512,37 @@ void SP2::Update(double dt)
 	{
 		togglelight = false;
 	}
+	if(Application::IsKeyPressed('R'))
+	{
+		rotateHandX = 0;
+		rotateHandY = 0;
+	}
 	static double fpsRefresh;
 	fpsRefresh += dt;
 	if (fpsRefresh >= 1)
 	{
 		fps = 1 / dt;
 		fpsRefresh = 0;
+	}
+
+	if (Application::IsKeyPressed(VK_LEFT))
+	{
+		rotateHandY += ROTATE_SPEED*dt;
+
+	}
+	if (Application::IsKeyPressed(VK_RIGHT))
+	{
+		rotateHandY -= (float)ROTATE_SPEED*dt;
+	}
+
+	if (Application::IsKeyPressed(VK_UP))
+	{
+		rotateHandX += ROTATE_SPEED*dt;
+
+	}
+	if (Application::IsKeyPressed(VK_DOWN))
+	{
+		rotateHandX -= (float)ROTATE_SPEED*dt;
 	}
 }
 void SP2::updateShelf()
@@ -548,6 +576,7 @@ void SP2::updateSuperMarket(double dt)
 
 void SP2::updateCar(double dt)
 {
+	static const float ROTATE_SPEED = 100.f;
 	if (Application::IsKeyPressed('V'))
 	{
 		inCar->setRender(true);
@@ -562,12 +591,12 @@ void SP2::updateCar(double dt)
 	}
 	if (Application::IsKeyPressed(VK_LEFT))
 	{
-		float rotateY = inCar->getRotate().y + (75*dt);
+		float rotateY = inCar->getRotate().y + (ROTATE_SPEED*dt);
 		inCar->setRotateY(rotateY);
 	}
 	if (Application::IsKeyPressed(VK_RIGHT))
 	{
-		float rotateY = inCar->getRotate().y - (75*dt);
+		float rotateY = inCar->getRotate().y - (ROTATE_SPEED*dt);
 		inCar->setRotateY(rotateY);
 	}
 }
@@ -678,6 +707,36 @@ void SP2::Render()
 	modelStack.Translate(0,0,0);
 	modelStack.Scale(0.2,0.3,0.2);
 	RenderMesh(meshList[GEO_CUBE] , togglelight);*/
+
+	//RENDER HOMOSAPIEN RIGHT HAND FOR FAPS
+	modelStack.PushMatrix();
+		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
+	
+		modelStack.Rotate(rotateHandY, 0, 1, 0);
+		modelStack.Rotate(rotateHandX,1,0,0);
+		modelStack.Scale(.5,.5,1.5);
+		modelStack.PushMatrix();
+
+			modelStack.Translate(1,-1,-1);
+			RenderMesh(meshList[GEO_PLAYER], togglelight);
+		modelStack.PopMatrix();
+
+	modelStack.PopMatrix();
+
+	//RENDER HOMOSAPIEN LEFT HAND FOR FAPS
+	modelStack.PushMatrix();
+		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
+	
+		modelStack.Rotate(rotateHandY, 0, 1, 0);
+		modelStack.Rotate(rotateHandX,1,0,0);
+		modelStack.Scale(.5,.5,1.5);
+		modelStack.PushMatrix();
+
+			modelStack.Translate(-1,-1,-1);
+			RenderMesh(meshList[GEO_PLAYER], togglelight);
+		modelStack.PopMatrix();
+
+	modelStack.PopMatrix();
 
 	std::ostringstream sFPS, sX, sY, sZ;
 	sFPS << fps;

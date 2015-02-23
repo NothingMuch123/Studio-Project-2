@@ -1,5 +1,6 @@
 #include "Camera3.h"
 #include "Application.h"
+#include "SP2.h"
 
 /******************************************************************************/
 /*!
@@ -42,7 +43,7 @@ void Camera3::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
 	right.y = 0;
 	right.Normalize();
 	this->up = defaultUp = right.Cross(view).Normalized();
-
+	IN_CAR = false;
 	rotation.SetToIdentity();
 }
 
@@ -56,9 +57,20 @@ the time passed since the last update.
 /******************************************************************************/
 void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar)
 {
-	static const float CAMERA_SPEED = 50.f;
-	static const float ROTATION_SPEED = 75.f;
-
+	static const float CAMERA_SPEED = 30.f;
+	static const float RUN_SPEED = 50.f;
+	static const float CAR_SPEED = 70.f;
+	static const float SANIC = 90.f;
+	static const float ROTATION_SPEED = 100.f;
+	if(Application::IsKeyPressed('C'))
+	{
+		IN_CAR = true;
+	}
+	if(Application::IsKeyPressed('V'))
+	{
+		IN_CAR = false;
+	}
+	//Walking Speedws 
 	if(Application::IsKeyPressed('W'))
 	{
 		Vector3 tempTarget = target, tempPosition = position;
@@ -75,7 +87,126 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			position = tempPosition;
 		}
 	}
+	//Car Speed
+	if(Application::IsKeyPressed('W') && IN_CAR == true)
+	{
+		Vector3 tempTarget = target, tempPosition = position;
+		float yaw = (float)(CAR_SPEED * dt);
+		Vector3 zeroTarget = target;
+		zeroTarget.y = position.y;
+		view = (zeroTarget - position).Normalized();
+		position += (view * yaw);
+		target += (view * yaw);
 
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
+
+		/*if (_objList.size() != 0)
+		{
+			for (int i = 0; i < _objList.size(); i++)
+			{
+				pObj = _objList[i];
+				BoundMax = pObj->getMaxBound();
+				BoundMin = pObj->getMinBound();
+				if(boundCheck())
+				{
+					target = tempTarget;
+					position = tempPosition;
+				}
+			}
+		}
+		else
+		{
+			if (boundCheck())
+			{
+				target = tempTarget;
+				position = tempPosition;
+			}
+		}*/
+	}
+	//Sprint Speed
+	if(Application::IsKeyPressed('W') && Application::IsKeyPressed(VK_SHIFT))
+	{
+		Vector3 tempTarget = target, tempPosition = position;
+		float yaw = (float)(RUN_SPEED * dt);
+		Vector3 zeroTarget = target;
+		zeroTarget.y = position.y;
+		view = (zeroTarget - position).Normalized();
+		position += (view * yaw);
+		target += (view * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
+
+		/*if (_objList.size() != 0)
+		{
+			for (int i = 0; i < _objList.size(); i++)
+			{
+				pObj = _objList[i];
+				BoundMax = pObj->getMaxBound();
+				BoundMin = pObj->getMinBound();
+				if(boundCheck())
+				{
+					target = tempTarget;
+					position = tempPosition;
+				}
+			}
+		}
+		else
+		{
+			if (boundCheck())
+			{
+				target = tempTarget;
+				position = tempPosition;
+			}
+		}*/
+	}
+	//GOTTA GO FEZ
+	if(Application::IsKeyPressed('W') && Application::IsKeyPressed(VK_SHIFT) && IN_CAR == true)
+	{
+		Vector3 tempTarget = target, tempPosition = position;
+		float yaw = (float)(SANIC * dt);
+		Vector3 zeroTarget = target;
+		zeroTarget.y = position.y;
+		view = (zeroTarget - position).Normalized();
+		position += (view * yaw);
+		target += (view * yaw);
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
+
+		/*if (_objList.size() != 0)
+		{
+			for (int i = 0; i < _objList.size(); i++)
+			{
+				pObj = _objList[i];
+				BoundMax = pObj->getMaxBound();
+				BoundMin = pObj->getMinBound();
+				if(boundCheck())
+				{
+					target = tempTarget;
+					position = tempPosition;
+				}
+			}
+		}
+		else
+		{
+			if (boundCheck())
+			{
+				target = tempTarget;
+				position = tempPosition;
+			}
+		}*/
+	}
 	if(Application::IsKeyPressed('S'))
 	{
 		Vector3 tempTarget = target, tempPosition = position;
@@ -96,7 +227,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	if(Application::IsKeyPressed('A') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
-		float yaw = (float)(-CAMERA_SPEED * dt);
+		float yaw = (float)(-SANIC * dt);
 		view = (target - position).Normalized();
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
@@ -111,7 +242,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	if(Application::IsKeyPressed('D') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
-		float yaw = (float)(CAMERA_SPEED * dt);
+		float yaw = (float)(SANIC * dt);
 		view = (target - position).Normalized();
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
