@@ -392,10 +392,10 @@ void SP2::initOuterSkybox()
 	meshList[GEO_OUTER_TOP] = MeshBuilder::GenerateQuad("Outer skybox top", Color(1,1,1), TexCoord(1,1));
 	meshList[GEO_OUTER_TOP]->textureID = LoadTGA("Image//OuterSkybox//top.tga");
 
-	meshList[GEO_OUTER_BOTTOM] = MeshBuilder::GenerateQuad("Outer skybox bottom", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_OUTER_BOTTOM] = MeshBuilder::GenerateQuad("Outer skybox bottom", Color(1,1,1), TexCoord(100,100));
 	meshList[GEO_OUTER_BOTTOM]->textureID = LoadTGA("Image//OuterSkybox//bottom.tga");
 
-	outerSkyboxSize.Set(1000,1000,1000);
+	outerSkyboxSize.Set(10000,10000,10000);
 	skyboxOffset = 10;
 	outerSkyboxMaxBound.Set(outerSkyboxSize.x/2 - skyboxOffset*2, outerSkyboxSize.y/2 - skyboxOffset*2, outerSkyboxSize.z/2 - skyboxOffset*2);
 	outerSkyboxMinBound.Set(-outerSkyboxSize.x/2 + skyboxOffset*2, skyboxOffset, -outerSkyboxSize.z/2 + skyboxOffset*2);
@@ -455,6 +455,11 @@ void SP2::Update(double dt)
 		rotateHandX = 0;
 		rotateHandY = 0;
 	}
+	if(Application::IsKeyPressed('V'))
+	{
+		rotateHandX = 0;
+		rotateHandY = 180;
+	}
 	static double fpsRefresh;
 	fpsRefresh += dt;
 	if (fpsRefresh >= 1)
@@ -473,12 +478,12 @@ void SP2::Update(double dt)
 		rotateHandY -= (float)ROTATE_SPEED*dt;
 	}
 
-	if (Application::IsKeyPressed(VK_UP))
+	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30)
 	{
 		rotateHandX += ROTATE_SPEED*dt;
 
 	}
-	if (Application::IsKeyPressed(VK_DOWN))
+	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -10)
 	{
 		rotateHandX -= (float)ROTATE_SPEED*dt;
 	}
