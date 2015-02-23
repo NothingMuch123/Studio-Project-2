@@ -11,10 +11,6 @@
 #include <fstream>
 #include <iostream>
 
-using namespace std;
-
-int GetMagnitude(int CamPos,int ObjPos);
-
 SP2::SP2()
 {
 }
@@ -50,7 +46,7 @@ void SP2::Init()
 	glBindVertexArray(m_vertexArrayID);
 
 	//Initialize camera settings
-	camera.Init(Vector3(0,50,0), Vector3(0,50,-15), Vector3(0,1,0));
+	camera.Init(Vector3(0,30,300), Vector3(0,30,-15), Vector3(0,1,0));
 
 	//Load vertex and fragment shaders
 	m_programID = LoadShaders( "Shader//Texture.vertexshader", "Shader//Text.fragmentshader" );
@@ -115,7 +111,45 @@ void SP2::initSuperMarket()
 	supermarketSize.Set(30,20,20);
 	supermarketPosition.Set(0,0,0);
 	supermarketScale.Set(10,10,10);
-	// Door
+
+	// Left wall
+	Vector3 tempWallPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2), supermarketPosition.y, supermarketPosition.z);
+	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+	// Right wall
+
+	tempWallPosition.Set(supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2), supermarketPosition.y, supermarketPosition.z);
+	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	float halfLength = ((((supermarketScale.x * supermarketSize.x) / 2) - (2 * supermarketScale.x)) / 2); // Half length between corner to door along x-axis
+	// Front left wall
+	tempWallPosition.Set(((supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2)) + halfLength), supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
+	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	// Front right wall
+	tempWallPosition.Set(((supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2)) - halfLength), supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
+	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	// Back left wall
+	tempWallPosition.Set(((supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2)) + halfLength), supermarketPosition.y, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2));
+	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	// Back right wall
+	tempWallPosition.Set(((supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2)) - halfLength), supermarketPosition.y, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2));
+	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	// Door (Interaction bounds)
 	Vector3 doorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
 	supermarketDoorMaxBound.Set(doorPosition.x + (3 * supermarketScale.x), doorPosition.y, doorPosition.z + (5 * supermarketScale.z));
 	supermarketDoorMinBound.Set(doorPosition.x - (3 * supermarketScale.x), doorPosition.y, doorPosition.z - (5 * supermarketScale.z));
@@ -374,8 +408,8 @@ void SP2::Update(double dt)
 		updateCar(dt);
 	}
 
-	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList);
-	updateHuman(dt);
+	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, static_cast<CObj*>(inCar));
+	//updateHuman(dt);
 	updateSuperMarket(dt);
 
 	if(Application::IsKeyPressed('Z'))
@@ -929,16 +963,4 @@ void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float si
 	viewStack.PopMatrix();
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST);
-}
-
-int GetMagnitude(int CamPos,int ObjPos)
-{
-	int Magnitude = CamPos - ObjPos;
-
-	if(Magnitude<0)
-	{
-		Magnitude = Magnitude*-1;
-	}
-
-	return Magnitude;
 }

@@ -21,6 +21,7 @@ class SP2 : public Scene
 		OBJ_ITEM,
 		OBJ_AI,
 		OBJ_SHELF,
+		OBJ_SUPERMARKET_WALL,
 	};
 	enum GEOMETRY_TYPE
 	{

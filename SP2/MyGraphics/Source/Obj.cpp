@@ -1,7 +1,7 @@
 #include "Obj.h"
 
 
-CObj::CObj(void) : ID(-1), translate(0, 0, 0), rotate(0, 0, 0), scale(1, 1, 1), maxBound(0, 0, 0), minBound(0, 0, 0), size(0, 0, 0)
+CObj::CObj(void) : ID(-1), translate(0, 0, 0), rotate(0, 0, 0), scale(1, 1, 1), maxBound(0, 0, 0), minBound(0, 0, 0), size(1, 1, 1), render(true)
 {
 }
 
@@ -38,16 +38,6 @@ Vector3 CObj::getMinBound()
 	return minBound;
 }
 
-/*Vector3 CObj::getInteractMaxBound()
-{
-	return interactMaxBound;
-}
-
-Vector3 CObj::getInteractMinBound()
-{
-	return interactMinBound;
-}*/
-
 Vector3 CObj::getSize()
 {
 	return size;
@@ -60,11 +50,9 @@ int CObj::getID()
 
 void CObj::calcBound()
 {
-	float offset = 0;
+	float offset = 3;
 	maxBound.Set(translate.x + ((size.x * scale.x) / 2) + offset, translate.y + (size.y * scale.y) + offset, translate.z + ((size.z * scale.z) / 2) + offset);
 	minBound.Set(translate.x - ((size.x * scale.x) / 2) - offset, 0, translate.z - ((size.z * scale.z) / 2) - offset);
-	//interactMaxBound.Set(translate.x + ((size.x * scale.x) / 2) + offset, translate.y + ((size.y * scale.y) / 2) + offset, translate.z + ((size.z * scale.z) / 2) + offset);
-	//interactMinBound.Set(translate.x - ((size.x * scale.x) / 2) - offset, translate.y - ((size.y * scale.y) / 2) - offset, translate.z - ((size.z * scale.z) / 2) - offset);
 }
 
 bool CObj::getRender()

@@ -54,7 +54,7 @@ Update the Camera's position, target, up and view location based on the time pas
 	the time passed since the last update.
 */
 /******************************************************************************/
-void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList)
+void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar)
 {
 	static const float CAMERA_SPEED = 50.f;
 	static const float ROTATION_SPEED = 75.f;
@@ -69,34 +69,11 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
 		{
 			target = tempTarget;
 			position = tempPosition;
 		}
-
-		/*if (_objList.size() != 0)
-		{
-			for (int i = 0; i < _objList.size(); i++)
-			{
-				pObj = _objList[i];
-				BoundMax = pObj->getMaxBound();
-				BoundMin = pObj->getMinBound();
-				if(boundCheck())
-				{
-					target = tempTarget;
-					position = tempPosition;
-				}
-			}
-		}
-		else
-		{
-			if (boundCheck())
-			{
-				target = tempTarget;
-				position = tempPosition;
-			}
-		}*/
 	}
 
 	if(Application::IsKeyPressed('S'))
@@ -109,37 +86,14 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
 		{
 			target = tempTarget;
 			position = tempPosition;
 		}
-
-		/*if (_objList.size() != 0)
-		{
-			for (int i = 0; i < _objList.size(); i++)
-			{
-				pObj = _objList[i];
-				BoundMax = pObj->getMaxBound();
-				BoundMin = pObj->getMinBound();
-				if(boundCheck())
-				{
-					target = tempTarget;
-					position = tempPosition;
-				}
-			}
-		}
-		else
-		{
-			if (boundCheck())
-			{
-				target = tempTarget;
-				position = tempPosition;
-			}
-		}*/
 	}
 
-	if(Application::IsKeyPressed('A'))
+	if(Application::IsKeyPressed('A') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
@@ -147,37 +101,14 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
 		{
 			target = tempTarget;
 			position = tempPosition;
 		}
-
-		/*if (_objList.size() != 0)
-		{
-			for (int i = 0; i < _objList.size(); i++)
-			{
-				pObj = _objList[i];
-				BoundMax = pObj->getMaxBound();
-				BoundMin = pObj->getMinBound();
-				if(boundCheck())
-				{
-					target = tempTarget;
-					position = tempPosition;
-				}
-			}
-		}
-		else
-		{
-			if (boundCheck())
-			{
-				target = tempTarget;
-				position = tempPosition;
-			}
-		}*/
 	}
 
-	if(Application::IsKeyPressed('D'))
+	if(Application::IsKeyPressed('D') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(CAMERA_SPEED * dt);
@@ -185,120 +116,45 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
 		{
 			target = tempTarget;
 			position = tempPosition;
 		}
-
-		/*if (_objList.size() != 0)
-		{
-			for (int i = 0; i < _objList.size(); i++)
-			{
-				pObj = _objList[i];
-				BoundMax = pObj->getMaxBound();
-				BoundMin = pObj->getMinBound();
-				if(boundCheck())
-				{
-					target = tempTarget;
-					position = tempPosition;
-				}
-			}
-		}
-		else
-		{
-			if (boundCheck())
-			{
-				target = tempTarget;
-				position = tempPosition;
-			}
-		}*/
 	}
 
-	if(Application::IsKeyPressed('Q'))
+	if(Application::IsKeyPressed('Q') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
-		view = (target - position).Normalized();
-		Vector3 right = view.Cross(up);
-		right.y = 0;
-		right.Normalize();
-		position += (view.Cross(right) * yaw);
-		target += (view.Cross(right) * yaw);
+		Vector3 newUp(position.x, position.y + 1, position.z);
+		position += (position - newUp).Normalized() * yaw;
+		target += (position - newUp).Normalized() * yaw;
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
 		{
 			target = tempTarget;
 			position = tempPosition;
 		}
-
-		/*if (_objList.size() != 0)
-		{
-			for (int i = 0; i < _objList.size(); i++)
-			{
-				pObj = _objList[i];
-				BoundMax = pObj->getMaxBound();
-				BoundMin = pObj->getMinBound();
-				if(boundCheck())
-				{
-					target = tempTarget;
-					position = tempPosition;
-				}
-			}
-		}
-		else
-		{
-			if (boundCheck())
-			{
-				target = tempTarget;
-				position = tempPosition;
-			}
-		}*/
 	}
 
-	if(Application::IsKeyPressed('E'))
+	if(Application::IsKeyPressed('E') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(CAMERA_SPEED * dt);
-		view = (target - position).Normalized();
-		Vector3 right = view.Cross(up);
-		right.y = 0;
-		right.Normalize();
-		position += (view.Cross(right) * yaw);
-		target += (view.Cross(right) * yaw);
+		Vector3 newUp(position.x, position.y + 1, position.z);
+		position += (position - newUp).Normalized() * yaw;
+		target += (position - newUp).Normalized() * yaw;
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
 		{
 			target = tempTarget;
 			position = tempPosition;
 		}
-
-		/*if (_objList.size() != 0)
-		{
-			for (int i = 0; i < _objList.size(); i++)
-			{
-				pObj = _objList[i];
-				BoundMax = pObj->getMaxBound();
-				BoundMin = pObj->getMinBound();
-				if(boundCheck())
-				{
-					target = tempTarget;
-					position = tempPosition;
-				}
-			}
-		}
-		else
-		{
-			if (boundCheck())
-			{
-				target = tempTarget;
-				position = tempPosition;
-			}
-		}*/
 	}
 
 	// tilt up
-	if(Application::IsKeyPressed(VK_UP))
+	if(Application::IsKeyPressed(VK_UP) && _inCar == NULL)
 	{
 		float pitch = (float)(ROTATION_SPEED * dt);
 		view = (target - position);
@@ -312,7 +168,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	}
 
 	// tilt down
-	if(Application::IsKeyPressed(VK_DOWN))
+	if(Application::IsKeyPressed(VK_DOWN) && _inCar == NULL)
 	{
 		float pitch = (float)(-ROTATION_SPEED * dt);
 		view = (target - position);
@@ -368,32 +224,28 @@ void Camera3::Reset()
 	rotation.SetToIdentity();
 }
 
-bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList)
+bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar)
 {
-	/*if ((target.x < BoundMax.x && target.x > BoundMin.x && target.y < BoundMax.y && target.y > BoundMin.y && target.z < BoundMax.z && target.z > BoundMin.z) || (target.x >= skyboxMaxBound.x || target.x <= skyboxMinBound.x || target.y >= skyboxMaxBound.y || target.y <= skyboxMinBound.y || target.z >= skyboxMaxBound.z || target.z <= skyboxMinBound.z))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}*/
-	if (_objList.size() != 0)
+	if (_objList.size() != 0) // Obj & skybox check
 	{
 		for (int i = 0; i < _objList.size(); ++i)
 		{
 			CObj *pObj = _objList[i];
 			if (pObj->getRender())
 			{
-				if ((position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || (position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z))
-				{
-					return true;
-				}
+				if (	// Skybox check
+						(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
+						// Obj check
+						(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
+					)
+					{
+						return true;
+					}
 			}
 		}
 		return false;
 	}
-	else
+	else // No obj, skybox check only
 	{
 		if (position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z)
 		{
