@@ -26,11 +26,11 @@ Camera3::~Camera3()
 \brief
 Initialize the various properties (position, target, up, view) and the rotation of Camera3.
 \param pos
-	the location of the camera.
+the location of the camera.
 \param target
-	the location at which the camera is looking at.
+the location at which the camera is looking at.
 \param up
-	the vertically up vector that is perpendicular to the camera.
+the vertically up vector that is perpendicular to the camera.
 */
 /******************************************************************************/
 void Camera3::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
@@ -51,7 +51,7 @@ void Camera3::Init(const Vector3& pos, const Vector3& target, const Vector3& up)
 \brief
 Update the Camera's position, target, up and view location based on the time passed since the last update.
 \param dt - 
-	the time passed since the last update.
+the time passed since the last update.
 */
 /******************************************************************************/
 void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar)
@@ -169,17 +169,18 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 
 	// tilt down
 	if(Application::IsKeyPressed(VK_DOWN) && _inCar == NULL)
-	{
+			{
 		float pitch = (float)(-ROTATION_SPEED * dt);
 		view = (target - position);
-		Vector3 right = view.Cross(up);
-		right.y = 0;
-		right.Normalize();
+				Vector3 right = view.Cross(up);
+				right.y = 0;
+				right.Normalize();
 		up = right.Cross(view).Normalize();
-		rotation.SetToRotation(pitch, right.x, right.y, right.z);
+				Mtx44 rotation;
+				rotation.SetToRotation(pitch, right.x, right.y, right.z);
 		view = rotation * view;
 		target = (position + view);
-	}
+			}
 
 	// tilt left
 	if(Application::IsKeyPressed(VK_LEFT))

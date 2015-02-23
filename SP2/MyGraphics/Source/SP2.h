@@ -22,6 +22,12 @@ class SP2 : public Scene
 		OBJ_AI,
 		OBJ_SHELF,
 		OBJ_SUPERMARKET_WALL,
+		OBJ_TABLE,
+		OBJ_CAMERA,
+		OBJ_SCREEN,
+		OBJ_SHOPPER,
+		OBJ_POLICE,
+		OBJ_STAFF,
 	};
 	enum GEOMETRY_TYPE
 	{
@@ -191,7 +197,7 @@ private:
 	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
 	CObj *pObj;						// Points to an obj from the list
 
-	std::vector<CShelf*> shelfList; // Holds all shelf class
+	std::vector<CShelf*> shelfList; // Holds all item obj on shelf - 
 
 	//TODO : initialize shelf values , put in extra limit and mesh for items
 	//TODO: generate item from inside shelf to outisde.

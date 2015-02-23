@@ -46,7 +46,7 @@ void SP2::Init()
 	glBindVertexArray(m_vertexArrayID);
 
 	//Initialize camera settings
-	camera.Init(Vector3(0,30,300), Vector3(0,30,-15), Vector3(0,1,0));
+	camera.Init(Vector3(0,30,300), Vector3(0,30,285), Vector3(0,1,0));
 
 	//Load vertex and fragment shaders
 	m_programID = LoadShaders( "Shader//Texture.vertexshader", "Shader//Text.fragmentshader" );
@@ -155,34 +155,45 @@ void SP2::initSuperMarket()
 	supermarketDoorMinBound.Set(doorPosition.x - (3 * supermarketScale.x), doorPosition.y, doorPosition.z - (5 * supermarketScale.z));
 	isDoorOpen = false;
 	translateX = 0;
-	
+
 	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
 	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
 
 	meshList[GEO_CASHIERT] = MeshBuilder::GenerateOBJ("CashierTable" , "OBJ//cashiertable.obj");
 	meshList[GEO_CASHIERT]->textureID = LoadTGA("Image//cashier table.tga");
+	pObj = new CObj(OBJ_TABLE , Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3( 4 , 5 , 11));
+	objList.push_back(pObj);
 
 	meshList[GEO_CAMERA] = MeshBuilder::GenerateOBJ("Camera" , "OBJ//camera.obj");
 	meshList[GEO_CAMERA]->textureID = LoadTGA("Image//camera_texture.tga");
+	pObj = new CObj(OBJ_CAMERA , Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(2 ,1.5, 2));
+	objList.push_back(pObj);
 
 	meshList[GEO_SCREEN] = MeshBuilder::GenerateOBJ("Camera Screen" , "OBJ//cameraScreen.obj");
 	meshList[GEO_SCREEN]->textureID = LoadTGA("Image//cameraScreen_texture.tga");
+	pObj = new CObj(OBJ_SCREEN , Vector3 ( 0,0,0 ), Vector3(0,0,0), Vector3(1,1,1), Vector3(11, 3 ,2.3));
+	pObj->calcBound();
+	objList.push_back(pObj);
 
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
-		
-	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//SuperMarketDoor.obj");
+	pObj = new CObj(OBJ_SHELF, Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(2.6,1.5,2));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Door" ,"OBJ//SuperMarketDoor.obj");
 	meshList[GEO_SMD]->textureID = LoadTGA("Image//SuperMarketDoorTexture.tga");
+
 	//======================================================= ITEMS ====================================================================
 	meshList[GEO_ITEM_1] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-1.obj");
 	meshList[GEO_ITEM_1]->textureID = LoadTGA("Image//ITEMS//box-1.tga");
 
 	meshList[GEO_ITEM_2] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-2.obj");
 	meshList[GEO_ITEM_2]->textureID = LoadTGA("Image//ITEMS//can-2.tga");
-	
+
 	meshList[GEO_ITEM_3] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-3.obj");
 	meshList[GEO_ITEM_3]->textureID = LoadTGA("Image//ITEMS//box-3.tga");
-	
+
 	meshList[GEO_ITEM_4] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-4.obj");
 	meshList[GEO_ITEM_4]->textureID = LoadTGA("Image//ITEMS//can-4.tga");
 
@@ -205,10 +216,13 @@ void SP2::initSuperMarket()
 	meshList[GEO_ITEM_10]->textureID = LoadTGA("Image//ITEMS//box-10.tga");
 }
 
-void SP2::initHuman()
+void SP2::initHuman() // only human body is stored in obj list 
 {
 	meshList[GEO_HUMAN_SHOPPER_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_SHOPPER_BODY]->textureID = LoadTGA("Image//shopper_texture.tga");
+	pObj = new CObj(OBJ_SHOPPER,Vector3(0,0,0), Vector3(0,0,0),Vector3(1,1,1), Vector3(3, 4.6, 1.6));
+	pObj->calcBound();
+	objList.push_back(pObj);
 
 	meshList[GEO_HUMAN_SHOPPER_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
 	meshList[GEO_HUMAN_SHOPPER_ARM]->textureID = LoadTGA ("Image//shopper_texture.tga");
@@ -221,6 +235,9 @@ void SP2::initHuman()
 
 	meshList[GEO_HUMAN_POLICE_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_POLICE_BODY]->textureID = LoadTGA("Image//police_texture.tga");
+	pObj = new CObj(OBJ_POLICE,Vector3(0,0,0), Vector3(0,0,0),Vector3(1,1,1), Vector3(3, 4.6, 1.6));
+	pObj->calcBound();
+	objList.push_back(pObj);
 
 	meshList[GEO_HUMAN_POLICE_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
 	meshList[GEO_HUMAN_POLICE_ARM]->textureID = LoadTGA ("Image//police_texture.tga");
@@ -233,6 +250,9 @@ void SP2::initHuman()
 
 	meshList[GEO_HUMAN_STAFF_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_STAFF_BODY]->textureID = LoadTGA("Image//staff_texture.tga");
+	pObj = new CObj(OBJ_STAFF,Vector3(0,0,0), Vector3(0,0,0),Vector3(1,1,1), Vector3(3, 4.6, 1.6));
+	pObj->calcBound();
+	objList.push_back(pObj);
 
 	meshList[GEO_HUMAN_STAFF_ARM] = MeshBuilder::GenerateOBJ( "l_arm" , "OBJ//humanModel_leftshoulder.obj");
 	meshList[GEO_HUMAN_STAFF_ARM]->textureID = LoadTGA ("Image//staff_texture.tga");
@@ -430,9 +450,6 @@ void SP2::Update(double dt)
 }
 void SP2::updateSuperMarket(double dt)
 {
-	/*cout<<camera.position.x<<" "<<camera.position.z<<" x:"<<GetMagnitude(camera.position.x,0)<<" z:"<<GetMagnitude(camera.position.z,100);
-*/
-	//if(GetMagnitude(camera.position.x,0)<((supermarketPosition.x+2.5)*supermarketScale.x) && GetMagnitude(camera.position.z,(supermarketPosition.z+3)*supermarketScale.z)<((supermarketPosition.z - (supermarketScale.z*supermarketSize.z))*supermarketScale.z))
 	if (camera.position.x < supermarketDoorMaxBound.x && camera.position.x > supermarketDoorMinBound.x && camera.position.z < supermarketDoorMaxBound.z && camera.position.z > supermarketDoorMinBound.z)
 	{
 		isDoorOpen = true;
@@ -444,7 +461,7 @@ void SP2::updateSuperMarket(double dt)
 	else
 	{
 		isDoorOpen = false;
-	
+
 		if(translateX>0)
 		{
 			translateX-=0.1;
@@ -566,18 +583,56 @@ void SP2::Render()
 	modelStack.Scale(5,5,5);
 	RenderMesh(meshList[GEO_CUBE], togglelight);
 	modelStack.PopMatrix();*/
-	
+
 	RenderMesh(meshList[GEO_AXES], false);
-
-	//renderHuman(1);
-	//renderHuman(2);
-	//renderHuman(3);
-
-	// Please do the proper modelStack method, else anything below it will be ruined -Fang Shu
-	/*RenderMesh(meshList[GEO_ITEM_4] , togglelight);
-	modelStack.Translate(0,0,0);
-	modelStack.Scale(0.2,0.3,0.2);
-	RenderMesh(meshList[GEO_CUBE] , togglelight);*/
+	/*
+	// SHOPPER
+	modelStack.PushMatrix();
+	{
+		for(int i = 0 ; i < objList.size(); ++i)
+		{
+			pObj = objList[i];
+			if(pObj->getRender())
+			{
+				if(pObj->getID() == OBJ_POLICE)
+				{
+					renderHuman(1);
+				}
+			}
+		}
+	}
+	// POLICE
+	modelStack.PushMatrix();
+	{
+		for(int i = 0 ; i < objList.size(); ++i)
+		{
+			pObj = objList[i];
+			if(pObj->getRender())
+			{
+				if(pObj->getID() == OBJ_POLICE)
+				{
+					renderHuman(2);
+				}
+			}
+		}
+	}
+	*/
+	// STAFF
+	modelStack.PushMatrix();
+	{
+		for (int i = 0; i < objList.size(); ++i)
+		{
+			pObj = objList[i];
+			if (pObj->getRender())
+			{
+				if (pObj->getID() == OBJ_STAFF)
+				{
+					renderHuman(3);	
+				}
+			}
+		}
+	}
+	modelStack.PopMatrix();
 
 	std::ostringstream sFPS, sX, sY, sZ;
 	sFPS << fps;
@@ -596,28 +651,30 @@ void SP2::Render()
 
 void SP2::renderSuperMarket()
 {
-	
+
 	modelStack.PushMatrix();
 	modelStack.Translate(supermarketPosition.x,supermarketPosition.y,supermarketPosition.z);
 	modelStack.Scale(supermarketScale.x,supermarketScale.y,supermarketScale.z);
-	
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_SM], togglelight);
-		modelStack.PopMatrix();
 
-		modelStack.PushMatrix();
-		modelStack.Translate(-1.55-translateX,0,10);
-		modelStack.Scale(0.6,0.5,0.5);
-		RenderMesh(meshList[GEO_SMD], togglelight);//right Door
-		modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	RenderMesh(meshList[GEO_SM], togglelight);
+	modelStack.PopMatrix();
 
-		modelStack.PushMatrix();
-		modelStack.Translate(1.55+translateX,0,10);
-		modelStack.Scale(0.6,0.5,0.5);
-		RenderMesh(meshList[GEO_SMD], togglelight);//left Door
-		modelStack.PopMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(-1.55-translateX,0,10);
+	modelStack.Scale(0.6,0.5,0.5);
+	RenderMesh(meshList[GEO_SMD], togglelight);//right Door
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(1.55+translateX,0,10);
+	modelStack.Scale(0.6,0.5,0.5);
+	RenderMesh(meshList[GEO_SMD], togglelight);//left Door
+	modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
+
+	// render items and shelf
 }
 
 void SP2::renderCar()
@@ -644,14 +701,18 @@ void SP2::renderCar()
 	modelStack.PopMatrix();									// End of car
 }
 
-void SP2::renderHuman(int type)// 1- shopper , 2 - police, 3 - staff
+void SP2::renderHuman(int type) // 1- shopper , 2 - police, 3 - staff
 {
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y + 5, pObj->getTranslate().z);
+	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+	modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+	modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
 	if( type == 1)
 	{
 		modelStack.PushMatrix();
 		{
-			//===================================== BODY ===========================
-			modelStack.Translate(0,0,0);
+			//===================================== BODY ==========================
 			RenderMesh(meshList[GEO_HUMAN_SHOPPER_BODY], togglelight); 
 			modelStack.PushMatrix();
 			{
@@ -703,7 +764,6 @@ void SP2::renderHuman(int type)// 1- shopper , 2 - police, 3 - staff
 		modelStack.PushMatrix();
 		{
 			//===================================== BODY ===========================
-			modelStack.Translate(0,0,0);
 			RenderMesh(meshList[GEO_HUMAN_POLICE_BODY], togglelight); 
 			modelStack.PushMatrix();
 			{
@@ -755,7 +815,6 @@ void SP2::renderHuman(int type)// 1- shopper , 2 - police, 3 - staff
 		modelStack.PushMatrix();
 		{
 			//===================================== BODY ===========================
-			modelStack.Translate(0,0,0);
 			RenderMesh(meshList[GEO_HUMAN_STAFF_BODY], togglelight); 
 			modelStack.PushMatrix();
 			{
