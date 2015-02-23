@@ -289,31 +289,44 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	// tilt up
 	if(Application::IsKeyPressed(VK_UP) && _inCar == NULL)
 	{
-		float pitch = (float)(ROTATION_SPEED * dt);
-		view = (target - position);
-		Vector3 right = view.Cross(up);
-		right.y = 0;
-		right.Normalize();
-		up = right.Cross(view).Normalized();
-		rotation.SetToRotation(pitch, right.x, right.y, right.z);
-		view = rotation * view;
-		target = (position + view);
+		Vector3 view = (target - position).Normalized();
+		float theta = atan2(view.y,sqrt(view.x * view.x + view.z * view.z ));
+		theta = Math::RadianToDegree(theta);
+
+		if(theta < 70)
+		{
+			float pitch = (float)(CAMERA_SPEED * dt * 2);
+			Vector3 view = (target - position).Normalized();
+			Vector3 right = view.Cross(up);
+			right.y = 0;
+			right.Normalize();
+			up = right.Cross(view).Normalized();
+			Mtx44 rotation;
+			rotation.SetToRotation(pitch, right.x, right.y, right.z);
+			target = rotation* (target - position) + position;
+		}
 	}
 
 	// tilt down
 	if(Application::IsKeyPressed(VK_DOWN) && _inCar == NULL)
-			{
-		float pitch = (float)(-ROTATION_SPEED * dt);
-		view = (target - position);
-				Vector3 right = view.Cross(up);
-				right.y = 0;
-				right.Normalize();
-		up = right.Cross(view).Normalize();
-				Mtx44 rotation;
-				rotation.SetToRotation(pitch, right.x, right.y, right.z);
-		view = rotation * view;
-		target = (position + view);
-			}
+	{
+		Vector3 view = (target - position).Normalized();
+		float theta = atan2(view.y,sqrt(view.x * view.x + view.z * view.z ));
+		theta = Math::RadianToDegree(theta);
+
+		if(theta > -70)
+		{
+			float pitch = (float)(-CAMERA_SPEED * dt * 2);
+			Vector3 view = (target - position).Normalized();
+			Vector3 right = view.Cross(up);
+			right.y = 0;
+			right.Normalize();
+			up = right.Cross(view).Normalized();
+			Mtx44 rotation;
+			rotation.SetToRotation(pitch, right.x, right.y, right.z);
+			target = rotation * ( target - position) + position;
+		}
+	}
 
 	// tilt left
 	if(Application::IsKeyPressed(VK_LEFT))
@@ -368,13 +381,13 @@ bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMin
 			if (pObj->getRender())
 			{
 				if (	// Skybox check
-						(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
-						// Obj check
-						(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
+					(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
+					// Obj check
+					(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
 					)
-					{
-						return true;
-					}
+				{
+					return true;
+				}
 			}
 		}
 		return false;
