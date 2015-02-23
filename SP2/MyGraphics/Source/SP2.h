@@ -175,8 +175,16 @@ private:
 	void renderCar();
 
 	void initHuman();
-	void renderHuman(int type); // 1 - shopper , 2 - police , 3 - staff
 	void updateHuman(double dt);
+	void renderHuman(int type); // 1 - shopper , 2 - police , 3 - staff
+
+	void initItems();
+	void updateItems();
+	void renderItems(int GEO_ITEM);
+
+	void initShelf();
+	void updateShelf();
+	void renderShelf();
 
 	bool togglelight;
 	double fps;
