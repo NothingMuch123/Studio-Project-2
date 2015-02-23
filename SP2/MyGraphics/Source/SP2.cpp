@@ -574,7 +574,7 @@ void SP2::updateSuperMarket(double dt)
 	}
 }
 
-void SP2::updateCar(double dt)
+void SP2::updateCar(double dt)//updating car
 {
 	static const float ROTATE_SPEED = 100.f;
 	if (Application::IsKeyPressed('V'))
