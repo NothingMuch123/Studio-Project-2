@@ -1,7 +1,7 @@
 #include "Camera3.h"
 #include "Application.h"
 #include "SP2.h"
-
+#include "GLFW/glfw3.h"
 /******************************************************************************/
 /*!
 \brief
@@ -57,6 +57,8 @@ the time passed since the last update.
 /******************************************************************************/
 void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar)
 {
+	double xpos = 0;
+	double ypos = 0;
 	static const float CAMERA_SPEED = 30.f;
 	static const float RUN_SPEED = 50.f;
 	static const float CAR_SPEED = 70.f;
@@ -227,7 +229,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	if(Application::IsKeyPressed('A') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
-		float yaw = (float)(-SANIC * dt);
+		float yaw = (float)(-CAMERA_SPEED * dt);
 		view = (target - position).Normalized();
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
@@ -242,7 +244,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	if(Application::IsKeyPressed('D') && _inCar == NULL)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
-		float yaw = (float)(SANIC * dt);
+		float yaw = (float)(CAMERA_SPEED * dt);
 		view = (target - position).Normalized();
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
