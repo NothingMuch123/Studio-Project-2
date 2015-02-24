@@ -635,7 +635,7 @@ void SP2::Update(double dt)
 	if(floorNum == 2) // 2nd floor
 	{
 	}
-	if(Application::IsKeyPressed('P') && cam == false)
+	if(Application::IsKeyPressed('T') && cam == false)
 	{
 		camera.position.x = 143;
 		camera.position.y = 96;
@@ -647,7 +647,7 @@ void SP2::Update(double dt)
 	}
 	if(cam == false)
 	{
-		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, static_cast<CObj*>(inCar));
+		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, static_cast<CObj*>(inCar), floorNum, objList2);
 		
 	}
 	updateHuman(dt);

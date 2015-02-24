@@ -212,7 +212,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			position += (position - newUp).Normalized() * yaw;
 			target += (position - newUp).Normalized() * yaw;
 		}
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
