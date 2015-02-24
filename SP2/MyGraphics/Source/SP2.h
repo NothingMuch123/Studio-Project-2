@@ -184,7 +184,7 @@ private:
 	void updateItems();
 	void renderItems(int GEO_ITEM);
 
-	void initShelf();
+	void initShelf(int Choice,Vector3 _translateY);
 	void updateShelf();
 	void renderShelf();
 

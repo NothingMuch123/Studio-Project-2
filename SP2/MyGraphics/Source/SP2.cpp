@@ -11,6 +11,8 @@
 #include <fstream>
 #include <iostream>
 
+using std::cout;
+
 SP2::SP2()
 {
 }
@@ -63,7 +65,7 @@ void SP2::Init()
 
 	//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("lightball", Color(1, 1, 1), 1, 0);
 	//meshList[GEO_LIGHTBALL2] = MeshBuilder::GenerateSphere("lightball2", Color(1, 1, 1), 1, 0);
-	
+
 
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
@@ -73,12 +75,11 @@ void SP2::Init()
 
 	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Wall.obj");
 	meshList[GEO_PLAYER]->textureID = LoadTGA("Image//player_texture.tga");
-	
+
 	initCar();
 	initHuman(); 
 	initOuterSkybox();
 	initSuperMarket();
-	initShelf();
 	initHands();
 }
 
@@ -90,35 +91,167 @@ void SP2::initHands()
 	rotateHandY = 0;
 }
 
-void SP2::initShelf()
+void SP2::initShelf(int Choice,Vector3 _translate)
 {
+
 	initItems();
-	
-	CItem* pItem;
 
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ("Shelf" , "OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
 
-	pObj= new CShelf(OBJ_SHELF,Vector3(0,0,0),Vector3(0,0,0),Vector3(10,10,10),Vector3(1,1,1),10);
+	pObj= new CShelf(OBJ_SHELF,Vector3(0,5,0).operator+(_translate),Vector3(0,0,0),Vector3(11,11,11),Vector3(4,5,3),10);
 
 	pObj->calcBound();
 
 
-
-	/*for(int minimum=0 ; minimum < static_cast<CShelf*> (pObj)->limit ; ++minimum)
-	{*/
-		for(int x = -1;x<2;++x)
+	switch(Choice)
+	{
+	case GEO_ITEM_1:
 		{
-			for(int y = -1;y<2;++y)
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
 			{
-				pItem = new CItem(OBJ_ITEM,Vector3(x,y,0),Vector3(0,0,0),Vector3(5,5,5),Vector3(1,1,1),meshList[GEO_ITEM_1]);
-				static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_1]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
 			}
+			break;
 		}
-	//}
+
+	case GEO_ITEM_2:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_2]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_3:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_3]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_4:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_4]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_5:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_5]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_6:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_6]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_7:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,0,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_7]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_8:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_8]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_9:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_9]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	case GEO_ITEM_10:
+		{
+			CItem* pItem;
+
+			for(int x = -10; x<=10 ;x+=10)
+			{
+				for(int z = -5;z<=5;z+=5)
+				{
+					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_10]);
+					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
+				}
+			}
+			break;
+		}
+	}
+
 
 	objList.push_back(pObj);
-	
+
 	shelfList.push_back(static_cast<CShelf*>(pObj));
 }
 
@@ -129,10 +262,10 @@ void SP2::initItems()
 
 	meshList[GEO_ITEM_2] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-2.obj");
 	meshList[GEO_ITEM_2]->textureID = LoadTGA("Image//ITEMS//can-2.tga");
-	
+
 	meshList[GEO_ITEM_3] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-3.obj");
 	meshList[GEO_ITEM_3]->textureID = LoadTGA("Image//ITEMS//box-3.tga");
-	
+
 	meshList[GEO_ITEM_4] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-4.obj");
 	meshList[GEO_ITEM_4]->textureID = LoadTGA("Image//ITEMS//can-4.tga");
 
@@ -259,40 +392,14 @@ void SP2::initSuperMarket()
 	//Shelf OBJ
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
-		
+
 	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Door" ,"OBJ//SuperMarketDoor.obj");
 	meshList[GEO_SMD]->textureID = LoadTGA("Image//SuperMarketDoorTexture.tga");
 
-	//======================================================= ITEMS ====================================================================
-	meshList[GEO_ITEM_1] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-1.obj");
-	meshList[GEO_ITEM_1]->textureID = LoadTGA("Image//ITEMS//box-1.tga");
-
-	meshList[GEO_ITEM_2] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-2.obj");
-	meshList[GEO_ITEM_2]->textureID = LoadTGA("Image//ITEMS//can-2.tga");
-
-	meshList[GEO_ITEM_3] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-3.obj");
-	meshList[GEO_ITEM_3]->textureID = LoadTGA("Image//ITEMS//box-3.tga");
-
-	meshList[GEO_ITEM_4] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-4.obj");
-	meshList[GEO_ITEM_4]->textureID = LoadTGA("Image//ITEMS//can-4.tga");
-
-	meshList[GEO_ITEM_5] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-5.obj");
-	meshList[GEO_ITEM_5]->textureID = LoadTGA("Image//ITEMS//box-5.tga");
-
-	meshList[GEO_ITEM_6] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-6.obj");
-	meshList[GEO_ITEM_6]->textureID = LoadTGA("Image//ITEMS//box-6.tga");
-
-	meshList[GEO_ITEM_7] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-7.obj");
-	meshList[GEO_ITEM_7]->textureID = LoadTGA("Image//ITEMS//box-7.tga");
-
-	meshList[GEO_ITEM_8] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//can-8.obj");
-	meshList[GEO_ITEM_8]->textureID = LoadTGA("Image//ITEMS//can-8.tga");
-
-	meshList[GEO_ITEM_9] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//packet-9.obj");
-	meshList[GEO_ITEM_9]->textureID = LoadTGA("Image//ITEMS//packet-9.tga");
-
-	meshList[GEO_ITEM_10] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-10.obj");
-	meshList[GEO_ITEM_10]->textureID = LoadTGA("Image//ITEMS//box-10.tga");
+	
+	initShelf(GEO_ITEM_10,Vector3(0,0,0));
+	initShelf(GEO_ITEM_5,Vector3(0,14,0));
+	initShelf(GEO_ITEM_2,Vector3(0,28,0));
 }
 
 void SP2::initHuman() // only human body is stored in obj list 
@@ -565,19 +672,19 @@ void SP2::updateHands(double dt)
 	targetToZ.z -= 1;
 	if (camera.target.x < targetToZ.x)
 	{
-		rotateHandY = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length())));
+	rotateHandY = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length())));
 	}
 	else
 	{
-		rotateHandY = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length()))));
+	rotateHandY = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length()))));
 	}
 	if (camera.target.y > targetToZ.y)
 	{
-		rotateHandX = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length())));
+	rotateHandX = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length())));
 	}
 	else
 	{
-		rotateHandX = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length()))));
+	rotateHandX = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length()))));
 	}*/
 }
 
@@ -729,7 +836,7 @@ void SP2::Render()
 	{
 		renderHands();
 	}
-	
+
 	// Target test
 	/*
 	modelStack.PushMatrix();
@@ -769,31 +876,31 @@ void SP2::renderHands()
 {
 	// Left hands
 	modelStack.PushMatrix();
-		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
-		
-		modelStack.Rotate(rotateHandY, 0, 1, 0);
-		modelStack.Rotate(rotateHandX,1,0,0);
-		modelStack.Scale(.4,.4,1.5);
-		modelStack.PushMatrix();
+	modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
 
-			modelStack.Translate(1.5,-1.5,-1);
-			RenderMesh(meshList[GEO_PLAYER], togglelight);
-		modelStack.PopMatrix();
+	modelStack.Rotate(rotateHandY, 0, 1, 0);
+	modelStack.Rotate(rotateHandX,1,0,0);
+	modelStack.Scale(.4,.4,1.5);
+	modelStack.PushMatrix();
+
+	modelStack.Translate(1.5,-1.5,-1);
+	RenderMesh(meshList[GEO_PLAYER], togglelight);
+	modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
 
 	// Right hands
 	modelStack.PushMatrix();
-		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
-		
-		modelStack.Rotate(rotateHandY, 0, 1, 0);
-		modelStack.Rotate(rotateHandX,1,0,0);
-		modelStack.Scale(.4,.4,1.5);
-		modelStack.PushMatrix();
+	modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
 
-			modelStack.Translate(-1.5,-1.5,-1);
-			RenderMesh(meshList[GEO_PLAYER], togglelight);
-		modelStack.PopMatrix();
+	modelStack.Rotate(rotateHandY, 0, 1, 0);
+	modelStack.Rotate(rotateHandX,1,0,0);
+	modelStack.Scale(.4,.4,1.5);
+	modelStack.PushMatrix();
+
+	modelStack.Translate(-1.5,-1.5,-1);
+	RenderMesh(meshList[GEO_PLAYER], togglelight);
+	modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
 }
@@ -801,7 +908,7 @@ void SP2::renderHands()
 void SP2::renderShelf()
 {
 	modelStack.PushMatrix();
-	
+
 	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
 	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
@@ -827,8 +934,8 @@ void SP2::renderShelf()
 		modelStack.PopMatrix();
 	}
 	modelStack.PopMatrix();
-	
-	
+
+
 }
 void SP2::renderItems(int choice)
 {
@@ -839,63 +946,63 @@ void SP2::renderItems(int choice)
 	{
 	case 1:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_1], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_1], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 2:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_2], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_2], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 3:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_3], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_3], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 4:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_4], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_4], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 5:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_5], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_5], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 6:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_6], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_6], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 7:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_7], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_7], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 8:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_8], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_8], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 9:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_9], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_9], togglelight);
+			modelStack.PopMatrix();
 		}
 	case 10:
 		{
-		modelStack.PushMatrix();
-		RenderMesh(meshList[GEO_ITEM_10], togglelight);
-		modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			RenderMesh(meshList[GEO_ITEM_10], togglelight);
+			modelStack.PopMatrix();
 		}
 	}
 	modelStack.PopMatrix();
