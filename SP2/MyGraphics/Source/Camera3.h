@@ -30,13 +30,15 @@ public:
 	Vector3 defaultView;
 
 	Mtx44 rotation;
+	int current; // 0 - Nothing | 1 - Car | 2 - Trolley
+	Vector3 maxBound, minBound;
 
 	Camera3();
 	~Camera3();
 	virtual void Init(const Vector3& pos, const Vector3& target, const Vector3& up);
-	virtual void Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar, int floorNum, std::vector<CObj*> &_objList2);
+	virtual void Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj **_hands, int floorNum, std::vector<CObj*> &_objList2);
 	virtual void Reset();
-	bool boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar, int floorNum, std::vector<CObj*> &_objList2);
+	bool boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj **_hands, int floorNum, std::vector<CObj*> &_objList2);
 	bool IN_CAR;
 };
 

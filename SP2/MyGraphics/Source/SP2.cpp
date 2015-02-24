@@ -68,10 +68,10 @@ void SP2::Init()
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
 
-	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("cube" , "OBJ//Wall.obj");
+	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("cube" , "OBJ//Cube.obj");
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//MazeWall.tga");
 
-	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Wall.obj");
+	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Cube.obj");
 	meshList[GEO_PLAYER]->textureID = LoadTGA("Image//player_texture.tga");
 
 	initCar();
@@ -83,10 +83,11 @@ void SP2::Init()
 
 void SP2::initHands()
 {
-	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Wall.obj");
+	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Cube.obj");
 	meshList[GEO_PLAYER]->textureID = LoadTGA("Image//player_texture.tga");
 	rotateHandX = 0;
 	rotateHandY = 0;
+	hands[0] = hands[1] = NULL;
 }
 
 void SP2::initShelf(int Choice,Vector3 _translate)
@@ -99,7 +100,7 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ("Shelf" , "OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
 
-	pObj= new CShelf(OBJ_SHELF,Vector3(0,5,0).operator+(_translate),Vector3(0,0,0),Vector3(11,11,11),Vector3(4,5,3),10);
+	pObj= new CShelf(OBJ_SHELF,_translate,Vector3(0,0,0),Vector3(11,11,11),Vector3(4,5,3),10);
 
 	pObj->calcBound();
 
@@ -251,7 +252,6 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 
 
 	objList.push_back(pObj);
-
 	shelfList.push_back(static_cast<CShelf*>(pObj));
 }
 
@@ -307,8 +307,7 @@ void SP2::initCar()
 	meshList[GEO_CAR_SCREEN] = MeshBuilder::GenerateQuad("Car screen", Color(1,1,1), TexCoord(1,1));
 	meshList[GEO_CAR_SCREEN]->textureID = LoadTGA("Image//Driver'sScreenTexture[Test].tga");
 
-	inCar = NULL;
-	pObj = new CCar(OBJ_CAR, Vector3(-200,0,0), Vector3(0,0,0), Vector3(5,5,5), Vector3(17,8,17));
+	pObj = new CCar(OBJ_CAR, Vector3(-200,0,200), Vector3(0,0,0), Vector3(5,5,5), Vector3(17,8,17));
 	pObj->calcBound();
 	static_cast<CCar*>(pObj)->setCamera();
 	objList.push_back(pObj);
@@ -378,32 +377,33 @@ void SP2::initSuperMarket()
 	meshList[GEO_SM]->textureID = LoadTGA("Image//SuperMarketTexture.tga");
 
 	//Ceiling OBJ
-	meshList[GEO_C] = MeshBuilder::GenerateOBJ("SuperMarket Ceiling", "OBJ//ceiling.obj");
-	meshList[GEO_C]->textureID = LoadTGA("Image//ceiling_texture.tga");
+	meshList[GEO_SUPERMARKET_CEILING] = MeshBuilder::GenerateOBJ("SuperMarket Ceiling", "OBJ//ceiling.obj");
+	meshList[GEO_SUPERMARKET_CEILING]->textureID = LoadTGA("Image//ceiling_texture.tga");
+	pObj = new CObj(OBJ_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
+	//pObj->calcBound();
+	objList.push_back(pObj);
+	objList2.push_back(pObj);
 
 	//Cashier Table OBJ
 	meshList[GEO_CASHIERT] = MeshBuilder::GenerateOBJ("CashierTable" , "OBJ//cashiertable.obj");
 	meshList[GEO_CASHIERT]->textureID = LoadTGA("Image//cashier table.tga");
-	pObj = new CObj(OBJ_TABLE , Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3( 4 , 5 , 11));
+	pObj = new CObj(OBJ_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.x + 0.25 * supermarketScale.y, supermarketPosition.x + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 5 , 11));
 	pObj->calcBound();
 	objList.push_back(pObj);
 
 	//Camera OBJ
 	meshList[GEO_CAMERA] = MeshBuilder::GenerateOBJ("Camera" , "OBJ//camera.obj");
 	meshList[GEO_CAMERA]->textureID = LoadTGA("Image//camera_texture.tga");
-	pObj = new CObj(OBJ_CAMERA , Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(2 ,1.5, 2));
+	pObj = new CObj(OBJ_CAMERA , Vector3(supermarketPosition.x - 14.65 * supermarketScale.x, supermarketPosition.y + 9.6 * supermarketScale.y, supermarketPosition.z - 9.5 * supermarketScale.z), Vector3(0,0,0), Vector3(0.2 * supermarketScale.x,0.2 * supermarketScale.y,0.2 * supermarketScale.z), Vector3(2 ,1.5, 2));
+	pObj->calcBound();
 	objList.push_back(pObj);
 
 	//CameraScreen OBJ
 	meshList[GEO_SCREEN] = MeshBuilder::GenerateOBJ("Camera Screen" , "OBJ//cameraScreen.obj");
 	meshList[GEO_SCREEN]->textureID = LoadTGA("Image//cameraScreen_texture.tga");
-	pObj = new CObj(OBJ_SCREEN , Vector3 ( 0,0,0 ), Vector3(0,0,0), Vector3(1,1,1), Vector3(11, 3 ,2.3));
-	pObj->calcBound();
+	pObj = new CObj(OBJ_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(11, 3 ,2.3));
+	//pObj->calcBound();
 	objList2.push_back(pObj);
-
-	//Shelf OBJ
-	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
-	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
 
 	// supermarket door
 	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Door" ,"OBJ//SuperMarketDoor.obj");
@@ -564,6 +564,11 @@ void SP2::initValues()
 	cam = false;
 	fps = 60;
 	togglelight = false;
+
+	// Collision test cube
+	/*pObj = new CObj(OBJ_CUBE, Vector3(100,25,200), Vector3(0,0,0), Vector3(50,50,50), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);*/
 }
 
 void SP2::initOuterSkybox()
@@ -615,26 +620,24 @@ void SP2::Update(double dt)
 				{
 					if (pObj->getID() == OBJ_CAR)
 					{
-						if (Application::IsKeyPressed('C') && inCar == NULL)
+						if (Application::IsKeyPressed('C') && hands[0] == NULL && hands[1] == NULL)
 						{
-							inCar = static_cast<CCar*>(pObj);
+							hands[0] = hands[1] = pObj;
+							saved = camera;
 							pObj->setRender(false);
 							camera = static_cast<CCar*>(pObj)->carCamera;
 							rotateHandX = 0;
-							rotateHandY = inCar->getRotate().y -90;
+							rotateHandY = hands[0]->getRotate().y -90;
 						}
 					}
 				}
 			}
 		}
-		if (inCar != NULL)
-		{
-			updateCar(dt);
-		}
 	}
 	if(floorNum == 2) // 2nd floor
 	{
 	}
+	
 	if(Application::IsKeyPressed('T') && cam == false)
 	{
 		camera.position.x = 143;
@@ -647,9 +650,17 @@ void SP2::Update(double dt)
 	}
 	if(cam == false)
 	{
-		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, static_cast<CObj*>(inCar), floorNum, objList2);
-		
+		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
 	}
+	
+	if (hands[0] != NULL && hands[1] != NULL)
+	{
+		if (hands[0]->getID() == OBJ_CAR && hands[1]->getID() == OBJ_CAR)
+		{
+			updateCar(dt);
+		}
+	}
+
 	updateHuman(dt);
 	updateSuperMarket(dt);
 	updateShelf();
@@ -705,40 +716,20 @@ void SP2::updateHands(double dt)
 	{
 		cam = false;
 	}
-	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30 && inCar == NULL)
+
+	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30 && hands[0] == NULL)
 	{
 		rotateHandX += ROTATE_SPEED*dt;
 	}
-	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -10 && inCar == NULL)
+	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -30 && hands[0] == NULL)
 	{
 		rotateHandX -= ROTATE_SPEED*dt;
 	}
-	if(Application::IsKeyPressed('R') && inCar == NULL)
+	if(Application::IsKeyPressed('R') && hands[0] == NULL)
 	{
 		rotateHandX = 0;
 		rotateHandY = 0;
 	}
-
-	/*Vector3 targetToZ(camera.position), cameraYTarget(camera.target), cameraXTarget(camera.target);
-	cameraXTarget.x = camera.position.x;
-	cameraYTarget.y = camera.position.y;
-	targetToZ.z -= 1;
-	if (camera.target.x < targetToZ.x)
-	{
-	rotateHandY = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length())));
-	}
-	else
-	{
-	rotateHandY = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraYTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraYTarget).Length()))));
-	}
-	if (camera.target.y > targetToZ.y)
-	{
-	rotateHandX = Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length())));
-	}
-	else
-	{
-	rotateHandX = -(Math::RadianToDegree(acos((camera.position - targetToZ).Dot(camera.position - cameraXTarget) / ((camera.position - targetToZ).Length() * (camera.position - cameraXTarget).Length()))));
-	}*/
 }
 
 void SP2::updateShelf()
@@ -752,30 +743,26 @@ void SP2::updateItems()
 
 void SP2::updateSuperMarket(double dt)
 {
-	if( floorNum == 1) //1st floor
+	if(floorNum == 1) //1st floor
 	{
 		if (camera.position.x < supermarketDoorMaxBound.x && camera.position.x > supermarketDoorMinBound.x && camera.position.z < supermarketDoorMaxBound.z && camera.position.z > supermarketDoorMinBound.z)
 		{
 			isDoorOpen = true;
+			if(translateX<2)
+			{
+				translateX+=0.1;
+			}
 		}
 		else
 		{
 			isDoorOpen = false;
-		}
-
-		//Supermarket Door opening and closing animation
-		if( isDoorOpen == true)
-		{
-			if(translateX < 2)
-				translateX += 0.1;
-		}
-		else if ( isDoorOpen == false)
-		{
-			if(translateX > 0)
-				translateX -= 0.1;
+			if(translateX>0)
+			{
+				translateX-=0.1;
+			}
 		}
 	}
-	else if ( floorNum == 2) // on 2nd floor
+	else if (floorNum == 2) // on 2nd floor
 	{
 
 	}
@@ -786,27 +773,31 @@ void SP2::updateCar(double dt)//updating car
 	float ROTATE_SPEED = 100.f;
 	if (Application::IsKeyPressed('V'))
 	{
-		inCar->setRender(true);
-		inCar->carCamera = camera;
-		Vector3 right = ((inCar->carCamera.target - inCar->carCamera.position).Cross(inCar->carCamera.up)).Normalized();
+		static_cast<CCar*>(hands[0])->setRender(true);
+		static_cast<CCar*>(hands[0])->carCamera = camera;
+		camera = saved;
+		Vector3 right = ((static_cast<CCar*>(hands[0])->carCamera.target - static_cast<CCar*>(hands[0])->carCamera.position).Cross(static_cast<CCar*>(hands[0])->carCamera.up)).Normalized();
 		Mtx44 Rotation;
 		Rotation.SetToRotation(90,0,1,0);
-		camera.Init(camera.position - (right * 65), (camera.position - (right * 65)) + ((Rotation * (camera.position - camera.target))), Vector3(0,1,0));
-		inCar->updatePosition();
-		inCar->calcBound();
-		inCar = NULL;
+		//camera.Init(camera.position - (right * 65), (camera.position - (right * 65)) + ((Rotation * (camera.position - camera.target))), Vector3(0,1,0));
+		camera.target = ((static_cast<CCar*>(hands[0])->carCamera.position - (right * 65)) + ((Rotation * (static_cast<CCar*>(hands[0])->carCamera.position - static_cast<CCar*>(hands[0])->carCamera.target))));
+		camera.position = (static_cast<CCar*>(hands[0])->carCamera.position - (right * 65));
+		camera.up.Set(0,1,0);
+		static_cast<CCar*>(hands[0])->updatePosition();
+		static_cast<CCar*>(hands[0])->calcBound();
+		hands[0] = hands[1] = NULL;
 		rotateHandX = 0;
 		rotateHandY -= 90;
 	}
 	if (Application::IsKeyPressed(VK_LEFT))
 	{
-		float rotateY = inCar->getRotate().y + (ROTATE_SPEED*dt);
-		inCar->setRotateY(rotateY);
+		float rotateY = hands[0]->getRotate().y + (ROTATE_SPEED*dt);
+		static_cast<CCar*>(hands[0])->setRotateY(rotateY);
 	}
 	if (Application::IsKeyPressed(VK_RIGHT))
 	{
-		float rotateY = inCar->getRotate().y - (ROTATE_SPEED*dt);
-		inCar->setRotateY(rotateY);
+		float rotateY = hands[0]->getRotate().y - (ROTATE_SPEED*dt);
+		static_cast<CCar*>(hands[0])->setRotateY(rotateY);
 	}
 }
 
@@ -879,10 +870,40 @@ void SP2::Render()
 				{
 					renderCar();
 				}
-				 else if(pObj->getID() == OBJ_SHELF)
-				 {
-				 renderShelf();
-				 }
+				else if(pObj->getID() == OBJ_SHELF)
+				{
+					renderShelf();
+				}
+				else
+				{
+					modelStack.PushMatrix();
+					modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+					modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+					modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+					modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+					modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
+					if (pObj->getID() == OBJ_TABLE)
+					{
+						RenderMesh(meshList[GEO_CASHIERT], togglelight);
+					}
+					else if (pObj->getID() == OBJ_CUBE)
+					{
+						RenderMesh(meshList[GEO_CUBE], togglelight);
+					}
+					else if (pObj->getID() == OBJ_CEILING)
+					{
+						RenderMesh(meshList[GEO_SUPERMARKET_CEILING], togglelight);
+					}
+					else if (pObj->getID() == OBJ_CAMERA)
+					{
+						RenderMesh(meshList[GEO_CAMERA], togglelight);
+					}
+					else if (pObj->getID() == OBJ_SCREEN)
+					{
+						RenderMesh(meshList[GEO_SCREEN], togglelight);
+					}
+					modelStack.PopMatrix();
+				}
 			}
 		}
 	}
@@ -893,20 +914,51 @@ void SP2::Render()
 			pObj = objList2[i];
 			if(pObj->getRender())
 			{
-				if(pObj->getID() == OBJ_SCREEN)
+				if(pObj->getID() == OBJ_SHELF)
 				{
-					RenderMesh(meshList[GEO_SCREEN] , togglelight);
+					renderShelf();
+				}
+				else
+				{
+					modelStack.PushMatrix();
+					modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+					modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+					modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+					modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+					modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
+					if (pObj->getID() == OBJ_TABLE)
+					{
+						RenderMesh(meshList[GEO_CASHIERT], togglelight);
+					}
+					else if (pObj->getID() == OBJ_CUBE)
+					{
+						RenderMesh(meshList[GEO_CUBE], togglelight);
+					}
+					else if (pObj->getID() == OBJ_CEILING)
+					{
+						RenderMesh(meshList[GEO_SUPERMARKET_CEILING], togglelight);
+					}
+					else if (pObj->getID() == OBJ_CAMERA)
+					{
+						RenderMesh(meshList[GEO_CAMERA], togglelight);
+					}
+					else if (pObj->getID() == OBJ_SCREEN)
+					{
+						RenderMesh(meshList[GEO_SCREEN], togglelight);
+					}
+					modelStack.PopMatrix();
 				}
 			}
 		}
 	}
+	
 	// Car screen
-	if (inCar != NULL)
+	if (hands[0] != NULL && hands[1] != NULL)
 	{
 		modelStack.PushMatrix();
 		modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
-		modelStack.Rotate(inCar->getRotate().y - 90, 0, 1, 0);
-		modelStack.Scale(3.4 * inCar->getScale().x, 3 * inCar->getScale().y, 1);
+		modelStack.Rotate(hands[0]->getRotate().y - 90, 0, 1, 0);
+		modelStack.Scale(3.4 * hands[0]->getScale().x, 3 * hands[0]->getScale().y, 1);
 		RenderMesh(meshList[GEO_CAR_SCREEN], togglelight);
 		modelStack.PopMatrix();
 	}
@@ -994,6 +1046,7 @@ void SP2::renderShelf()
 	modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
 	RenderMesh(meshList[GEO_SHELF], togglelight);
 	modelStack.PopMatrix();
+	modelStack.PushMatrix();
 
 	CItem* pItem;
 
@@ -1011,8 +1064,9 @@ void SP2::renderShelf()
 		modelStack.PopMatrix();
 	}
 	modelStack.PopMatrix();
-
-
+	modelStack.PopMatrix();
+	
+	
 }
 void SP2::renderItems(int choice)
 {
@@ -1106,30 +1160,6 @@ void SP2::renderSuperMarket()
 	modelStack.Translate(1.55+translateX,0,10);
 	modelStack.Scale(0.6,0.5,0.5);
 	RenderMesh(meshList[GEO_SMD], togglelight);//left Door
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(4.1,.25,6);
-	modelStack.Scale(.5,.5,.5);
-	RenderMesh(meshList[GEO_CASHIERT], togglelight);//cashier table
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();  
-	modelStack.Translate(14.65, 9.6,-9.5);
-	modelStack.Scale(.2,.2,.2);
-	RenderMesh(meshList[GEO_CAMERA], togglelight);//security camera
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(-4.1, 1, -6);
-	modelStack.Scale(1,1,1);
-	RenderMesh(meshList[GEO_SCREEN], togglelight);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate(0,10,0);
-	modelStack.Scale(1,1,1);
-	RenderMesh(meshList[GEO_C], togglelight);//supermarket ceiling
 	modelStack.PopMatrix();
 
 	modelStack.PopMatrix();

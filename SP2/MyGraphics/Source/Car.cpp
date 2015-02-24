@@ -22,7 +22,7 @@ void CCar::calcBound()
 void CCar::setCamera()
 {
 	carCamera.position = translate;
-	carCamera.position.y += 20;
+	carCamera.position.y += 30;
 	carCamera.target = carCamera.position;
 	carCamera.target.x += 15;
 	carCamera.up.Set(0, 1, 0);
@@ -31,5 +31,5 @@ void CCar::setCamera()
 void CCar::updatePosition()
 {
 	translate = carCamera.position;
-	translate.y -= 20;
+	translate.y -= 30;
 }

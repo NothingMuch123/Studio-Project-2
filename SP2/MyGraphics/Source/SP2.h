@@ -14,6 +14,13 @@
 
 class SP2 : public Scene
 {
+public:
+	enum KEYPRESS
+	{
+		K_TOGGLE_CAR,
+		K_RESET,
+		NUM_KEYPRESS,
+	};
 	enum OBJ_ID
 	{
 		OBJ_CAR,
@@ -29,7 +36,10 @@ class SP2 : public Scene
 		OBJ_POLICE,
 		OBJ_STAFF,
 		OBJ_PLAYER,
+		OBJ_CUBE,
+		OBJ_CEILING,
 	};
+private:
 	enum GEOMETRY_TYPE
 	{
 		GEO_AXES,
@@ -50,7 +60,7 @@ class SP2 : public Scene
 		
 		//SuperMarket
 		GEO_SM,
-		GEO_C,
+		GEO_SUPERMARKET_CEILING,
 		//SuperMarketDoor
 		GEO_SMD,
 		//SuperMarket Items
@@ -196,6 +206,7 @@ private:
 	bool cam;
 	bool togglelight;
 	double fps;
+	bool keypressed[NUM_KEYPRESS];
 
 	// Supermarket variables
 	bool isDoorOpen; // Automated Door Check
@@ -209,18 +220,18 @@ private:
 
 	// Car variables
 	std::vector<CCar*> carList;
-	CCar* inCar;		// NULL - Not inside
 
 	// CObj variables // Holds every obj except for CItem || CItems will be stored in CShelf
 	std::vector<CObj*> objList;		//	** FIRST FLOOR **
 	std::vector<CObj*> objList2;	//	** SECOND FLOOR **
 	CObj *pObj;						// Points to an obj from the list
 
-	// Shelf items
+	// Shelf variables
 	std::vector<CShelf*> shelfList;
 
 	//Hand variables
 	float rotateHandX, rotateHandY;
+	CObj *hands[2]; // 0 - Left, 1 - Right
 
 	//human variables 
 	float moveX , moveZ;
