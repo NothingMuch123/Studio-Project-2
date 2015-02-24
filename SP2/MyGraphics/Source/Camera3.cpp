@@ -323,7 +323,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		float theta = atan2(view.y,sqrt(view.x * view.x + view.z * view.z ));
 		theta = Math::RadianToDegree(theta);
 
-		if(theta < 30)
+		if(theta < 80)
 		{
 			float pitch = (float)(ROTATION_SPEED * dt);
 			Vector3 view = (target - position).Normalized();
@@ -344,7 +344,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		float theta = atan2(view.y,sqrt(view.x * view.x + view.z * view.z ));
 		theta = Math::RadianToDegree(theta);
 
-		if(theta > -30)
+		if(theta > -80)
 		{
 			float pitch = (float)(-ROTATION_SPEED * dt);
 			Vector3 view = (target - position).Normalized();

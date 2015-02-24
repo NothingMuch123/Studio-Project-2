@@ -269,15 +269,15 @@ void SP2::initCar()
 	meshList[GEO_CAR]->textureID = LoadTGA("Image//CarTexture.tga");
 	meshList[GEO_CAR]->material.kAmbient.Set(1.f, 1.f, 1.f);
 	meshList[GEO_CAR]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_CAR]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR]->material.kShininess = 1.f;
+	meshList[GEO_CAR]->material.kSpecular.Set(0.5f, 0.5f, 0.5f);
+	meshList[GEO_CAR]->material.kShininess = 0.5f;
 
 	meshList[GEO_CAR_TYRE] = MeshBuilder::GenerateOBJ("Car", "OBJ//CarTyre.obj");
 	meshList[GEO_CAR_TYRE]->textureID = LoadTGA("Image//CarTyreTexture.tga");
 	meshList[GEO_CAR_TYRE]->material.kAmbient.Set(1.f, 1.f, 1.f);
 	meshList[GEO_CAR_TYRE]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
-	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
+	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(0.5f, 0.5f, 0.5f);
+	meshList[GEO_CAR_TYRE]->material.kShininess = 0.5f;
 
 	meshList[GEO_CAR_SCREEN] = MeshBuilder::GenerateQuad("Car screen", Color(1,1,1), TexCoord(1,1));
 	meshList[GEO_CAR_SCREEN]->textureID = LoadTGA("Image//Driver'sScreenTexture[Test].tga");
@@ -692,11 +692,11 @@ void SP2::updateHands(double dt)
 		cam = false;
 	}
 
-	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30 && hands[0] == NULL)
+	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 80 && hands[0] == NULL)
 	{
 		rotateHandX += ROTATE_SPEED*dt;
 	}
-	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -30 && hands[0] == NULL)
+	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -80 && hands[0] == NULL)
 	{
 		rotateHandX -= ROTATE_SPEED*dt;
 	}
@@ -764,11 +764,13 @@ void SP2::updateCar(double dt)//updating car
 		rotateHandX = 0;
 		rotateHandY -= 90;
 	}
+
 	if (Application::IsKeyPressed(VK_LEFT))
 	{
 		float rotateY = hands[0]->getRotate().y + (ROTATE_SPEED*dt);
 		static_cast<CCar*>(hands[0])->setRotateY(rotateY);
 	}
+
 	if (Application::IsKeyPressed(VK_RIGHT))
 	{
 		float rotateY = hands[0]->getRotate().y - (ROTATE_SPEED*dt);

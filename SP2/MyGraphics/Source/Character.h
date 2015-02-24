@@ -2,7 +2,8 @@
 #define CHARACTER_H
 
 #include "Obj.h"
-#include "Camera3.h"
+#include "Camera3.h"]
+
 
 class CCharacter : public CObj
 {
