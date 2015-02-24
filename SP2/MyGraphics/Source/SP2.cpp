@@ -92,25 +92,19 @@ void SP2::initHands()
 
 void SP2::initShelf(int Choice,Vector3 _translate)
 {
-
 	initItems();
-
-	CItem* pItem;
-
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ("Shelf" , "OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
 
+	CItem* pItem;
+
 	pObj= new CShelf(OBJ_SHELF,_translate,Vector3(0,0,0),Vector3(11,11,11),Vector3(4,5,3),10);
-
 	pObj->calcBound();
-
 
 	switch(Choice)
 	{
 	case GEO_ITEM_1:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -119,13 +113,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
-
+		break;
 	case GEO_ITEM_2:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -134,12 +125,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_3:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -148,12 +137,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_4:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -162,12 +149,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_5:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -176,12 +161,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_6:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -190,12 +173,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_7:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -204,12 +185,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_8:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -218,12 +197,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_9:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -232,12 +209,10 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	case GEO_ITEM_10:
 		{
-			CItem* pItem;
-
 			for(int x = -10; x<=10 ;x+=10)
 			{
 				for(int z = -5;z<=5;z+=5)
@@ -246,8 +221,8 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 				}
 			}
-			break;
 		}
+		break;
 	}
 
 
