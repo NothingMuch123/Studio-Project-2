@@ -197,6 +197,7 @@ private:
 
 	// Supermarket variables
 	bool isDoorOpen; // Automated Door Check
+	int floorNum ; // floor number
 	float translateX;
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound;
 
@@ -208,14 +209,23 @@ private:
 	std::vector<CCar*> carList;
 	CCar* inCar;		// NULL - Not inside
 
-	// CObj variables
-	std::vector<CObj*> objList;		// Holds every obj except for CItem || CItems will be stored in CShelf
+	// CObj variables // Holds every obj except for CItem || CItems will be stored in CShelf
+	std::vector<CObj*> objList;		//	** FIRST FLOOR **
+	std::vector<CObj*> objList2;	//	** SECOND FLOOR **
 	CObj *pObj;						// Points to an obj from the list
 
+	// Shelf items
 	std::vector<CShelf*> shelfList;
 
 	//Hand variables
 	float rotateHandX, rotateHandY;
+
+	//human variables 
+	float moveX , moveZ;
+
+	//variable use for testing - constantly increasing
+	float temp;
+	CObj *tempP;
 };
 
 #endif

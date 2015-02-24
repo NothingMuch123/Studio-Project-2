@@ -11,8 +11,6 @@
 #include <fstream>
 #include <iostream>
 
-using std::cout;
-
 SP2::SP2()
 {
 }
@@ -95,6 +93,8 @@ void SP2::initShelf(int Choice,Vector3 _translate)
 {
 
 	initItems();
+
+	CItem* pItem;
 
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ("Shelf" , "OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
@@ -317,9 +317,10 @@ void SP2::initCar()
 
 void SP2::initSuperMarket()
 {
+	floorNum = 1; // start at first floor
 	// Supermarket
 	supermarketSize.Set(30,20,20);
-	supermarketPosition.Set(0,0,0);
+	supermarketPosition.Set(0,-4,0);
 	supermarketScale.Set(10,10,10);
 
 	// Left wall
@@ -327,12 +328,14 @@ void SP2::initSuperMarket()
 	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
+	objList2.push_back(pObj); // for 2nd floor
 
 	// Right wall
 	tempWallPosition.Set(supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2), supermarketPosition.y, supermarketPosition.z);
 	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
+	objList2.push_back(pObj); // for 2nd floor
 
 	float halfLength = ((((supermarketScale.x * supermarketSize.x) / 2) - (2 * supermarketScale.x)) / 2); // Half length between corner to door along x-axis
 	// Front left wall
@@ -340,24 +343,28 @@ void SP2::initSuperMarket()
 	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
+	objList2.push_back(pObj); // for 2nd floor - need hole for toilet entrance
 
 	// Front right wall
 	tempWallPosition.Set(((supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2)) - halfLength), supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
 	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
+	objList2.push_back(pObj); // for 2nd floor - need space for toilet entrance
 
 	// Back left wall
 	tempWallPosition.Set(((supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2)) + halfLength), supermarketPosition.y, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2));
 	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
+	objList2.push_back(pObj); // for 2nd floor
 
 	// Back right wall
 	tempWallPosition.Set(((supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2)) - halfLength), supermarketPosition.y, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2));
 	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
+	objList2.push_back(pObj); // for 2nd floor
 
 	// Door (Interaction bounds)
 	Vector3 doorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
@@ -374,6 +381,7 @@ void SP2::initSuperMarket()
 	meshList[GEO_CASHIERT] = MeshBuilder::GenerateOBJ("CashierTable" , "OBJ//cashiertable.obj");
 	meshList[GEO_CASHIERT]->textureID = LoadTGA("Image//cashier table.tga");
 	pObj = new CObj(OBJ_TABLE , Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3( 4 , 5 , 11));
+	pObj->calcBound();
 	objList.push_back(pObj);
 
 	//Camera OBJ
@@ -387,12 +395,13 @@ void SP2::initSuperMarket()
 	meshList[GEO_SCREEN]->textureID = LoadTGA("Image//cameraScreen_texture.tga");
 	pObj = new CObj(OBJ_SCREEN , Vector3 ( 0,0,0 ), Vector3(0,0,0), Vector3(1,1,1), Vector3(11, 3 ,2.3));
 	pObj->calcBound();
-	objList.push_back(pObj);
+	objList2.push_back(pObj);
 
 	//Shelf OBJ
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ( "Shelf" ,"OBJ//shelf.obj");
 	meshList[GEO_SHELF]->textureID = LoadTGA("Image//shelf.tga");
 
+	// supermarket door
 	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Door" ,"OBJ//SuperMarketDoor.obj");
 	meshList[GEO_SMD]->textureID = LoadTGA("Image//SuperMarketDoorTexture.tga");
 
@@ -406,7 +415,7 @@ void SP2::initHuman() // only human body is stored in obj list
 {
 	meshList[GEO_HUMAN_SHOPPER_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_SHOPPER_BODY]->textureID = LoadTGA("Image//shopper_texture.tga");
-	pObj = new CObj(OBJ_SHOPPER,Vector3(0,0,0), Vector3(0,0,0),Vector3(1,1,1), Vector3(3, 4.6, 1.6));
+	pObj = new CObj(OBJ_SHOPPER,Vector3(0,0,0), Vector3(0,0,0),Vector3(4,4.5,4), Vector3(3, 4.6, 1.6));
 	pObj->calcBound();
 	objList.push_back(pObj);
 
@@ -421,7 +430,7 @@ void SP2::initHuman() // only human body is stored in obj list
 
 	meshList[GEO_HUMAN_POLICE_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_POLICE_BODY]->textureID = LoadTGA("Image//police_texture.tga");
-	pObj = new CObj(OBJ_POLICE,Vector3(0,0,0), Vector3(0,0,0),Vector3(1,1,1), Vector3(3, 4.6, 1.6));
+	pObj = new CObj(OBJ_POLICE,Vector3(0,0,0), Vector3(0,0,0),Vector3(4,4.5,4), Vector3(3, 4.6, 1.6));
 	pObj->calcBound();
 	objList.push_back(pObj);
 
@@ -436,7 +445,7 @@ void SP2::initHuman() // only human body is stored in obj list
 
 	meshList[GEO_HUMAN_STAFF_BODY] = MeshBuilder::GenerateOBJ( "body" , "OBJ//humanModel_bodyNhead.obj");
 	meshList[GEO_HUMAN_STAFF_BODY]->textureID = LoadTGA("Image//staff_texture.tga");
-	pObj = new CObj(OBJ_STAFF,Vector3(0,0,0), Vector3(0,0,0),Vector3(1,1,1), Vector3(3, 4.6, 1.6));
+	pObj = new CObj(OBJ_STAFF,Vector3(0,0,0), Vector3(0,0,0),Vector3(4,4.5,4), Vector3(3, 4.6, 1.6));
 	pObj->calcBound();
 	objList.push_back(pObj);
 
@@ -590,33 +599,38 @@ void SP2::Update(double dt)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 
 	// Interactions
-	for (int i = 0; i < objList.size(); ++i)
+	if(floorNum == 1)
 	{
-		pObj = objList[i];
-		if (pObj->getRender())
+		for (int i = 0; i < objList.size(); ++i)
 		{
-			if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
+			pObj = objList[i];
+			if (pObj->getRender())
 			{
-				if (pObj->getID() == OBJ_CAR)
+				if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
 				{
-					if (Application::IsKeyPressed('C') && inCar == NULL)
+					if (pObj->getID() == OBJ_CAR)
 					{
-						inCar = static_cast<CCar*>(pObj);
-						pObj->setRender(false);
-						camera = static_cast<CCar*>(pObj)->carCamera;
-						rotateHandX = 0;
-						rotateHandY = inCar->getRotate().y -90;
+						if (Application::IsKeyPressed('C') && inCar == NULL)
+						{
+							inCar = static_cast<CCar*>(pObj);
+							pObj->setRender(false);
+							camera = static_cast<CCar*>(pObj)->carCamera;
+							rotateHandX = 0;
+							rotateHandY = inCar->getRotate().y -90;
+						}
 					}
 				}
 			}
 		}
+		if (inCar != NULL)
+		{
+			updateCar(dt);
+		}
 	}
-	if (inCar != NULL)
+	if(floorNum == 2) // 2nd floor
 	{
-		updateCar(dt);
 	}
-
-	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, static_cast<CObj*>(inCar));
+	camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, static_cast<CObj*>(inCar), floorNum, objList2);
 	updateHuman(dt);
 	updateSuperMarket(dt);
 	updateShelf();
@@ -630,6 +644,14 @@ void SP2::Update(double dt)
 	if(Application::IsKeyPressed('X'))
 	{
 		togglelight = false;
+	}
+	if(Application::IsKeyPressed('O')) // manual triggar for 2nd floor (temp check bounds) - Tim
+	{
+		floorNum = 1;
+	}
+	if(Application::IsKeyPressed('P'))
+	{
+		floorNum = 2;
 	}
 	static double fpsRefresh;
 	fpsRefresh += dt;
@@ -699,22 +721,32 @@ void SP2::updateItems()
 
 void SP2::updateSuperMarket(double dt)
 {
-	if (camera.position.x < supermarketDoorMaxBound.x && camera.position.x > supermarketDoorMinBound.x && camera.position.z < supermarketDoorMaxBound.z && camera.position.z > supermarketDoorMinBound.z)
+	if( floorNum == 1) //1st floor
 	{
-		isDoorOpen = true;
-		if(translateX<2)
+		if (camera.position.x < supermarketDoorMaxBound.x && camera.position.x > supermarketDoorMinBound.x && camera.position.z < supermarketDoorMaxBound.z && camera.position.z > supermarketDoorMinBound.z)
 		{
-			translateX+=0.1;
+			isDoorOpen = true;
+		}
+		else
+		{
+			isDoorOpen = false;
+		}
+
+		//Supermarket Door opening and closing animation
+		if( isDoorOpen == true)
+		{
+			if(translateX < 2)
+				translateX += 0.1;
+		}
+		else if ( isDoorOpen == false)
+		{
+			if(translateX > 0)
+				translateX -= 0.1;
 		}
 	}
-	else
+	else if ( floorNum == 2) // on 2nd floor
 	{
-		isDoorOpen = false;
 
-		if(translateX>0)
-		{
-			translateX-=0.1;
-		}
 	}
 }
 
@@ -804,24 +836,39 @@ void SP2::Render()
 
 	renderSuperMarket();
 
-	// Render objList
-	for (int i = 0; i < objList.size(); ++i)
+	if(floorNum == 1 ) //first floor
 	{
-		pObj = objList[i];
-		if (pObj->getRender())
+		// Render objList
+		for (int i = 0; i < objList.size(); ++i)
 		{
-			if (pObj->getID() == OBJ_CAR)
+			pObj = objList[i];
+			if (pObj->getRender())
 			{
-				renderCar();
+				if (pObj->getID() == OBJ_CAR)
+				{
+					renderCar();
+				}
+				 else if(pObj->getID() == OBJ_SHELF)
+				 {
+				 renderShelf();
+				 }
 			}
-			else if(pObj->getID() == OBJ_SHELF)
-			{
-				renderShelf();
-			}
-
 		}
 	}
-
+	if(floorNum == 2) // second floor
+	{
+		for( int i = 0 ; i < objList2.size(); ++i)
+		{
+			pObj = objList2[i];
+			if(pObj->getRender())
+			{
+				if(pObj->getID() == OBJ_SCREEN)
+				{
+					RenderMesh(meshList[GEO_SCREEN] , togglelight);
+				}
+			}
+		}
+	}
 	// Car screen
 	if (inCar != NULL)
 	{
@@ -846,10 +893,6 @@ void SP2::Render()
 	modelStack.PopMatrix();*/
 
 	RenderMesh(meshList[GEO_AXES], false);
-
-	//renderHuman(1);
-	//renderHuman(2);
-	//renderHuman(3);
 
 	renderText();
 }
@@ -1066,7 +1109,8 @@ void SP2::renderCar()
 
 void SP2::renderHuman(int type) // 1- shopper , 2 - police, 3 - staff
 {
-	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y + 5, pObj->getTranslate().z);
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y + 1, pObj->getTranslate().z);
 	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
 	modelStack.Rotate(pObj->getRotate().z, 0,0,1);
@@ -1224,6 +1268,7 @@ void SP2::renderHuman(int type) // 1- shopper , 2 - police, 3 - staff
 		}
 		modelStack.PopMatrix();
 	}
+	modelStack.PopMatrix();
 }
 
 void SP2::renderOuterSkybox()

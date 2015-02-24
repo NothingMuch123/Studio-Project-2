@@ -55,7 +55,7 @@ Update the Camera's position, target, up and view location based on the time pas
 the time passed since the last update.
 */
 /******************************************************************************/
-void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar)
+void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar, int floorNum, std::vector<CObj*> &_objList2)
 {
 	double xpos = 0;
 	double ypos = 0;
@@ -100,7 +100,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
@@ -116,7 +116,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
@@ -131,7 +131,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
@@ -146,7 +146,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view.Cross(up) * yaw);
 		target += (view.Cross(up) * yaw);
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
@@ -161,7 +161,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (position - newUp).Normalized() * yaw;
 		target += (position - newUp).Normalized() * yaw;
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
@@ -176,7 +176,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (position - newUp).Normalized() * yaw;
 		target += (position - newUp).Normalized() * yaw;
 
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
@@ -268,36 +268,64 @@ void Camera3::Reset()
 	rotation.SetToIdentity();
 }
 
-bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar)
+bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj *_inCar, int floorNum, std::vector<CObj*> &_objList2)
 {
-	if (_objList.size() != 0) // Obj & skybox check
+	switch (floorNum)
 	{
-		for (int i = 0; i < _objList.size(); ++i)
+	case 1:
 		{
-			CObj *pObj = _objList[i];
-			if (pObj->getRender())
+			if (_objList.size() != 0) // Obj & skybox check
 			{
-				if (	// Skybox check
-					(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
-					// Obj check
-					(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
-					)
+				for (int i = 0; i < _objList.size(); ++i)
+				{
+					CObj *pObj = _objList[i];
+					if (pObj->getRender())
+					{
+						if (	// Skybox check
+							(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
+							// Obj check
+							(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
+							)
+						{
+							return true;
+						}
+					}
+				}
+				return false;
+			}
+			else // No obj, skybox check only
+			{
+				if (position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z)
 				{
 					return true;
 				}
+				else
+				{
+					return false;
+				}
 			}
 		}
-		return false;
-	}
-	else // No obj, skybox check only
-	{
-		if (position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z)
+	case 2:
 		{
-			return true;
-		}
-		else
-		{
-			return false;
+			if (_objList2.size() != 0) // Obj & skybox check
+			{
+				for (int i = 0; i < _objList2.size(); ++i)
+				{
+					CObj *pObj = _objList2[i];
+					if (pObj->getRender())
+					{
+						if (	// Skybox check
+							(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
+							// Obj check
+							(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
+							)
+						{
+							return true;
+						}
+					}
+				}
+				return false;
+			}
 		}
 	}
 }
