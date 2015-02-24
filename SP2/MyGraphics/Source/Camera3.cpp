@@ -66,6 +66,9 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 	static const float ROTATION_SPEED = 100.f;
 	static float CAMERA_SPEED = NORMAL_SPEED;
 	bool boost = false;
+	bool noclip = false;
+	bool isTiptoeing = false;
+	bool isCrouching = false;
 
 	if (_inCar == NULL)
 	{
@@ -90,6 +93,15 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		CAMERA_SPEED += 20;
 	}
 	
+	if(Application::IsKeyPressed('N') && noclip == true)
+	{
+		noclip = false;
+	}
+	else if(Application::IsKeyPressed('N'))
+	{
+		noclip = true;
+	}
+
 	if(Application::IsKeyPressed('W'))
 	{
 		Vector3 tempTarget = target, tempPosition = position;
@@ -153,7 +165,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		}
 	}
 
-	if(Application::IsKeyPressed('Q') && _inCar == NULL)
+	if(Application::IsKeyPressed(VK_SPACE) && _inCar == NULL && noclip == true)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
@@ -168,19 +180,71 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		}
 	}
 
-	if(Application::IsKeyPressed('E') && _inCar == NULL)
+	if(Application::IsKeyPressed(VK_SPACE) && _inCar == NULL && noclip == false)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
-		float yaw = (float)(CAMERA_SPEED * dt);
+		float yaw = (float)(-CAMERA_SPEED * dt);
 		Vector3 newUp(position.x, position.y + 1, position.z);
-		position += (position - newUp).Normalized() * yaw;
-		target += (position - newUp).Normalized() * yaw;
+		if(position.y < 35)
+		{
+			position += (position - newUp).Normalized() * yaw;
+			target += (position - newUp).Normalized() * yaw;
+		}
 
 		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
 		}
+	}
+	
+
+
+	
+
+	if(Application::IsKeyPressed(VK_CONTROL) && _inCar == NULL)
+	{
+		Vector3 tempTarget = target, tempPosition = position;
+		float yaw = (float)(CAR_SPEED * dt);
+		Vector3 newUp(position.x, position.y + 1, position.z);
+		if(position.y > 20)
+		{
+			position += (position - newUp).Normalized() * yaw;
+			target += (position - newUp).Normalized() * yaw;
+		}
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _inCar))
+		{
+			target = tempTarget;
+			position = tempPosition;
+		}
+	}
+
+
+	if(position.y >= 30 && Application::IsKeyPressed(VK_SPACE))
+	{
+		isTiptoeing = false;
+	}
+	else if(position.y >= 30)
+	{
+		isTiptoeing = true;
+	}
+	if(isTiptoeing == true)
+	{
+		position.y -= 2;
+		target.y -= 2;
+	}
+	if(position.y <= 30 && Application::IsKeyPressed(VK_CONTROL))
+	{
+		isCrouching = false;
+	}
+	else if(position.y < 30)
+	{
+		isCrouching = true;
+	}
+	if(isCrouching == true)
+	{
+		position.y += 2;
+		target.y += 2;
 	}
 
 	// tilt up

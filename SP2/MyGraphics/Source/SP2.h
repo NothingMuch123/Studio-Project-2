@@ -50,6 +50,7 @@ class SP2 : public Scene
 		
 		//SuperMarket
 		GEO_SM,
+		GEO_C,
 		//SuperMarketDoor
 		GEO_SMD,
 		//SuperMarket Items
@@ -192,6 +193,7 @@ private:
 	void updateHands(double dt);
 	void renderHands();
 
+	bool cam;
 	bool togglelight;
 	double fps;
 
