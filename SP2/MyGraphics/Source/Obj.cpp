@@ -69,3 +69,8 @@ void CObj::setRotateY(float _rotateY)
 {
 	rotate.y = _rotateY;
 }
+
+void CObj::setTranslateX(float _translateX)
+{
+	translate.x = _translateX;
+}

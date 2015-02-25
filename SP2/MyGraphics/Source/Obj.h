@@ -13,6 +13,7 @@ public:
 	bool getRender();
 	void setRender(bool _render);
 	void setRotateY(float _rotateY);
+	void setTranslateX(float _translateX);
 
 	virtual void calcBound();
 	virtual ~CObj(void);

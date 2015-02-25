@@ -40,6 +40,7 @@ public:
 		OBJ_CUBE,
 		OBJ_CEILING,
 		OBJ_CABINET_T,
+		OBJ_DOOR,
 	};
 private:
 	enum GEOMETRY_TYPE
@@ -63,8 +64,8 @@ private:
 		//SuperMarket
 		GEO_SM,
 		GEO_SUPERMARKET_CEILING,
-		//SuperMarketDoor
-		GEO_SMD,
+		GEO_SMD,	//SuperMarketDoor
+		GEO_SMLD,	// supermarket lift door
 		//SuperMarket Items
 		GEO_CASHIERT,
 		GEO_CAMERA,
@@ -215,10 +216,14 @@ private:
 	bool keypressed[NUM_KEYPRESS];
 
 	// Supermarket variables
-	bool isDoorOpen; // Automated Door Check
 	int floorNum ; // floor number
-	float translateX;
-	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound;
+	float translateX; // main entrance movement
+	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
+
+	//Lift variables
+	Vector3 supermarketLiftMaxBound, supermarketLiftMinBound , supermarketLiftDoorMaxBound , supermarketLiftDoorMinBound;
+	bool disableLiftDoor; // Automated Door Check
+	float translateLiftX;
 
 	// Skybox variables
 	Vector3 outerSkyboxSize, outerSkyboxMaxBound, outerSkyboxMinBound;

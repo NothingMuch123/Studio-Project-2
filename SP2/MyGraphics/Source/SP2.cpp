@@ -12,9 +12,6 @@
 #include <fstream>
 #include <iostream>
 
-using std::cout;
-using std::endl;
-
 SP2::SP2()
 {
 }
@@ -363,12 +360,44 @@ void SP2::initSuperMarket()
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // for 2nd floor
 
+	//lift left wall
+	tempWallPosition.Set(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x ) / 4 - halfLength / 1.7), supermarketPosition.y ,  supermarketPosition.z - (supermarketScale.z * supermarketSize.z) / 2  - halfLength / 2);
+	pObj = new CObj(OBJ_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(5,supermarketSize.y * supermarketScale.y, halfLength) ,Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+	objList2.push_back(pObj); // 2nd floor
+
+	//lift right wall 
+	tempWallPosition.Set(supermarketPosition.x + ((supermarketScale.x * supermarketSize.x ) / 4 - halfLength / 1.7), supermarketPosition.y ,  supermarketPosition.z - (supermarketScale.z * supermarketSize.z) / 2  - halfLength / 2);
+	pObj = new CObj(OBJ_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(5,supermarketSize.y * supermarketScale.y, halfLength) ,Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+	objList2.push_back(pObj); // 2nd floor
+
+	//Lift back wall
+	tempWallPosition.Set(supermarketPosition.x , supermarketPosition.y , supermarketPosition.z - (supermarketScale.z * supermarketSize.z ) + halfLength / 1.5 );
+	pObj = new CObj (OBJ_SUPERMARKET_WALL , Vector3(tempWallPosition.x , tempWallPosition.y ,tempWallPosition.z) , Vector3 (0,0,0), Vector3(halfLength, supermarketSize.y * supermarketScale.y , 5 ), Vector3(1,1,1));
+	pObj->calcBound();
+	objList.push_back(pObj);
+	objList2.push_back(pObj); // 2nd floor
+
 	// Door (Interaction bounds)
 	Vector3 doorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
 	supermarketDoorMaxBound.Set(doorPosition.x + (3 * supermarketScale.x), doorPosition.y, doorPosition.z + (5 * supermarketScale.z));
 	supermarketDoorMinBound.Set(doorPosition.x - (3 * supermarketScale.x), doorPosition.y, doorPosition.z - (5 * supermarketScale.z));
-	isDoorOpen = false;
 	translateX = 0;
+
+	//Lift (Interaction bound)
+	Vector3 liftPosition( supermarketPosition.x , supermarketPosition.y , supermarketPosition.z - (supermarketScale.z * supermarketSize.z ) + halfLength );
+	supermarketLiftMaxBound.Set( liftPosition.x + ( 3 * supermarketScale.x), liftPosition.y , liftPosition.z + ( 3* supermarketScale.z));
+	supermarketLiftMinBound.Set( liftPosition.x - ( 3 * supermarketScale.x), liftPosition.y , liftPosition.z - ( 1.5 * supermarketScale.z));
+
+	// lift door (Interaction Bound)
+	Vector3 liftDoorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2));
+	supermarketLiftDoorMaxBound.Set(liftDoorPosition.x + (3 * supermarketScale.x), liftDoorPosition.y, liftDoorPosition.z + (5 * supermarketScale.z));
+	supermarketLiftDoorMinBound.Set(liftDoorPosition.x - (3 * supermarketScale.x), liftDoorPosition.y, liftDoorPosition.z - (5 * supermarketScale.z));
+	translateLiftX = 0;
+	disableLiftDoor = false;
 
 	//Supermarket OBJ
 	meshList[GEO_SM] = MeshBuilder::GenerateOBJ("SuperMarket", "OBJ//supermarket.obj");
@@ -407,6 +436,17 @@ void SP2::initSuperMarket()
 	meshList[GEO_SMD] = MeshBuilder::GenerateOBJ( "Door" ,"OBJ//SuperMarketDoor.obj");
 	meshList[GEO_SMD]->textureID = LoadTGA("Image//SuperMarketDoorTexture.tga");
 
+	//supermarket left lift door
+	meshList[GEO_SMLD] = MeshBuilder::GenerateOBJ("lift door" , "OBJ//SuperMarketDoor.obj");
+	meshList[GEO_SMLD]->textureID = LoadTGA("Image//SuperMarketDoorTexture.tga");
+	pObj = new CObj(OBJ_DOOR, Vector3( supermarketPosition.x * supermarketScale.x + 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
+	objList.push_back(pObj);
+	objList2.push_back(pObj);
+	pObj = new CObj(OBJ_DOOR, Vector3( supermarketPosition.x * supermarketScale.x - 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
+	objList.push_back(pObj);
+	objList2.push_back(pObj);
+
+	
 
 	initShelf(GEO_ITEM_10,Vector3(0,0,0));
 	initShelf(GEO_ITEM_5,Vector3(0,14,0));
@@ -700,14 +740,14 @@ void SP2::Update(double dt)
 	{
 		togglelight = false;
 	}
-	if(Application::IsKeyPressed('O')) // manual triggar for 2nd floor (temp check bounds) - Tim
-	{
-		floorNum = 1;
-	}
-	if(Application::IsKeyPressed('P'))
-	{
-		floorNum = 2;
-	}
+	//if(Application::IsKeyPressed('O')) // manual triggar for 2nd floor (temp check bounds) - Tim
+	//{
+	//	floorNum = 1;
+	//}
+	//if(Application::IsKeyPressed('P'))
+	//{
+	//	floorNum = 2;
+	//}
 	static double fpsRefresh;
 	fpsRefresh += dt;
 	if (fpsRefresh >= 1)
@@ -777,19 +817,55 @@ void SP2::updateItems()
 
 void SP2::updateSuperMarket(double dt)
 {
+	//lift door interaction (needed for both floors) [ always open unless want to go different floor ] 
+	if(camera.position.x < supermarketLiftDoorMaxBound.x && camera.position.x > supermarketLiftDoorMinBound.x && camera.position.z < supermarketLiftDoorMaxBound.z && camera.position.z > supermarketLiftDoorMinBound.z)
+	{
+		if(disableLiftDoor == false)
+		{
+			if(translateLiftX < 2)
+				translateLiftX += 0.1;
+		}
+	}
+	else
+	{
+		if(disableLiftDoor == false)
+		{
+			if(translateLiftX > 0)
+				translateLiftX -= 0.1;
+		}
+	}
+	if(disableLiftDoor == true)
+	{
+		if(translateLiftX > 0)
+			translateLiftX -= 0.1;
+		if(translateLiftX == 0)
+			disableLiftDoor = false;
+	}
+	// lift interaction - bring them to 2nd floor/ 1st floor
+	if(camera.position.x < supermarketLiftMaxBound.x && camera.position.x > supermarketLiftMinBound.x && camera.position.z < supermarketLiftMaxBound.z && camera.position.z > supermarketLiftMinBound.z)
+	{
+		if(Application::IsKeyPressed('O'))
+		{
+				floorNum = 2;
+				disableLiftDoor = true;
+		}
+		if(Application::IsKeyPressed('P'))
+		{
+				floorNum = 1;
+				disableLiftDoor = true;
+		}
+	}
 	if(floorNum == 1) //1st floor
 	{
 		if (camera.position.x < supermarketDoorMaxBound.x && camera.position.x > supermarketDoorMinBound.x && camera.position.z < supermarketDoorMaxBound.z && camera.position.z > supermarketDoorMinBound.z)
 		{
-			isDoorOpen = true;
 			if(translateX<2)
 			{
 				translateX+=0.1;
 			}
 		}
 		else
-		{
-			isDoorOpen = false;
+		{		
 			if(translateX>0)
 			{
 				translateX-=0.1;
@@ -800,6 +876,7 @@ void SP2::updateSuperMarket(double dt)
 	{
 
 	}
+
 }
 
 void SP2::updateCar(double dt)//updating car
@@ -1213,6 +1290,12 @@ void SP2::renderSuperMarket()
 	modelStack.Translate(1.55+translateX,0,10);
 	modelStack.Scale(0.6,0.5,0.5);
 	RenderMesh(meshList[GEO_SMD], togglelight);//left Door
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate( 1.55 + translateLiftX, 0 , -10);
+	modelStack.Scale( 0.6,0.5,0.5);
+	RenderMesh(meshList[GEO_SMLD] , togglelight); // lift left door
 	modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
