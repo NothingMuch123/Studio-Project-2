@@ -1484,10 +1484,7 @@ void SP2::renderHuman()
 	modelStack.PopMatrix();
 		modelStack.PopMatrix();
 	}
-	else
-	{
-		cout<<"Biie Bitches!"<<endl;
-	}
+	
 
 
 
