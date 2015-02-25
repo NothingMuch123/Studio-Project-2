@@ -1298,6 +1298,12 @@ void SP2::renderSuperMarket()
 	RenderMesh(meshList[GEO_SMLD] , togglelight); // lift left door
 	modelStack.PopMatrix();
 
+	modelStack.PushMatrix();
+	modelStack.Translate( -1.55 - translateLiftX, 0 , -10);
+	modelStack.Scale( 0.6,0.5,0.5);
+	RenderMesh(meshList[GEO_SMLD] , togglelight); // lift left door
+	modelStack.PopMatrix();
+
 	modelStack.PopMatrix();
 }
 
