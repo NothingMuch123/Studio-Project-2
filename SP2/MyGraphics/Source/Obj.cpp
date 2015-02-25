@@ -74,3 +74,8 @@ void CObj::setTranslateX(float _translateX)
 {
 	translate.x = _translateX;
 }
+
+void CObj::setTranslate(Vector3 _translate)
+{
+	translate = _translate;
+}

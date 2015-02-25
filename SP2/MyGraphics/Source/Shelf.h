@@ -8,11 +8,11 @@
 class CShelf : public CObj
 {
 public:
-	std::vector<Vector3> position;
 	CShelf(void);
 	CShelf(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, int _limit);
 	virtual ~CShelf(void);
 	std::vector<CItem*> itemList;
+	std::vector<Vector3> itemPosition;
 	int limit;
 	virtual void calcBound();
 };

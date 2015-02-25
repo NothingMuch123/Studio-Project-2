@@ -20,8 +20,12 @@ class SP2 : public Scene
 public:
 	enum KEYPRESS
 	{
-		K_TOGGLE_CAR,
-		K_RESET,
+		K_ENTER_CAR,
+		K_EXIT_CAR,
+		K_LEFT_PICK,
+		K_LEFT_PLACE,
+		K_RIGHT_PICK,
+		K_RIGHT_PLACE,
 		NUM_KEYPRESS,
 	};
 	enum OBJ_ID
@@ -62,14 +66,13 @@ private:
 		GEO_CAR_SCREEN,
 		
 		//SuperMarket
-		GEO_SM,
+		GEO_SUPERMARKET,
 		GEO_SUPERMARKET_CEILING,
-		GEO_SMD,	//SuperMarketDoor
-		GEO_SMLD,	// supermarket lift door
-		//SuperMarket Items
-		GEO_CASHIERT,
-		GEO_CAMERA,
-		GEO_SCREEN,
+		GEO_SUPERMARKET_DOOR,
+		GEO_SMLD,
+		GEO_CASHIER_TABLE,
+		GEO_SECURITY_CAMERA,
+		GEO_SECURITY_CAMERA_SCREEN,
 		GEO_SHELF,
 		GEO_CABINET,
 		GEO_ITEM_1,
@@ -106,7 +109,7 @@ private:
 		GEO_CUBE,
 
 		//player
-		GEO_PLAYER,
+		GEO_HAND,
 
 		NUM_GEOMETRY,
 	};
@@ -199,7 +202,7 @@ private:
 	void updateItems();
 	void renderItems(int GEO_ITEM);
 
-	void initShelf(int Choice,Vector3 _translateY);
+	void initShelf(int Choice,Vector3 _translate, Vector3 _rotate);
 	void updateShelf();
 	void renderShelf();
 

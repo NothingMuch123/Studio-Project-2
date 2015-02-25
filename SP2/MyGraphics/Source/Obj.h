@@ -14,6 +14,7 @@ public:
 	void setRender(bool _render);
 	void setRotateY(float _rotateY);
 	void setTranslateX(float _translateX);
+	void setTranslate(Vector3 _translate);
 
 	virtual void calcBound();
 	virtual ~CObj(void);
