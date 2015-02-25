@@ -11,6 +11,9 @@
 #include "Item.h"
 #include "Car.h"
 #include "Shelf.h"
+#include "CCashier.h"
+#include "CSecurityGuard.h"
+#include "CShopper.h"
 
 class SP2 : public Scene
 {
@@ -32,9 +35,7 @@ public:
 		OBJ_TABLE,
 		OBJ_CAMERA,
 		OBJ_SCREEN,
-		OBJ_SHOPPER,
-		OBJ_POLICE,
-		OBJ_STAFF,
+     	OBJ_HUMAN,
 		OBJ_PLAYER,
 		OBJ_CUBE,
 		OBJ_CEILING,
@@ -86,10 +87,10 @@ private:
 		GEO_HUMAN_SHOPPER_HAND,
 		GEO_HUMAN_SHOPPER_LEG,
 		//POLICE
-		GEO_HUMAN_POLICE_BODY,
-		GEO_HUMAN_POLICE_ARM,
-		GEO_HUMAN_POLICE_HAND,
-		GEO_HUMAN_POLICE_LEG,
+		GEO_HUMAN_SECURITYGUARD_BODY,
+		GEO_HUMAN_SECURITYGUARD_ARM,
+		GEO_HUMAN_SECURITYGUARD_HAND,
+		GEO_HUMAN_SECURITYGUARD_LEG,
 		//STAFF
 		GEO_HUMAN_STAFF_BODY,
 		GEO_HUMAN_STAFF_ARM,
@@ -187,9 +188,9 @@ private:
 	void updateCar(double dt);
 	void renderCar();
 
-	void initHuman();
+	void initHuman(int type,Vector3 translation); // type: 1 - cashier, 2 - SecurityGuard, 3 - Shopper 
 	void updateHuman(double dt);
-	void renderHuman(int type); // 1 - shopper , 2 - police , 3 - staff
+	void renderHuman(); 
 
 	void initItems();
 	void updateItems();

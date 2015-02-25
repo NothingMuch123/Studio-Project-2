@@ -69,16 +69,16 @@
     <ClCompile Include="Source\Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CCashier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shopper.cpp">
+    <ClCompile Include="Source\CSecurityGuard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SecurityGuard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cashier.cpp">
+    <ClCompile Include="Source\CShopper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,16 +143,16 @@
     <ClInclude Include="Source\Utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CCashier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shopper.h">
+    <ClInclude Include="Source\CSecurityGuard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SecurityGuard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cashier.h">
+    <ClInclude Include="Source\CShopper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
