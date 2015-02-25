@@ -39,6 +39,7 @@ public:
 		OBJ_PLAYER,
 		OBJ_CUBE,
 		OBJ_CEILING,
+		OBJ_CABINET_T,
 	};
 private:
 	enum GEOMETRY_TYPE
@@ -69,6 +70,7 @@ private:
 		GEO_CAMERA,
 		GEO_SCREEN,
 		GEO_SHELF,
+		GEO_CABINET,
 		GEO_ITEM_1,
 		GEO_ITEM_2,
 		GEO_ITEM_3,
@@ -200,6 +202,9 @@ private:
 	void updateShelf();
 	void renderShelf();
 
+	void initCabinet();
+	void renderCabinet();
+
 	void initHands();
 	void updateHands(double dt);
 	void renderHands();
@@ -236,7 +241,7 @@ private:
 
 	//human variables 
 	float moveX , moveZ;
-
+	float tempX, tempY, tempZ, tempPitch, tempYaw, tempTargetX, tempTargetY, tempTargetZ;
 	//variable use for testing - constantly increasing
 	float temp;
 	CObj *tempP;

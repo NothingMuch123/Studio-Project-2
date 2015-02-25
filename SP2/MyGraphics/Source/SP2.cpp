@@ -1,6 +1,7 @@
 #include "SP2.h"
 #include "GL\glew.h"
 
+
 #include "shader.hpp"
 #include "Mtx44.h"
 
@@ -34,6 +35,9 @@ void SP2::Init()
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//Enable Stippling
+	glEnable(GL_POLYGON_STIPPLE);
 
 	//Enable depth buffer and depth testing
 	glEnable(GL_DEPTH_TEST);
@@ -77,6 +81,7 @@ void SP2::Init()
 	meshList[GEO_PLAYER] = MeshBuilder::GenerateOBJ( "player" , "OBJ//Cube.obj");
 	meshList[GEO_PLAYER]->textureID = LoadTGA("Image//player_texture.tga");
 
+	//initCabinet();
 	initCar();
 	initHuman(3,Vector3(30,0,30)); 
 
@@ -297,6 +302,16 @@ void SP2::initCar()
 	carList.push_back(static_cast<CCar*>(pObj));
 }
 
+void SP2::initCabinet()
+{	
+	//Special Display Cabinet_THE_TARDIS
+	meshList[GEO_CABINET] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
+	meshList[GEO_CABINET] ->textureID = LoadTGA("Image//displayGallifrey.tga");
+	pObj = new CObj(OBJ_CABINET_T, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
+	pObj-> calcBound();
+	objList2.push_back(pObj);
+	//Regular Display Cabinet 
+}
 void SP2::initSuperMarket()
 {
 	floorNum = 1; // start at first floor
@@ -384,8 +399,8 @@ void SP2::initSuperMarket()
 	//CameraScreen OBJ
 	meshList[GEO_SCREEN] = MeshBuilder::GenerateOBJ("Camera Screen" , "OBJ//cameraScreen.obj");
 	meshList[GEO_SCREEN]->textureID = LoadTGA("Image//cameraScreen_texture.tga");
-	pObj = new CObj(OBJ_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(11, 3 ,2.3));
-	//pObj->calcBound();
+	pObj = new CObj(OBJ_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
+	pObj->calcBound();
 	objList2.push_back(pObj);
 
 	// supermarket door
@@ -640,17 +655,27 @@ void SP2::Update(double dt)
 
 	if(Application::IsKeyPressed('T') && cam == false)
 	{
-		camera.position.x = 143;
+		rotateHandY = 0;
+		camera.position.x = -143;
 		camera.position.y = 96;
 		camera.position.z = -90;
 		camera.target.x = 0;
 		camera.target.y = 0;
 		camera.target.z = 0;
+		camera.up.Set(0, 1, 0);
 		cam = true;
 	}
 	if(cam == false)
 	{
 		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
+		tempX = camera.position.x;
+		tempY = camera.position.y;
+		tempZ = camera.position.z; 
+		tempYaw = rotateHandY;
+		tempPitch = rotateHandX;
+		tempTargetX = camera.target.x;
+		tempTargetY = camera.target.y;
+		tempTargetZ = camera.target.z;
 	}
 
 	if (hands[0] != NULL && hands[1] != NULL)
@@ -712,9 +737,18 @@ void SP2::updateHands(double dt)
 			rotateHandY -= ROTATE_SPEED*dt;
 		}
 	}
-	if(Application::IsKeyPressed('R') && cam == true)
+	if(Application::IsKeyPressed('Y') && cam == true)
 	{
+		floorNum = 1;
 		cam = false;
+		camera.position.x = tempX;
+		camera.position.y = tempY;
+		camera.position.z = tempZ;
+		rotateHandX = tempPitch;
+		rotateHandY = tempYaw;
+		camera.target.x = tempTargetX;
+		camera.target.y = tempTargetY;
+		camera.target.z = tempTargetZ;
 	}
 
 	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30 && hands[0] == NULL)
@@ -922,6 +956,13 @@ void SP2::Render()
 				{
 					renderShelf();
 				}
+				/*
+				else if(pObj->getID() == OBJ_CABINET_T)
+				{
+					modelStack.PushMatrix();
+					RenderMesh(meshList[GEO_CABINET], togglelight);
+					modelStack.PopMatrix();
+				}*/
 				else
 				{
 					modelStack.PushMatrix();
@@ -972,12 +1013,12 @@ void SP2::Render()
 	}
 
 	// Target test
-	/*
+	
 	modelStack.PushMatrix();
 	modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
-	modelStack.Scale(5,5,5);
+	modelStack.Scale(1,1,1);
 	RenderMesh(meshList[GEO_CUBE], togglelight);
-	modelStack.PopMatrix();*/
+	modelStack.PopMatrix();
 
 	RenderMesh(meshList[GEO_AXES], false);
 
@@ -986,8 +1027,9 @@ void SP2::Render()
 
 void SP2::renderText()
 {
-	std::ostringstream sFPS, sOrient, sX, sY, sZ;
+	std::ostringstream sFPS, sOrient, sPitch, sX, sY, sZ, cH;
 	sFPS << fps;
+	sPitch << rotateHandX;
 	sOrient << rotateHandY;
 	sX << camera.position.x;
 	sY << camera.position.y;
@@ -997,45 +1039,51 @@ void SP2::renderText()
 	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Orientation: ", Color(0, 1, 0), 2, 1, 5);
 	RenderTextOnScreen(meshList[GEO_TEXT], sOrient.str(), Color(0, 1, 0), 2, 20, 5);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Pitch: ", Color(0, 1, 0), 2, 1, 6);
+	RenderTextOnScreen(meshList[GEO_TEXT], sPitch.str(), Color(0, 1, 0), 2, 10, 6);  
 	RenderTextOnScreen(meshList[GEO_TEXT], "X: ", Color(0, 1, 0), 2, 1, 4);
 	RenderTextOnScreen(meshList[GEO_TEXT], sX.str(), Color(0, 1, 0), 2, 4, 4);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Y: ", Color(0, 1, 0), 2, 1, 3);
 	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 1, 0), 2, 4, 3);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 1, 0), 2, 1, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 1, 0), 2, 4, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], "<o>", Color(1,1,1), 2, 19.2, 15);
 }
 
 void SP2::renderHands()
 {
-	// Left hands
-	modelStack.PushMatrix();
-	modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
+	if(cam == false)
+	{
+		// Left hands
+		modelStack.PushMatrix();
+		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
 
-	modelStack.Rotate(rotateHandY, 0, 1, 0);
-	modelStack.Rotate(rotateHandX,1,0,0);
-	modelStack.Scale(.4,.4,1.5);
-	modelStack.PushMatrix();
+		modelStack.Rotate(rotateHandY, 0, 1, 0);
+		modelStack.Rotate(rotateHandX,1,0,0);
+		modelStack.Scale(.4,.4,1.5);
+		modelStack.PushMatrix();
 
-	modelStack.Translate(1.5,-1.5,-1);
-	RenderMesh(meshList[GEO_PLAYER], togglelight);
-	modelStack.PopMatrix();
+		modelStack.Translate(1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_PLAYER], togglelight);
+		modelStack.PopMatrix();
 
-	modelStack.PopMatrix();
+		modelStack.PopMatrix();
 
-	// Right hands
-	modelStack.PushMatrix();
-	modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
+		// Right hands
+		modelStack.PushMatrix();
+		modelStack.Translate(camera.position.x, camera.position.y, camera.position.z);
 
-	modelStack.Rotate(rotateHandY, 0, 1, 0);
-	modelStack.Rotate(rotateHandX,1,0,0);
-	modelStack.Scale(.4,.4,1.5);
-	modelStack.PushMatrix();
+		modelStack.Rotate(rotateHandY, 0, 1, 0);
+		modelStack.Rotate(rotateHandX,1,0,0);
+		modelStack.Scale(.4,.4,1.5);
+		modelStack.PushMatrix();
 
-	modelStack.Translate(-1.5,-1.5,-1);
-	RenderMesh(meshList[GEO_PLAYER], togglelight);
-	modelStack.PopMatrix();
+		modelStack.Translate(-1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_PLAYER], togglelight);
+		modelStack.PopMatrix();
 
-	modelStack.PopMatrix();
+		modelStack.PopMatrix();
+	}
 }
 
 void SP2::renderShelf()
@@ -1142,6 +1190,7 @@ void SP2::renderItems(int choice)
 	}
 	modelStack.PopMatrix();
 }
+
 
 void SP2::renderSuperMarket()
 {
