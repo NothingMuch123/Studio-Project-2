@@ -89,6 +89,7 @@ void SP2::Init()
 	initOuterSkybox();
 	initSuperMarket();
 	initHands();
+	initCabinet();
 }
 
 void SP2::initHands()
@@ -1033,13 +1034,11 @@ void SP2::Render()
 				{
 					renderShelf();
 				}
-				/*
+				
 				else if(pObj->getID() == OBJ_CABINET_T)
 				{
-					modelStack.PushMatrix();
-					RenderMesh(meshList[GEO_CABINET], togglelight);
-					modelStack.PopMatrix();
-				}*/
+					renderCabinet();
+				}
 				else
 				{
 					modelStack.PushMatrix();
@@ -1163,6 +1162,14 @@ void SP2::renderHands()
 	}
 }
 
+void SP2::renderCabinet()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y , pObj->getTranslate().z );
+	modelStack.Scale(pObj->getScale().x + 10, pObj->getScale().y + 10,pObj->getScale().z + 10);
+	RenderMesh(meshList[GEO_CABINET], togglelight);
+	modelStack.PopMatrix();
+}
 void SP2::renderShelf()
 {
 	modelStack.PushMatrix();
