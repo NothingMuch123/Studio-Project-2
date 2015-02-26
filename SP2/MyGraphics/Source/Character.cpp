@@ -3,6 +3,7 @@
 
 CCharacter::CCharacter(void)
 {
+	this->IsControlled = false;
 }
 
 void CCharacter::setIsControlled(bool Choice)
@@ -14,6 +15,30 @@ void CCharacter::setRole(int Role)
 {
 	this-> Role = Role;
 }
+
+void CCharacter::setInteractionBound(Vector3 Position,int Radius)
+{
+	if(((this->getTranslate())-Position).Length()<Radius)
+	{
+		this->InteractionBound = true;
+	}
+	else
+	{
+		this->InteractionBound = false;
+	}
+}
+void CCharacter::setScript(string Word,bool withinIB)
+{
+	if(withinIB = true)
+	{
+		this->Script = Word;
+	}
+}
+bool CCharacter::getInteractionBound()
+{
+	return InteractionBound;
+}
+
 Mesh* CCharacter::getCharacter()
 {
 	return Character;
@@ -26,13 +51,10 @@ int CCharacter::getRole()
 {
 	return Role;
 }
-bool CCharacter::InteractionBound(bool getIsControlled,Vector3 Position)//calculate when user is in range to interact
+
+string CCharacter::getScript()
 {
-	return false;
-}
-string CCharacter::script(bool getIsControlled)
-{
-	return "a";
+	return Script;
 }
 void CCharacter::updateChar(bool getIsControlled,double dt)
 {

@@ -10,7 +10,6 @@
 #include "LoadTGA.h"
 #include <sstream>
 #include <fstream>
-#include <iostream>
 
 SP2::SP2()
 {
@@ -77,15 +76,15 @@ void SP2::Init()
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//MazeWall.tga");
 
 	initCar();
-	initHuman(3,Vector3(50,3,30));
 
-	initHuman(1,Vector3(-30,3,30));
-	
-	initHuman(2,Vector3(15,3,30)); 
+	initHuman(1,Vector3(60,3,65),Vector3(0,90,0),camera.position,40);
+
+	initHuman(2,Vector3(60,3,-85),Vector3(0,90,0),camera.position,60);
+
+	initHuman(3,Vector3(-60,3,65),Vector3(0,90,0),camera.position,60);
 
 	initOuterSkybox();
 	initSuperMarket();
-	initPatch();
 	initHands();
 	initCabinet();
 }
@@ -304,7 +303,7 @@ void SP2::initCar()
 
 void SP2::initCabinet()
 {	
-	//Special Display Cabinet with the Tardis
+	//Special Display Cabinet_THE_TARDIS
 	meshList[GEO_CABINET] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
 	meshList[GEO_CABINET] ->textureID = LoadTGA("Image//displayGallifrey.tga");
 	pObj = new CObj(GEO_CABINET, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x + 10,supermarketScale.y + 10,supermarketScale.z + 10), Vector3(3, .5 ,1));
@@ -514,7 +513,7 @@ void SP2::initSuperMarket()
 
 }
 
-void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored in obj list 
+void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camPosition,int radius) // only human body is stored in obj list 
 {
 	if(Choice ==1)
 	{
@@ -530,7 +529,7 @@ void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored
 		meshList[GEO_HUMAN_STAFF_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_STAFF_LEG]->textureID = LoadTGA ("Image//Staff.tga");
 
-		pObj = new CCashier(GEO_HUMAN,translation, Vector3(0,0,0),Vector3(4,7,4), Vector3(3, 4.6, 3));//1.6));
+		pObj = new CCashier(OBJ_HUMAN,translation, rotation,Vector3(4,7,4), Vector3(3, 4.6, 3),camera.position,radius);//1.6));
 		pObj->calcBound();
 		objList.push_back(pObj);
 
@@ -551,7 +550,7 @@ void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored
 		meshList[GEO_HUMAN_SECURITYGUARD_LEG]->textureID = LoadTGA ("Image//Police.tga");
 
 
-		pObj = new CSecurityGuard(GEO_HUMAN,translation, Vector3(0,0,0),Vector3(4,7,4), Vector3(3, 4.6, 3));//1.6));
+		pObj = new CSecurityGuard(OBJ_HUMAN,translation, rotation,Vector3(4,7,4), Vector3(3, 4.6, 3),camera.position,radius);//1.6));
 		pObj->calcBound();
 		objList.push_back(pObj);
 	}
@@ -570,20 +569,10 @@ void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored
 		meshList[GEO_HUMAN_SHOPPER_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_SHOPPER_LEG]->textureID = LoadTGA ("Image//Shopper.tga");
 
-		pObj = new CShopper(GEO_HUMAN,translation,Vector3(0,0,0),Vector3(5,7,5),Vector3(4,4.5,4));//1));
+		pObj = new CShopper(OBJ_HUMAN,translation,rotation,Vector3(5,7,5),Vector3(4,4.5,4),camera.position,radius);//1));
 		pObj->calcBound();
 		objList.push_back(pObj);
 	}
-}
-
-void SP2::initPatch()
-{
-	meshList[GEO_PATCH] = MeshBuilder::GenerateOBJ("wallpatch",  "OBJ//wallpatcher.obj");
-	meshList[GEO_PATCH] ->textureID = LoadTGA("Image//walltexture.tga");
-
-	pObj = new CObj(OBJ_PATCH, Vector3( supermarketPosition.x * supermarketScale.x + 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
-	pObj->calcBound();
-	objList2.push_back(pObj);
 }
 
 void SP2::setLights()
@@ -737,7 +726,7 @@ void SP2::Update(double dt)
 
 	// Interactions
 	std::vector<CObj*> list;
-	if(floorNum == 1)
+	if (floorNum == 1)
 	{
 		list = objList;
 	}
@@ -798,37 +787,18 @@ void SP2::Update(double dt)
 			}
 		}
 	}
-	}
-
-	if(Application::IsKeyPressed('T') && cam == false)
-	{
-		tempPitch = rotateHandX;
-		tempYaw = rotateHandY;
-		tempX = camera.position.x;
-		tempY = camera.position.y;
-		tempZ = camera.position.z;
-		tempTargetX = camera.target.x;
-		tempTargetY = camera.target.y;
-		tempTargetZ = camera.target.z;
-		camera.up.Set(0, 1, 0);
-		cam = true;
-	}
-	if(cam == true)
-	{
-		camera.position.x = -143;
-		camera.position.y = 96;
-		camera.position.z = -90;
-		camera.target.x = 0;
-		camera.target.y = 0;
-		camera.target.z = 0;
-		camera.up.Set(0, 1, 0);
-	}
-	if(cam == false)
-	{
-		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
-	}
-
-
+	if(!cam)
+			{
+				camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
+				tempX = camera.position.x;
+				tempY = camera.position.y;
+				tempZ = camera.position.z; 
+				tempYaw = rotateHandY;
+				tempPitch = rotateHandX;
+				tempTargetX = camera.target.x;
+				tempTargetY = camera.target.y;
+				tempTargetZ = camera.target.z;
+			}
 
 
 	if (hands[0] != NULL && hands[1] != NULL)
@@ -1063,7 +1033,41 @@ void SP2::updateCar(double dt)//updating car
 
 void SP2::updateHuman(double dt)
 {
-
+	
+	for(int a = 0; a < objList.size(); ++a)
+	{
+		if(objList[a]->getID()==OBJ_HUMAN)
+		{
+			if(static_cast<CCashier*>(objList[a])->getRole()==1)
+			{
+			static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
+			if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
+			{
+				cout<<"Cashier says hi"<<endl;
+			}
+		
+			}
+			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
+			{
+				static_cast<CSecurityGuard*> (objList[a])->setInteractionBound(camera.position,50);
+				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
+				{
+				cout<<"Securityguard says hi"<<endl;
+				}
+				
+			}
+			else if(static_cast<CShopper*>(objList[a])->getRole()==3)
+			{
+				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
+				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
+				{
+				cout<<"Shopper says hi"<<endl;
+				}
+				
+			}
+		}
+	}
+	cout<<" "<<endl;
 }
 
 void SP2::Render()
@@ -1112,7 +1116,7 @@ void SP2::Render()
 	{
 	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
 	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
-	}*///LIGHTS ARE HERE //LIGHTS ARE HERE
+	}*/
 
 	renderOuterSkybox();
 
@@ -1141,7 +1145,7 @@ void SP2::Render()
 			{
 				renderShelf();
 			}
-			else if(pObj->getID() == GEO_HUMAN)
+			else if(pObj->getID() == OBJ_HUMAN)
 			{
 				renderHuman();
 			}
@@ -1278,15 +1282,9 @@ void SP2::renderCabinet()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y , pObj->getTranslate().z );
-	modelStack.Scale(pObj->getScale().x * .75, pObj->getScale().y * .75, pObj->getScale().z * .75);
+	modelStack.Scale(pObj->getScale().x, pObj->getScale().y,pObj->getScale().z);
 	RenderMesh(meshList[GEO_CABINET], togglelight);
 	modelStack.PopMatrix();
-}
-
-void SP2::renderPatch()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(0,0,10);
 }
 void SP2::renderShelf()
 {

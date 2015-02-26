@@ -13,23 +13,33 @@ using std::vector;
 class CCharacter : public CObj
 {
 private:
-	Mesh *Character;
-	int Role;
+	
 	bool IsControlled;
+	bool InteractionBound;
+
+	string Script;
+
+	Mesh *Character;
+
+	int Role;
 public:
 	CCharacter(void);
 
 
 	void setIsControlled(bool Choice);
-	void setRole(int Role);
+	bool getIsControlled();
 
+	void setRole(int Role);
+	int getRole();
+	
+	void setInteractionBound(Vector3 Position,int Radius);//calculate when user is in range to interact and how big the radius of bound would be
+	bool getInteractionBound();
+	
+	void setScript(string Word,bool withinIB);//IB=Interaction Bound
+	string getScript();
 
 	Mesh* getCharacter();
-	bool getIsControlled();
-	int getRole();
-
-	virtual bool InteractionBound(bool getIsControlled,Vector3 Position);//calculate when user is in range to interact
-	virtual string script(bool getIsControlled);
+		
 	virtual void updateChar(bool getIsControlled,double dt);
 
 	Camera3 charCamera;
