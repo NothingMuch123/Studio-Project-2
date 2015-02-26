@@ -28,7 +28,7 @@ public:
 		K_RIGHT_PLACE,
 		NUM_KEYPRESS,
 	};
-	enum OBJ_ID
+	/*enum OBJ_ID
 	{
 		OBJ_CAR,
 		OBJ_TROLLEY,
@@ -45,8 +45,7 @@ public:
 		OBJ_CEILING,
 		OBJ_CABINET_T,
 		OBJ_DOOR,
-	};
-private:
+	};*/
 	enum GEOMETRY_TYPE
 	{
 		GEO_AXES,
@@ -67,6 +66,7 @@ private:
 		
 		//SuperMarket
 		GEO_SUPERMARKET,
+		GEO_SUPERMARKET_WALL, // No mesh
 		GEO_SUPERMARKET_CEILING,
 		GEO_SUPERMARKET_DOOR,
 		GEO_SMLD,
@@ -75,6 +75,8 @@ private:
 		GEO_SECURITY_CAMERA_SCREEN,
 		GEO_SHELF,
 		GEO_CABINET,
+		GEO_TROLLEY,
+		GEO_ITEM,
 		GEO_ITEM_1,
 		GEO_ITEM_2,
 		GEO_ITEM_3,
@@ -88,6 +90,7 @@ private:
 
 		//Human
 		//SHOPPER
+		GEO_HUMAN, // No mesh
 		GEO_HUMAN_SHOPPER_BODY,
 		GEO_HUMAN_SHOPPER_ARM,
 		GEO_HUMAN_SHOPPER_HAND,

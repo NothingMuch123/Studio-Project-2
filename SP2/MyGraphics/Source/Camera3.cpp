@@ -78,14 +78,14 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		pObj = _objList[i];
 		if (_hands[0] == pObj || _hands[1] == pObj)
 		{
-			if (pObj->getID() == SP2::OBJ_ID::OBJ_CAR)
+			if (pObj->getID() == SP2::GEOMETRY_TYPE::GEO_CAR)
 			{
 				current = 1;
 				maxBound = pObj->getMaxBound();
 				minBound = pObj->getMinBound();
 				break;
 			}
-			else if (pObj->getID() == SP2::OBJ_ID::OBJ_TROLLEY)
+			else if (pObj->getID() == SP2::GEOMETRY_TYPE::GEO_TROLLEY)
 			{
 				current = 2;
 				maxBound = pObj->getMaxBound();
@@ -403,142 +403,57 @@ void Camera3::Reset()
 
 bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj **_hands, int floorNum, std::vector<CObj*> &_objList2)
 {
-	Vector3 topLeft(minBound.x, 0, minBound.z), 
-			top(minBound.x + ((maxBound.x - minBound.x) / 2), 0, minBound.z), 
-			topRight(maxBound.x, 0, minBound.x), 
-			left(minBound.x, 0, minBound.z + ((maxBound.z - minBound.z) / 2)), 
-			right(maxBound.x, 0, minBound.z + ((maxBound.z - minBound.z) / 2)), 
-			bottomLeft(minBound.x, 0, maxBound.z), 
-			bottom(minBound.x + ((maxBound.x - minBound.x) / 2), 0, maxBound.z), 
-			bottomRight(maxBound.x, 0, maxBound.z);
-
-	switch (floorNum)
+	std::vector<CObj*> list;
+	if (floorNum == 1)
 	{
-	case 1:
+		list = _objList;
+	}
+	else if (floorNum == 2)
+	{
+		list = _objList2;
+	}
+
+	if (_objList.size() != 0) // Obj & skybox check
+	{
+		for (int i = 0; i < list.size(); ++i)
 		{
-			if (_objList.size() != 0) // Obj & skybox check
+			CObj *pObj = list[i];
+			if (pObj->getRender())
 			{
-				for (int i = 0; i < _objList.size(); ++i)
+				if (current == NULL) // Point check
 				{
-					CObj *pObj = _objList[i];
-					if (pObj->getRender())
+					if	(	// Skybox check
+						(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || /*position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y ||*/ position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
+						// Obj check
+						(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && /*position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y &&*/ position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
+						)
 					{
-						if (current == NULL) // Point check
-						{
-							if	(	// Skybox check
-								(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || /*position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y ||*/ position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
-								// Obj check
-								(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && /*position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y &&*/ position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
-								)
-							{
-								return true;
-							}
-						}
-						else // Car and trolley check
-						{
-							if (pObj != _hands[0])
-							{
-								if(
-										// Top left
-										(topLeft.x < pObj->getMaxBound().x && topLeft.x > pObj->getMinBound().x && topLeft.z < pObj->getMaxBound().z && topLeft.z > pObj->getMinBound().z) ||
-										// Top
-										(top.x < pObj->getMaxBound().x && top.x > pObj->getMinBound().x && top.z < pObj->getMaxBound().z && top.z > pObj->getMinBound().z) ||
-										// Top right
-										(topRight.x < pObj->getMaxBound().x && topRight.x > pObj->getMinBound().x && topRight.z < pObj->getMaxBound().z && topRight.z > pObj->getMinBound().z) ||
-										// Left
-										(left.x < pObj->getMaxBound().x && left.x > pObj->getMinBound().x && left.z < pObj->getMaxBound().z && left.z > pObj->getMinBound().z) ||
-										// Right
-										(right.x < pObj->getMaxBound().x && right.x > pObj->getMinBound().x && right.z < pObj->getMaxBound().z && right.z > pObj->getMinBound().z) ||
-										// Bottom left
-										(bottomLeft.x < pObj->getMaxBound().x && bottomLeft.x > pObj->getMinBound().x && bottomLeft.z < pObj->getMaxBound().z && bottomLeft.z > pObj->getMinBound().z) ||
-										// Bottom
-										(bottom.x < pObj->getMaxBound().x && bottom.x > pObj->getMinBound().x && bottom.z < pObj->getMaxBound().z && bottom.z > pObj->getMinBound().z) ||
-										// Bottom right
-										(bottomRight.x < pObj->getMaxBound().x && bottomRight.x > pObj->getMinBound().x && bottomRight.z < pObj->getMaxBound().z && bottomRight.z > pObj->getMinBound().z)
-									)
-								{
-									return true;
-								}
-							}
-						}
+						return true;
 					}
 				}
-				return false;
-			}
-			else
-			{
-				if (position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z)
+				else // Car and trolley check
 				{
-					return true;
-				}
-				else
-				{
-					return false;
+					if (pObj != _hands[0])
+					{
+						if(minBound.x  < pObj->getMaxBound().x && maxBound.x > pObj->getMinBound().x && minBound.z < pObj->getMaxBound().z && maxBound.z > pObj->getMinBound().z)
+						{
+							return true;
+						}
+					}
 				}
 			}
 		}
-	case 2:
+		return false;
+	}
+	else
+	{
+		if (position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z)
 		{
-			if (_objList2.size() != 0) // Obj & skybox check
-			{
-				for (int i = 0; i < _objList2.size(); ++i)
-				{
-					CObj *pObj = _objList2[i];
-					if (pObj->getRender())
-					{
-						if (current == NULL) // Point check
-						{
-							if	(	// Skybox check
-								(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || /*position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y ||*/ position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
-								// Obj check
-								(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && /*position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y &&*/ position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
-								)
-							{
-								return true;
-							}
-						}
-						else // Car and trolley check
-						{
-							if (pObj != _hands[0])
-							{
-								if(
-										// Top left
-										(topLeft.x < pObj->getMaxBound().x && topLeft.x > pObj->getMinBound().x && topLeft.z < pObj->getMaxBound().z && topLeft.z > pObj->getMinBound().z) ||
-										// Top
-										(top.x < pObj->getMaxBound().x && top.x > pObj->getMinBound().x && top.z < pObj->getMaxBound().z && top.z > pObj->getMinBound().z) ||
-										// Top right
-										(topRight.x < pObj->getMaxBound().x && topRight.x > pObj->getMinBound().x && topRight.z < pObj->getMaxBound().z && topRight.z > pObj->getMinBound().z) ||
-										// Left
-										(left.x < pObj->getMaxBound().x && left.x > pObj->getMinBound().x && left.z < pObj->getMaxBound().z && left.z > pObj->getMinBound().z) ||
-										// Right
-										(right.x < pObj->getMaxBound().x && right.x > pObj->getMinBound().x && right.z < pObj->getMaxBound().z && right.z > pObj->getMinBound().z) ||
-										// Bottom left
-										(bottomLeft.x < pObj->getMaxBound().x && bottomLeft.x > pObj->getMinBound().x && bottomLeft.z < pObj->getMaxBound().z && bottomLeft.z > pObj->getMinBound().z) ||
-										// Bottom
-										(bottom.x < pObj->getMaxBound().x && bottom.x > pObj->getMinBound().x && bottom.z < pObj->getMaxBound().z && bottom.z > pObj->getMinBound().z) ||
-										// Bottom right
-										(bottomRight.x < pObj->getMaxBound().x && bottomRight.x > pObj->getMinBound().x && bottomRight.z < pObj->getMaxBound().z && bottomRight.z > pObj->getMinBound().z)
-									)
-								{
-									return true;
-								}
-							}
-						}
-					}
-				}
-				return false;
-			}
-			else
-			{
-				if (position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z)
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }

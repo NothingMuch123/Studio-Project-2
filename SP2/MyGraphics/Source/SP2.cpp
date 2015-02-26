@@ -77,11 +77,9 @@ void SP2::Init()
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//MazeWall.tga");
 
 	initCar();
-	initHuman(3,Vector3(30,0,30)); 
-
-	initHuman(1,Vector3(-30,0,30)); 
-	
-	initHuman(2,Vector3(15,0,30)); 
+	initHuman(3,Vector3(50,3,30));
+	initHuman(1,Vector3(-30,3,30));
+	initHuman(2,Vector3(15,3,30)); 
 
 	initOuterSkybox();
 	initSuperMarket();
@@ -101,7 +99,7 @@ void SP2::initHands()
 void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 {
 	CItem* pItem;
-	pObj = new CShelf(OBJ_SHELF,supermarketPosition+(_translate),_rotate,Vector3(11,11,11),Vector3(3,1.5,3),9);
+	pObj = new CShelf(GEO_SHELF,supermarketPosition+(_translate),_rotate,Vector3(11,11,11),Vector3(3,1.5,3),9);
 	pObj->calcBound();
 
 	switch(Choice)
@@ -112,7 +110,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_1]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_1]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -125,7 +123,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_2]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_2]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -138,7 +136,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,0,0),Vector3(10,10,10),Vector3(1,1,1),meshList[GEO_ITEM_3]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,0,0),Vector3(10,10,10),Vector3(1,1,1),meshList[GEO_ITEM_3]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -151,7 +149,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,0,0),Vector3(10,10,10),Vector3(1,1,1),meshList[GEO_ITEM_4]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,0,0),Vector3(10,10,10),Vector3(1,1,1),meshList[GEO_ITEM_4]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -164,7 +162,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_5]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_5]);
 					static_cast<CShelf*> (pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -177,7 +175,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_6]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_6]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -190,7 +188,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,0,0),Vector3(6,6,6),Vector3(1,1,1),meshList[GEO_ITEM_7]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,0,0),Vector3(6,6,6),Vector3(1,1,1),meshList[GEO_ITEM_7]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -203,7 +201,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_8]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_8]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -216,7 +214,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_9]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(4,4,4),Vector3(1,1,1),meshList[GEO_ITEM_9]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -229,7 +227,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 			{
 				for(int z = -5;z<=5;z+=5)
 				{
-					pItem = new CItem(OBJ_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(6,6,6),Vector3(1,1,1),meshList[GEO_ITEM_10]);
+					pItem = new CItem(GEO_ITEM,Vector3(x,3,z),Vector3(0,-90,0),Vector3(6,6,6),Vector3(1,1,1),meshList[GEO_ITEM_10]);
 					static_cast<CShelf*>(pObj)->itemList.push_back(pItem);
 					static_cast<CShelf*>(pObj)->itemPosition.push_back(pItem->getTranslate());
 				}
@@ -239,7 +237,7 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 	}
 
 	objList.push_back(pObj);
-	shelfList.push_back(static_cast<CShelf*>(pObj));
+	//shelfList.push_back(static_cast<CShelf*>(pObj));
 }
 
 void SP2::initItems()
@@ -294,7 +292,7 @@ void SP2::initCar()
 	meshList[GEO_CAR_SCREEN] = MeshBuilder::GenerateQuad("Car screen", Color(1,1,1), TexCoord(1,1));
 	meshList[GEO_CAR_SCREEN]->textureID = LoadTGA("Image//Car_screen.tga");
 
-	pObj = new CCar(OBJ_CAR, Vector3(-200,0,200), Vector3(0,0,0), Vector3(5,5,5), Vector3(17,8,17));
+	pObj = new CCar(GEO_CAR, Vector3(-200,0,300), Vector3(0,0,0), Vector3(2.5,5,5), Vector3(17.5,8,7));
 	pObj->calcBound();
 	static_cast<CCar*>(pObj)->setCamera();
 	objList.push_back(pObj);
@@ -306,8 +304,8 @@ void SP2::initCabinet()
 	//Special Display Cabinet_THE_TARDIS
 	meshList[GEO_CABINET] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
 	meshList[GEO_CABINET] ->textureID = LoadTGA("Image//displayGallifrey.tga");
-	pObj = new CObj(OBJ_CABINET_T, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
-	pObj-> calcBound();
+	pObj = new CObj(GEO_CABINET, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x + 10,supermarketScale.y + 10,supermarketScale.z + 10), Vector3(3, .5 ,1));
+	pObj->calcBound();
 	objList2.push_back(pObj);
 	//Regular Display Cabinet 
 }
@@ -340,18 +338,18 @@ void SP2::initSuperMarket()
 	// Supermarket
 	supermarketSize.Set(30,20,20);
 	supermarketPosition.Set(0,0,0);
-	supermarketScale.Set(11,11,16.5);
+	supermarketScale.Set(11,11,14.85);
 
 	// Left wall
 	Vector3 tempWallPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2), supermarketPosition.y, supermarketPosition.z);
-	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // for 2nd floor
 
 	// Right wall
 	tempWallPosition.Set(supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2), supermarketPosition.y, supermarketPosition.z);
-	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(5,supermarketSize.y * supermarketScale.y, supermarketSize.z * supermarketScale.z), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // for 2nd floor
@@ -359,49 +357,49 @@ void SP2::initSuperMarket()
 	float halfLength = ((((supermarketScale.x * supermarketSize.x) / 2) - (2 * supermarketScale.x)) / 2); // Half length between corner to door along x-axis
 	// Front left wall
 	tempWallPosition.Set(((supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2)) + halfLength), supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
-	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // for 2nd floor - need hole for toilet entrance
 
 	// Front right wall
 	tempWallPosition.Set(((supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2)) - halfLength), supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
-	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // for 2nd floor - need space for toilet entrance
 
 	// Back left wall
 	tempWallPosition.Set(((supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2)) + halfLength), supermarketPosition.y, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2));
-	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // for 2nd floor
 
 	// Back right wall
 	tempWallPosition.Set(((supermarketPosition.x + ((supermarketScale.x * supermarketSize.x) / 2)) - halfLength), supermarketPosition.y, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2));
-	pObj = new CObj(OBJ_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL, Vector3(tempWallPosition.x, tempWallPosition.y, tempWallPosition.z), Vector3(0,0,0), Vector3(halfLength * 2,supermarketSize.y * supermarketScale.y, 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // for 2nd floor
 
 	//lift left wall
 	tempWallPosition.Set(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x ) / 4 - halfLength / 1.7), supermarketPosition.y ,  supermarketPosition.z - (supermarketScale.z * supermarketSize.z) / 2  - halfLength / 2);
-	pObj = new CObj(OBJ_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(5,supermarketSize.y * supermarketScale.y, halfLength) ,Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(5,supermarketSize.y * supermarketScale.y, halfLength) ,Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
 
 	//lift right wall 
 	tempWallPosition.Set(supermarketPosition.x + ((supermarketScale.x * supermarketSize.x ) / 4 - halfLength / 1.7), supermarketPosition.y ,  supermarketPosition.z - (supermarketScale.z * supermarketSize.z) / 2  - halfLength / 2);
-	pObj = new CObj(OBJ_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(5,supermarketSize.y * supermarketScale.y, halfLength) ,Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(5,supermarketSize.y * supermarketScale.y, halfLength) ,Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
 
 	//Lift back wall
 	tempWallPosition.Set(supermarketPosition.x , supermarketPosition.y , supermarketPosition.z - (supermarketScale.z * supermarketSize.z ) + halfLength / 1.5 );
-	pObj = new CObj (OBJ_SUPERMARKET_WALL , Vector3(tempWallPosition.x , tempWallPosition.y ,tempWallPosition.z) , Vector3 (0,0,0), Vector3(halfLength, supermarketSize.y * supermarketScale.y , 5 ), Vector3(1,1,1));
+	pObj = new CObj (GEO_SUPERMARKET_WALL , Vector3(tempWallPosition.x , tempWallPosition.y ,tempWallPosition.z) , Vector3 (0,0,0), Vector3(halfLength, supermarketSize.y * supermarketScale.y , 5 ), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
@@ -424,84 +422,84 @@ void SP2::initSuperMarket()
 	translateLiftX = 0;
 	disableLiftDoor = false;
 
-	pObj = new CObj(OBJ_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
+	pObj = new CObj(GEO_SUPERMARKET_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
 	objList.push_back(pObj);
 	objList2.push_back(pObj);
 	
-	pObj = new CObj(OBJ_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 5 , 11));
+	pObj = new CObj(GEO_CASHIER_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 5 , 11));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	
-	pObj = new CObj(OBJ_CAMERA , Vector3(supermarketPosition.x - 14.65 * supermarketScale.x, supermarketPosition.y + 9.6 * supermarketScale.y, supermarketPosition.z - 9.5 * supermarketScale.z), Vector3(0,0,0), Vector3(0.2 * supermarketScale.x,0.2 * supermarketScale.y,0.2 * supermarketScale.z), Vector3(2 ,1.5, 2));
+	pObj = new CObj(GEO_SECURITY_CAMERA , Vector3(supermarketPosition.x - 14.65 * supermarketScale.x, supermarketPosition.y + 9.6 * supermarketScale.y, supermarketPosition.z - 9.5 * supermarketScale.z), Vector3(0,0,0), Vector3(0.2 * supermarketScale.x,0.2 * supermarketScale.y,0.2 * supermarketScale.z), Vector3(2 ,1.5, 2));
 	pObj->calcBound();
 	objList.push_back(pObj);
 
-	pObj = new CObj(OBJ_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
+	pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
 	pObj->calcBound();
 	objList2.push_back(pObj);
 
 	Vector3 leftStartPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2) + (33 * 1.5), 0, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2) + (33 * 1.5));
 	// Left top row
-	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(0 * 33, 0 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(0 * 33, 1 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(0 * 33, 2 * 14.5, 0 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(0 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(0 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(0 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
 
-	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(1 * 33, 0 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(1 * 33, 1 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(1 * 33, 2 * 14.5, 0 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(1 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(1 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_1,leftStartPosition+(Vector3(1 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
 
-	initShelf(GEO_ITEM_2,leftStartPosition+(Vector3(2 * 33, 0 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_2,leftStartPosition+(Vector3(2 * 33, 1 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_2,leftStartPosition+(Vector3(2 * 33, 2 * 14.5, 0 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_2,leftStartPosition+(Vector3(2 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_2,leftStartPosition+(Vector3(2 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_2,leftStartPosition+(Vector3(2 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
 
 	// Left bottom row
-	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(0 * 33, 0 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(0 * 33, 1 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(0 * 33, 2 * 14.5, 1 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(0 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(0 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(0 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
 
-	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 0 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 1 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 2 * 14.5, 1 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
 	
-	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 0 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 1 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 2 * 14.5, 1 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
 
 	// Right top row
-	initShelf(GEO_ITEM_5,leftStartPosition+(Vector3(4 * 33, 0 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_5,leftStartPosition+(Vector3(4 * 33, 1 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_5,leftStartPosition+(Vector3(4 * 33, 2 * 14.5, 0 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_5,leftStartPosition+(Vector3(5 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_5,leftStartPosition+(Vector3(5 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_5,leftStartPosition+(Vector3(5 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
 
-	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(5 * 33, 0 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(5 * 33, 1 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(5 * 33, 2 * 14.5, 0 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(6 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(6 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(6 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
 	
-	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(6 * 33, 0 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(6 * 33, 1 * 14.5, 0 * 33)), Vector3(0,180,0));
-	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(6 * 33, 2 * 14.5, 0 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(7 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(7 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
+	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(7 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
 
 	// Right bottom row
-	initShelf(GEO_ITEM_8,leftStartPosition+(Vector3(4 * 33, 0 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_8,leftStartPosition+(Vector3(4 * 33, 1 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_8,leftStartPosition+(Vector3(4 * 33, 2 * 14.5, 1 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_8,leftStartPosition+(Vector3(5 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_8,leftStartPosition+(Vector3(5 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_8,leftStartPosition+(Vector3(5 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
 
-	initShelf(GEO_ITEM_9,leftStartPosition+(Vector3(5 * 33, 0 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_9,leftStartPosition+(Vector3(5 * 33, 1 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_9,leftStartPosition+(Vector3(5 * 33, 2 * 14.5, 1 * 33)), Vector3(0,0,0));
-	
-	initShelf(GEO_ITEM_10,leftStartPosition+(Vector3(6 * 33, 0 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_10,leftStartPosition+(Vector3(6 * 33, 1 * 14.5, 1 * 33)), Vector3(0,0,0));
-	initShelf(GEO_ITEM_10,leftStartPosition+(Vector3(6 * 33, 2 * 14.5, 1 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_9,leftStartPosition+(Vector3(6 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_9,leftStartPosition+(Vector3(6 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_9,leftStartPosition+(Vector3(6 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
+
+	initShelf(GEO_ITEM_10,leftStartPosition+(Vector3(7 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_10,leftStartPosition+(Vector3(7 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
+	initShelf(GEO_ITEM_10,leftStartPosition+(Vector3(7 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
 
 	//supermarket left lift door
 	meshList[GEO_SMLD] = MeshBuilder::GenerateOBJ("lift door" , "OBJ//Supermarket_door.obj");
 	meshList[GEO_SMLD]->textureID = LoadTGA("Image//Supermarket_door.tga");
-	pObj = new CObj(OBJ_DOOR, Vector3( supermarketPosition.x * supermarketScale.x + 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
+	/*pObj = new CObj(GEO_SUPERMARKET_DOOR, Vector3( supermarketPosition.x * supermarketScale.x + 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
 	objList.push_back(pObj);
 	objList2.push_back(pObj);
-	pObj = new CObj(OBJ_DOOR, Vector3( supermarketPosition.x * supermarketScale.x - 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
+	pObj = new CObj(GEO_SUPERMARKET_DOOR, Vector3( supermarketPosition.x * supermarketScale.x - 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
 	objList.push_back(pObj);
-	objList2.push_back(pObj);
+	objList2.push_back(pObj);*/
 }
 
 void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored in obj list 
@@ -520,7 +518,7 @@ void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored
 		meshList[GEO_HUMAN_STAFF_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_STAFF_LEG]->textureID = LoadTGA ("Image//Staff.tga");
 
-		pObj = new CCashier(OBJ_HUMAN,Vector3(0,10,0)+translation, Vector3(0,0,0),Vector3(4,4.5,4), Vector3(3, 4.6, 1.6));
+		pObj = new CCashier(GEO_HUMAN,translation, Vector3(0,0,0),Vector3(4,7,4), Vector3(3, 4.6, 3));//1.6));
 		pObj->calcBound();
 		objList.push_back(pObj);
 
@@ -541,7 +539,7 @@ void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored
 		meshList[GEO_HUMAN_SECURITYGUARD_LEG]->textureID = LoadTGA ("Image//Police.tga");
 
 
-		pObj = new CSecurityGuard(OBJ_HUMAN,Vector3(0,10,0)+translation, Vector3(0,0,0),Vector3(4,4.5,4), Vector3(3, 4.6, 1.6));
+		pObj = new CSecurityGuard(GEO_HUMAN,translation, Vector3(0,0,0),Vector3(4,7,4), Vector3(3, 4.6, 3));//1.6));
 		pObj->calcBound();
 		objList.push_back(pObj);
 	}
@@ -560,12 +558,9 @@ void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored
 		meshList[GEO_HUMAN_SHOPPER_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_SHOPPER_LEG]->textureID = LoadTGA ("Image//Shopper.tga");
 
-		pObj = new CShopper(OBJ_HUMAN,Vector3(0,10,0)+translation,Vector3(0,0,0),Vector3(5,5,5),Vector3(4,4.5,1));
+		pObj = new CShopper(GEO_HUMAN,translation,Vector3(0,0,0),Vector3(5,7,5),Vector3(4,4.5,4));//1));
 		pObj->calcBound();
 		objList.push_back(pObj);
-	}
-	else
-	{
 	}
 }
 
@@ -719,40 +714,43 @@ void SP2::Update(double dt)
 	keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
 
 	// Interactions
-	if(floorNum == 1)
+	std::vector<CObj*> list;
+	if (floorNum == 1)
 	{
-		for (int i = 0; i < objList.size(); ++i)
+		list = objList;
+	}
+	else if (floorNum == 2)
+	{
+		list = objList2;
+	}
+	for (int i = 0; i < list.size(); ++i)
+	{
+		pObj = list[i];
+		if (pObj->getRender())
 		{
-			pObj = objList[i];
-			if (pObj->getRender())
+			if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
 			{
-				if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
+				if (pObj->getID() == GEO_CAR)
 				{
-					if (pObj->getID() == OBJ_CAR)
+					if (keypressed[K_ENTER_CAR])
 					{
-						if (keypressed[K_ENTER_CAR])
+						if (hands[0] == NULL && hands[1] == NULL)
 						{
-							if (hands[0] == NULL && hands[1] == NULL)
-							{
-								hands[0] = hands[1] = pObj;
-								saved = camera;
-								pObj->setRender(false);
-								camera = static_cast<CCar*>(pObj)->carCamera;
-								rotateHandX = 0;
-								rotateHandY = hands[0]->getRotate().y -90;
-							}
+							hands[0] = hands[1] = pObj;
+							saved = camera;
+							pObj->setRender(false);
+							camera = static_cast<CCar*>(pObj)->carCamera;
+							rotateHandX = 0;
+							rotateHandY = hands[0]->getRotate().y -90;
 						}
 					}
-					else if (pObj->getID() == OBJ_SHELF)
-					{
-						updateShelf();
-					}
+				}
+				else if (pObj->getID() == GEO_SHELF)
+				{
+					updateShelf();
 				}
 			}
 		}
-	}
-	if(floorNum == 2) // 2nd floor
-	{
 	}
 
 	if(Application::IsKeyPressed('T') && cam == false)
@@ -787,7 +785,7 @@ void SP2::Update(double dt)
 
 	if (hands[0] != NULL && hands[1] != NULL)
 	{
-		if (hands[0]->getID() == OBJ_CAR && hands[1]->getID() == OBJ_CAR)
+		if (hands[0]->getID() == GEO_CAR && hands[1]->getID() == GEO_CAR)
 		{
 			updateCar(dt);
 		}
@@ -806,14 +804,6 @@ void SP2::Update(double dt)
 	{
 		togglelight = false;
 	}
-	//if(Application::IsKeyPressed('O')) // manual triggar for 2nd floor (temp check bounds) - Tim
-	//{
-	//	floorNum = 1;
-	//}
-	//if(Application::IsKeyPressed('P'))
-	//{
-	//	floorNum = 2;
-	//}
 	static double fpsRefresh;
 	fpsRefresh += dt;
 	if (fpsRefresh >= 1)
@@ -857,15 +847,15 @@ void SP2::updateHands(double dt)
 		camera.target.z = tempTargetZ;
 	}
 
-	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30 && hands[0] == NULL)
+	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 30 && (hands[0] == NULL || hands[0]->getID() != GEO_CAR))
 	{
 		rotateHandX += ROTATE_SPEED*dt;
 	}
-	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -30 && hands[0] == NULL)
+	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -30 && (hands[0] == NULL || hands[0]->getID() != GEO_CAR))
 	{
 		rotateHandX -= ROTATE_SPEED*dt;
 	}
-	if(Application::IsKeyPressed('R') && hands[0] == NULL)
+	if(Application::IsKeyPressed('R') && (hands[0] == NULL || hands[0]->getID() != GEO_CAR || hands[0]->getID() != GEO_TROLLEY))
 	{
 		rotateHandX = 0;
 		rotateHandY = 0;
@@ -885,7 +875,7 @@ void SP2::updateShelf()
 	}
 
 	// Place item for left hand
-	if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == OBJ_ITEM)
+	if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
 	{
 		if (static_cast<CShelf*>(pObj)->itemList.size() < static_cast<CShelf*>(pObj)->limit)
 		{
@@ -906,7 +896,7 @@ void SP2::updateShelf()
 	}
 
 	// Place item for right hand
-	if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == OBJ_ITEM)
+	if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
 	{
 		if (static_cast<CShelf*>(pObj)->itemList.size() < static_cast<CShelf*>(pObj)->limit)
 		{
@@ -996,9 +986,8 @@ void SP2::updateCar(double dt)//updating car
 		Vector3 right = ((static_cast<CCar*>(hands[0])->carCamera.target - static_cast<CCar*>(hands[0])->carCamera.position).Cross(static_cast<CCar*>(hands[0])->carCamera.up)).Normalized();
 		Mtx44 Rotation;
 		Rotation.SetToRotation(90,0,1,0);
-		//camera.Init(camera.position - (right * 65), (camera.position - (right * 65)) + ((Rotation * (camera.position - camera.target))), Vector3(0,1,0));
-		camera.target = ((static_cast<CCar*>(hands[0])->carCamera.position - (right * 70)) + ((Rotation * (static_cast<CCar*>(hands[0])->carCamera.position - static_cast<CCar*>(hands[0])->carCamera.target))));
-		camera.position = (static_cast<CCar*>(hands[0])->carCamera.position - (right * 70));
+		camera.target = ((static_cast<CCar*>(hands[0])->carCamera.position - (right * 35)) + ((Rotation * (static_cast<CCar*>(hands[0])->carCamera.position - static_cast<CCar*>(hands[0])->carCamera.target))));
+		camera.position = (static_cast<CCar*>(hands[0])->carCamera.position - (right * 35));
 		camera.up.Set(0,1,0);
 		static_cast<CCar*>(hands[0])->updatePosition();
 		static_cast<CCar*>(hands[0])->calcBound();
@@ -1075,110 +1064,48 @@ void SP2::Render()
 
 	renderSuperMarket();
 
-	if(floorNum == 1 ) //first floor
+	std::vector<CObj*> list;
+	if (floorNum == 1)
 	{
-		// Render objList
-		for (int i = 0; i < objList.size(); ++i)
-		{
-			pObj = objList[i];
-			if (pObj->getRender())
-			{
-				if (pObj->getID() == OBJ_CAR)
-				{
-					renderCar();
-				}
-				else if(pObj->getID() == OBJ_SHELF)
-				{
-					renderShelf();
-				}
-				else if(pObj->getID() == OBJ_HUMAN)
-				{
-					renderHuman();
-				}
-				else
-				{
-					modelStack.PushMatrix();
-					modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
-					modelStack.Rotate(pObj->getRotate().x, 1,0,0);
-					modelStack.Rotate(pObj->getRotate().y, 0,1,0);
-					modelStack.Rotate(pObj->getRotate().z, 0,0,1);
-					modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
-					if (pObj->getID() == OBJ_TABLE)
-					{
-						RenderMesh(meshList[GEO_CASHIER_TABLE], togglelight);
-					}
-					else if (pObj->getID() == OBJ_CUBE)
-					{
-						RenderMesh(meshList[GEO_CUBE], togglelight);
-					}
-					else if (pObj->getID() == OBJ_CEILING)
-					{
-						RenderMesh(meshList[GEO_SUPERMARKET_CEILING], togglelight);
-					}
-					else if (pObj->getID() == OBJ_CAMERA)
-					{
-						RenderMesh(meshList[GEO_SECURITY_CAMERA], togglelight);
-					}
-					else if (pObj->getID() == OBJ_SCREEN)
-					{
-						RenderMesh(meshList[GEO_SECURITY_CAMERA_SCREEN], togglelight);
-					}
-					modelStack.PopMatrix();
-				}
-			}
-		}
+		list = objList;
 	}
-	if(floorNum == 2) // second floor
+	else if (floorNum == 2)
 	{
-		for( int i = 0 ; i < objList2.size(); ++i)
+		list = objList2;
+	}
+	// Render objList
+	for (int i = 0; i < list.size(); ++i)
+	{
+		pObj = list[i];
+		if (pObj->getRender())
 		{
-			pObj = objList2[i];
-			if(pObj->getRender())
+			if (pObj->getID() == GEO_CAR)
 			{
-				if(pObj->getID() == OBJ_SHELF)
-				{
-					renderShelf();
-				}
-				
-				else if(pObj->getID() == OBJ_CABINET_T)
-				{
-					renderCabinet();
-				}
-				else
-				{
-					modelStack.PushMatrix();
-					modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
-					modelStack.Rotate(pObj->getRotate().x, 1,0,0);
-					modelStack.Rotate(pObj->getRotate().y, 0,1,0);
-					modelStack.Rotate(pObj->getRotate().z, 0,0,1);
-					modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
-					if (pObj->getID() == OBJ_TABLE)
-					{
-						RenderMesh(meshList[GEO_CASHIER_TABLE], togglelight);
-					}
-					else if (pObj->getID() == OBJ_CUBE)
-					{
-						RenderMesh(meshList[GEO_CUBE], togglelight);
-					}
-					else if (pObj->getID() == OBJ_CEILING)
-					{
-						RenderMesh(meshList[GEO_SUPERMARKET_CEILING], togglelight);
-					}
-					else if (pObj->getID() == OBJ_CAMERA)
-					{
-						RenderMesh(meshList[GEO_SECURITY_CAMERA], togglelight);
-					}
-					else if (pObj->getID() == OBJ_SCREEN)
-					{
-						RenderMesh(meshList[GEO_SECURITY_CAMERA_SCREEN], togglelight);
-					}
-					modelStack.PopMatrix();
-				}
+				renderCar();
+			}
+			else if(pObj->getID() == GEO_SHELF)
+			{
+				renderShelf();
+			}
+			else if(pObj->getID() == GEO_HUMAN)
+			{
+				renderHuman();
+			}
+			else if (pObj->getID() != GEO_SUPERMARKET_WALL)
+			{
+				modelStack.PushMatrix();
+				modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+				modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+				modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+				modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+				modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
+				RenderMesh(meshList[pObj->getID()], togglelight);
+				modelStack.PopMatrix();
 			}
 		}
 	}
 	
-	if (hands[0] == NULL || hands[1] == NULL || hands[0]->getID() == OBJ_ITEM || hands[1]->getID() == OBJ_ITEM)
+	if (hands[0] == NULL || hands[1] == NULL || hands[0]->getID() == GEO_ITEM || hands[1]->getID() == GEO_ITEM)
 	{
 		renderHands();
 	}
@@ -1187,7 +1114,7 @@ void SP2::Render()
 		modelStack.PushMatrix();
 		modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
 		modelStack.Rotate(hands[0]->getRotate().y - 90, 0, 1, 0);
-		modelStack.Scale(3.4 * hands[0]->getScale().x, 3 * hands[0]->getScale().y, 1);
+		modelStack.Scale(17, 15, 1);
 		RenderMesh(meshList[GEO_CAR_SCREEN], togglelight);
 		modelStack.PopMatrix();
 	}
@@ -1214,19 +1141,19 @@ void SP2::renderText()
 	sY << camera.position.y;
 	sZ << camera.position.z;
 
-	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 1, 0), 2, 1, 1);
-	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 1, 0), 2, 6, 1);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Orientation: ", Color(0, 1, 0), 2, 1, 5);
-	RenderTextOnScreen(meshList[GEO_TEXT], sOrient.str(), Color(0, 1, 0), 2, 20, 5);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Pitch: ", Color(0, 1, 0), 2, 1, 6);
-	RenderTextOnScreen(meshList[GEO_TEXT], sPitch.str(), Color(0, 1, 0), 2, 10, 6);  
-	RenderTextOnScreen(meshList[GEO_TEXT], "X: ", Color(0, 1, 0), 2, 1, 4);
-	RenderTextOnScreen(meshList[GEO_TEXT], sX.str(), Color(0, 1, 0), 2, 4, 4);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Y: ", Color(0, 1, 0), 2, 1, 3);
-	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 1, 0), 2, 4, 3);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 1, 0), 2, 1, 2);
-	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 1, 0), 2, 4, 2);
-	RenderTextOnScreen(meshList[GEO_TEXT], "<o>", Color(1,1,1), 2, 19.2, 15);
+	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 0, 0), 2, 1, 1);
+	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 0, 0), 2, 6, 1);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Orientation: ", Color(0, 0, 0), 2, 1, 5);
+	RenderTextOnScreen(meshList[GEO_TEXT], sOrient.str(), Color(0, 0, 0), 2, 20, 5);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Pitch: ", Color(0, 0, 0), 2, 1, 6);
+	RenderTextOnScreen(meshList[GEO_TEXT], sPitch.str(), Color(0, 0, 0), 2, 10, 6);  
+	RenderTextOnScreen(meshList[GEO_TEXT], "X: ", Color(0, 0, 0), 2, 1, 4);
+	RenderTextOnScreen(meshList[GEO_TEXT], sX.str(), Color(0, 0, 0), 2, 4, 4);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Y: ", Color(0, 0, 0), 2, 1, 3);
+	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 0, 0), 2, 4, 3);
+	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 0, 0), 2, 1, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 0, 0), 2, 4, 2);
+	RenderTextOnScreen(meshList[GEO_TEXT], "<o>", Color(1,0,0), 2, 19.2, 15);
 }
 
 void SP2::renderHands()
@@ -1243,7 +1170,7 @@ void SP2::renderHands()
 	{
 		modelStack.Scale(.4,.4,1.5);
 	}
-	else if (hands[0]->getID() == OBJ_ITEM)
+	else if (hands[0]->getID() == GEO_ITEM)
 	{
 		modelStack.Scale(hands[0]->getScale().x, hands[0]->getScale().y, hands[0]->getScale().z);
 	}
@@ -1254,7 +1181,7 @@ void SP2::renderHands()
 		modelStack.Translate(-1.5,-1.5,-1);
 		RenderMesh(meshList[GEO_HAND], togglelight);
 	}
-	else if (hands[0]->getID() == OBJ_ITEM)
+	else if (hands[0]->getID() == GEO_ITEM)
 	{
 		modelStack.Translate(-1.5, -1.5, -4);
 		RenderMesh(static_cast<CItem*>(hands[0])->getItem(), togglelight);
@@ -1273,7 +1200,7 @@ void SP2::renderHands()
 	{
 		modelStack.Scale(.4,.4,1.5);
 	}
-	else if (hands[1]->getID() == OBJ_ITEM)
+	else if (hands[1]->getID() == GEO_ITEM)
 	{
 		modelStack.Scale(hands[1]->getScale().x, hands[1]->getScale().y, hands[1]->getScale().z);
 	}
@@ -1284,7 +1211,7 @@ void SP2::renderHands()
 		modelStack.Translate(1.5,-1.5,-1);
 		RenderMesh(meshList[GEO_HAND], togglelight);
 	}
-	else if (hands[1]->getID() == OBJ_ITEM)
+	else if (hands[1]->getID() == GEO_ITEM)
 	{
 		modelStack.Translate(1.5, -1.5, -4);
 		RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
@@ -1297,7 +1224,7 @@ void SP2::renderCabinet()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y , pObj->getTranslate().z );
-	modelStack.Scale(pObj->getScale().x + 10, pObj->getScale().y + 10,pObj->getScale().z + 10);
+	modelStack.Scale(pObj->getScale().x, pObj->getScale().y,pObj->getScale().z);
 	RenderMesh(meshList[GEO_CABINET], togglelight);
 	modelStack.PopMatrix();
 }
@@ -1472,14 +1399,8 @@ void SP2::renderCar()
 
 void SP2::renderHuman() 
 {
-
-	
-	
-	
-
 	if(static_cast<CCharacter*>(pObj)->getRole()==1)
 	{
-
 		modelStack.PushMatrix();
 		modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
 		modelStack.Rotate(pObj->getRotate().x, 1,0,0);
@@ -1784,6 +1705,11 @@ void SP2::Exit()
 	// Cleanup VBO here
 	glDeleteVertexArrays(1, &m_vertexArrayID);
 	glDeleteProgram(m_programID);
+	for (int i = 0; i < objList.size(); ++i)
+	{
+		pObj = objList[i];
+		delete pObj;
+	}
 }
 
 void SP2::RenderMesh(Mesh *mesh, bool enableLight)
