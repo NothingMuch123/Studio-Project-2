@@ -14,10 +14,13 @@
 #include "CCashier.h"
 #include "CSecurityGuard.h"
 #include "CShopper.h"
+
 #include <iostream>
 
 using std::cout;
 using std::endl;
+#include "CPromoter.h"
+
 
 class SP2 : public Scene
 {
@@ -32,7 +35,7 @@ public:
 		K_RIGHT_PLACE,
 		NUM_KEYPRESS,
 	};
-	enum OBJ_ID
+	/*enum OBJ_ID
 	{
 		OBJ_CAR,
 		OBJ_TROLLEY,
@@ -49,11 +52,12 @@ public:
 		OBJ_CEILING,
 		OBJ_CABINET_T,
 		OBJ_DOOR,
-	};
+	};*/
 	enum GEOMETRY_TYPE
 	{
 		GEO_AXES,
 		GEO_TEXT,
+
 		// Outer skybox
 		GEO_OUTER_FRONT,
 		GEO_OUTER_BACK,
@@ -72,6 +76,7 @@ public:
 		GEO_SUPERMARKET_WALL, // No mesh
 		GEO_SUPERMARKET_CEILING,
 		GEO_SUPERMARKET_DOOR,
+		GEO_PATCH,
 		GEO_SMLD,
 		GEO_CASHIER_TABLE,
 		GEO_SECURITY_CAMERA,
@@ -219,6 +224,10 @@ private:
 	void updateHands(double dt);
 	void renderHands();
 
+	void initPatch();
+	void updatePatch();
+	void renderPatch();
+
 	bool cam;
 	bool togglelight;
 	double fps;
@@ -229,6 +238,9 @@ private:
 	float translateX; // main entrance movement
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
 	Vector3 screenMaxBound, screenMinBound ; // security tele interaction bounds
+
+	//Promoter Variables
+	Vector3 promoterMaxBound, promoterMinBound;
 
 	//Lift variables
 	Vector3 supermarketLiftSize, supermarketLiftScale , supermarketLiftPosition;

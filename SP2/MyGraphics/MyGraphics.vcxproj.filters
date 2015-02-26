@@ -81,6 +81,9 @@
     <ClCompile Include="Source\CShopper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CPromoter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\shader.hpp">
@@ -153,6 +156,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\CShopper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CPromoter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

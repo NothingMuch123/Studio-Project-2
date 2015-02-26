@@ -87,6 +87,7 @@
     <ClCompile Include="Source\Car.cpp" />
     <ClCompile Include="Source\CCashier.cpp" />
     <ClCompile Include="Source\Character.cpp" />
+    <ClCompile Include="Source\CPromoter.cpp" />
     <ClCompile Include="Source\CSecurityGuard.cpp" />
     <ClCompile Include="Source\CShopper.cpp" />
     <ClCompile Include="Source\Item.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="Source\Car.h" />
     <ClInclude Include="Source\CCashier.h" />
     <ClInclude Include="Source\Character.h" />
+    <ClInclude Include="Source\CPromoter.h" />
     <ClInclude Include="Source\CSecurityGuard.h" />
     <ClInclude Include="Source\CShopper.h" />
     <ClInclude Include="Source\Item.h" />
