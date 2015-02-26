@@ -69,6 +69,7 @@ public:
 		GEO_SUPERMARKET_WALL, // No mesh
 		GEO_SUPERMARKET_CEILING,
 		GEO_SUPERMARKET_DOOR,
+		GEO_PATCH,
 		GEO_SMLD,
 		GEO_CASHIER_TABLE,
 		GEO_SECURITY_CAMERA,
@@ -215,6 +216,10 @@ private:
 	void initHands();
 	void updateHands(double dt);
 	void renderHands();
+
+	void initPatch();
+	void updatePatch();
+	void renderPatch();
 
 	bool cam;
 	bool togglelight;

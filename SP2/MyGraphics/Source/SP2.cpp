@@ -78,11 +78,14 @@ void SP2::Init()
 
 	initCar();
 	initHuman(3,Vector3(50,3,30));
+
 	initHuman(1,Vector3(-30,3,30));
+	
 	initHuman(2,Vector3(15,3,30)); 
 
 	initOuterSkybox();
 	initSuperMarket();
+	initPatch();
 	initHands();
 	initCabinet();
 }
@@ -301,7 +304,7 @@ void SP2::initCar()
 
 void SP2::initCabinet()
 {	
-	//Special Display Cabinet_THE_TARDIS
+	//Special Display Cabinet with the Tardis
 	meshList[GEO_CABINET] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
 	meshList[GEO_CABINET] ->textureID = LoadTGA("Image//displayGallifrey.tga");
 	pObj = new CObj(GEO_CABINET, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x + 10,supermarketScale.y + 10,supermarketScale.z + 10), Vector3(3, .5 ,1));
@@ -573,6 +576,16 @@ void SP2::initHuman(int Choice,Vector3 translation) // only human body is stored
 	}
 }
 
+void SP2::initPatch()
+{
+	meshList[GEO_PATCH] = MeshBuilder::GenerateOBJ("wallpatch",  "OBJ//wallpatcher.obj");
+	meshList[GEO_PATCH] ->textureID = LoadTGA("Image//walltexture.tga");
+
+	pObj = new CObj(OBJ_PATCH, Vector3( supermarketPosition.x * supermarketScale.x + 15 , supermarketPosition.y * supermarketScale.y + 35, supermarketPosition.z * supermarketScale.z - 100 ) , Vector3(0,0,0) , Vector3( 1 * supermarketScale.x * 0.6, 1 * supermarketScale.y * 0.5, 1* supermarketScale.z * 0.5 ), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
+	pObj->calcBound();
+	objList2.push_back(pObj);
+}
+
 void SP2::setLights()
 {
 	lights[0].type = Light::LIGHT_SPOT;
@@ -724,7 +737,7 @@ void SP2::Update(double dt)
 
 	// Interactions
 	std::vector<CObj*> list;
-	if (floorNum == 1)
+	if(floorNum == 1)
 	{
 		list = objList;
 	}
@@ -785,18 +798,37 @@ void SP2::Update(double dt)
 			}
 		}
 	}
-	if(!cam)
-			{
-				camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
-				tempX = camera.position.x;
-				tempY = camera.position.y;
-				tempZ = camera.position.z; 
-				tempYaw = rotateHandY;
-				tempPitch = rotateHandX;
-				tempTargetX = camera.target.x;
-				tempTargetY = camera.target.y;
-				tempTargetZ = camera.target.z;
-			}
+	}
+
+	if(Application::IsKeyPressed('T') && cam == false)
+	{
+		tempPitch = rotateHandX;
+		tempYaw = rotateHandY;
+		tempX = camera.position.x;
+		tempY = camera.position.y;
+		tempZ = camera.position.z;
+		tempTargetX = camera.target.x;
+		tempTargetY = camera.target.y;
+		tempTargetZ = camera.target.z;
+		camera.up.Set(0, 1, 0);
+		cam = true;
+	}
+	if(cam == true)
+	{
+		camera.position.x = -143;
+		camera.position.y = 96;
+		camera.position.z = -90;
+		camera.target.x = 0;
+		camera.target.y = 0;
+		camera.target.z = 0;
+		camera.up.Set(0, 1, 0);
+	}
+	if(cam == false)
+	{
+		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
+	}
+
+
 
 
 	if (hands[0] != NULL && hands[1] != NULL)
@@ -1080,7 +1112,7 @@ void SP2::Render()
 	{
 	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
 	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
-	}*/
+	}*///LIGHTS ARE HERE //LIGHTS ARE HERE
 
 	renderOuterSkybox();
 
@@ -1246,9 +1278,15 @@ void SP2::renderCabinet()
 {
 	modelStack.PushMatrix();
 	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y , pObj->getTranslate().z );
-	modelStack.Scale(pObj->getScale().x, pObj->getScale().y,pObj->getScale().z);
+	modelStack.Scale(pObj->getScale().x * .75, pObj->getScale().y * .75, pObj->getScale().z * .75);
 	RenderMesh(meshList[GEO_CABINET], togglelight);
 	modelStack.PopMatrix();
+}
+
+void SP2::renderPatch()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(0,0,10);
 }
 void SP2::renderShelf()
 {
