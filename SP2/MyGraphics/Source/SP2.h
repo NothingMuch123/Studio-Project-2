@@ -14,6 +14,7 @@
 #include "CCashier.h"
 #include "CSecurityGuard.h"
 #include "CShopper.h"
+#include "SecurityCamera.h"
 
 #include <iostream>
 
@@ -33,26 +34,10 @@ public:
 		K_LEFT_PLACE,
 		K_RIGHT_PICK,
 		K_RIGHT_PLACE,
+		K_ENTER_CAM,
+		K_EXIT_CAM,
 		NUM_KEYPRESS,
 	};
-	/*enum OBJ_ID
-	{
-		OBJ_CAR,
-		OBJ_TROLLEY,
-		OBJ_ITEM,
-		OBJ_AI,
-		OBJ_SHELF,
-		OBJ_SUPERMARKET_WALL,
-		OBJ_TABLE,
-		OBJ_CAMERA,
-		OBJ_SCREEN,
-     	OBJ_HUMAN,
-		OBJ_PLAYER,
-		OBJ_CUBE,
-		OBJ_CEILING,
-		OBJ_CABINET_T,
-		OBJ_DOOR,
-	};*/
 	enum GEOMETRY_TYPE
 	{
 		GEO_AXES,
@@ -113,8 +98,6 @@ public:
 		GEO_HUMAN_STAFF_ARM,
 		GEO_HUMAN_STAFF_HAND,
 		GEO_HUMAN_STAFF_LEG,
-
-		
 
 		//Size referance - unit cube
 		GEO_CUBE,
@@ -220,6 +203,9 @@ private:
 	void initCabinet();
 	void renderCabinet();
 
+	void initCamera();
+	void updateCamera(double dt);
+
 	void initHands();
 	void updateHands(double dt);
 	void renderHands();
@@ -228,7 +214,6 @@ private:
 	void updatePatch();
 	void renderPatch();
 
-	bool cam;
 	bool togglelight;
 	double fps;
 	bool keypressed[NUM_KEYPRESS];
@@ -262,6 +247,11 @@ private:
 
 	// Shelf variables
 	std::vector<CShelf*> shelfList;
+
+	//camera variables
+	bool cam;
+	int camNum;
+	std::vector<CSecurityCamera*> cameraList;
 
 	//Hand variables
 	float rotateHandX, rotateHandY;

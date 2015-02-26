@@ -81,7 +81,7 @@
     <ClCompile Include="Source\CShopper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CPromoter.cpp">
+    <ClCompile Include="Source\SecurityCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -67,7 +67,6 @@ void SP2::Init()
 	//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("lightball", Color(1, 1, 1), 1, 0);
 	//meshList[GEO_LIGHTBALL2] = MeshBuilder::GenerateSphere("lightball2", Color(1, 1, 1), 1, 0);
 
-
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("Text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
 
@@ -89,6 +88,7 @@ void SP2::Init()
 	initPatch();
 	initHands();
 	initCabinet();
+	initCamera();
 }
 
 void SP2::initHands()
@@ -98,6 +98,22 @@ void SP2::initHands()
 	rotateHandX = 0;
 	rotateHandY = 0;
 	hands[0] = hands[1] = NULL;
+}
+
+void SP2::initCamera()
+{
+	Vector3 cameraPosition( supermarketPosition.x - (15 * supermarketScale.x) , supermarketPosition.y + (10 * supermarketScale.y) , supermarketPosition.z - (8 * supermarketScale.z));
+	Vector3 cameraTarget(0,0,0);
+	camNum = 0;
+
+	// camera 1
+	pObj = new CSecurityCamera(GEO_SECURITY_CAMERA, cameraPosition, Vector3 (0,0,0), Vector3(1,1,1), Vector3(1,1,1) ,cameraTarget);
+	cameraList.push_back(static_cast <CSecurityCamera*>(pObj));
+
+	// camera 2
+	cameraPosition.Set( supermarketPosition.x + (15 * supermarketScale.x) , supermarketPosition.y + (10 * supermarketScale.y) , supermarketPosition.z + (8 * supermarketScale.z));
+	pObj = new CSecurityCamera(GEO_SECURITY_CAMERA, cameraPosition, Vector3 (0,0,0), Vector3 (1,1,1) , Vector3 (1,1,1), cameraTarget);
+	cameraList.push_back(static_cast <CSecurityCamera*>(pObj));
 }
 
 void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
@@ -313,6 +329,7 @@ void SP2::initCabinet()
 	objList2.push_back(pObj);
 	//Regular Display Cabinet 
 }
+
 void SP2::initSuperMarket()
 {
 	floorNum = 1; // start at first floor
@@ -323,7 +340,7 @@ void SP2::initSuperMarket()
 	supermarketLiftScale = supermarketScale;
 	supermarketLiftSize.Set(5.5, 1, 6.6);
 	supermarketLiftPosition.Set(supermarketPosition.x , supermarketPosition.y, supermarketPosition.z - (( supermarketScale.z * supermarketSize.z ) / 2) - ( supermarketLiftScale.z * supermarketLiftSize.z) / 2);
-	
+
 	initItems();
 	// Supermarket shelf
 	meshList[GEO_SHELF] = MeshBuilder::GenerateOBJ("Shelf" , "OBJ//Shelf.obj");
@@ -360,7 +377,7 @@ void SP2::initSuperMarket()
 	pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
 	pObj->calcBound();
 	objList2.push_back(pObj);
-	
+
 	//security screen (interaction Bound)
 	Vector3 screenPosition(pObj->getTranslate().x , pObj->getTranslate().y, pObj->getTranslate().z );
 	screenMaxBound.Set(screenPosition.x + (2 * supermarketScale.x) , screenPosition.y , screenPosition.z + (2 * supermarketScale.z));
@@ -427,7 +444,7 @@ void SP2::initSuperMarket()
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
-	
+
 	//right lift wall
 	tempWallPosition.Set(supermarketLiftPosition.x - (supermarketLiftScale.x * supermarketLiftSize.x)/2, supermarketLiftPosition.y, supermarketLiftPosition.z );
 	pObj = new CObj(GEO_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(supermarketLiftSize.x / 5, supermarketScale.y * supermarketLiftSize.y, supermarketLiftScale.z * supermarketLiftSize.z ), Vector3(1,1,1));
@@ -441,7 +458,7 @@ void SP2::initSuperMarket()
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
-	
+
 	// Door (Interaction bounds)
 	Vector3 doorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
 	supermarketDoorMaxBound.Set(doorPosition.x + (3 * supermarketScale.x), doorPosition.y, doorPosition.z + (5 * supermarketScale.z));
@@ -482,7 +499,7 @@ void SP2::initSuperMarket()
 	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
 	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
 	initShelf(GEO_ITEM_3,leftStartPosition+(Vector3(1 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
-	
+
 	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 0 * 14.5, 2 * 33)), Vector3(0,0,0));
 	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 1 * 14.5, 2 * 33)), Vector3(0,0,0));
 	initShelf(GEO_ITEM_4,leftStartPosition+(Vector3(2 * 33, 2 * 14.5, 2 * 33)), Vector3(0,0,0));
@@ -495,7 +512,7 @@ void SP2::initSuperMarket()
 	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(6 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
 	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(6 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
 	initShelf(GEO_ITEM_6,leftStartPosition+(Vector3(6 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
-	
+
 	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(7 * 33, 0 * 14.5, 1 * 33)), Vector3(0,180,0));
 	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(7 * 33, 1 * 14.5, 1 * 33)), Vector3(0,180,0));
 	initShelf(GEO_ITEM_7,leftStartPosition+(Vector3(7 * 33, 2 * 14.5, 1 * 33)), Vector3(0,180,0));
@@ -745,18 +762,20 @@ void SP2::initOuterSkybox()
 
 void SP2::Update(double dt)
 {
-	if(Application::IsKeyPressed('1')) //enable back face culling
-		glEnable(GL_CULL_FACE);
-	if(Application::IsKeyPressed('2')) //disable back face culling
-		glDisable(GL_CULL_FACE);
-	if(Application::IsKeyPressed('3'))
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
-	if(Application::IsKeyPressed('4'))
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
-
-	keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
+	if(cam == false)
+	{
+		if(Application::IsKeyPressed('1')) //enable back face culling
+			glEnable(GL_CULL_FACE);
+		if(Application::IsKeyPressed('2')) //disable back face culling
+			glDisable(GL_CULL_FACE);
+		if(Application::IsKeyPressed('3'))
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
+		if(Application::IsKeyPressed('4'))
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
+	}
+	keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
 	keypressed[K_LEFT_PLACE] = Application::IsKeyPressed('F');
-	keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
+	keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
 	keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
 
 	// Interactions
@@ -798,62 +817,11 @@ void SP2::Update(double dt)
 			}
 		}
 	}
-	
+
 	if(floorNum == 2) // 2nd floor
 	{
-		// interacting with the screen to look through camera
-		if(camera.position.x < screenMaxBound.x && camera.position.x > screenMaxBound.x && camera.position.z < screenMaxBound.z && camera.position.z > screenMinBound.z )
-		{
-			if(Application::IsKeyPressed('T') && cam == false) // go to security cam
-			{
-				rotateHandY = 0;
-				camera.position.x = -143;
-				camera.position.y = 96;
-				camera.position.z = -90;
-				camera.target.x = 0;
-				camera.target.y = 0;
-				camera.target.z = 0;
-				camera.up.Set(0, 1, 0);
-				cam = true;
-			}
-			if(Application::IsKeyPressed('Y') && cam == true) // go back to first person view
-			{
-				cam = false;
-			}
-		}
-	}
-	
 
-	if(Application::IsKeyPressed('T') && cam == false)
-	{
-		tempPitch = rotateHandX;
-		tempYaw = rotateHandY;
-		tempX = camera.position.x;
-		tempY = camera.position.y;
-		tempZ = camera.position.z;
-		tempTargetX = camera.target.x;
-		tempTargetY = camera.target.y;
-		tempTargetZ = camera.target.z;
-		camera.up.Set(0, 1, 0);
-		cam = true;
 	}
-	if(cam == true)
-	{
-		camera.position.x = -143;
-		camera.position.y = 96;
-		camera.position.z = -90;
-		camera.target.x = 0;
-		camera.target.y = 0;
-		camera.target.z = 0;
-		camera.up.Set(0, 1, 0);
-	}
-	if(cam == false)
-	{
-		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
-	}
-
-
-
 
 	if (hands[0] != NULL && hands[1] != NULL)
 	{
@@ -883,6 +851,55 @@ void SP2::Update(double dt)
 		fps = 1 / dt;
 		fpsRefresh = 0;
 	}
+	updateCamera(dt);
+}
+
+void SP2::updateCamera(double dt)
+{
+	if(camera.position.x < screenMaxBound.x && camera.position.x > screenMinBound.x && camera.position.z < screenMaxBound.z && camera.position.z > screenMinBound.z )
+	{
+		if(keypressed[K_ENTER_CAM] && cam == false)
+		{
+			saved = camera; // saving camera data
+			camNum = 0;
+			cam = true;
+		}
+	}
+	if(cam == true)
+	{
+		camera = cameraList[camNum]->camera;
+		if(Application::IsKeyPressed('1')) // toggle floor 1 cam 1
+		{
+			floorNum = 1;
+			camNum = 0;
+		}
+		if(Application::IsKeyPressed('2')) // toggle floor 1 cam 2
+		{
+			floorNum = 1;
+			camNum = 1;
+		}
+		if(Application::IsKeyPressed('3')) // toggle floor 2 cam 1
+		{
+			floorNum = 2;
+			camNum = 0;
+		}
+		if(Application::IsKeyPressed('4')) // toggle floor 2 cam 2
+		{
+			floorNum = 2;
+			camNum = 1;
+		}
+	}
+	if(keypressed[K_EXIT_CAM] && cam == true)
+	{
+		floorNum = 2;
+		cam = false;
+		camera = saved;
+	}
+	if(cam == false)
+	{
+		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
+	}
+
 }
 
 void SP2::updateHands(double dt)
@@ -904,33 +921,19 @@ void SP2::updateHands(double dt)
 		{
 			rotateHandY -= ROTATE_SPEED*dt;
 		}
-	}
-	if(Application::IsKeyPressed('Y') && cam == true)
-	{
-		floorNum = 1;
-		cam = false;
-		camera.position.x = tempX;
-		camera.position.y = tempY;
-		camera.position.z = tempZ;
-		rotateHandX = tempPitch;
-		rotateHandY = tempYaw;
-		camera.target.x = tempTargetX;
-		camera.target.y = tempTargetY;
-		camera.target.z = tempTargetZ;
-	}
-
-	if (Application::IsKeyPressed(VK_UP) && rotateHandX < 50 && (hands[0] == NULL || hands[0]->getID() == GEO_ITEM))
-	{
-		rotateHandX += ROTATE_SPEED*dt;
-	}
-	if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -50 && (hands[0] == NULL || hands[0]->getID() == GEO_ITEM))
-	{
-		rotateHandX -= ROTATE_SPEED*dt;
-	}
-	if(Application::IsKeyPressed('R') && (hands[0] == NULL || hands[0]->getID() != GEO_CAR || hands[0]->getID() != GEO_TROLLEY))
-	{
-		rotateHandX = 0;
-		rotateHandY = 0;
+		if (Application::IsKeyPressed(VK_UP) && rotateHandX < 50 && (hands[0] == NULL || hands[0]->getID() == GEO_ITEM))
+		{
+			rotateHandX += ROTATE_SPEED*dt;
+		}
+		if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -50 && (hands[0] == NULL || hands[0]->getID() == GEO_ITEM))
+		{
+			rotateHandX -= ROTATE_SPEED*dt;
+		}
+		if(Application::IsKeyPressed('R') && (hands[0] == NULL || hands[0]->getID() != GEO_CAR || hands[0]->getID() != GEO_TROLLEY))
+		{
+			rotateHandX = 0;
+			rotateHandY = 0;
+		}
 	}
 }
 
@@ -1046,11 +1049,6 @@ void SP2::updateSuperMarket(double dt)
 			}
 		}
 	}
-	else if (floorNum == 2) // on 2nd floor
-	{
-
-	}
-
 }
 
 void SP2::updateCar(double dt)//updating car
@@ -1216,7 +1214,7 @@ void SP2::Render()
 			}
 		}
 	}
-	
+
 	if (hands[0] == NULL || hands[1] == NULL || hands[0]->getID() == GEO_ITEM || hands[1]->getID() == GEO_ITEM)
 	{
 		renderHands();
@@ -1278,27 +1276,27 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-	if (hands[0] == NULL)
-	{
-		modelStack.Scale(.4,.4,1.5);
-	}
-	else if (hands[0]->getID() == GEO_ITEM)
-	{
-		modelStack.Scale(hands[0]->getScale().x, hands[0]->getScale().y, hands[0]->getScale().z);
-	}
-	modelStack.PushMatrix();
+		if (hands[0] == NULL)
+		{
+			modelStack.Scale(.4,.4,1.5);
+		}
+		else if (hands[0]->getID() == GEO_ITEM)
+		{
+			modelStack.Scale(hands[0]->getScale().x, hands[0]->getScale().y, hands[0]->getScale().z);
+		}
+		modelStack.PushMatrix();
 
-	if (hands[0] == NULL)
-	{
-		modelStack.Translate(-1.5,-1.5,-1);
-		RenderMesh(meshList[GEO_HAND], togglelight);
-	}
-	else if (hands[0]->getID() == GEO_ITEM)
-	{
-		modelStack.Translate(-1.5, -1.5, -4);
-		RenderMesh(static_cast<CItem*>(hands[0])->getItem(), togglelight);
-	}
-	modelStack.PopMatrix();
+		if (hands[0] == NULL)
+		{
+			modelStack.Translate(-1.5,-1.5,-1);
+			RenderMesh(meshList[GEO_HAND], togglelight);
+		}
+		else if (hands[0]->getID() == GEO_ITEM)
+		{
+			modelStack.Translate(-1.5, -1.5, -4);
+			RenderMesh(static_cast<CItem*>(hands[0])->getItem(), togglelight);
+		}
+		modelStack.PopMatrix();
 
 		modelStack.PopMatrix();
 
@@ -1308,26 +1306,26 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-	if (hands[1] == NULL)
-	{
-		modelStack.Scale(.4,.4,1.5);
-	}
-	else if (hands[1]->getID() == GEO_ITEM)
-	{
-		modelStack.Scale(hands[1]->getScale().x, hands[1]->getScale().y, hands[1]->getScale().z);
-	}
-	modelStack.PushMatrix();
+		if (hands[1] == NULL)
+		{
+			modelStack.Scale(.4,.4,1.5);
+		}
+		else if (hands[1]->getID() == GEO_ITEM)
+		{
+			modelStack.Scale(hands[1]->getScale().x, hands[1]->getScale().y, hands[1]->getScale().z);
+		}
+		modelStack.PushMatrix();
 
-	if (hands[1] == NULL)
-	{
-		modelStack.Translate(1.5,-1.5,-1);
-		RenderMesh(meshList[GEO_HAND], togglelight);
-	}
-	else if (hands[1]->getID() == GEO_ITEM)
-	{
-		modelStack.Translate(1.5, -1.5, -4);
-		RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
-	}
+		if (hands[1] == NULL)
+		{
+			modelStack.Translate(1.5,-1.5,-1);
+			RenderMesh(meshList[GEO_HAND], togglelight);
+		}
+		else if (hands[1]->getID() == GEO_ITEM)
+		{
+			modelStack.Translate(1.5, -1.5, -4);
+			RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
+		}
 		modelStack.PopMatrix();
 	}
 }
