@@ -1,23 +1,23 @@
 //Maya ASCII 2015 scene
 //Name: display cab.ma
-//Last modified: Thu, Feb 26, 2015 12:08:10 AM
+//Last modified: Thu, Feb 26, 2015 06:04:13 PM
 //Codeset: 1252
 requires maya "2015";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2015";
 fileInfo "version" "2015";
-fileInfo "cutIdentifier" "201405190330-916664";
-fileInfo "osv" "Microsoft Windows 8 Home Premium Edition, 64-bit  (Build 9200)\n";
+fileInfo "cutIdentifier" "201410051530-933320";
+fileInfo "osv" "Microsoft Windows 8 Enterprise Edition, 64-bit  (Build 9200)\n";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 2.9063658555647107 8.0216286582713465 -9.5202512745609198 ;
-	setAttr ".r" -type "double3" -26.738352726670399 164.19999999999916 0 ;
+	setAttr ".t" -type "double3" 9.8961802256629419 6.4616946521578225 -1.4704676283111908 ;
+	setAttr ".r" -type "double3" -19.538352726665199 99.399999999974057 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 11.240687716117227;
+	setAttr ".coi" 10.457674681081176;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -95,7 +95,7 @@ createNode mesh -n "pCubeShape2" -p "transform5";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 20 ".pt";
+	setAttr -s 16 ".pt";
 	setAttr ".pt[0]" -type "float3" 0 4.7683716e-007 0 ;
 	setAttr ".pt[1]" -type "float3" 0 4.7683716e-007 0 ;
 	setAttr ".pt[9]" -type "float3" 0 4.7683716e-007 0 ;
@@ -529,6 +529,8 @@ createNode script -n "uiConfigurationScriptNode";
 createNode script -n "sceneConfigurationScriptNode";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 120 -ast 1 -aet 200 ";
 	setAttr ".st" 6;
+createNode polyTriangulate -n "polyTriangulate1";
+	setAttr ".ics" -type "componentList" 1 "f[*]";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -593,7 +595,7 @@ connectAttr "groupId11.id" "pasted__pasted__pCubeShape3.iog.og[0].gid";
 connectAttr ":initialShadingGroup.mwc" "pasted__pasted__pCubeShape3.iog.og[0].gco"
 		;
 connectAttr "groupId12.id" "pasted__pasted__pCubeShape3.ciog.cog[0].cgid";
-connectAttr "polyTweakUV2.out" "pCube4Shape.i";
+connectAttr "polyTriangulate1.out" "pCube4Shape.i";
 connectAttr "polyTweakUV2.uvtk[0]" "pCube4Shape.uvst[0].uvtw";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
@@ -671,6 +673,7 @@ connectAttr "place2dTexture1.vt3" "file1.vt3";
 connectAttr "place2dTexture1.vc1" "file1.vc1";
 connectAttr "place2dTexture1.o" "file1.uv";
 connectAttr "place2dTexture1.ofs" "file1.fs";
+connectAttr "polyTweakUV2.out" "polyTriangulate1.ip";
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert2.msg" ":defaultShaderList1.s" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
@@ -707,6 +710,6 @@ connectAttr "groupId10.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId11.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId12.msg" ":initialShadingGroup.gn" -na;
 dataStructure -fmt "raw" -as "name=externalContentTable:string=node:string=key:string=upath:uint32=upathcrc:string=rpath:string=roles";
-applyMetadata -fmt "raw" -v "channel\nname externalContentTable\nstream\nname v1.0\nindexType numeric\nstructure externalContentTable\n0\n\"file1\" \"fileTextureName\" \"F:/Studio-Project-2/SP2/MyGraphics/OBJ/displayCabinet.psd\" 3517921867 \"F:/Studio-Project-2/SP2/MyGraphics/OBJ/displayCabinet.psd\" \"sourceImages\"\nendStream\nendChannel\nendAssociations\n" 
+applyMetadata -fmt "raw" -v "channel\nname externalContentTable\nstream\nname v1.0\nindexType numeric\nstructure externalContentTable\n0\n\"file1\" \"fileTextureName\" \"F:/Studio-Project-2/SP2/MyGraphics/OBJ/displayCabinet.psd\" 3517921867 \"\" \"sourceImages\"\nendStream\nendChannel\nendAssociations\n" 
 		-scn;
 // End of display cab.ma
