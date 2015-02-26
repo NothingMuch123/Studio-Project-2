@@ -225,8 +225,10 @@ private:
 	int floorNum ; // floor number
 	float translateX; // main entrance movement
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
+	Vector3 screenMaxBound, screenMinBound ; // security tele interaction bounds
 
 	//Lift variables
+	Vector3 supermarketLiftSize, supermarketLiftScale , supermarketLiftPosition;
 	Vector3 supermarketLiftMaxBound, supermarketLiftMinBound , supermarketLiftDoorMaxBound , supermarketLiftDoorMinBound;
 	bool disableLiftDoor; // Automated Door Check
 	float translateLiftX;
