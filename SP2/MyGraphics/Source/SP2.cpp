@@ -763,7 +763,7 @@ void SP2::lightParameters()
 
 void SP2::initValues()
 {
-	floorNum = 2; // start at first floor
+	floorNum = 1; // start at first floor
 	newFloor = 1;
 	cam = false;
 	fps = 60;
@@ -1232,29 +1232,29 @@ void SP2::updateHuman(double dt)
 					}
 
 				}
-		
 
-	else 
-	{
-		for(int a = 0; a < objList2.size(); ++a)
-		{
-			if(objList2[a]->getID()==GEO_HUMAN)
-			{
-				if(static_cast<CPromoter*>(objList2[a])->getRole()==4)
+
+				else 
 				{
-					static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
-					if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
-					cout<<"Shopper says hi"<<endl;
-				}
+					for(int a = 0; a < objList2.size(); ++a)
+					{
+						if(objList2[a]->getID()==GEO_HUMAN)
+						{
+							if(static_cast<CPromoter*>(objList2[a])->getRole()==4)
+							{
+								static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
+								if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
+									cout<<"Shopper says hi"<<endl;
+							}
 
+						}
+					}
 				}
-			}
 		}
+		cout<<" "<<endl;
 	}
-	cout<<" "<<endl;
 }
-}
-}
+
 	
 
 void SP2::Render()
@@ -1364,12 +1364,12 @@ void SP2::Render()
 		modelStack.PopMatrix();
 	}
 
-	// Target test
-	modelStack.PushMatrix();
-	modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
-	modelStack.Scale(1,1,1);
-	RenderMesh(meshList[GEO_CUBE], togglelight);
-	modelStack.PopMatrix();
+	//// Target test
+	//modelStack.PushMatrix();
+	//modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
+	//modelStack.Scale(1,1,1);
+	//RenderMesh(meshList[GEO_CUBE], togglelight);
+	//modelStack.PopMatrix();
 
 	RenderMesh(meshList[GEO_AXES], false);
 
