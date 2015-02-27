@@ -137,7 +137,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (current != 0) // Car or trolley update bounds
+		if (current == 1) // Car or trolley update bounds
 		{
 			static_cast<CCar*>(_hands[0])->carCamera.position = position;
 			static_cast<CCar*>(_hands[0])->carCamera.target = target;
@@ -147,11 +147,39 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			maxBound = _hands[0]->getMaxBound();
 			minBound = _hands[0]->getMinBound();
 		}
+		else if (current == 2) // Trolley update bounds
+		{
+			static_cast<CTrolley*>(_hands[0])->camera.position = position;
+			static_cast<CTrolley*>(_hands[0])->camera.target = target;
+			static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			static_cast<CTrolley*>(_hands[0])->updatePosition();
+			_hands[0]->calcBound();
+			maxBound = _hands[0]->getMaxBound();
+			minBound = _hands[0]->getMinBound();
+		}
 
 		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
+
+			// Update position for car and trolley
+			if (current == 1) // Car or trolley update bounds
+			{
+				static_cast<CCar*>(_hands[0])->carCamera.position = position;
+				static_cast<CCar*>(_hands[0])->carCamera.target = target;
+				static_cast<CCar*>(_hands[0])->carCamera.up = up;
+				static_cast<CCar*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
+			else if (current == 2) // Trolley update bounds
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.position = position;
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+				static_cast<CTrolley*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
 		}
 	}
 	if(Application::IsKeyPressed('S'))
@@ -164,7 +192,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position += (view * yaw);
 		target += (view * yaw);
 
-		if (current != 0) // Car or trolley update bounds
+		if (current == 1) // Car or trolley update bounds
 		{
 			static_cast<CCar*>(_hands[0])->carCamera.position = position;
 			static_cast<CCar*>(_hands[0])->carCamera.target = target;
@@ -174,11 +202,38 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			maxBound = _hands[0]->getMaxBound();
 			minBound = _hands[0]->getMinBound();
 		}
+		else if (current == 2) // Trolley update bounds
+		{
+			static_cast<CTrolley*>(_hands[0])->camera.position = position;
+			static_cast<CTrolley*>(_hands[0])->camera.target = target;
+			static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			static_cast<CTrolley*>(_hands[0])->updatePosition();
+			_hands[0]->calcBound();
+			maxBound = _hands[0]->getMaxBound();
+			minBound = _hands[0]->getMinBound();
+		}
 
 		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
+			// Update position for car and trolley
+			if (current == 1) // Car or trolley update bounds
+			{
+				static_cast<CCar*>(_hands[0])->carCamera.position = position;
+				static_cast<CCar*>(_hands[0])->carCamera.target = target;
+				static_cast<CCar*>(_hands[0])->carCamera.up = up;
+				static_cast<CCar*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
+			else if (current == 2) // Trolley update bounds
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.position = position;
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+				static_cast<CTrolley*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
 		}
 	}
 
@@ -192,11 +247,11 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 
 		if (current == 2) // Trolley update bounds
 		{
-			/*static_cast<CCar*>(_hands[0])->carCamera.position = position;
-			static_cast<CCar*>(_hands[0])->carCamera.target = target;
-			static_cast<CCar*>(_hands[0])->carCamera.up = up;
-			static_cast<CCar*>(_hands[0])->updatePosition();
-			static_cast<CCar*>(_hands[0])->calcBound();*/
+			static_cast<CTrolley*>(_hands[0])->camera.position = position;
+			static_cast<CTrolley*>(_hands[0])->camera.target = target;
+			static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			static_cast<CTrolley*>(_hands[0])->updatePosition();
+			_hands[0]->calcBound();
 			maxBound = _hands[0]->getMaxBound();
 			minBound = _hands[0]->getMinBound();
 		}
@@ -205,6 +260,15 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		{
 			target = tempTarget;
 			position = tempPosition;
+			// Update position for trolley
+			if (current == 2) // Trolley update bounds
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.position = position;
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+				static_cast<CTrolley*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
 		}
 	}
 
@@ -218,11 +282,11 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 
 		if (current == 2) // Trolley update bounds
 		{
-			/*static_cast<CCar*>(_hands[0])->carCamera.position = position;
-			static_cast<CCar*>(_hands[0])->carCamera.target = target;
-			static_cast<CCar*>(_hands[0])->carCamera.up = up;
-			static_cast<CCar*>(_hands[0])->updatePosition();
-			static_cast<CCar*>(_hands[0])->calcBound();*/
+			static_cast<CTrolley*>(_hands[0])->camera.position = position;
+			static_cast<CTrolley*>(_hands[0])->camera.target = target;
+			static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			static_cast<CTrolley*>(_hands[0])->updatePosition();
+			_hands[0]->calcBound();
 			maxBound = _hands[0]->getMaxBound();
 			minBound = _hands[0]->getMinBound();
 		}
@@ -231,10 +295,19 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		{
 			target = tempTarget;
 			position = tempPosition;
+			// Update position for trolley
+			if (current == 2) // Trolley update bounds
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.position = position;
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+				static_cast<CTrolley*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
 		}
 	}
 
-	if(Application::IsKeyPressed(VK_SPACE) && current != 1 && noclip == true)
+	if(Application::IsKeyPressed(VK_SPACE) && current == 0 && noclip == true)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
@@ -249,7 +322,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		}
 	}
 
-	if(Application::IsKeyPressed(VK_SPACE) && current != 1 && noclip == false)
+	if(Application::IsKeyPressed(VK_SPACE) && current == 0 && noclip == false)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
@@ -266,12 +339,8 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			position = tempPosition;
 		}
 	}
-	
 
-
-	
-
-	if(Application::IsKeyPressed(VK_CONTROL) && current != 1)
+	if(Application::IsKeyPressed(VK_CONTROL) && current == 0)
 	{
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(CAMERA_SPEED * dt);
@@ -281,19 +350,19 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			position += (position - newUp).Normalized() * yaw;
 			target += (position - newUp).Normalized() * yaw;
 		}
-		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
+		/*if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
 		{
 			target = tempTarget;
 			position = tempPosition;
-		}
+		}*/
 	}
 
 
-	if(position.y >= 30 && Application::IsKeyPressed(VK_SPACE))
+	if(position.y >= 30 && Application::IsKeyPressed(VK_SPACE) && current == 0)
 	{
 		isTiptoeing = false;
 	}
-	else if(position.y >= 30)
+	else if(position.y >= 30 && current == 0)
 	{
 		isTiptoeing = true;
 	}
@@ -302,11 +371,11 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		position.y -= 2;
 		target.y -= 2;
 	}
-	if(position.y <= 30 && Application::IsKeyPressed(VK_CONTROL))
+	if(position.y <= 30 && Application::IsKeyPressed(VK_CONTROL) && current == 0)
 	{
 		isCrouching = false;
 	}
-	else if(position.y < 30)
+	else if(position.y < 30 && current == 0)
 	{
 		isCrouching = true;
 	}
@@ -331,9 +400,14 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			right.y = 0;
 			right.Normalize();
 			up = right.Cross(view).Normalized();
-			Mtx44 rotation;
 			rotation.SetToRotation(pitch, right.x, right.y, right.z);
 			target = rotation* (target - position) + position;
+			
+			if (current == 2)
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			}
 		}
 	}
 
@@ -352,32 +426,99 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 			right.y = 0;
 			right.Normalize();
 			up = right.Cross(view).Normalized();
-			Mtx44 rotation;
 			rotation.SetToRotation(pitch, right.x, right.y, right.z);
 			target = rotation * ( target - position) + position;
+			
+			if (current == 2)
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			}
 		}
 	}
 
 	// tilt left
 	if(Application::IsKeyPressed(VK_LEFT))
 	{
+		Vector3 tempTarget = target, tempPosition = position, tempUp = up;
 		float pitch = (float)(ROTATION_SPEED * dt);
 		view = (target - position);
 		rotation.SetToRotation(pitch, 0, 1, 0);
 		view = rotation * view;
 		target = (position + view);
 		up = rotation * up;
+
+		if (current == 2) // Trolley update bounds
+		{
+			static_cast<CTrolley*>(_hands[0])->camera.position = position;
+			static_cast<CTrolley*>(_hands[0])->camera.target = target;
+			static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			static_cast<CTrolley*>(_hands[0])->updatePosition();
+			_hands[0]->calcBound();
+			maxBound = _hands[0]->getMaxBound();
+			minBound = _hands[0]->getMinBound();
+			_hands[0]->setRotateY(_hands[0]->getRotate().y + pitch);
+		}
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
+		{
+			target = tempTarget;
+			position = tempPosition;
+			up = tempUp;
+			_hands[0]->setRotateY(_hands[0]->getRotate().y - pitch);
+
+			// Set camera for trolley
+			if (current == 2)
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.position = position;
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+				static_cast<CTrolley*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
+		}
 	}
 
 	// tilt right
 	if(Application::IsKeyPressed(VK_RIGHT))
 	{
+		Vector3 tempTarget = target, tempPosition = position, tempUp = up;
 		float pitch = (float)(-ROTATION_SPEED * dt);
 		view = (target - position);
 		rotation.SetToRotation(pitch, 0, 1, 0);
 		view = rotation * view;
 		target = (position + view);
 		up = rotation * up;
+
+		if (current == 2) // Trolley update bounds
+		{
+			static_cast<CTrolley*>(_hands[0])->camera.position = position;
+			static_cast<CTrolley*>(_hands[0])->camera.target = target;
+			static_cast<CTrolley*>(_hands[0])->camera.up = up;
+			static_cast<CTrolley*>(_hands[0])->updatePosition();
+			_hands[0]->calcBound();
+			maxBound = _hands[0]->getMaxBound();
+			minBound = _hands[0]->getMinBound();
+			_hands[0]->setRotateY(_hands[0]->getRotate().y + pitch);
+		}
+
+		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
+		{
+			target = tempTarget;
+			position = tempPosition;
+			up = tempUp;
+			_hands[0]->setRotateY(_hands[0]->getRotate().y - pitch);
+
+			// Set camera for trolley
+			if (current == 2)
+			{
+				static_cast<CTrolley*>(_hands[0])->camera.position = position;
+				static_cast<CTrolley*>(_hands[0])->camera.target = target;
+				static_cast<CTrolley*>(_hands[0])->camera.up = up;
+				static_cast<CTrolley*>(_hands[0])->updatePosition();
+				_hands[0]->calcBound();
+			}
+		}
 	}
 
 	if(Application::IsKeyPressed('R') && current == 0)

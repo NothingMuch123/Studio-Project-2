@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Car.h"
 #include "Shelf.h"
+#include "Trolley.h"
 #include "CCashier.h"
 #include "CSecurityGuard.h"
 #include "CShopper.h"
@@ -30,12 +31,16 @@ public:
 	{
 		K_ENTER_CAR,
 		K_EXIT_CAR,
+		K_ENTER_TROLLEY,
+		K_EXIT_TROLLEY,
 		K_LEFT_PICK,
 		K_LEFT_PLACE,
 		K_RIGHT_PICK,
 		K_RIGHT_PLACE,
 		K_ENTER_CAM,
 		K_EXIT_CAM,
+		K_FIRST_FLOOR,
+		K_SECOND_FLOOR,
 		NUM_KEYPRESS,
 	};
 	enum GEOMETRY_TYPE
@@ -62,7 +67,6 @@ public:
 		GEO_SUPERMARKET_CEILING,
 		GEO_SUPERMARKET_DOOR,
 		GEO_PATCH,
-		GEO_SMLD,
 		GEO_CASHIER_TABLE,
 		GEO_SECURITY_CAMERA,
 		GEO_SECURITY_CAMERA_SCREEN,
@@ -188,13 +192,13 @@ private:
 	void updateCar(double dt);
 	void renderCar();
 
+	void updateTrolley(double dt);
+
 	void initHuman(int type,Vector3 translation,Vector3 rotation,Vector3 camPosition,int radius); // type: 1 - cashier, 2 - SecurityGuard, 3 - Shopper 
 	void updateHuman(double dt);
 	void renderHuman(); 
 
 	void initItems();
-	void updateItems();
-	void renderItems(int GEO_ITEM);
 
 	void initShelf(int Choice,Vector3 _translate, Vector3 _rotate);
 	void updateShelf();
@@ -219,7 +223,8 @@ private:
 	bool keypressed[NUM_KEYPRESS];
 
 	// Supermarket variables
-	int floorNum ; // floor number
+	int floorNum, newFloor; // floor number
+	CObj *liftLeftDoor, *liftRightDoor;
 	float translateX; // main entrance movement
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
 	Vector3 screenMaxBound, screenMinBound ; // security tele interaction bounds
@@ -254,7 +259,7 @@ private:
 	std::vector<CSecurityCamera*> cameraList;
 
 	//Hand variables
-	float rotateHandX, rotateHandY;
+	float rotateHandX, rotateHandY, trolleyRotateHandX;
 	CObj *hands[2]; // 0 - Left, 1 - Right
 
 	//human variables 

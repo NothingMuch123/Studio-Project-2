@@ -95,8 +95,7 @@ void SP2::initHands()
 {
 	meshList[GEO_HAND] = MeshBuilder::GenerateOBJ( "Hand" , "OBJ//Cube.obj");
 	meshList[GEO_HAND]->textureID = LoadTGA("Image//Hand.tga");
-	rotateHandX = 0;
-	rotateHandY = 0;
+	rotateHandX = rotateHandY = trolleyRotateHandX = 0;
 	hands[0] = hands[1] = NULL;
 }
 
@@ -333,6 +332,7 @@ void SP2::initCabinet()
 void SP2::initSuperMarket()
 {
 	floorNum = 1; // start at first floor
+	newFloor = 1;
 	// Supermarket
 	supermarketSize.Set(30,20,20);
 	supermarketPosition.Set(0,0,0);
@@ -353,24 +353,15 @@ void SP2::initSuperMarket()
 	// Supermarket ceiling
 	meshList[GEO_SUPERMARKET_CEILING] = MeshBuilder::GenerateOBJ("SuperMarket Ceiling", "OBJ//Ceiling.obj");
 	meshList[GEO_SUPERMARKET_CEILING]->textureID = LoadTGA("Image//Ceiling.tga");
-	pObj = new CObj(GEO_SUPERMARKET_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
-	objList.push_back(pObj);
-	objList2.push_back(pObj);
 
 	// Cashier Table
 	meshList[GEO_CASHIER_TABLE] = MeshBuilder::GenerateOBJ("Cashier table" , "OBJ//Cashier_table.obj");
 	meshList[GEO_CASHIER_TABLE]->textureID = LoadTGA("Image//Cashier_table.tga");
-	pObj = new CObj(GEO_CASHIER_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 5 , 11));
-	pObj->calcBound();
-	objList.push_back(pObj);
 
 	// Security camera
 	meshList[GEO_SECURITY_CAMERA] = MeshBuilder::GenerateOBJ("Security camera" , "OBJ//Security_camera.obj");
 	meshList[GEO_SECURITY_CAMERA]->textureID = LoadTGA("Image//Security_camera.tga");
-	pObj = new CObj(GEO_SECURITY_CAMERA , Vector3(supermarketPosition.x - 14.65 * supermarketScale.x, supermarketPosition.y + 9.6 * supermarketScale.y, supermarketPosition.z - 9.5 * supermarketScale.z), Vector3(0,0,0), Vector3(0.2 * supermarketScale.x,0.2 * supermarketScale.y,0.2 * supermarketScale.z), Vector3(2 ,1.5, 2));
-	pObj->calcBound();
-	objList.push_back(pObj);
-
+	
 	// Security camera screen
 	meshList[GEO_SECURITY_CAMERA_SCREEN] = MeshBuilder::GenerateOBJ("Security camera Screen" , "OBJ//Security_camera_screen.obj");
 	meshList[GEO_SECURITY_CAMERA_SCREEN]->textureID = LoadTGA("Image//Security_camera_screen.tga");
@@ -387,9 +378,24 @@ void SP2::initSuperMarket()
 	meshList[GEO_SUPERMARKET_DOOR] = MeshBuilder::GenerateOBJ( "Supermarket door" ,"OBJ//Supermarket_door.obj");
 	meshList[GEO_SUPERMARKET_DOOR]->textureID = LoadTGA("Image//Supermarket_door.tga");
 
-	//supermarket lift door
-	meshList[GEO_SMLD] = MeshBuilder::GenerateOBJ("lift door" , "OBJ//Supermarket_door.obj");
-	meshList[GEO_SMLD]->textureID = LoadTGA("Image//Supermarket_door.tga");
+	// Trolley
+	meshList[GEO_TROLLEY] = MeshBuilder::GenerateOBJ("Trolley", "OBJ//Trolley.obj");
+	
+	pObj = new CObj(GEO_SUPERMARKET_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
+	objList.push_back(pObj);
+	objList2.push_back(pObj);
+
+	pObj = new CObj(GEO_CASHIER_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 5 , 11));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	pObj = new CObj(GEO_SECURITY_CAMERA , Vector3(supermarketPosition.x - 14.65 * supermarketScale.x, supermarketPosition.y + 9.6 * supermarketScale.y, supermarketPosition.z - 9.5 * supermarketScale.z), Vector3(0,0,0), Vector3(0.2 * supermarketScale.x,0.2 * supermarketScale.y,0.2 * supermarketScale.z), Vector3(2 ,1.5, 2));
+	pObj->calcBound();
+	objList.push_back(pObj);
+
+	pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
+	pObj->calcBound();
+	objList2.push_back(pObj);
 
 	// Left wall
 	Vector3 tempWallPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2), supermarketPosition.y, supermarketPosition.z);
@@ -452,14 +458,14 @@ void SP2::initSuperMarket()
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
 
-	//lif back wall
+	//lift back wall
 	tempWallPosition.Set(supermarketLiftPosition.x, supermarketLiftPosition.y, supermarketLiftPosition.z - (supermarketLiftSize.z * supermarketLiftScale.z)/3.2);
 	pObj = new CObj(GEO_SUPERMARKET_WALL , Vector3( tempWallPosition.x , tempWallPosition.y, tempWallPosition.z) , Vector3(0,0,0) , Vector3(supermarketLiftSize.x * supermarketLiftScale.x , supermarketScale.y * supermarketLiftSize.y,supermarketLiftSize.z/ 5), Vector3(1,1,1));
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
-
-	// Door (Interaction bounds)
+	
+	// Entrance door (Interaction bounds)
 	Vector3 doorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
 	supermarketDoorMaxBound.Set(doorPosition.x + (3 * supermarketScale.x), doorPosition.y, doorPosition.z + (5 * supermarketScale.z));
 	supermarketDoorMinBound.Set(doorPosition.x - (3 * supermarketScale.x), doorPosition.y, doorPosition.z - (5 * supermarketScale.z));
@@ -476,6 +482,26 @@ void SP2::initSuperMarket()
 	supermarketLiftDoorMinBound.Set(liftDoorPosition.x - (3 * supermarketScale.x), liftDoorPosition.y, liftDoorPosition.z - (5 * supermarketScale.z));
 	translateLiftX = 0;
 	disableLiftDoor = false;
+
+	// Right lift door
+	pObj = new CObj(GEO_SUPERMARKET_DOOR, supermarketPosition + Vector3(17.05,0, -148.5), Vector3(0,0,0), Vector3(supermarketScale.x * 0.6,supermarketScale.y * 0.5,supermarketScale.z * 0.5), Vector3(7,10,2));
+	pObj->calcBound();
+	objList.push_back(pObj);
+	objList2.push_back(pObj);
+	liftRightDoor = pObj;
+
+	// Left lift door
+	pObj = new CObj(GEO_SUPERMARKET_DOOR, supermarketPosition + Vector3(-17.05,0, -148.5), Vector3(0,0,0), Vector3(supermarketScale.x * 0.6,supermarketScale.y * 0.5,supermarketScale.z * 0.5), Vector3(7,10,2));
+	pObj->calcBound();
+	objList.push_back(pObj);
+	objList2.push_back(pObj);
+	liftLeftDoor = pObj;
+
+	// Trolley
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-100,2,50), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,6,5.3));
+	pObj->calcBound();
+	static_cast<CTrolley*>(pObj)->setCamera();
+	objList.push_back(pObj);
 
 	Vector3 leftStartPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2) + (33 * 1.5), 0, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2) + (33 * 1.5));
 	// Left top row
@@ -551,7 +577,6 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		pObj = new CCashier(GEO_HUMAN,translation, rotation,Vector3(4,7,4), Vector3(3, 4.6, 3),camera.position,radius);//1.6));
 		pObj->calcBound();
 		objList.push_back(pObj);
-
 	}
 
 	else if(Choice==2)//HUMAN SECURITY GUARD
@@ -773,10 +798,12 @@ void SP2::Update(double dt)
 		if(Application::IsKeyPressed('4'))
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 	}
-	keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
+	keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = keypressed[K_EXIT_TROLLEY] = Application::IsKeyPressed('Q');
 	keypressed[K_LEFT_PLACE] = Application::IsKeyPressed('F');
-	keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
+	keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = keypressed[K_ENTER_TROLLEY] = Application::IsKeyPressed('E');
 	keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
+	keypressed[K_FIRST_FLOOR] = Application::IsKeyPressed('O');
+	keypressed[K_SECOND_FLOOR] = Application::IsKeyPressed('P');
 
 	// Interactions
 	std::vector<CObj*> list;
@@ -814,6 +841,20 @@ void SP2::Update(double dt)
 				{
 					updateShelf();
 				}
+				else if (pObj->getID() == GEO_TROLLEY)
+				{
+					if (keypressed[K_ENTER_TROLLEY])
+					{
+						if (hands[0] == NULL && hands[1] == NULL)
+						{
+							hands[0] = hands[1] = pObj;
+							saved = camera;
+							camera = static_cast<CTrolley*>(pObj)->camera;
+							rotateHandX = trolleyRotateHandX;
+							rotateHandY = hands[0]->getRotate().y;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -829,11 +870,14 @@ void SP2::Update(double dt)
 		{
 			updateCar(dt);
 		}
+		else if (hands[0]->getID() == GEO_TROLLEY && hands[1]->getID() == GEO_TROLLEY)
+		{
+			updateTrolley(dt);
+		}
 	}
 
 	updateHuman(dt);
 	updateSuperMarket(dt);
-	updateItems();
 	updateHands(dt);
 
 	if(Application::IsKeyPressed('Z'))
@@ -902,6 +946,23 @@ void SP2::updateCamera(double dt)
 
 }
 
+void SP2::updateTrolley(double dt)
+{
+	static const float ROTATE_SPEED = 100.f;
+	if (keypressed[K_EXIT_TROLLEY])
+	{
+		static_cast<CTrolley*>(hands[0])->updatePosition();
+		hands[0]->calcBound();
+		camera = saved;
+		camera.position = static_cast<CTrolley*>(hands[0])->camera.position;
+		camera.target = static_cast<CTrolley*>(hands[0])->camera.target;
+		camera.up = static_cast<CTrolley*>(hands[0])->camera.up;
+		rotateHandY = hands[0]->getRotate().y;
+		trolleyRotateHandX = rotateHandX;
+		hands[0] = hands[1] = NULL;
+	}
+}
+
 void SP2::updateHands(double dt)
 {
 	static const float ROTATE_SPEED = 100.f;
@@ -915,17 +976,16 @@ void SP2::updateHands(double dt)
 		if (Application::IsKeyPressed(VK_LEFT))
 		{
 			rotateHandY += ROTATE_SPEED*dt;
-
 		}
 		if (Application::IsKeyPressed(VK_RIGHT))
 		{
 			rotateHandY -= ROTATE_SPEED*dt;
 		}
-		if (Application::IsKeyPressed(VK_UP) && rotateHandX < 50 && (hands[0] == NULL || hands[0]->getID() == GEO_ITEM))
+		if (Application::IsKeyPressed(VK_UP) && rotateHandX < 50 && (hands[0] == NULL || hands[0]->getID() != GEO_CAR))
 		{
 			rotateHandX += ROTATE_SPEED*dt;
 		}
-		if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -50 && (hands[0] == NULL || hands[0]->getID() == GEO_ITEM))
+		if (Application::IsKeyPressed(VK_DOWN) && rotateHandX > -50 && (hands[0] == NULL || hands[0]->getID() != GEO_CAR))
 		{
 			rotateHandX -= ROTATE_SPEED*dt;
 		}
@@ -982,19 +1042,22 @@ void SP2::updateShelf()
 	}
 }
 
-void SP2::updateItems()
-{
-}
-
 void SP2::updateSuperMarket(double dt)
 {
+	static const float LIFT_SPEED = 0.1 * supermarketScale.x;
 	//lift door interaction (needed for both floors) [ closes when selected floor to go]
 	if(camera.position.x < supermarketLiftDoorMaxBound.x && camera.position.x > supermarketLiftDoorMinBound.x && camera.position.z < supermarketLiftDoorMaxBound.z && camera.position.z > supermarketLiftDoorMinBound.z)
 	{
 		if(disableLiftDoor == false)
 		{
 			if(translateLiftX < 2)
+			{
+				liftRightDoor->setTranslateX(liftRightDoor->getTranslate().x + LIFT_SPEED);
+				liftRightDoor->calcBound();
+				liftLeftDoor->setTranslateX(liftLeftDoor->getTranslate().x - LIFT_SPEED);
+				liftLeftDoor->calcBound();
 				translateLiftX += 0.1;
+			}
 		}
 	}
 	else
@@ -1002,33 +1065,54 @@ void SP2::updateSuperMarket(double dt)
 		if(disableLiftDoor == false)
 		{
 			if(translateLiftX > 0)
+			{
+				liftRightDoor->setTranslateX(liftRightDoor->getTranslate().x - LIFT_SPEED);
+				liftRightDoor->calcBound();
+				liftLeftDoor->setTranslateX(liftLeftDoor->getTranslate().x + LIFT_SPEED);
+				liftLeftDoor->calcBound();
 				translateLiftX -= 0.1;
+			}
 		}
 	}
 	if(disableLiftDoor == true)
 	{
-		if(translateLiftX > 0 )
+		if(translateLiftX > 0)
+		{
+			liftRightDoor->setTranslateX(liftRightDoor->getTranslate().x - LIFT_SPEED);
+			liftRightDoor->calcBound();
+			liftLeftDoor->setTranslateX(liftLeftDoor->getTranslate().x + LIFT_SPEED);
+			liftLeftDoor->calcBound();
 			translateLiftX -= 0.1;
+		}
 	}
 	// lift interaction - bring them to 2nd floor/ 1st floor
+	static float doorTimer = 0;
+	if(disableLiftDoor && translateLiftX <= 0) // Swap between floors after door closes
+	{
+		doorTimer += dt;
+		if (doorTimer >= 1)
+		{
+			floorNum = newFloor;
+			disableLiftDoor = false;
+			doorTimer = 0;
+		}
+	}
 	if(camera.position.x < supermarketLiftMaxBound.x && camera.position.x > supermarketLiftMinBound.x && camera.position.z < supermarketLiftMaxBound.z && camera.position.z > supermarketLiftMinBound.z)
 	{
-		if(Application::IsKeyPressed('O'))
+		if(keypressed[K_FIRST_FLOOR] && !disableLiftDoor)
 		{
-			disableLiftDoor = true;
-			if(translateLiftX <= 0)
+			if (floorNum != 1)
 			{
-				floorNum = 2;
-				disableLiftDoor = false;
+				disableLiftDoor = true;
+				newFloor = 1;
 			}
 		}
-		if(Application::IsKeyPressed('P'))
+		if(keypressed[K_SECOND_FLOOR] && !disableLiftDoor)
 		{
-			disableLiftDoor = true;
-			if(translateLiftX <= 0)
+			if (floorNum != 2)
 			{
-				floorNum = 1;
-				disableLiftDoor = false;
+				disableLiftDoor = true;
+				newFloor = 2;
 			}
 		}
 	}
@@ -1053,7 +1137,7 @@ void SP2::updateSuperMarket(double dt)
 
 void SP2::updateCar(double dt)//updating car
 {
-	float ROTATE_SPEED = 100.f;
+	static const float ROTATE_SPEED = 100.f;
 	if (keypressed[K_EXIT_CAR])
 	{
 		static_cast<CCar*>(hands[0])->setRender(true);
@@ -1214,8 +1298,8 @@ void SP2::Render()
 			}
 		}
 	}
-
-	if (hands[0] == NULL || hands[1] == NULL || hands[0]->getID() == GEO_ITEM || hands[1]->getID() == GEO_ITEM)
+	
+	if (hands[0] == NULL || hands[1] == NULL || hands[0]->getID() == GEO_ITEM || hands[1]->getID() == GEO_ITEM || (hands[0]->getID() == GEO_TROLLEY && hands[1]->getID() == GEO_TROLLEY))
 	{
 		renderHands();
 	}
@@ -1327,6 +1411,7 @@ void SP2::renderHands()
 			RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
 		}
 		modelStack.PopMatrix();
+		modelStack.PopMatrix();
 	}
 }
 
@@ -1379,77 +1464,6 @@ void SP2::renderShelf()
 
 
 }
-void SP2::renderItems(int choice)
-{
-	modelStack.PushMatrix();
-	modelStack.Scale(5,5,5);
-
-	switch (choice)
-	{
-	case 1:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_1], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 2:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_2], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 3:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_3], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 4:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_4], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 5:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_5], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 6:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_6], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 7:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_7], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 8:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_8], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 9:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_9], togglelight);
-			modelStack.PopMatrix();
-		}
-	case 10:
-		{
-			modelStack.PushMatrix();
-			RenderMesh(meshList[GEO_ITEM_10], togglelight);
-			modelStack.PopMatrix();
-		}
-	}
-	modelStack.PopMatrix();
-}
-
 
 void SP2::renderSuperMarket()
 {
@@ -1461,18 +1475,6 @@ void SP2::renderSuperMarket()
 
 	modelStack.PushMatrix();
 	RenderMesh(meshList[GEO_SUPERMARKET], togglelight);
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate( 1.55 + translateLiftX, 0 , -10);
-	modelStack.Scale( 0.6,0.5,0.5);
-	RenderMesh(meshList[GEO_SMLD] , togglelight); // lift left door
-	modelStack.PopMatrix();
-
-	modelStack.PushMatrix();
-	modelStack.Translate( -1.55 - translateLiftX, 0 , -10);
-	modelStack.Scale( 0.6,0.5,0.5);
-	RenderMesh(meshList[GEO_SMLD] , togglelight); // lift left door
 	modelStack.PopMatrix();
 
 	if(floorNum == 1)
