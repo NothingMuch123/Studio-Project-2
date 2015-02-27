@@ -11,6 +11,10 @@ void CCharacter::setIsControlled(bool Choice)
 	this-> IsControlled = Choice;
 }
 
+Vector3 WalkTo(Vector3 WalkToLocation)
+{
+return WalkToLocation;
+}
 void CCharacter::setRole(int Role)
 {
 	this-> Role = Role;

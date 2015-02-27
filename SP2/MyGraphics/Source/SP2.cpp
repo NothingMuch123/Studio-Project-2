@@ -9,6 +9,7 @@
 #include "Vertex.h"
 #include "LoadTGA.h"
 #include <sstream>
+#include <ctime>
 #include <fstream>
 
 SP2::SP2()
@@ -71,17 +72,12 @@ void SP2::Init()
 	meshList[GEO_CUBE] = MeshBuilder::GenerateOBJ("Cube" , "OBJ//Cube.obj");
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//MazeWall.tga");
 
-	initCar();
-	
-	initHuman(1,Vector3(60,3,65),Vector3(0,90,0),camera.position,40);
+	srand(time(NULL));
 
-	initHuman(2,Vector3(60,3,-85),Vector3(0,90,0),camera.position,60);
+	initCar();
 
 	initHuman(3,Vector3(-60,3,65),Vector3(0,90,0),camera.position,60);
-
-
-	initHuman(4,Vector3(60,3,65),Vector3(0,90,0),camera.position,60);
-
+	
 	initOuterSkybox();
 	initSuperMarket();
 	initPatch();
@@ -752,10 +748,21 @@ void SP2::initValues()
 	cam = false;
 	fps = 60;
 	togglelight = false;
+	moveAiX = 0;
+	moveAiZ = 0;
+	RouteID = 0;
+	AiRouteLocation.push_back(Vector3(-140,0,-120));
+	AiRouteLocation.push_back(Vector3(-140,0,0));
+	AiRouteLocation.push_back(Vector3(0,0,0));
+	AiRouteLocation.push_back(Vector3(50,0,100));
+	AiRouteLocation.push_back(Vector3(145,0,20));
+	AiRouteLocation.push_back(Vector3(150,0,-110));
+	AiRouteLocation.push_back(Vector3(10,0,-125));
 	for(int i = 0; i < NUM_KEYPRESS; ++i)
 	{
 		keypressed[i] = false;
 	}
+
 }
 
 void SP2::initOuterSkybox()
@@ -786,6 +793,7 @@ void SP2::initOuterSkybox()
 
 void SP2::Update(double dt)
 {
+	
 	if(cam == false)
 	{
 		if(Application::IsKeyPressed('1')) //enable back face culling
@@ -1168,20 +1176,23 @@ void SP2::updateCar(double dt)//updating car
 
 void SP2::updateHuman(double dt)
 {
-	if(floorNum == 1)
-	{
-		for(int a = 0; a < objList.size(); ++a)
-		{
-			if(objList[a]->getID()==GEO_HUMAN)
-			{
-				if(static_cast<CCashier*>(objList[a])->getRole()==1)
-				{
-					static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
-					if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
-					{
-						cout<<"Cashier says hi"<<endl;
-					}
+	
 
+	moveAiX += 1*(int)(dt);
+	moveAiZ += 1*(int)(dt);
+
+	for(int a = 0; a < objList.size(); ++a)
+	{
+		if(objList[a]->getID()==GEO_HUMAN)
+		{
+			if(static_cast<CCashier*>(objList[a])->getRole()==1)
+			{
+			static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
+			if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
+			{
+				cout<<"Cashier says hi"<<endl;
+			}
+		
 				}
 				else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
 				{
@@ -1201,9 +1212,8 @@ void SP2::updateHuman(double dt)
 					}
 
 				}
-			}
-		}
-	}
+		
+
 	else 
 	{
 		for(int a = 0; a < objList2.size(); ++a)
@@ -1223,6 +1233,9 @@ void SP2::updateHuman(double dt)
 	}
 	cout<<" "<<endl;
 }
+}
+}
+	
 
 void SP2::Render()
 {
@@ -1539,10 +1552,18 @@ void SP2::renderCar()
 
 void SP2::renderHuman() 
 {
+	cout<<camera.position;
+	if(static_cast<CShopper*>(pObj)->getTranslate().x == AiRouteLocation[RouteID].x && static_cast<CShopper*>(pObj)->getTranslate().z == AiRouteLocation[RouteID].z)
+	{
+	RouteID = rand()%AiRouteLocation.size();
+	}
+
+	static_cast<CShopper*>(pObj)->WalkTo(AiRouteLocation[RouteID]);
+
 	if(static_cast<CCharacter*>(pObj)->getRole()==1)
 	{
 		modelStack.PushMatrix();
-		modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+		modelStack.Translate(pObj->getTranslate().y, pObj->getTranslate().y,pObj->getTranslate().z);
 		modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 		modelStack.Rotate(pObj->getRotate().y, 0,1,0);
 		modelStack.Rotate(pObj->getRotate().z, 0,0,1);
@@ -1639,7 +1660,8 @@ void SP2::renderHuman()
 	else if(static_cast<CCharacter*>(pObj)->getRole()==3)
 	{
 		modelStack.PushMatrix();
-		modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+		modelStack.PushMatrix();
+		modelStack.Translate(pObj->getTranslate().x+moveAiX, pObj->getTranslate().y, pObj->getTranslate().z+moveAiZ);
 		modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 		modelStack.Rotate(pObj->getRotate().y, 0,1,0);
 		modelStack.Rotate(pObj->getRotate().z, 0,0,1);	
@@ -1681,6 +1703,7 @@ void SP2::renderHuman()
 		modelStack.PushMatrix();
 		modelStack.Translate(0.6,0.75,0);
 		RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG], togglelight);
+		modelStack.PopMatrix();
 		modelStack.PopMatrix();
 		modelStack.PopMatrix();
 	}

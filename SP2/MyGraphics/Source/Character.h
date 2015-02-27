@@ -13,8 +13,9 @@ using std::vector;
 class CCharacter : public CObj
 {
 private:
-	
+
 	bool IsControlled;
+
 	bool InteractionBound;
 
 	string Script;
@@ -22,9 +23,10 @@ private:
 	Mesh *Character;
 
 	int Role;
-public:
-	CCharacter(void);
 
+public:
+
+	CCharacter(void);
 
 	void setIsControlled(bool Choice);
 	bool getIsControlled();
@@ -41,9 +43,9 @@ public:
 	Mesh* getCharacter();
 		
 	virtual void updateChar(bool getIsControlled,double dt);
-
-	Camera3 charCamera;
 	
+	Camera3 AICamera;
+
 	~CCharacter(void);
 	
 };
