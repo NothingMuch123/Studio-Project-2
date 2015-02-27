@@ -223,11 +223,14 @@ private:
 	bool keypressed[NUM_KEYPRESS];
 
 	// Supermarket variables
+	std::vector<CTrolley*> trolleyList;
 	int floorNum, newFloor; // floor number
 	CObj *liftLeftDoor, *liftRightDoor;
 	float translateX; // main entrance movement
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
 	Vector3 screenMaxBound, screenMinBound ; // security tele interaction bounds
+	bool checkoutBag;
+	std::vector<CItem*> checkoutList;
 
 	//Promoter Variables
 	Vector3 promoterMaxBound, promoterMinBound;

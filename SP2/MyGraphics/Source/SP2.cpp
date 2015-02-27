@@ -313,7 +313,7 @@ void SP2::initCar()
 	meshList[GEO_CAR_SCREEN] = MeshBuilder::GenerateQuad("Car screen", Color(1,1,1), TexCoord(1,1));
 	meshList[GEO_CAR_SCREEN]->textureID = LoadTGA("Image//Car_screen.tga");
 
-	pObj = new CCar(GEO_CAR, Vector3(-200,0,300), Vector3(0,0,0), Vector3(2.5,5,5), Vector3(17.5,8,7));
+	pObj = new CCar(GEO_CAR, Vector3(-200,0,300), Vector3(0,0,0), Vector3(2.5,5,5), Vector3(17.5,4,7));
 	pObj->calcBound();
 	static_cast<CCar*>(pObj)->setCamera();
 	objList.push_back(pObj);
@@ -489,10 +489,11 @@ void SP2::initSuperMarket()
 	liftLeftDoor = pObj;
 
 	// Trolley
-	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-100,2,50), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,6,5.3));
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-100,2,50), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
 	pObj->calcBound();
 	static_cast<CTrolley*>(pObj)->setCamera();
 	objList.push_back(pObj);
+	trolleyList.push_back(static_cast<CTrolley*>(pObj));
 
 	Vector3 leftStartPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2) + (33 * 1.5), 0, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2) + (33 * 1.5));
 	// Left top row
@@ -825,12 +826,14 @@ void SP2::Update(double dt)
 		if(Application::IsKeyPressed('4'))
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
 	}
-	keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = keypressed[K_EXIT_TROLLEY] = Application::IsKeyPressed('Q');
+	keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
 	keypressed[K_LEFT_PLACE] = Application::IsKeyPressed('F');
-	keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = keypressed[K_ENTER_TROLLEY] = Application::IsKeyPressed('E');
+	keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
 	keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
 	keypressed[K_FIRST_FLOOR] = Application::IsKeyPressed('O');
 	keypressed[K_SECOND_FLOOR] = Application::IsKeyPressed('P');
+	keypressed[K_ENTER_TROLLEY] = Application::IsKeyPressed('C');
+	keypressed[K_EXIT_TROLLEY] = Application::IsKeyPressed('V');
 
 	// Interactions
 	std::vector<CObj*> list;
@@ -881,6 +884,26 @@ void SP2::Update(double dt)
 							rotateHandY = hands[0]->getRotate().y;
 						}
 					}
+					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+					{
+						static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
+						hands[0] = NULL;
+					}
+					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+					{
+						static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
+						hands[1] = NULL;
+					}
+					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
+					{
+						hands[0] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
+						static_cast<CTrolley*>(pObj)->itemList.pop_back();
+					}
+					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
+					{
+						hands[1] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
+						static_cast<CTrolley*>(pObj)->itemList.pop_back();
+					}
 				}
 				else if(pObj->getID() == GEO_SECURITY_CAMERA_SCREEN)
 				{
@@ -891,6 +914,19 @@ void SP2::Update(double dt)
 						cam = true;
 					}
 				}
+				/*else if (pObj->getID() == GEO_CASHIER_TABLE)
+				{
+					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+					{
+						checkoutList.push_back(static_cast<CItem*>(hands[0]);
+						hands[0] = NULL;
+					}
+					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+					{
+						checkoutList.push_back(static_cast<CItem*>(hands[1]);
+						hands[1] = NULL;
+					}
+				}*/
 			}
 		}
 	}
@@ -1343,8 +1379,22 @@ void SP2::Render()
 				modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 				modelStack.Rotate(pObj->getRotate().y, 0,1,0);
 				modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+				modelStack.PushMatrix();
 				modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
 				RenderMesh(meshList[pObj->getID()], togglelight);
+				modelStack.PopMatrix();
+				
+				if (pObj->getID() == GEO_TROLLEY)
+				{
+					if (static_cast<CTrolley*>(pObj)->itemList.size() > 0)
+					{
+						modelStack.PushMatrix();
+						modelStack.Translate(0,((pObj->getScale().y * pObj->getSize().y) / 5) * 3.5,0);
+						modelStack.Scale(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]->getScale().x, static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]->getScale().y, static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]->getScale().z);
+						RenderMesh(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]->getItem(), togglelight);
+						modelStack.PopMatrix();
+					}
+				}
 				modelStack.PopMatrix();
 			}
 		}
@@ -1372,6 +1422,22 @@ void SP2::Render()
 	//modelStack.PopMatrix();
 
 	RenderMesh(meshList[GEO_AXES], false);
+	if (floorNum == 1)
+	{
+	for (int i = 0; i < trolleyList.size(); ++i)
+	{
+		pObj = trolleyList[i];
+		for (int j = 0; j < 4; ++j)
+		{
+			modelStack.PushMatrix();
+			modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
+			modelStack.Rotate(j * 90, 0,1,0);
+			modelStack.Scale(5,5,5);
+			RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
+			modelStack.PopMatrix();
+		}
+	}
+	}
 
 	renderText();
 }
@@ -1573,6 +1639,7 @@ void SP2::renderHuman()
 	}
 
 	static_cast<CShopper*>(pObj)->WalkTo(AiRouteLocation[RouteID]);
+	pObj->calcBound();
 
 	if(static_cast<CCharacter*>(pObj)->getRole()==1)
 	{
@@ -1875,7 +1942,7 @@ void SP2::RenderText(Mesh* mesh, std::string text, Color color)
 	if(!mesh || mesh->textureID <= 0) //Proper error check
 		return;
 
-	glDisable(GL_DEPTH_TEST);
+	//glDisable(GL_DEPTH_TEST);
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 1);
 	glUniform3fv(m_parameters[U_TEXT_COLOR], 1, &color.r);
 	glUniform1i(m_parameters[U_LIGHTENABLED], 0);

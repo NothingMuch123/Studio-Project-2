@@ -569,9 +569,9 @@ bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMin
 				}
 				else // Car and trolley check
 				{
-					if (pObj != _hands[0])
+					if (pObj != _hands[0] && pObj->getID() != SP2::GEOMETRY_TYPE::GEO_SUPERMARKET_CEILING)
 					{
-						if(minBound.x  < pObj->getMaxBound().x && maxBound.x > pObj->getMinBound().x && minBound.z < pObj->getMaxBound().z && maxBound.z > pObj->getMinBound().z)
+						if((position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || (minBound.x  < pObj->getMaxBound().x && maxBound.x > pObj->getMinBound().x && minBound.z < pObj->getMaxBound().z && maxBound.z > pObj->getMinBound().z))
 						{
 							return true;
 						}
