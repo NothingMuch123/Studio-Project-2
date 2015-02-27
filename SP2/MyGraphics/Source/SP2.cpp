@@ -108,6 +108,13 @@ void SP2::initCamera()
 	cameraPosition.Set( supermarketPosition.x + (15 * supermarketScale.x) , supermarketPosition.y + (10 * supermarketScale.y) , supermarketPosition.z + (8 * supermarketScale.z));
 	pObj = new CSecurityCamera(GEO_SECURITY_CAMERA, cameraPosition, Vector3 (0,0,0), Vector3 (1,1,1) , Vector3 (1,1,1), cameraTarget);
 	cameraList.push_back(static_cast <CSecurityCamera*>(pObj));
+
+	// Security camera screen
+	meshList[GEO_SECURITY_CAMERA_SCREEN] = MeshBuilder::GenerateOBJ("Security camera Screen" , "OBJ//Security_camera_screen.obj");
+	meshList[GEO_SECURITY_CAMERA_SCREEN]->textureID = LoadTGA("Image//Security_camera_screen.tga");
+	pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3( supermarketPosition.x + (supermarketSize.x * supermarketScale.x )/ 2 - (2 * supermarketScale.x) , supermarketPosition.y + (0.2 * supermarketScale.y), supermarketPosition.z - (supermarketSize.z * supermarketScale.z)/2 + ( 0.2 * supermarketScale.z) ) , Vector3(0,0,0), supermarketScale, Vector3(3, 2.5 ,1));
+	pObj->calcBound();
+	objList2.push_back(pObj);
 }
 
 void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
@@ -326,8 +333,6 @@ void SP2::initCabinet()
 
 void SP2::initSuperMarket()
 {
-	floorNum = 1; // start at first floor
-	newFloor = 1;
 	// Supermarket
 	supermarketSize.Set(30,20,20);
 	supermarketPosition.Set(0,0,0);
@@ -356,18 +361,12 @@ void SP2::initSuperMarket()
 	// Security camera
 	meshList[GEO_SECURITY_CAMERA] = MeshBuilder::GenerateOBJ("Security camera" , "OBJ//Security_camera.obj");
 	meshList[GEO_SECURITY_CAMERA]->textureID = LoadTGA("Image//Security_camera.tga");
-	
-	// Security camera screen
-	meshList[GEO_SECURITY_CAMERA_SCREEN] = MeshBuilder::GenerateOBJ("Security camera Screen" , "OBJ//Security_camera_screen.obj");
-	meshList[GEO_SECURITY_CAMERA_SCREEN]->textureID = LoadTGA("Image//Security_camera_screen.tga");
-	pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
-	pObj->calcBound();
-	objList2.push_back(pObj);
 
-	//security screen (interaction Bound)
-	Vector3 screenPosition(pObj->getTranslate().x , pObj->getTranslate().y, pObj->getTranslate().z );
-	screenMaxBound.Set(screenPosition.x + (2 * supermarketScale.x) , screenPosition.y , screenPosition.z + (2 * supermarketScale.z));
-	screenMinBound.Set(screenPosition.x - (3 * supermarketScale.x) , screenPosition.y , screenPosition.z - (5 * supermarketScale.z));
+	
+	////security screen (interaction Bound)
+	//Vector3 screenPosition(pObj->getTranslate().x , pObj->getTranslate().y, pObj->getTranslate().z );
+	//screenMaxBound.Set(screenPosition.x + (2 * supermarketScale.x) , screenPosition.y , screenPosition.z + (2 * supermarketScale.z));
+	//screenMinBound.Set(screenPosition.x - (3 * supermarketScale.x) , screenPosition.y , screenPosition.z - (5 * supermarketScale.z));
 
 	// Supermarket door
 	meshList[GEO_SUPERMARKET_DOOR] = MeshBuilder::GenerateOBJ( "Supermarket door" ,"OBJ//Supermarket_door.obj");
@@ -375,7 +374,8 @@ void SP2::initSuperMarket()
 
 	// Trolley
 	meshList[GEO_TROLLEY] = MeshBuilder::GenerateOBJ("Trolley", "OBJ//Trolley.obj");
-	
+	meshList[GEO_TROLLEY]->textureID = LoadTGA("Image//trolleytexture.tga");
+
 	pObj = new CObj(GEO_SUPERMARKET_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
 	objList.push_back(pObj);
 	objList2.push_back(pObj);
@@ -387,10 +387,6 @@ void SP2::initSuperMarket()
 	pObj = new CObj(GEO_SECURITY_CAMERA , Vector3(supermarketPosition.x - 14.65 * supermarketScale.x, supermarketPosition.y + 9.6 * supermarketScale.y, supermarketPosition.z - 9.5 * supermarketScale.z), Vector3(0,0,0), Vector3(0.2 * supermarketScale.x,0.2 * supermarketScale.y,0.2 * supermarketScale.z), Vector3(2 ,1.5, 2));
 	pObj->calcBound();
 	objList.push_back(pObj);
-
-	pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3 (supermarketPosition.x - 4.1 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(1 * supermarketScale.x,1 * supermarketScale.y,1 * supermarketScale.z), Vector3(3, .5 ,1));
-	pObj->calcBound();
-	objList2.push_back(pObj);
 
 	// Left wall
 	Vector3 tempWallPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2), supermarketPosition.y, supermarketPosition.z);
@@ -459,7 +455,7 @@ void SP2::initSuperMarket()
 	pObj->calcBound();
 	objList.push_back(pObj);
 	objList2.push_back(pObj); // 2nd floor
-	
+
 	// Entrance door (Interaction bounds)
 	Vector3 doorPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
 	supermarketDoorMaxBound.Set(doorPosition.x + (3 * supermarketScale.x), doorPosition.y, doorPosition.z + (5 * supermarketScale.z));
@@ -642,9 +638,31 @@ void SP2::initPatch()
 	meshList[GEO_PATCH] = MeshBuilder::GenerateOBJ("wallpatch",  "OBJ//wallpatcher.obj");
 	meshList[GEO_PATCH] ->textureID = LoadTGA("Image//walltexture.tga");
 
-	pObj = new CObj(GEO_PATCH, Vector3( supermarketPosition.x * supermarketScale.x * 0 , supermarketPosition.y * supermarketScale.y, supermarketPosition.z * supermarketScale.z + 148.5 ) , Vector3(0,0,0) , Vector3( 1.5 * supermarketScale.x, 1.2 * supermarketScale.y, 1* supermarketScale.z), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
+	// patch up from entrance when 2nd floor
+	pObj = new CObj(GEO_PATCH, Vector3( supermarketPosition.x, supermarketPosition.y , supermarketPosition.z + ( supermarketScale.z * 10 )  ) , Vector3(0,0,0) , Vector3( 1.5 * supermarketScale.x, 1.2 * supermarketScale.y, 1* supermarketScale.z), Vector3( supermarketScale.x * 1 /2 , 1, 1) );
 	pObj->calcBound();
 	objList2.push_back(pObj);
+
+	// security room wall - right wall
+	pObj = new CObj (GEO_PATCH , Vector3(supermarketPosition.x + (supermarketSize.x * supermarketScale.x) / 6, supermarketPosition.y, supermarketPosition.z + (supermarketScale.z * supermarketSize.z)/3.5 ), Vector3(0,90,0), supermarketScale * 3, Vector3(1,1,1));
+	objList2.push_back(pObj);
+
+	//wall bounds 
+	Vector3 tempWallPosition(pObj->getTranslate());
+	pObj = new CObj(GEO_SUPERMARKET_WALL , Vector3(tempWallPosition.x , tempWallPosition.y, tempWallPosition.z ) ,Vector3(0,0,0), supermarketScale , Vector3(1, supermarketSize.y , supermarketSize.z / 2));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+
+	//security room wall - left wall
+	pObj = new CObj (GEO_PATCH , Vector3(supermarketPosition.x + (supermarketSize.x * supermarketScale.x) / 6, supermarketPosition.y ,supermarketPosition.z - (supermarketScale.z * supermarketSize.z)/ 3.5 ), Vector3(0,90,0), supermarketScale * 3, Vector3(1,1,1));
+	objList2.push_back(pObj);
+
+	// wall bound
+	tempWallPosition.Set(pObj->getTranslate().x , pObj->getTranslate().y , pObj->getTranslate().z);
+	pObj = new CObj(GEO_SUPERMARKET_WALL , Vector3(tempWallPosition.x , tempWallPosition.y, tempWallPosition.z ) ,Vector3(0,0,0), supermarketScale , Vector3(1, supermarketSize.y , supermarketSize.z / 2));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+
 }
 
 void SP2::setLights()
@@ -745,6 +763,8 @@ void SP2::lightParameters()
 
 void SP2::initValues()
 {
+	floorNum = 2; // start at first floor
+	newFloor = 1;
 	cam = false;
 	fps = 60;
 	togglelight = false;
@@ -862,13 +882,17 @@ void SP2::Update(double dt)
 						}
 					}
 				}
+				else if(pObj->getID() == GEO_SECURITY_CAMERA_SCREEN)
+				{
+					if(keypressed[K_ENTER_CAM] && cam == false && floorNum == 2)
+					{
+						saved = camera; // saving camera data
+						camNum = 0;
+						cam = true;
+					}
+				}
 			}
 		}
-	}
-
-	if(floorNum == 2) // 2nd floor
-	{
-
 	}
 
 	if (hands[0] != NULL && hands[1] != NULL)
@@ -886,6 +910,7 @@ void SP2::Update(double dt)
 	updateHuman(dt);
 	updateSuperMarket(dt);
 	updateHands(dt);
+	updateCamera(dt);
 
 	if(Application::IsKeyPressed('Z'))
 	{
@@ -902,19 +927,14 @@ void SP2::Update(double dt)
 		fps = 1 / dt;
 		fpsRefresh = 0;
 	}
-	updateCamera(dt);
+
 }
 
 void SP2::updateCamera(double dt)
 {
-	if(camera.position.x < screenMaxBound.x && camera.position.x > screenMinBound.x && camera.position.z < screenMaxBound.z && camera.position.z > screenMinBound.z )
+	//if(camera.position.x < screenMaxBound.x && camera.position.x > screenMinBound.x && camera.position.z < screenMaxBound.z && camera.position.z > screenMinBound.z )
 	{
-		if(keypressed[K_ENTER_CAM] && cam == false)
-		{
-			saved = camera; // saving camera data
-			camNum = 0;
-			cam = true;
-		}
+
 	}
 	if(cam == true)
 	{
@@ -1208,7 +1228,7 @@ void SP2::updateHuman(double dt)
 					static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
 					if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 					{
-						cout<<"Shopper says: You're a Massive Faggot"<<endl;
+						cout<<"Shopper says: You're near me"<<endl;
 					}
 
 				}
@@ -1224,9 +1244,9 @@ void SP2::updateHuman(double dt)
 				{
 					static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
 					if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
-					{
-						RenderTextOnScreen(meshList[GEO_TEXT], "Hello c:", Color(0,0,0), 2, 19, 10);
-					}
+					cout<<"Shopper says hi"<<endl;
+				}
+
 				}
 			}
 		}
@@ -1329,7 +1349,7 @@ void SP2::Render()
 			}
 		}
 	}
-	
+
 	if (hands[0] == NULL || hands[1] == NULL || hands[0]->getID() == GEO_ITEM || hands[1]->getID() == GEO_ITEM || (hands[0]->getID() == GEO_TROLLEY && hands[1]->getID() == GEO_TROLLEY))
 	{
 		renderHands();
@@ -1345,11 +1365,11 @@ void SP2::Render()
 	}
 
 	// Target test
-	/*modelStack.PushMatrix();
+	modelStack.PushMatrix();
 	modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
 	modelStack.Scale(1,1,1);
 	RenderMesh(meshList[GEO_CUBE], togglelight);
-	modelStack.PopMatrix();*/
+	modelStack.PopMatrix();
 
 	RenderMesh(meshList[GEO_AXES], false);
 
@@ -1455,12 +1475,6 @@ void SP2::renderCabinet()
 	modelStack.PopMatrix();
 }
 
-void SP2::renderPatch()
-{
-	modelStack.PushMatrix();
-	modelStack.Translate(0,-10,-15);
-	modelStack.PopMatrix();
-}
 void SP2::renderShelf()
 {
 	modelStack.PushMatrix();

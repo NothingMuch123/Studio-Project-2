@@ -52,7 +52,7 @@ void CObj::calcBound()
 {
 	float offset = 3;
 	maxBound.Set(translate.x + ((size.x * scale.x) / 2) + offset, translate.y + (size.y * scale.y) + offset, translate.z + ((size.z * scale.z) / 2) + offset);
-	minBound.Set(translate.x - ((size.x * scale.x) / 2) - offset, 0, translate.z - ((size.z * scale.z) / 2) - offset);
+	minBound.Set(translate.x - ((size.x * scale.x) / 2) - offset, translate.y , translate.z - ((size.z * scale.z) / 2) - offset);
 }
 
 bool CObj::getRender()
