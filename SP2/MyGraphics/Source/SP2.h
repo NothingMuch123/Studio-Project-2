@@ -262,12 +262,16 @@ private:
 	float rotateHandX, rotateHandY, trolleyRotateHandX;
 	CObj *hands[2]; // 0 - Left, 1 - Right
 
-	//human variables 
+	//player variables 
 	float moveX , moveZ;
 	float tempX, tempY, tempZ, tempPitch, tempYaw, tempTargetX, tempTargetY, tempTargetZ;
+
 	//variable use for testing - constantly increasing
 	float temp;
 	CObj *tempP;
+
+	//AI interactions
+	//bool isTalking;
 };
 
 #endif

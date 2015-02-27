@@ -32,9 +32,6 @@ void SP2::Init()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	//Enable Stippling
-	glEnable(GL_POLYGON_STIPPLE);
-
 	//Enable depth buffer and depth testing
 	glEnable(GL_DEPTH_TEST);
 
@@ -75,14 +72,16 @@ void SP2::Init()
 	meshList[GEO_CUBE]->textureID = LoadTGA("Image//MazeWall.tga");
 
 	initCar();
-
+	
 	initHuman(1,Vector3(60,3,65),Vector3(0,90,0),camera.position,40);
 
 	initHuman(2,Vector3(60,3,-85),Vector3(0,90,0),camera.position,60);
 
 	initHuman(3,Vector3(-60,3,65),Vector3(0,90,0),camera.position,60);
 
-	initHuman(4,Vector3(60,3,65),Vector3(0,90,0),camera.position,40);
+
+	initHuman(4,Vector3(60,3,65),Vector3(0,90,0),camera.position,60);
+
 	initOuterSkybox();
 	initSuperMarket();
 	initPatch();
@@ -631,9 +630,9 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		meshList[GEO_HUMAN_STAFF_LEG] = MeshBuilder::GenerateOBJ( "p_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_STAFF_LEG]->textureID = LoadTGA ("Image//Staff.tga");
 
-		pObj = new CPromoter(GEO_HUMAN,translation, Vector3(0,0,0),Vector3(4,7,4), Vector3(3, 4.6, 3));//1.6));
+		pObj = new CPromoter(GEO_HUMAN,translation, Vector3(0,0,0),Vector3(4,7,4), Vector3(3, 4.6, 3), camera.position, radius);
 		pObj->calcBound();
-		objList.push_back(pObj);
+		objList2.push_back(pObj);
 	}
 
 	//Promoter Interaction Bound
@@ -1169,37 +1168,56 @@ void SP2::updateCar(double dt)//updating car
 
 void SP2::updateHuman(double dt)
 {
-	
-	for(int a = 0; a < objList.size(); ++a)
+	if(floorNum == 1)
 	{
-		if(objList[a]->getID()==GEO_HUMAN)
+		for(int a = 0; a < objList.size(); ++a)
 		{
-			if(static_cast<CCashier*>(objList[a])->getRole()==1)
+			if(objList[a]->getID()==GEO_HUMAN)
 			{
-			static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
-			if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
-			{
-				cout<<"Cashier says hi"<<endl;
-			}
-		
-			}
-			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
-			{
-				static_cast<CSecurityGuard*> (objList[a])->setInteractionBound(camera.position,50);
-				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
+				if(static_cast<CCashier*>(objList[a])->getRole()==1)
 				{
-				cout<<"Securityguard says hi"<<endl;
+					static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
+					if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
+					{
+						cout<<"Cashier says hi"<<endl;
+					}
+
 				}
-				
-			}
-			else if(static_cast<CShopper*>(objList[a])->getRole()==3)
-			{
-				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
-				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
+				else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
 				{
-				cout<<"Shopper says hi"<<endl;
+					static_cast<CSecurityGuard*> (objList[a])->setInteractionBound(camera.position,50);
+					if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
+					{
+						cout<<"Securityguard says hi"<<endl;
+					}
+
 				}
-				
+				else if(static_cast<CShopper*>(objList[a])->getRole()==3)
+				{
+					static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
+					if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
+					{
+						cout<<"Shopper says: You're a Massive Faggot"<<endl;
+					}
+
+				}
+			}
+		}
+	}
+	else 
+	{
+		for(int a = 0; a < objList2.size(); ++a)
+		{
+			if(objList2[a]->getID()==GEO_HUMAN)
+			{
+				if(static_cast<CPromoter*>(objList2[a])->getRole()==4)
+				{
+					static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
+					if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
+					{
+						RenderTextOnScreen(meshList[GEO_TEXT], "Hello c:", Color(0,0,0), 2, 19, 10);
+					}
+				}
 			}
 		}
 	}
