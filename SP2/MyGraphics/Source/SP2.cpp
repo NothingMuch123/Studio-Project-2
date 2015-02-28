@@ -77,7 +77,7 @@ void SP2::Init()
 	initCar();
 
 	initHuman(3,Vector3(-60,3,65),Vector3(0,90,0),camera.position,60);
-	
+
 	initOuterSkybox();
 	initSuperMarket();
 	initPatch();
@@ -109,12 +109,49 @@ void SP2::initCamera()
 	pObj = new CSecurityCamera(GEO_SECURITY_CAMERA, cameraPosition, Vector3 (0,0,0), Vector3 (1,1,1) , Vector3 (1,1,1), cameraTarget);
 	cameraList.push_back(static_cast <CSecurityCamera*>(pObj));
 
-	// Security camera screen
+
 	meshList[GEO_SECURITY_CAMERA_SCREEN] = MeshBuilder::GenerateOBJ("Security camera Screen" , "OBJ//Security_camera_screen.obj");
 	meshList[GEO_SECURITY_CAMERA_SCREEN]->textureID = LoadTGA("Image//Security_camera_screen.tga");
-	pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3( supermarketPosition.x + (supermarketSize.x * supermarketScale.x )/ 2 - (2 * supermarketScale.x) , supermarketPosition.y + (0.2 * supermarketScale.y), supermarketPosition.z - (supermarketSize.z * supermarketScale.z)/2 + ( 0.2 * supermarketScale.z) ) , Vector3(0,0,0), supermarketScale, Vector3(3, 2.5 ,1));
-	pObj->calcBound();
-	objList2.push_back(pObj);
+
+	// Security camera screen - along back wall
+	for(int x = 7.1 * supermarketScale.x ; x < supermarketPosition.x + (supermarketSize.x * supermarketScale.x)/2 ; x += 3 * supermarketScale.x)
+	{
+		for(int y = 0.2 * supermarketScale.y ; y < supermarketPosition.y + (supermarketSize.y * supermarketSize.y)/2 ; y += 2.5 * supermarketScale.y)
+		{
+			pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3( supermarketPosition.x +  x, supermarketPosition.y + y, supermarketPosition.z - (supermarketSize.z * supermarketScale.z)/2 + ( 0.2 * supermarketScale.z) ) , Vector3(0,0,0), supermarketScale, Vector3(3, 2.5 ,1));
+			pObj->calcBound();
+			objList2.push_back(pObj);
+		}
+	}
+	// security camera screen - along right wall 
+	for(int z = ( - supermarketSize.z * supermarketScale.z )/2 + 1.2 * supermarketScale.z ; z < supermarketPosition.z + (supermarketSize.z *supermarketScale.z )/2; z += 2.2 * supermarketScale.z)
+	{
+		for(int y = 0.2 * supermarketScale.y ; y < supermarketPosition.y + (supermarketSize.y * supermarketSize.y)/2 ; y += 2.5 * supermarketScale.y)
+		{
+			pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN, Vector3(supermarketPosition.x + (supermarketScale.x * supermarketSize.x)/2 - 0.7  , supermarketPosition.y + y ,  supermarketPosition.z + z ), Vector3(0,-90,0), supermarketScale , Vector3(3,2.5,1));
+			pObj->calcBound();
+			objList2.push_back(pObj);
+		}
+	}
+
+	//security camera screen - along front wall
+	for(int x = 7.1 * supermarketScale.x ; x < supermarketPosition.x + (supermarketSize.x * supermarketScale.x)/2 ; x += 3 * supermarketScale.x)
+	{
+		for(int y = 0.2 * supermarketScale.y ; y < supermarketPosition.y + (supermarketSize.y * supermarketSize.y)/2 ; y += 2.5 * supermarketScale.y)
+		{
+			pObj = new CObj(GEO_SECURITY_CAMERA_SCREEN , Vector3( supermarketPosition.x +  x, supermarketPosition.y + y, supermarketPosition.z + (supermarketSize.z * supermarketScale.z)/2 - ( 0.2 * supermarketScale.z) ) , Vector3(0,180,0), supermarketScale, Vector3(3, 2.5 ,1));
+			pObj->calcBound();
+			objList2.push_back(pObj);
+		}
+	}
+
+	//security room door
+	pObj = new CObj(GEO_SUPERMARKET_DOOR , Vector3(supermarketPosition.x + (supermarketSize.x * supermarketScale.x) / 6, supermarketPosition.y , supermarketPosition.z) , Vector3(0,90,0),  Vector3(supermarketScale.x * 0.7,supermarketScale.y * 0.5,supermarketScale.z * 0.8), Vector3(7,10,2));
+
+	Vector3 doorPosition(pObj->getTranslate().x , pObj->getTranslate().y , pObj->getTranslate().z);
+	supermarketSecurityDoorMaxBound.Set(doorPosition.x + (5 * supermarketScale.x), doorPosition.y, doorPosition.z + (3 * supermarketScale.z));
+	supermarketSecurityDoorMinBound.Set(doorPosition.x - (5 * supermarketScale.x), doorPosition.y, doorPosition.z - (3 * supermarketScale.z));
+	translateSecurityZ = 0;
 }
 
 void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
@@ -361,12 +398,6 @@ void SP2::initSuperMarket()
 	// Security camera
 	meshList[GEO_SECURITY_CAMERA] = MeshBuilder::GenerateOBJ("Security camera" , "OBJ//Security_camera.obj");
 	meshList[GEO_SECURITY_CAMERA]->textureID = LoadTGA("Image//Security_camera.tga");
-
-	
-	////security screen (interaction Bound)
-	//Vector3 screenPosition(pObj->getTranslate().x , pObj->getTranslate().y, pObj->getTranslate().z );
-	//screenMaxBound.Set(screenPosition.x + (2 * supermarketScale.x) , screenPosition.y , screenPosition.z + (2 * supermarketScale.z));
-	//screenMinBound.Set(screenPosition.x - (3 * supermarketScale.x) , screenPosition.y , screenPosition.z - (5 * supermarketScale.z));
 
 	// Supermarket door
 	meshList[GEO_SUPERMARKET_DOOR] = MeshBuilder::GenerateOBJ( "Supermarket door" ,"OBJ//Supermarket_door.obj");
@@ -664,6 +695,11 @@ void SP2::initPatch()
 	pObj->calcBound();
 	objList2.push_back(pObj);
 
+	//security room wall - middle top
+	tempWallPosition.Set(supermarketPosition.x + (supermarketScale.x * supermarketSize.x)/ 6  , supermarketPosition.y + (supermarketScale.y * supermarketSize.y) / 2 - (supermarketScale.y * 4.6) , supermarketPosition.z);
+	pObj = new CObj(GEO_PATCH, tempWallPosition, Vector3 (0,-90,0), supermarketScale * 2, Vector3 ( 1, 1 ,supermarketSize.z / 2));
+	objList2.push_back(pObj);
+
 }
 
 void SP2::setLights()
@@ -764,7 +800,7 @@ void SP2::lightParameters()
 
 void SP2::initValues()
 {
-	floorNum = 1; // start at first floor
+	floorNum = 2; // start at first floor
 	newFloor = 1;
 	cam = false;
 	fps = 60;
@@ -814,7 +850,7 @@ void SP2::initOuterSkybox()
 
 void SP2::Update(double dt)
 {
-	
+
 	if(cam == false)
 	{
 		if(Application::IsKeyPressed('1')) //enable back face culling
@@ -916,16 +952,16 @@ void SP2::Update(double dt)
 				}
 				/*else if (pObj->getID() == GEO_CASHIER_TABLE)
 				{
-					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
-					{
-						checkoutList.push_back(static_cast<CItem*>(hands[0]);
-						hands[0] = NULL;
-					}
-					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
-					{
-						checkoutList.push_back(static_cast<CItem*>(hands[1]);
-						hands[1] = NULL;
-					}
+				if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+				{
+				checkoutList.push_back(static_cast<CItem*>(hands[0]);
+				hands[0] = NULL;
+				}
+				if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+				{
+				checkoutList.push_back(static_cast<CItem*>(hands[1]);
+				hands[1] = NULL;
+				}
 				}*/
 			}
 		}
@@ -1196,6 +1232,23 @@ void SP2::updateSuperMarket(double dt)
 			}
 		}
 	}
+	if(floorNum == 2)
+	{
+		if(camera.position.x < supermarketSecurityDoorMaxBound.x && camera.position.x > supermarketSecurityDoorMinBound.z && camera.position.z > supermarketSecurityDoorMinBound.z && camera.position.z < supermarketSecurityDoorMaxBound.z)
+		{
+			if(translateSecurityZ<2)
+			{
+				translateSecurityZ+=0.1;
+			}
+		}
+		else
+		{		
+			if(translateSecurityZ>0)
+			{
+				translateSecurityZ-=0.1;
+			}
+		}
+	}
 }
 
 void SP2::updateCar(double dt)//updating car
@@ -1232,7 +1285,7 @@ void SP2::updateCar(double dt)//updating car
 
 void SP2::updateHuman(double dt)
 {
-	
+
 
 	moveAiX += 1*(int)(dt);
 	moveAiZ += 1*(int)(dt);
@@ -1243,55 +1296,55 @@ void SP2::updateHuman(double dt)
 		{
 			if(static_cast<CCashier*>(objList[a])->getRole()==1)
 			{
-			static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
-			if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
-			{
-				cout<<"Cashier says hi"<<endl;
+				static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
+				if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
+				{
+					cout<<"Cashier says hi"<<endl;
+				}
+
 			}
-		
-				}
-				else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
+			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
+			{
+				static_cast<CSecurityGuard*> (objList[a])->setInteractionBound(camera.position,50);
+				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
 				{
-					static_cast<CSecurityGuard*> (objList[a])->setInteractionBound(camera.position,50);
-					if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
-					{
-						cout<<"Securityguard says hi"<<endl;
-					}
-
-				}
-				else if(static_cast<CShopper*>(objList[a])->getRole()==3)
-				{
-					static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
-					if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
-					{
-						cout<<"Shopper says: You're near me"<<endl;
-					}
-
+					cout<<"Securityguard says hi"<<endl;
 				}
 
-
-				else 
+			}
+			else if(static_cast<CShopper*>(objList[a])->getRole()==3)
+			{
+				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
+				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
-					for(int a = 0; a < objList2.size(); ++a)
+					cout<<"Shopper says: You're near me"<<endl;
+				}
+
+			}
+
+
+			else 
+			{
+				for(int a = 0; a < objList2.size(); ++a)
+				{
+					if(objList2[a]->getID()==GEO_HUMAN)
 					{
-						if(objList2[a]->getID()==GEO_HUMAN)
+						if(static_cast<CPromoter*>(objList2[a])->getRole()==4)
 						{
-							if(static_cast<CPromoter*>(objList2[a])->getRole()==4)
-							{
-								static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
-								if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
-									cout<<"Shopper says hi"<<endl;
-							}
-
+							static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
+							if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
+								cout<<"Shopper says hi"<<endl;
 						}
+
 					}
 				}
+			}
 		}
 		cout<<" "<<endl;
 	}
 }
 
-	
+
 
 void SP2::Render()
 {
@@ -1383,7 +1436,7 @@ void SP2::Render()
 				modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
 				RenderMesh(meshList[pObj->getID()], togglelight);
 				modelStack.PopMatrix();
-				
+
 				if (pObj->getID() == GEO_TROLLEY)
 				{
 					if (static_cast<CTrolley*>(pObj)->itemList.size() > 0)
@@ -1424,19 +1477,19 @@ void SP2::Render()
 	RenderMesh(meshList[GEO_AXES], false);
 	if (floorNum == 1)
 	{
-	for (int i = 0; i < trolleyList.size(); ++i)
-	{
-		pObj = trolleyList[i];
-		for (int j = 0; j < 4; ++j)
+		for (int i = 0; i < trolleyList.size(); ++i)
 		{
-			modelStack.PushMatrix();
-			modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
-			modelStack.Rotate(j * 90, 0,1,0);
-			modelStack.Scale(5,5,5);
-			RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
-			modelStack.PopMatrix();
+			pObj = trolleyList[i];
+			for (int j = 0; j < 4; ++j)
+			{
+				modelStack.PushMatrix();
+				modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
+				modelStack.Rotate(j * 90, 0,1,0);
+				modelStack.Scale(5,5,5);
+				RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
+				modelStack.PopMatrix();
+			}
 		}
-	}
 	}
 
 	renderText();
@@ -1602,6 +1655,15 @@ void SP2::renderSuperMarket()
 		RenderMesh(meshList[GEO_SUPERMARKET_DOOR], togglelight);//left Door
 		modelStack.PopMatrix();
 	}
+	else
+	{
+		modelStack.PushMatrix();
+		modelStack.Translate( 5 , 0,translateSecurityZ);
+		modelStack.Scale(1,0.7,0.5);
+		modelStack.Rotate(90,0,1,0);
+		RenderMesh(meshList[GEO_SUPERMARKET_DOOR] , togglelight);
+		modelStack.PopMatrix();
+	}
 	modelStack.PopMatrix();
 }
 
@@ -1635,7 +1697,7 @@ void SP2::renderHuman()
 	cout<<camera.position;
 	if(static_cast<CShopper*>(pObj)->getTranslate().x == AiRouteLocation[RouteID].x && static_cast<CShopper*>(pObj)->getTranslate().z == AiRouteLocation[RouteID].z)
 	{
-	RouteID = rand()%AiRouteLocation.size();
+		RouteID = rand()%AiRouteLocation.size();
 	}
 
 	static_cast<CShopper*>(pObj)->WalkTo(AiRouteLocation[RouteID]);

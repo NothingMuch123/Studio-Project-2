@@ -73,6 +73,7 @@ public:
 		GEO_SHELF,
 		GEO_CABINET,
 		GEO_TROLLEY,
+		// Items
 		GEO_ITEM,
 		GEO_ITEM_1,
 		GEO_ITEM_2,
@@ -228,7 +229,8 @@ private:
 	CObj *liftLeftDoor, *liftRightDoor;
 	float translateX; // main entrance movement
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
-	Vector3 screenMaxBound, screenMinBound ; // security tele interaction bounds
+	Vector3 supermarketSecurityDoorMaxBound , supermarketSecurityDoorMinBound;
+	float translateSecurityZ;
 	bool checkoutBag;
 	std::vector<CItem*> checkoutList;
 
