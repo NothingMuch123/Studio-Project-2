@@ -41,6 +41,7 @@ public:
 		K_EXIT_CAM,
 		K_FIRST_FLOOR,
 		K_SECOND_FLOOR,
+		K_START_STORY,
 		NUM_KEYPRESS,
 	};
 	enum GEOMETRY_TYPE
@@ -85,7 +86,17 @@ public:
 		GEO_ITEM_8,
 		GEO_ITEM_9,
 		GEO_ITEM_10,
-
+		// inventory picture of items - do not touch 
+		GEO_INVENTORY_ITEM_1,
+		GEO_INVENTORY_ITEM_2,
+		GEO_INVENTORY_ITEM_3,
+		GEO_INVENTORY_ITEM_4,
+		GEO_INVENTORY_ITEM_5,
+		GEO_INVENTORY_ITEM_6,
+		GEO_INVENTORY_ITEM_7,
+		GEO_INVENTORY_ITEM_8,
+		GEO_INVENTORY_ITEM_9,
+		GEO_INVENTORY_ITEM_10,
 		//Human
 		//SHOPPER
 		GEO_HUMAN, // No mesh
@@ -220,6 +231,11 @@ private:
 	void updatePatch();
 	void renderPatch();
 
+	//TODO : define function for game 
+	void initGame(); 
+	void renderGame(int a);
+	void updateGame(double dt);
+
 	bool togglelight;
 	double fps;
 	bool keypressed[NUM_KEYPRESS];
@@ -273,6 +289,18 @@ private:
 	//variable use for testing - constantly increasing
 	float temp;
 	CObj *tempP;
+
+	// game bound variables
+	bool ableStart; //display what to do to start game;
+	int playerScore[3];
+	float timeFrame;
+	float totalCost;
+	int inGame;// in which game : 1 - treasure hunt(for now)
+
+	//game1 variables - treasure hunt
+	Vector3 game1MaxBound , game1MinBound; //search for items in list
+	bool pickCorrect; // used to check if item put into trolley is correct item
+	int randomItem; //generate random number to call from enum of geo items
 };
 
 #endif

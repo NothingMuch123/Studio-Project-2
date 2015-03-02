@@ -1,7 +1,6 @@
 #include "SP2.h"
 #include "GL\glew.h"
 
-
 #include "shader.hpp"
 #include "Mtx44.h"
 
@@ -26,7 +25,7 @@ SP2::~SP2()
 
 void SP2::Init()
 {
-	
+	initValues();
 
 	// Init VBO here
 
@@ -80,9 +79,7 @@ void SP2::Init()
 
 	initCar();
 
-	initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
-	
-	initValues();
+	//initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
 
 	initOuterSkybox();
 	initSuperMarket();
@@ -90,6 +87,7 @@ void SP2::Init()
 	initHands();
 	initCabinet();
 	initCamera();
+	initGame();
 }
 
 void SP2::initHands()
@@ -114,7 +112,6 @@ void SP2::initCamera()
 	cameraPosition.Set( supermarketPosition.x + (15 * supermarketScale.x) , supermarketPosition.y + (10 * supermarketScale.y) , supermarketPosition.z + (8 * supermarketScale.z));
 	pObj = new CSecurityCamera(GEO_SECURITY_CAMERA, cameraPosition, Vector3 (0,0,0), Vector3 (1,1,1) , Vector3 (1,1,1), cameraTarget);
 	cameraList.push_back(static_cast <CSecurityCamera*>(pObj));
-
 
 	meshList[GEO_SECURITY_CAMERA_SCREEN] = MeshBuilder::GenerateOBJ("Security camera Screen" , "OBJ//Security_camera_screen.obj");
 	meshList[GEO_SECURITY_CAMERA_SCREEN]->textureID = LoadTGA("Image//Security_camera_screen.tga");
@@ -335,6 +332,37 @@ void SP2::initItems()
 
 	meshList[GEO_ITEM_10] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-10.obj");
 	meshList[GEO_ITEM_10]->textureID = LoadTGA("Image//ITEMS//box-10.tga");
+
+	//inventory pic of items - in enum is 10 behind the original item
+	meshList[GEO_INVENTORY_ITEM_1] = MeshBuilder::GenerateQuad("inven_item",Color(1,1,1),TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_1]->textureID = LoadTGA("Image//inventoryImages//inventory_box_1.tga");
+
+	meshList[GEO_INVENTORY_ITEM_2] = MeshBuilder::GenerateQuad("inven_item" , Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_2]->textureID = LoadTGA ("Image//inventoryImages//inventory_can_2.tga");
+
+	meshList[GEO_INVENTORY_ITEM_3] = MeshBuilder::GenerateQuad("inven_item" , Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_3]->textureID = LoadTGA("Image//inventoryImages//inventory_box_3.tga");
+
+	meshList[GEO_INVENTORY_ITEM_4] = MeshBuilder::GenerateQuad ("inven_item" , Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_4]->textureID = LoadTGA("Image//inventoryImages//inventory_can_4.tga");
+
+	meshList[GEO_INVENTORY_ITEM_5] = MeshBuilder::GenerateQuad("inven_item", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_5]->textureID = LoadTGA("Image//inventoryImages//inventory_box_5.tga");
+
+	meshList[GEO_INVENTORY_ITEM_6] = MeshBuilder::GenerateQuad("inven_item" , Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_6]->textureID = LoadTGA("Image//inventoryImages//inventory_box_6.tga");
+
+	meshList[GEO_INVENTORY_ITEM_7] = MeshBuilder::GenerateQuad("inven_item" , Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_7]->textureID = LoadTGA("Image//inventoryImages//inventory_box_7.tga");
+
+	meshList[GEO_INVENTORY_ITEM_8] = MeshBuilder::GenerateQuad("inven_item" , Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_8]->textureID = LoadTGA("Image//inventoryImages//inventory_can_8.tga");
+
+	meshList[GEO_INVENTORY_ITEM_9] = MeshBuilder::GenerateQuad("inven_item" , Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_9]->textureID = LoadTGA("Image//inventoryImages//inventory_packet_9.tga");
+
+	meshList[GEO_INVENTORY_ITEM_10] = MeshBuilder::GenerateQuad("inven_item", Color(1,1,1), TexCoord(1,1));
+	meshList[GEO_INVENTORY_ITEM_10]->textureID = LoadTGA("Image//inventoryImages//inventory_box_10.tga");
 }
 
 void SP2::initCar()
@@ -872,6 +900,24 @@ void SP2::initOuterSkybox()
 	outerSkyboxMinBound.Set(-outerSkyboxSize.x/2 + skyboxOffset*2, skyboxOffset, -outerSkyboxSize.z/2 + skyboxOffset*2);
 }
 
+void SP2::initGame()
+{
+	inGame = 0 ;
+	 //can be used for displaying and storing score - 
+	playerScore[0] = 0; // 0-  for game 1
+	playerScore[1] = 0; // 1 - for game 2
+	playerScore[2] = 0; // 2 - for game 3
+	timeFrame = 0; // time fame given to player can be used to display previous attempts
+	totalCost = 0; // total amount that is given to player 
+
+	// game 1 - treasure hunt
+	Vector3 game1Position(supermarketPosition.x - (3 * supermarketScale.z) , supermarketPosition.y , supermarketPosition.z + ( 3 * supermarketScale.z));
+	game1MaxBound.Set( game1Position.x + ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z + ( 2 * supermarketScale.z));
+	game1MinBound.Set( game1Position.x - ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z - ( 2 * supermarketScale.z));
+	pickCorrect = false;
+	randomItem = rand() % 10 + 33; // generate random item - the inventory pic items
+}
+
 void SP2::Update(double dt)
 {
 
@@ -888,7 +934,7 @@ void SP2::Update(double dt)
 	}
 	keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
 	keypressed[K_LEFT_PLACE] = Application::IsKeyPressed('F');
-	keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
+	keypressed[K_START_STORY] = keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
 	keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
 	keypressed[K_FIRST_FLOOR] = Application::IsKeyPressed('O');
 	keypressed[K_SECOND_FLOOR] = Application::IsKeyPressed('P');
@@ -910,22 +956,18 @@ void SP2::Update(double dt)
 		pObj = list[i];
 		if (pObj->getRender())
 		{
+			// check if target is within the bound of the size with scale [ need calcbound() ]
 			if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
 			{
-				if (pObj->getID() == GEO_CAR)
+				// only enter car when both hand empty
+				if (pObj->getID() == GEO_CAR && keypressed[K_ENTER_CAR] && hands[0] == NULL && hands[1] == NULL) 
 				{
-					if (keypressed[K_ENTER_CAR])
-					{
-						if (hands[0] == NULL && hands[1] == NULL)
-						{
-							hands[0] = hands[1] = pObj;
-							saved = camera;
-							pObj->setRender(false);
-							camera = static_cast<CCar*>(pObj)->carCamera;
-							rotateHandX = 0;
-							rotateHandY = hands[0]->getRotate().y -90;
-						}
-					}
+					hands[0] = hands[1] = pObj;
+					saved = camera;
+					pObj->setRender(false);
+					camera = static_cast<CCar*>(pObj)->carCamera;
+					rotateHandX = 0;
+					rotateHandY = hands[0]->getRotate().y -90;
 				}
 				else if (pObj->getID() == GEO_SHELF)
 				{
@@ -933,25 +975,33 @@ void SP2::Update(double dt)
 				}
 				else if (pObj->getID() == GEO_TROLLEY)
 				{
-					if (keypressed[K_ENTER_TROLLEY])
+					// TROLLEY STUFFS ====================================================
+					if (keypressed[K_ENTER_TROLLEY] && hands[0] == NULL && hands[1] == NULL)
 					{
-						if (hands[0] == NULL && hands[1] == NULL)
-						{
-							hands[0] = hands[1] = pObj;
-							saved = camera;
-							camera = static_cast<CTrolley*>(pObj)->camera;
-							rotateHandX = trolleyRotateHandX;
-							rotateHandY = hands[0]->getRotate().y;
-						}
+						hands[0] = hands[1] = pObj;
+						saved = camera;
+						camera = static_cast<CTrolley*>(pObj)->camera;
+						rotateHandX = trolleyRotateHandX;
+						rotateHandY = hands[0]->getRotate().y;
 					}
 					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
 					{
 						static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
+						// when in game1 - checking for correct item picked 
+						if(inGame == 1 && static_cast<CItem*>(hands[0])->getItem() == meshList[randomItem -10])
+						{
+							pickCorrect = true;
+						}
 						hands[0] = NULL;
 					}
 					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
 					{
 						static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
+						// when in game1 - checking for correct item picked
+						if(inGame == 1 && static_cast<CItem*>(hands[1])->getItem() == meshList[randomItem -10])
+						{
+							pickCorrect = true;
+						}
 						hands[1] = NULL;
 					}
 					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
@@ -1007,6 +1057,7 @@ void SP2::Update(double dt)
 	updateSuperMarket(dt);
 	updateHands(dt);
 	updateCamera(dt);
+	updateGame(dt);
 
 	if(Application::IsKeyPressed('Z'))
 	{
@@ -1028,10 +1079,6 @@ void SP2::Update(double dt)
 
 void SP2::updateCamera(double dt)
 {
-	//if(camera.position.x < screenMaxBound.x && camera.position.x > screenMinBound.x && camera.position.z < screenMaxBound.z && camera.position.z > screenMinBound.z )
-	{
-
-	}
 	if(cam == true)
 	{
 		camera = cameraList[camNum]->camera;
@@ -1067,6 +1114,33 @@ void SP2::updateCamera(double dt)
 		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
 	}
 
+}
+
+void SP2::updateGame(double dt)
+{
+	static const float ROTATE_SPEED = 100.f;
+	// tresure hunt game start bound
+	if(camera.position.x < game1MaxBound.x && camera.position.x > game1MinBound.x && camera.position.z < game1MaxBound.z && camera.position.z > game1MinBound.z)
+	{
+		if(keypressed[K_START_STORY] && inGame == 0)// check if want to start game + no game involved currently
+		{
+			saved = camera;
+			inGame = 1;
+			timeFrame = 30;
+			playerScore[0] = 0;
+		}
+	}
+	if(inGame == 1) // in treasure hunt mode aka game 1
+	{
+		timeFrame -= dt; //constant countdown
+		// getting out of game 1
+		if(timeFrame <= 0 && inGame == 1)
+		{
+			camera = saved;
+			inGame = 0;
+			Application::IsKeyPressed('R');
+		}
+	}
 }
 
 void SP2::updateTrolley(double dt)
@@ -1123,45 +1197,33 @@ void SP2::updateHands(double dt)
 void SP2::updateShelf()
 {
 	// Pick up item for left hand
-	if (keypressed[K_LEFT_PICK] && hands[0] == NULL)
+	if (keypressed[K_LEFT_PICK] && hands[0] == NULL && static_cast<CShelf*>(pObj)->itemList.size() > 0)
 	{
-		if (static_cast<CShelf*>(pObj)->itemList.size() > 0)
-		{
-			hands[0] = static_cast<CObj*>(static_cast<CShelf*>(pObj)->itemList[static_cast<CShelf*>(pObj)->itemList.size() - 1]);
-			static_cast<CShelf*>(pObj)->itemList.pop_back();
-		}
+		hands[0] = static_cast<CObj*>(static_cast<CShelf*>(pObj)->itemList[static_cast<CShelf*>(pObj)->itemList.size() - 1]);
+		static_cast<CShelf*>(pObj)->itemList.pop_back();
 	}
 
 	// Place item for left hand
-	if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+	if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM && static_cast<CShelf*>(pObj)->itemList.size() < static_cast<CShelf*>(pObj)->limit )
 	{
-		if (static_cast<CShelf*>(pObj)->itemList.size() < static_cast<CShelf*>(pObj)->limit)
-		{
-			hands[0]->setTranslate(static_cast<CShelf*>(pObj)->itemPosition[static_cast<CShelf*>(pObj)->itemList.size()]);
-			static_cast<CShelf*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
-			hands[0] = NULL;
-		}
+		hands[0]->setTranslate(static_cast<CShelf*>(pObj)->itemPosition[static_cast<CShelf*>(pObj)->itemList.size()]);
+		static_cast<CShelf*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
+		hands[0] = NULL;
 	}
 
 	// Pick up item for right hand
-	if (keypressed[K_RIGHT_PICK] && hands[1] == NULL)
+	if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && static_cast<CShelf*>(pObj)->itemList.size() > 0)
 	{
-		if (static_cast<CShelf*>(pObj)->itemList.size() > 0)
-		{
-			hands[1] = static_cast<CObj*>(static_cast<CShelf*>(pObj)->itemList[static_cast<CShelf*>(pObj)->itemList.size() - 1]);
-			static_cast<CShelf*>(pObj)->itemList.pop_back();
-		}
+		hands[1] = static_cast<CObj*>(static_cast<CShelf*>(pObj)->itemList[static_cast<CShelf*>(pObj)->itemList.size() - 1]);
+		static_cast<CShelf*>(pObj)->itemList.pop_back();
 	}
 
 	// Place item for right hand
-	if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+	if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM && static_cast<CShelf*>(pObj)->itemList.size() < static_cast<CShelf*>(pObj)->limit)
 	{
-		if (static_cast<CShelf*>(pObj)->itemList.size() < static_cast<CShelf*>(pObj)->limit)
-		{
-			hands[1]->setTranslate(static_cast<CShelf*>(pObj)->itemPosition[static_cast<CShelf*>(pObj)->itemList.size()]);
-			static_cast<CShelf*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
-			hands[1] = NULL;
-		}
+		hands[1]->setTranslate(static_cast<CShelf*>(pObj)->itemPosition[static_cast<CShelf*>(pObj)->itemList.size()]);
+		static_cast<CShelf*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
+		hands[1] = NULL;
 	}
 }
 
@@ -1309,7 +1371,6 @@ void SP2::updateCar(double dt)//updating car
 
 void SP2::updateHuman(double dt)
 {
-
 	for(int a = 0; a < objList.size(); ++a)
 	{
 		if(objList[a]->getID()==GEO_HUMAN)
@@ -1373,7 +1434,6 @@ void SP2::updateHuman(double dt)
 		}
 	}
 }
-
 
 
 void SP2::Render()
@@ -1521,7 +1581,7 @@ void SP2::Render()
 			}
 		}
 	}
-
+	renderGame(inGame);
 	renderText();
 }
 
@@ -1720,6 +1780,68 @@ void SP2::renderCar()
 	}
 
 	modelStack.PopMatrix();									// End of car
+}
+
+void SP2::renderGame(int a)// 1- treasure hunt 
+{
+	std::ostringstream sTF, sPS;
+	sTF << (int)timeFrame;//time given / time taken CHANGE IN UPDATE GAME
+	switch (a)
+	{
+	case 1 :
+		{
+			sPS << playerScore[0]; 
+			if(pickCorrect == false)
+			{
+				// display item to be picked up 
+				modelStack.PushMatrix();
+				modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
+				modelStack.Rotate(rotateHandY,0,1,0);
+				modelStack.Rotate(rotateHandX,1,0,0);
+				modelStack.Translate(4,2.5,4);
+				modelStack.Scale(2,2,2);
+				RenderMesh(meshList[randomItem] , false);
+				modelStack.PopMatrix();	
+			}
+			else
+			{
+				//if found correct , gain point plus new item to find
+				playerScore[0] += 1;
+				randomItem = rand() % 10 + 33;
+				pickCorrect = false;
+			}
+			modelStack.PushMatrix();
+			RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
+			RenderTextOnScreen(meshList[GEO_TEXT] , sTF.str(), Color(1,0,0), 2 , 38 , 20);
+			RenderTextOnScreen(meshList[GEO_TEXT], "Score:", Color (1,0,0), 2, 30, 18);
+			RenderTextOnScreen(meshList[GEO_TEXT] ,sPS.str(), Color(1,0,0), 2, 38 , 18);
+			modelStack.PopMatrix();
+		}
+		break;
+	case 2:
+		{
+		}
+		break;
+	case 3:
+		{
+		}
+		break;
+	case 0: // show story points
+		{
+			//============= GAME 1 : TREASURE HUNT ==========================
+			sPS << playerScore[0];
+			modelStack.PushMatrix();
+			glDisable(GL_CULL_FACE);
+			modelStack.Translate(game1MaxBound.x - 3 * supermarketScale.x , camera.position.y, game1MaxBound.z - 2 * supermarketScale.z);
+			modelStack.Scale(supermarketScale.x, supermarketScale.y, supermarketScale.z);
+			RenderText(meshList[GEO_TEXT],"[" ,Color(1,0,0));
+			RenderText(meshList[GEO_TEXT],sPS.str() , Color(1,0,0));
+			modelStack.Translate(0,-1,0);
+			RenderText(meshList[GEO_TEXT]," V " ,Color(1,0,0));
+			modelStack.PopMatrix();
+		}
+		break;
+	}
 }
 
 void SP2::renderHuman() 
