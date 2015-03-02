@@ -394,12 +394,29 @@ void SP2::initCar()
 void SP2::initCabinet()
 {	
 	//Special Display Cabinet with the Tardis
-	meshList[GEO_CABINET] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
-	meshList[GEO_CABINET] ->textureID = LoadTGA("Image//displayGallifrey.tga");
-	pObj = new CObj(GEO_CABINET, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	meshList[GEO_DISPLAY1] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
+	meshList[GEO_DISPLAY1] ->textureID = LoadTGA("Image//displayGallifrey.tga");
+	pObj = new CObj(GEO_DISPLAY1, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
 	pObj->calcBound();
 	objList2.push_back(pObj);
-	//Regular Display Cabinet 
+	//FangShu Display Cabinet
+	meshList[GEO_DISPLAY2] = MeshBuilder::GenerateOBJ("Display Cabinet with Potato", "OBJ//display_case.obj");
+	meshList[GEO_DISPLAY2] ->textureID = LoadTGA("Image//displayPotato.tga");
+	pObj = new CObj(GEO_DISPLAY2, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//Tim Lin Display Cabinet
+	meshList[GEO_DISPLAY3] = MeshBuilder::GenerateOBJ("Display Cabinet with Tim Lin's Item",  "OBJ//display_case.obj");
+	meshList[GEO_DISPLAY3]->textureID = LoadTGA("Image//displaySilver.tga");
+	pObj = new CObj(GEO_DISPLAY3, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//Rayson Display Cabinet
+	meshList[GEO_DISPLAY4] = MeshBuilder::GenerateOBJ("Display Cabinet with Thor's Item",  "OBJ//display_case.obj");
+	meshList[GEO_DISPLAY4]->textureID = LoadTGA("Image//displayCircuit.tga");
+	pObj = new CObj(GEO_DISPLAY4, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
 }
 
 void SP2::initSuperMarket()
@@ -1373,7 +1390,7 @@ void SP2::updateHuman(double dt)
 {
 	for(int a = 0; a < objList.size(); ++a)
 	{
-		if(objList[a]->getID()==GEO_HUMAN)
+		if(objList[a]->getID()==GEO_HUMAN && floorNum == 1)
 		{
 		
 			if(static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
@@ -1390,14 +1407,14 @@ void SP2::updateHuman(double dt)
 				{
 					cout<<"Cashier says hi"<<endl;
 				}
-
+				    
 			}
-			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
-			{
+			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)  
+			{    
 				static_cast<CSecurityGuard*> (objList[a])->setInteractionBound(camera.position,50);
 				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
 				{
-					cout<<"Securityguard says hi"<<endl;
+					cout<<"Securityguard says hi"<<endl;   
 				}
 
 			}
@@ -1419,13 +1436,13 @@ void SP2::updateHuman(double dt)
 				
 				for(int a = 0; a < objList2.size(); ++a)
 				{
-					if(objList2[a]->getID()==GEO_HUMAN)
+					if(objList2[a]->getID()==GEO_HUMAN  && floorNum == 2)
 					{
 						if(static_cast<CPromoter*>(objList2[a])->getRole()==4)
 						{
 							static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
 							if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
-								cout<<"Shopper says hi"<<endl;
+								cout<<"Promoter says hi"<<endl;
 						}
 
 					}
@@ -1677,10 +1694,29 @@ void SP2::renderHands()
 
 void SP2::renderCabinet()
 {
+	//Tardis Display Shelf
 	modelStack.PushMatrix();
 	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y , pObj->getTranslate().z );
 	modelStack.Scale(pObj->getScale().x * .75, pObj->getScale().y * .75, pObj->getScale().z * .5 );
-	RenderMesh(meshList[GEO_CABINET], togglelight);
+	RenderMesh(meshList[GEO_DISPLAY1], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .75, pObj->getScale().y * .75, pObj->getScale().z * .5 );
+	RenderMesh(meshList[GEO_DISPLAY2], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .75, pObj->getScale().y * .75, pObj->getScale().z * .5 );
+	RenderMesh(meshList[GEO_DISPLAY3], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .75, pObj->getScale().y * .75, pObj->getScale().z * .5 );
+	RenderMesh(meshList[GEO_DISPLAY4], togglelight);
 	modelStack.PopMatrix();
 }
 
