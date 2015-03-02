@@ -88,6 +88,7 @@ void SP2::Init()
 	initCabinet();
 	initCamera();
 	initGame();
+	initSpecialItems();
 }
 
 void SP2::initHands()
@@ -416,6 +417,15 @@ void SP2::initCabinet()
 	meshList[GEO_DISPLAY4]->textureID = LoadTGA("Image//displayCircuit.tga");
 	pObj = new CObj(GEO_DISPLAY4, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
 	pObj->calcBound();
+	objList2.push_back(pObj);
+}
+
+void SP2::initSpecialItems()
+{
+	//Potato
+	meshList[GEO_POTATO] = MeshBuilder::GenerateOBJ("Potato", "OBJ//potato.obj");
+	meshList[GEO_POTATO] ->textureID = LoadTGA("Image//potato.tga");
+	pObj = new CObj(GEO_POTATO, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 5.25 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3)); 
 	objList2.push_back(pObj);
 }
 
@@ -1720,6 +1730,14 @@ void SP2::renderCabinet()
 	modelStack.PopMatrix();
 }
 
+void SP2::renderSpecialItems()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * 1, pObj->getScale().y * 1, pObj->getScale().z * 1 );
+	RenderMesh(meshList[GEO_POTATO], togglelight);
+	modelStack.PopMatrix();
+}
 void SP2::renderShelf()
 {
 	modelStack.PushMatrix();

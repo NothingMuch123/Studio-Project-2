@@ -89,6 +89,7 @@ public:
 		GEO_ITEM_8,
 		GEO_ITEM_9,
 		GEO_ITEM_10,
+		GEO_POTATO,
 		// inventory picture of items - do not touch 
 		GEO_INVENTORY_ITEM_1,
 		GEO_INVENTORY_ITEM_2,
@@ -215,6 +216,10 @@ private:
 	void renderHuman(); 
 
 	void initItems();
+	
+	void initSpecialItems();
+	void updateSpecialitems();
+	void renderSpecialItems();
 
 	void initShelf(int Choice,Vector3 _translate, Vector3 _rotate);
 	void updateShelf();
