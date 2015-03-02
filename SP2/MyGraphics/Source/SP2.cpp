@@ -11,6 +11,10 @@
 #include <sstream>
 #include <ctime>
 #include <fstream>
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 SP2::SP2()
 {
@@ -22,7 +26,7 @@ SP2::~SP2()
 
 void SP2::Init()
 {
-	initValues();
+	
 
 	// Init VBO here
 
@@ -76,7 +80,9 @@ void SP2::Init()
 
 	initCar();
 
-	initHuman(3,Vector3(-60,3,65),Vector3(0,90,0),camera.position,60);
+	initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
+	
+	initValues();
 
 	initOuterSkybox();
 	initSuperMarket();
@@ -800,21 +806,39 @@ void SP2::lightParameters()
 
 void SP2::initValues()
 {
-	floorNum = 2; // start at first floor
+	floorNum = 1; // start at first floor
 	newFloor = 1;
 	cam = false;
 	fps = 60;
 	togglelight = false;
-	moveAiX = 0;
-	moveAiZ = 0;
-	RouteID = 0;
-	AiRouteLocation.push_back(Vector3(-140,0,-120));
-	AiRouteLocation.push_back(Vector3(-140,0,0));
-	AiRouteLocation.push_back(Vector3(0,0,0));
-	AiRouteLocation.push_back(Vector3(50,0,100));
-	AiRouteLocation.push_back(Vector3(145,0,20));
-	AiRouteLocation.push_back(Vector3(150,0,-110));
-	AiRouteLocation.push_back(Vector3(10,0,-125));
+
+	
+
+	
+	for(int a = 0; a<objList.size();++a)
+	{
+		if(objList[a]->getID() == GEO_HUMAN)
+		{
+			if(static_cast <CCharacter*>(objList[a])->getRole()==1)//Cashier
+			{
+			}
+			else if(static_cast <CCharacter*>(objList[a])->getRole()==2)//SecurityGuard
+			{
+			}
+			else if(static_cast <CCharacter*>(objList[a])->getRole()==3)//Shopper
+			{
+				static_cast <CCharacter*>(objList[a])->setRouteID(0);
+
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,-100));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
+			}
+		}
+	}
+
 	for(int i = 0; i < NUM_KEYPRESS; ++i)
 	{
 		keypressed[i] = false;
@@ -1286,14 +1310,18 @@ void SP2::updateCar(double dt)//updating car
 void SP2::updateHuman(double dt)
 {
 
-
-	moveAiX += 1*(int)(dt);
-	moveAiZ += 1*(int)(dt);
-
 	for(int a = 0; a < objList.size(); ++a)
 	{
 		if(objList[a]->getID()==GEO_HUMAN)
 		{
+		
+			if(static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
+			{
+				static_cast <CCharacter*>(objList[a])->setRouteID(rand()%static_cast <CCharacter*>(objList[a])->AiRouteLocation.size());
+			}
+
+			static_cast <CCharacter*>(objList[a])->WalkTo(static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()]);
+
 			if(static_cast<CCashier*>(objList[a])->getRole()==1)
 			{
 				static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
@@ -1315,16 +1343,19 @@ void SP2::updateHuman(double dt)
 			else if(static_cast<CShopper*>(objList[a])->getRole()==3)
 			{
 				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
+				
 				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
 					cout<<"Shopper says: You're near me"<<endl;
 				}
+
 
 			}
 
 
 			else 
 			{
+				
 				for(int a = 0; a < objList2.size(); ++a)
 				{
 					if(objList2[a]->getID()==GEO_HUMAN)
@@ -1340,7 +1371,6 @@ void SP2::updateHuman(double dt)
 				}
 			}
 		}
-		cout<<" "<<endl;
 	}
 }
 
@@ -1694,13 +1724,6 @@ void SP2::renderCar()
 
 void SP2::renderHuman() 
 {
-	cout<<camera.position;
-	if(static_cast<CShopper*>(pObj)->getTranslate().x == AiRouteLocation[RouteID].x && static_cast<CShopper*>(pObj)->getTranslate().z == AiRouteLocation[RouteID].z)
-	{
-		RouteID = rand()%AiRouteLocation.size();
-	}
-
-	static_cast<CShopper*>(pObj)->WalkTo(AiRouteLocation[RouteID]);
 	pObj->calcBound();
 
 	if(static_cast<CCharacter*>(pObj)->getRole()==1)
@@ -1804,7 +1827,7 @@ void SP2::renderHuman()
 	{
 		modelStack.PushMatrix();
 		modelStack.PushMatrix();
-		modelStack.Translate(pObj->getTranslate().x+moveAiX, pObj->getTranslate().y, pObj->getTranslate().z+moveAiZ);
+		modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
 		modelStack.Rotate(pObj->getRotate().x, 1,0,0);
 		modelStack.Rotate(pObj->getRotate().y, 0,1,0);
 		modelStack.Rotate(pObj->getRotate().z, 0,0,1);	

@@ -89,6 +89,7 @@ public:
 		//Human
 		//SHOPPER
 		GEO_HUMAN, // No mesh
+
 		GEO_HUMAN_SHOPPER_BODY,
 		GEO_HUMAN_SHOPPER_ARM,
 		GEO_HUMAN_SHOPPER_HAND,
@@ -267,16 +268,11 @@ private:
 	float rotateHandX, rotateHandY, trolleyRotateHandX;
 	CObj *hands[2]; // 0 - Left, 1 - Right
 
-	//human variables 
-	int moveAiX , moveAiZ;
 	float tempX, tempY, tempZ, tempPitch, tempYaw, tempTargetX, tempTargetY, tempTargetZ;
 
 	//variable use for testing - constantly increasing
 	float temp;
 	CObj *tempP;
-
-	std::vector<Vector3> AiRouteLocation;
-	int RouteID;
 };
 
 #endif

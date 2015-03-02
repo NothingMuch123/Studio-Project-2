@@ -64,8 +64,71 @@ void CCharacter::updateChar(bool getIsControlled,double dt)
 {
 }
 
+void CCharacter::setmoveX(int moveX)
+{
+	this->moveX = moveX;
+}
+int CCharacter::getmoveX()
+{
+	return moveX;
+}
+
+void CCharacter::setmoveZ(int moveZ)
+{
+	this->moveZ = moveZ;
+}
+
+int CCharacter::getmoveZ()
+{
+	return moveZ;
+}
+
+void CCharacter::setRouteID(int RouteID)
+{
+	this->RouteID = RouteID;
+}
+
+int CCharacter::getRouteID()
+{
+	return RouteID;
+}
+
 CCharacter::~CCharacter(void)
 {
+}
+
+void CCharacter::WalkTo(Vector3 TargetPos)
+{
+	if(TargetPos.z==this->getTranslate().z)
+	{
+		if(TargetPos.x>this->getTranslate().x)
+		{
+			this->setTranslate(Vector3(this->getTranslate().x+0.5,this->getTranslate().y,this->getTranslate().z));
+		}
+		else if(TargetPos.x<this->getTranslate().x)
+		{
+			this->setTranslate(Vector3(this->getTranslate().x-0.5,this->getTranslate().y,this->getTranslate().z));
+		}
+		else
+		{
+			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+		}
+	}
+	else 
+	{
+		if(TargetPos.z>this->getTranslate().z)
+		{
+			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z+0.5));
+		}
+		else if(TargetPos.z<this->getTranslate().z)
+		{
+			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z-0.5));
+		}
+		else
+		{
+			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+		}
+	}
 }
 //void CCharacter::calcBound()
 //{

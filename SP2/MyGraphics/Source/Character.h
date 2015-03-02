@@ -22,9 +22,13 @@ private:
 
 	Mesh *Character;
 
-	int Role;
+	int Role,moveX,moveZ,RouteID;
+
+	
 
 public:
+
+	vector <Vector3> AiRouteLocation;
 
 	CCharacter(void);
 
@@ -40,10 +44,21 @@ public:
 	void setScript(string Word,bool withinIB);//IB=Interaction Bound
 	string getScript();
 
+	void setmoveX(int moveX);
+	int getmoveX();
+
+	void setmoveZ(int moveZ);
+	int getmoveZ();
+
+	void setRouteID(int RouteID);
+	int getRouteID();
+
 	Mesh* getCharacter();
 		
 	virtual void updateChar(bool getIsControlled,double dt);
 	
+	void WalkTo(Vector3 TargetPosition);
+
 	Camera3 AICamera;
 
 	~CCharacter(void);
