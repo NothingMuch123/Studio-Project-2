@@ -949,7 +949,7 @@ void SP2::initGame()
 	timeFrame = 0; // time fame given to player can be used to display previous attempts
 	totalCost = 0; // total amount that is given to player 
 
-	// game 1 - treasure hunt
+	// game 1 - shopper
 	Vector3 game1Position(supermarketPosition.x - (3 * supermarketScale.z) , supermarketPosition.y , supermarketPosition.z + ( 3 * supermarketScale.z));
 	game1MaxBound.Set( game1Position.x + ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z + ( 2 * supermarketScale.z));
 	game1MinBound.Set( game1Position.x - ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z - ( 2 * supermarketScale.z));
@@ -961,6 +961,24 @@ void SP2::initGame()
 	game2MaxBound.Set(game2Position.x + (2 * supermarketScale.x) , game2Position.y, game2Position.z + (2 * supermarketScale.z));
 	game2MinBound.Set(game2Position.x - (2 * supermarketScale.x) , game2Position.y, game2Position.z - (2 * supermarketScale.z));
 	itemLeft = 10; // item left to "check out
+
+	//game 3 - security guard
+	Vector3 game3Position(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z );
+	game3MaxBound.Set(game3Position.x + (2 * supermarketScale.x) , game3Position.y , game3Position.z + ( 2 * supermarketScale.z));
+	game3MinBound.Set(game3Position.x - (2 * supermarketScale.x) , game3Position.y , game3Position.z - ( 2 * supermarketScale.z));
+	
+	game3 = false; // to tell if is inside game 3, used by security cam and game 3
+	bobMoveX = 0;
+	bobMoveZ = 0;
+	//initialize BOB - controllable security guard for game 3
+	meshList[GEO_GAME3_BOB_BODY] = MeshBuilder::GenerateOBJ("Bob's Body" ,"OBJ//humanModel_bodyNhead.obj");
+	meshList[GEO_GAME3_BOB_BODY]->textureID = LoadTGA("Image//Police.tga");
+	meshList[GEO_GAME3_BOB_ARM] = MeshBuilder::GenerateOBJ("Bob's arm" , "OBJ//humanModel_leftshoulder.obj");
+	meshList[GEO_GAME3_BOB_ARM]->textureID = LoadTGA("Image//Police.tga");
+	meshList[GEO_GAME3_BOB_HAND] = MeshBuilder::GenerateOBJ("Bob's hand " , "OBJ//humanModel_lefthand.obj");
+	meshList[GEO_GAME3_BOB_HAND]->textureID = LoadTGA("Image//Police.tga");
+	meshList[GEO_GAME3_BOB_LEG] = MeshBuilder::GenerateOBJ("BOB's leg", "OBJ//humanModel_leftLeg.obj");
+	meshList[GEO_GAME3_BOB_LEG]->textureID = LoadTGA("Image//Police.tga");
 }
 
 void SP2::Update(double dt)
@@ -1191,7 +1209,7 @@ void SP2::updateCamera(double dt)
 			camNum = 1;
 		}
 	}
-	if(keypressed[K_EXIT_CAM] && cam == true)
+	if(keypressed[K_EXIT_CAM] && cam == true && game3 == false)
 	{
 		floorNum = 2;
 		cam = false;
@@ -1236,6 +1254,17 @@ void SP2::updateGame(double dt)
 			}
 		}
 	}
+	//guard game start bound
+	if(camera.position.x < game3MaxBound.x && camera.position.x > game3MinBound.x && camera.position.z < game3MaxBound.z && camera.position.z > game3MinBound.z)
+	{
+		if(keypressed[K_START_STORY] && inGame == 0)
+		{
+			game3 = true;
+			saved = camera;
+			cam = true;
+			inGame = 3;
+		}
+	}
 	if(inGame == 1) // in treasure hunt mode aka game 1
 	{
 		//constant countdown
@@ -1253,6 +1282,7 @@ void SP2::updateGame(double dt)
 		// getting out of game 2
 		if( itemLeft == 0 && inGame == 2)
 		{
+			playerScore[1] = timeFrame;
 			CItem *pItem;
 			inGame = 0;
 			for(int i = 0 ; i < checkoutList.size(); ++i)
@@ -1262,6 +1292,76 @@ void SP2::updateGame(double dt)
 			}
 		}
 	}
+	if(inGame == 3)
+	{
+		//note to all - this story own time own target
+		// no points in this story though
+		// using WASD to move security guard got bound check - using referance from camera3 code
+		tempBobMoveX = bobMoveX ;
+		tempBobMoveZ = bobMoveZ ;
+
+		if(Application::IsKeyPressed('W'))
+		{
+			bobMoveX += 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+		if(Application::IsKeyPressed('S'))
+		{
+			bobMoveX -= 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+		if(Application::IsKeyPressed('D'))
+		{
+			bobMoveZ += 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+		if(Application::IsKeyPressed('A'))
+		{
+			bobMoveZ -= 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+
+		if(keypressed[K_EXIT_CAM] && game3 == true)
+		{ 
+			floorNum = 1;
+			camera = saved;
+			game3 = false;
+			cam = false;
+			inGame = 0;
+		}
+	}
+}
+
+bool SP2::updateBoundCheckGame3()
+{
+	for(int i = 0 ; i < objList.size(); ++i)
+	{
+		pObj = objList[i];
+		if(pObj->getRender())
+		{
+			if(bobMoveX < pObj->getMaxBound().x && bobMoveX > pObj->getMinBound().x && bobMoveZ < pObj->getMaxBound().z && bobMoveZ > pObj->getMinBound().z )
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 void SP2::updateTrolley(double dt)
@@ -2088,8 +2188,34 @@ void SP2::renderGame(int a)// 1- treasure hunt
 				modelStack.PopMatrix();
 			}
 			break;
-		case 3:
+		case 3: // guard control game - will render bob, all movement is in update game
 			{
+				modelStack.Translate(supermarketPosition.x , supermarketPosition.y + 5, supermarketPosition.z);
+				modelStack.Scale(supermarketScale.x/2 , supermarketScale.y/2 + 0.1, supermarketScale.z/4);	
+				
+				RenderMesh(meshList[GEO_GAME3_BOB_BODY],false); // ======= BOB's BODY
+				modelStack.PushMatrix();
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_ARM],false); // ========= BOB's RIGHT ARM
+				modelStack.Translate(0,-0.95,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_HAND],false); // ========= BOB's Right Hand
+				modelStack.PopMatrix();
+				modelStack.PushMatrix();
+				modelStack.Translate(-1.5,2.8,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_ARM],false); // ========= BOB's LEFT ARM
+				modelStack.Translate(0,-0.95,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_HAND],false);// ========== BOB's left Hand
+				modelStack.PopMatrix();
+				modelStack.PushMatrix();
+				modelStack.Translate(0.6,0.5,0);
+				modelStack.Scale(0.9,1.2,1);
+				RenderMesh(meshList[GEO_GAME3_BOB_LEG],false);// =========== BOB's right leg
+				modelStack.PopMatrix();
+				modelStack.PushMatrix();
+				modelStack.Translate(-0.6,0.5,0);
+				modelStack.Scale(0.9,1.2,1);
+				RenderMesh(meshList[GEO_GAME3_BOB_LEG],false);// =========== BOB's left leg
+				modelStack.PopMatrix();
 			}
 			break;
 		case 0: // show story/game starting areas
@@ -2112,7 +2238,16 @@ void SP2::renderGame(int a)// 1- treasure hunt
 				modelStack.Translate(1,-1,0);
 				RenderText(meshList[GEO_TEXT] ,"V " , Color(1,0,0));
 				modelStack.PopMatrix();
-				glEnable(GL_CULL_FACE);
+
+				//============== GAME 3 : GUARD =========================
+				modelStack.PushMatrix();
+				modelStack.Translate(game3MaxBound.x - (2*supermarketScale.x) , camera.position.y ,game3MaxBound.z - (2 * supermarketScale.z));
+				modelStack.Scale(supermarketScale.x , supermarketScale.y, supermarketScale.z);
+				RenderText(meshList[GEO_TEXT] ,"[S]" ,Color(1,0,0));
+				modelStack.Translate(1,-1,0);
+				RenderText(meshList[GEO_TEXT],"V",Color(1,0,0));
+				modelStack.PopMatrix();
+				glEnable(GL_CULL_FACE);			
 			}
 			break;
 		}

@@ -121,6 +121,12 @@ public:
 		GEO_HUMAN_STAFF_HAND,
 		GEO_HUMAN_STAFF_LEG,
 
+		//Game 3 security - used in game 3 , being controlled by player
+		GEO_GAME3_BOB_BODY,
+		GEO_GAME3_BOB_ARM,
+		GEO_GAME3_BOB_HAND,
+		GEO_GAME3_BOB_LEG,
+
 		//Size referance - unit cube
 		GEO_CUBE,
 
@@ -242,10 +248,10 @@ private:
 	void updatePatch();
 	void renderPatch();
 
-	//TODO : define function for game 
 	void initGame(); 
 	void renderGame(int a);
 	void updateGame(double dt);
+	bool updateBoundCheckGame3();
 
 	bool togglelight;
 	double fps;
@@ -317,6 +323,10 @@ private:
 	int itemLeft; // number of items left on cashier table in game 2
 	std::vector<CItem*> bagList; // bottomless pit - used to store items
 	
+	//game3 variable - useless guard
+	Vector3 game3MaxBound, game3MinBound;
+	float bobMoveX, bobMoveZ, tempBobMoveX, tempBobMoveZ; // moving of security guard
+	bool game3 , hitSomething;
 };
 
 #endif
