@@ -406,25 +406,25 @@ void SP2::initCabinet()
 	tardisPitch = 0;
 	meshList[GEO_DISPLAY1] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY1] ->textureID = LoadTGA("Image//displayGallifrey.tga");
-	pObj = new CObj(GEO_DISPLAY1, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	pObj = new CObj(GEO_DISPLAY1, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y *.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
 	//pObj->calcBound();
 	objList2.push_back(pObj);
 	//FangShu Display Cabinet
 	meshList[GEO_DISPLAY2] = MeshBuilder::GenerateOBJ("Display Cabinet with Potato", "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY2] ->textureID = LoadTGA("Image//displayPotato.tga");
-	pObj = new CObj(GEO_DISPLAY2, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	pObj = new CObj(GEO_DISPLAY2, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y*.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
 	//pObj->calcBound();
 	objList2.push_back(pObj);
 	//Tim Lin Display Cabinet
 	meshList[GEO_DISPLAY3] = MeshBuilder::GenerateOBJ("Display Cabinet with Tim Lin's Item",  "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY3]->textureID = LoadTGA("Image//displaySilver.tga");
-	pObj = new CObj(GEO_DISPLAY3, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	pObj = new CObj(GEO_DISPLAY3, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y*.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
 	//pObj->calcBound();
 	objList2.push_back(pObj);
 	//Rayson Display Cabinet
 	meshList[GEO_DISPLAY4] = MeshBuilder::GenerateOBJ("Display Cabinet with Thor's Item",  "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY4]->textureID = LoadTGA("Image//displayCircuit.tga");
-	pObj = new CObj(GEO_DISPLAY4, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	pObj = new CObj(GEO_DISPLAY4, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y*.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
 	//pObj->calcBound();
 	objList2.push_back(pObj);
 }
@@ -434,44 +434,44 @@ void SP2::initSpecialItems()
 	//Time Potato
 	meshList[GEO_POTATO] = MeshBuilder::GenerateOBJ("Potato", "OBJ//potato.obj");
 	meshList[GEO_POTATO] ->textureID = LoadTGA("Image//potato.tga");
-	pObj = new CObj(GEO_POTATO, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 2.5 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,-45), Vector3(supermarketScale.x* .05 ,supermarketScale.y * .05,supermarketScale.z * 0.0375), Vector3(3, 3 ,3)); 
+	pObj = new CObj(GEO_POTATO, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1.5 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,-45), Vector3(supermarketScale.x* .15 ,supermarketScale.y * .15,supermarketScale.z * .15), Vector3(3, 3 ,3)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//Mjolnir
 	meshList[GEO_THOR] = MeshBuilder::GenerateOBJ("Mjolnir", "OBJ//mjolnir.obj");
 	meshList[GEO_THOR]->textureID = LoadTGA("Image//mjolnir.tga");
-	pObj = new CObj(GEO_THOR, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + 2.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .2 ,supermarketScale.y * .2,supermarketScale.z * 0.15), Vector3(3, 3 ,3)); 
+	pObj = new CObj(GEO_THOR, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .8 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .8 ,supermarketScale.y * .8,supermarketScale.z * .45886), Vector3(3, 3 ,3)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//WUKONG'S STAFF
 	meshList[GEO_WUKONG] = MeshBuilder::GenerateOBJ("Jingu Bang", "OBJ//wukong_staff.obj");
 	meshList[GEO_WUKONG]->textureID = LoadTGA("Image//wukong_staff.tga");
-	pObj = new CObj(GEO_WUKONG, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 2.3 * supermarketScale.y, supermarketPosition.z + 5.15 * supermarketScale.z), Vector3(90,0,0), Vector3(supermarketScale.x* .2 ,supermarketScale.y * .2,supermarketScale.z * 0.15), Vector3(3, 3 ,3)); 
+	pObj = new CObj(GEO_WUKONG, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .4 ,supermarketScale.y * .4,supermarketScale.z * .3), Vector3(3, 3 ,3)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//TARDIS
 	//------------------------------------------------------------------------------TARDIS_BASE-------------------------------------------------------------------------------------------------
 	meshList[GEO_TARDIS_BOT] = MeshBuilder::GenerateOBJ("Tardis Base", "OBJ//tardis//tardis_base.obj");
 	meshList[GEO_TARDIS_BOT]->textureID = LoadTGA("Image//tardis//tardis_base.tga");
-	pObj = new CObj(GEO_TARDIS_BOT,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 2.25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .1 ,supermarketScale.y * .1,supermarketScale.z * 0.075), Vector3(9, 9 ,9)); 
+	pObj = new CObj(GEO_TARDIS_BOT,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225), Vector3(9, 9 ,9)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//------------------------------------------------------------------------------TARDIS_BODY------------------------------------------------------------------------------------------------
 	meshList[GEO_TARDIS_MID] = MeshBuilder::GenerateOBJ("Tardis Body", "OBJ//tardis//tardis_body.obj");
 	meshList[GEO_TARDIS_MID] -> textureID = LoadTGA("Image//tardis//tardis_body.tga");
-	pObj = new CObj(GEO_TARDIS_MID,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 2.25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .1 ,supermarketScale.y * .1,supermarketScale.z * 0.075),  Vector3(9, 9 ,9)); 
+	pObj = new CObj(GEO_TARDIS_MID,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225),  Vector3(9, 9 ,9)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//------------------------------------------------------------------------------TARDIS_SIGN-------------------------------------------------------------------------------------------------
 	meshList[GEO_TARDIS_SIGN] = MeshBuilder::GenerateOBJ("Tardis Sign", "OBJ//tardis//tardis_police.obj");
 	meshList[GEO_TARDIS_SIGN]->textureID = LoadTGA("Image//tardis//tardis_police.tga");
-	pObj = new CObj(GEO_TARDIS_SIGN,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 2.25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .1 ,supermarketScale.y * .1,supermarketScale.z * 0.075), Vector3(9, 9 ,9)); 
+	pObj = new CObj(GEO_TARDIS_SIGN,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225), Vector3(9, 9 ,9)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//------------------------------------------------------------------------------TARDIS_TOP--------------------------------------------------------------------------------------------------
 	meshList[GEO_TARDIS_TOP] = MeshBuilder::GenerateOBJ("Tardis Base", "OBJ//tardis//tardis_roof.obj");
 	meshList[GEO_TARDIS_TOP]->textureID = LoadTGA("Image//tardis//tardis_base.tga");
-	pObj = new CObj(GEO_TARDIS_TOP,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 2.25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .1 ,supermarketScale.y * .1,supermarketScale.z * 0.075),  Vector3(9, 9 ,9)); 
+	pObj = new CObj(GEO_TARDIS_TOP,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225),  Vector3(9, 9 ,9)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 }
@@ -1033,7 +1033,7 @@ void SP2::initGame()
 
 void SP2::Update(double dt)
 {
-	rotTardis += 5;
+	//rotTardis += 5;
 	if(cam == false)
 	{
 		if(Application::IsKeyPressed('1')) //enable back face culling
@@ -2128,7 +2128,6 @@ void SP2::renderSpecialItems()
 	//modelStack.Translate(0,tardisY,0);
 	modelStack.Rotate(rotTardis,0,1,0);
 
-	modelStack.PushMatrix();
 
 	//modelStack.Rotate(tardisPitch,1,0,0);
 
@@ -2157,7 +2156,6 @@ void SP2::renderSpecialItems()
 	RenderMesh(meshList[GEO_TARDIS_BOT], togglelight);
 	modelStack.PopMatrix();
 
-	modelStack.PopMatrix();
 
 	modelStack.PopMatrix();
 
