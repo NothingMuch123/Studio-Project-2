@@ -193,6 +193,7 @@ private:
 	void RenderMesh(Mesh *mesh, bool enableLight);
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
+	void Render2D(Mesh* mesh, float size, float x, float y);
 
 	void setLights();
 	void getHandle();
@@ -258,7 +259,6 @@ private:
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
 	Vector3 supermarketSecurityDoorMaxBound , supermarketSecurityDoorMinBound;
 	float translateSecurityZ;
-	bool checkoutBag;
 	std::vector<CItem*> checkoutList;
 
 	//Promoter Variables

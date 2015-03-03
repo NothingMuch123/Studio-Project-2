@@ -1241,7 +1241,7 @@ void SP2::updateGame(double dt)
 		//constant countdown
 		timeFrame -= dt;
 		// getting out of game 1
-		if(timeFrame <= 0 && inGame == 1)
+		if(timeFrame <= 0)
 		{
 			inGame = 0;
 		}
@@ -1690,18 +1690,107 @@ void SP2::Render()
 		for (int i = 0; i < trolleyList.size(); ++i)
 		{
 			pObj = trolleyList[i];
-			for (int j = 0; j < 4; ++j)
-			{
-				modelStack.PushMatrix();
-				modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
-				modelStack.Rotate(j * 90, 0,1,0);
-				modelStack.Scale(5,5,5);
-				RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
-				modelStack.PopMatrix();
-			}
+			modelStack.PushMatrix();
+			modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
+			modelStack.Rotate(0, 0,1,0);
+			modelStack.Scale(5,5,5);
+			RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
+			modelStack.Rotate(180, 0,1,0);
+			modelStack.Scale(5,5,5);
+			RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
+			modelStack.PopMatrix();
 		}
 	}
 	renderGame(inGame);
+	if (hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+	{
+		if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_1])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_2])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_3])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_4])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_5])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_6])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_7])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_8])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_9])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_10])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,5);
+		}
+	}
+	if (hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+	{
+		if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_1])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_2])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_3])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_4])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_5])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_6])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_7])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_8])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_9])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_10])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,4);
+		}
+	}
 	renderText();
 }
 
@@ -1740,44 +1829,18 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-		//modelStack.Scale(.4,.4,1.5);
-		//// === hand model ===  
-		//modelStack.PushMatrix();
-		//modelStack.Translate(-1.5,-1.5,-1);
-		//RenderMesh(meshList[GEO_HAND], togglelight);
-		//modelStack.PopMatrix();
-		//// === inventory box ===
-		//modelStack.PushMatrix();
-		//modelStack.Scale(0.1,0.1,0.1);
-		//modelStack.Translate(-0.5,-1,-1);
-		//RenderMesh(meshList[GEO_INVENTORY], togglelight);
-		//if(hands[0] == NULL)
-		//{
-		//}
-		//if(hands[0]->getID() == GEO_ITEM)
-		//{
-		//	//RenderMesh(static_cast<CItem*>(hands[0])->getItem() , togglelight);
-		//	for(int i = 37; i  < 47 ; ++i)
-		//	{
-		//		if(static_cast<CItem*>(hands[0])->getItem() == meshList[i])
-		//		{
-		//			RenderMesh(meshList[i] , togglelight);
-		//		}
-		//	}
-		//}
-		//modelStack.PopMatrix();
-
-		if (hands[0] == NULL)
+		/*if (hands[0] == NULL)
 		{
 			modelStack.Scale(.4,.4,1.5);
 		}
 		else if (hands[0]->getID() == GEO_ITEM)
 		{
 			modelStack.Scale(hands[0]->getScale().x, hands[0]->getScale().y, hands[0]->getScale().z);
-		}
+		}*/
+		modelStack.Scale(.4,.4,1.5);
 		modelStack.PushMatrix();
 
-		if (hands[0] == NULL)
+		/*if (hands[0] == NULL)
 		{
 			modelStack.Translate(-1.5,-1.5,-1);
 			RenderMesh(meshList[GEO_HAND], togglelight);
@@ -1786,7 +1849,9 @@ void SP2::renderHands()
 		{
 			modelStack.Translate(-1.5, -1.5, -4);
 			RenderMesh(static_cast<CItem*>(hands[0])->getItem(), togglelight);
-		}
+		}*/
+		modelStack.Translate(-1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_HAND], togglelight);
 		modelStack.PopMatrix();
 
 		modelStack.PopMatrix();
@@ -1797,17 +1862,18 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-		if (hands[1] == NULL)
+		/*if (hands[1] == NULL)
 		{
 			modelStack.Scale(.4,.4,1.5);
 		}
 		else if (hands[1]->getID() == GEO_ITEM)
 		{
 			modelStack.Scale(hands[1]->getScale().x, hands[1]->getScale().y, hands[1]->getScale().z);
-		}
+		}*/
+		modelStack.Scale(.4,.4,1.5);
 		modelStack.PushMatrix();
 
-		if (hands[1] == NULL)
+		/*if (hands[1] == NULL)
 		{
 			modelStack.Translate(1.5,-1.5,-1);
 			RenderMesh(meshList[GEO_HAND], togglelight);
@@ -1816,7 +1882,9 @@ void SP2::renderHands()
 		{
 			modelStack.Translate(1.5, -1.5, -4);
 			RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
-		}
+		}*/
+		modelStack.Translate(1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_HAND], togglelight);
 		modelStack.PopMatrix();
 		modelStack.PopMatrix();
 	}
@@ -2044,6 +2112,7 @@ void SP2::renderGame(int a)// 1- treasure hunt
 				modelStack.Translate(1,-1,0);
 				RenderText(meshList[GEO_TEXT] ,"V " , Color(1,0,0));
 				modelStack.PopMatrix();
+				glEnable(GL_CULL_FACE);
 			}
 			break;
 		}
@@ -2052,7 +2121,7 @@ void SP2::renderGame(int a)// 1- treasure hunt
 
 void SP2::renderHuman() 
 {
-	pObj->calcBound();
+	//pObj->calcBound();
 
 	if(static_cast<CCharacter*>(pObj)->getRole()==1)
 	{
@@ -2411,6 +2480,40 @@ void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float si
 	}
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
+	projectionStack.PopMatrix();
+	viewStack.PopMatrix();
+	modelStack.PopMatrix();
+	glEnable(GL_DEPTH_TEST);
+}
+
+void SP2::Render2D(Mesh* mesh, float size, float x, float y)
+{
+	if(!mesh || mesh->textureID <= 0) //Proper error check
+		return;
+
+	glDisable(GL_DEPTH_TEST);
+	Mtx44 ortho;
+	ortho.SetToOrtho(0, 80, 0, 60, -10, 10); //size of screen UI
+	projectionStack.PushMatrix();
+	projectionStack.LoadMatrix(ortho);
+	viewStack.PushMatrix();
+	viewStack.LoadIdentity(); //No need camera for ortho mode
+	modelStack.PushMatrix();
+	modelStack.LoadIdentity(); //Reset modelStack
+	modelStack.Scale(size, size, size);
+	modelStack.Translate(x, y, 1);
+	glUniform1i(m_parameters[U_LIGHTENABLED], 0);
+	glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 1);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, mesh->textureID);
+	glUniform1i(m_parameters[U_COLOR_TEXTURE], 0);
+
+	Mtx44 MVP = projectionStack.Top() * viewStack.Top() * modelStack.Top();
+	glUniformMatrix4fv(m_parameters[U_MVP], 1, GL_FALSE, &MVP.a[0]);
+
+	mesh->Render();
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 	projectionStack.PopMatrix();
 	viewStack.PopMatrix();
 	modelStack.PopMatrix();
