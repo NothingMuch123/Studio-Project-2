@@ -78,7 +78,16 @@ public:
 		GEO_DISPLAY4,
 		GEO_TROLLEY,
 		GEO_POTATO,
+
 		GEO_BAG,
+		GEO_THOR,
+		GEO_TARDIS,
+		GEO_TARDIS_TOP,
+		GEO_TARDIS_MID,
+		GEO_TARDIS_SIGN,
+		GEO_TARDIS_BOT,
+		GEO_WUKONG,
+
 		// Items
 		GEO_ITEM,
 		GEO_ITEM_1,
@@ -227,7 +236,7 @@ private:
 	void initItems();
 	
 	void initSpecialItems();
-	void updateSpecialitems();
+	void updateSpecialItems();
 	void renderSpecialItems();
 
 	void initShelf(int Choice,Vector3 _translate, Vector3 _rotate);
@@ -235,6 +244,7 @@ private:
 	void renderShelf();
 
 	void initCabinet();
+	void updateCabinet(double dt);
 	void renderCabinet();
 
 	void initCamera();
@@ -306,6 +316,9 @@ private:
 	float temp;
 	CObj *tempP;
 
+	//Tardis Variables
+	float rotTardis, tardisPitch, tardisY;
+	bool pressed;
 	// game bound variables
 	bool ableStart; //display what to do to start game;
 	int playerScore[3]; // individual for each game

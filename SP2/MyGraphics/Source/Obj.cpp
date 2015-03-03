@@ -55,6 +55,22 @@ void CObj::calcBound()
 	minBound.Set(translate.x - ((size.x * scale.x) / 2) - offset, translate.y - (size.y * scale.y) - offset , translate.z - ((size.z * scale.z) / 2) - offset);
 }
 
+bool CObj::getInteractionBound()
+{
+	return InteractionBound;
+}
+
+void CObj::setInteractionBound(Vector3 Position,int Radius)
+{
+	if(((this->getTranslate())-Position).Length()<Radius)
+	{
+		this->InteractionBound = true;
+	}
+	else
+	{
+		this->InteractionBound = false;
+	}
+}
 bool CObj::getRender()
 {
 	return render;
