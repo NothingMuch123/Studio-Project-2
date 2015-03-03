@@ -77,6 +77,8 @@ public:
 		GEO_DISPLAY3,
 		GEO_DISPLAY4,
 		GEO_TROLLEY,
+		GEO_POTATO,
+		GEO_BAG,
 		// Items
 		GEO_ITEM,
 		GEO_ITEM_1,
@@ -89,7 +91,6 @@ public:
 		GEO_ITEM_8,
 		GEO_ITEM_9,
 		GEO_ITEM_10,
-		GEO_POTATO,
 		// inventory picture of items - do not touch 
 		GEO_INVENTORY_ITEM_1,
 		GEO_INVENTORY_ITEM_2,
@@ -125,6 +126,7 @@ public:
 
 		//player
 		GEO_HAND,
+		GEO_INVENTORY,
 
 		NUM_GEOMETRY,
 	};
@@ -300,7 +302,7 @@ private:
 
 	// game bound variables
 	bool ableStart; //display what to do to start game;
-	int playerScore[3];
+	int playerScore[3]; // individual for each game
 	float timeFrame;
 	float totalCost;
 	int inGame;// in which game : 1 - treasure hunt(for now)
@@ -309,6 +311,12 @@ private:
 	Vector3 game1MaxBound , game1MinBound; //search for items in list
 	bool pickCorrect; // used to check if item put into trolley is correct item
 	int randomItem; //generate random number to call from enum of geo items
+
+	//game2 variables - the spaming cashier
+	Vector3 game2MaxBound, game2MinBound;
+	int itemLeft; // number of items left on cashier table in game 2
+	std::vector<CItem*> bagList; // bottomless pit - used to store items
+	
 };
 
 #endif

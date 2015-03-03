@@ -25,7 +25,7 @@ SP2::~SP2()
 
 void SP2::Init()
 {
-	initValues();
+
 
 	// Init VBO here
 
@@ -77,10 +77,10 @@ void SP2::Init()
 
 	srand(time(NULL));
 
+	initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
+
 	initCar();
-
-	//initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
-
+	initValues();
 	initOuterSkybox();
 	initSuperMarket();
 	initPatch();
@@ -97,6 +97,9 @@ void SP2::initHands()
 	meshList[GEO_HAND]->textureID = LoadTGA("Image//Hand.tga");
 	rotateHandX = rotateHandY = trolleyRotateHandX = 0;
 	hands[0] = hands[1] = NULL;
+
+	meshList[GEO_INVENTORY] = MeshBuilder::GenerateQuad("inven" , Color(1,1,1),TexCoord(1,1));
+	meshList[GEO_INVENTORY]->textureID = LoadTGA("Image//inventoryImages//inventory_box.tga"); //hand inventory ui
 }
 
 void SP2::initCamera()
@@ -468,11 +471,15 @@ void SP2::initSuperMarket()
 	meshList[GEO_TROLLEY] = MeshBuilder::GenerateOBJ("Trolley", "OBJ//Trolley.obj");
 	meshList[GEO_TROLLEY]->textureID = LoadTGA("Image//trolleytexture.tga");
 
+	//paper bag - used for game 2 cashier
+	meshList[GEO_BAG] = MeshBuilder::GenerateOBJ("Bag" , "OBJ//bag.obj");
+	meshList[GEO_BAG]->textureID = LoadTGA ("Image//bagTex.tga");
+
 	pObj = new CObj(GEO_SUPERMARKET_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
 	objList.push_back(pObj);
 	objList2.push_back(pObj);
 
-	pObj = new CObj(GEO_CASHIER_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 5 , 11));
+	pObj = new CObj(GEO_CASHIER_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 3.5 , 11));
 	pObj->calcBound();
 	objList.push_back(pObj);
 
@@ -586,6 +593,11 @@ void SP2::initSuperMarket()
 	static_cast<CTrolley*>(pObj)->setCamera();
 	objList.push_back(pObj);
 	trolleyList.push_back(static_cast<CTrolley*>(pObj));
+
+	//paper bag
+	pObj = new CObj(GEO_BAG , supermarketPosition + Vector3( 45, 22, 95), Vector3(0,0,0), Vector3(2,2,2) , Vector3(3, 2, 1.5)); 
+	pObj->calcBound();
+	objList.push_back(pObj);
 
 	Vector3 leftStartPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2) + (33 * 1.5), 0, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2) + (33 * 1.5));
 	// Left top row
@@ -867,9 +879,9 @@ void SP2::initValues()
 	fps = 60;
 	togglelight = false;
 
-	
 
-	
+
+
 	for(int a = 0; a<objList.size();++a)
 	{
 		if(objList[a]->getID() == GEO_HUMAN)
@@ -930,7 +942,7 @@ void SP2::initOuterSkybox()
 void SP2::initGame()
 {
 	inGame = 0 ;
-	 //can be used for displaying and storing score - 
+	//can be used for displaying and storing score - 
 	playerScore[0] = 0; // 0-  for game 1
 	playerScore[1] = 0; // 1 - for game 2
 	playerScore[2] = 0; // 2 - for game 3
@@ -942,12 +954,17 @@ void SP2::initGame()
 	game1MaxBound.Set( game1Position.x + ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z + ( 2 * supermarketScale.z));
 	game1MinBound.Set( game1Position.x - ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z - ( 2 * supermarketScale.z));
 	pickCorrect = false;
-	randomItem = rand() % 10 + 33; // generate random item - the inventory pic items
+	randomItem = rand() % 10 + GEO_INVENTORY_ITEM_1; // generate random item - the inventory pic items
+
+	//game2 - cashier
+	Vector3 game2Position(supermarketPosition.x + 55, supermarketPosition.y , supermarketPosition.z + 75 );
+	game2MaxBound.Set(game2Position.x + (2 * supermarketScale.x) , game2Position.y, game2Position.z + (2 * supermarketScale.z));
+	game2MinBound.Set(game2Position.x - (2 * supermarketScale.x) , game2Position.y, game2Position.z - (2 * supermarketScale.z));
+	itemLeft = 10; // item left to "check out
 }
 
 void SP2::Update(double dt)
 {
-
 	if(cam == false)
 	{
 		if(Application::IsKeyPressed('1')) //enable back face culling
@@ -1051,19 +1068,62 @@ void SP2::Update(double dt)
 						cam = true;
 					}
 				}
-				/*else if (pObj->getID() == GEO_CASHIER_TABLE)
+				// ========= paper bag ===================
+				else if(pObj->getID() == GEO_BAG)
 				{
-				if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
-				{
-				checkoutList.push_back(static_cast<CItem*>(hands[0]);
-				hands[0] = NULL;
+					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+					{
+						bagList.push_back(static_cast<CItem*>(hands[0]));
+						hands[0] = NULL;
+						if(inGame == 2 && itemLeft > 0) // cashier game 
+						{
+							itemLeft -= 1;
+						}
+					}
+					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+					{
+						bagList.push_back(static_cast<CItem*>(hands[1]));
+						hands[1] = NULL;
+						if(inGame == 2 && itemLeft > 0) // cashier game 
+						{
+							itemLeft -= 1;
+						}
+					}
+					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && bagList.size() > 0)
+					{
+						hands[0] = static_cast<CObj*>(bagList[bagList.size() - 1 ]);
+						bagList.pop_back();
+					}
+					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && bagList.size() > 0)
+					{
+						hands[1] = static_cast<CObj*> (bagList[bagList.size() - 1]);
+						bagList.pop_back();
+					}
 				}
-				if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+				// ======== cashier table ============
+				else if (pObj->getID() == GEO_CASHIER_TABLE)
 				{
-				checkoutList.push_back(static_cast<CItem*>(hands[1]);
-				hands[1] = NULL;
+					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+					{
+						checkoutList.push_back(static_cast<CItem*>(hands[0]));
+						hands[0] = NULL;
+					}
+					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+					{
+						checkoutList.push_back(static_cast<CItem*>(hands[1]));
+						hands[1] = NULL;
+					}
+					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && checkoutList.size() > 0)
+					{
+						hands[0] = static_cast<CObj*>(checkoutList[checkoutList.size() - 1 ]);
+						checkoutList.pop_back();
+					}
+					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && checkoutList.size() > 0)
+					{
+						hands[1] = static_cast<CObj*> (checkoutList[checkoutList.size() - 1]);
+						checkoutList.pop_back();
+					}
 				}
-				}*/
 			}
 		}
 	}
@@ -1108,6 +1168,7 @@ void SP2::updateCamera(double dt)
 {
 	if(cam == true)
 	{
+		glEnable(GL_CULL_FACE);
 		camera = cameraList[camNum]->camera;
 		if(Application::IsKeyPressed('1')) // toggle floor 1 cam 1
 		{
@@ -1151,21 +1212,54 @@ void SP2::updateGame(double dt)
 	{
 		if(keypressed[K_START_STORY] && inGame == 0)// check if want to start game + no game involved currently
 		{
-			saved = camera;
 			inGame = 1;
 			timeFrame = 30;
 			playerScore[0] = 0;
 		}
 	}
+	// cashier game start bound
+	if(camera.position.x < game2MaxBound.x && camera.position.x > game2MinBound.x && camera.position.z < game2MaxBound.z && camera.position.z > game2MinBound.z)
+	{
+		if(keypressed[K_START_STORY] && inGame == 0)
+		{
+			CItem *pItem;
+			inGame = 2;
+			timeFrame = 0;
+			itemLeft = 10;
+			playerScore[1] = 0;
+			// init items for game 2 - cashier table one 
+			for(int i = 0 ; i < 10 ; ++i)
+			{
+				int a = rand() % 10 + 28;
+				pItem = new CItem(GEO_ITEM, Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(1,1,1), meshList[a]);
+				checkoutList.push_back(pItem);
+			}
+		}
+	}
 	if(inGame == 1) // in treasure hunt mode aka game 1
 	{
-		timeFrame -= dt; //constant countdown
+		//constant countdown
+		timeFrame -= dt;
 		// getting out of game 1
 		if(timeFrame <= 0 && inGame == 1)
 		{
-			camera = saved;
 			inGame = 0;
-			Application::IsKeyPressed('R');
+		}
+	}
+	if(inGame == 2)
+	{
+		// constant increase
+		timeFrame += dt;
+		// getting out of game 2
+		if( itemLeft == 0 && inGame == 2)
+		{
+			CItem *pItem;
+			inGame = 0;
+			for(int i = 0 ; i < checkoutList.size(); ++i)
+			{
+				pItem = checkoutList[i];
+				delete pItem;
+			}
 		}
 	}
 }
@@ -1402,7 +1496,7 @@ void SP2::updateHuman(double dt)
 	{
 		if(objList[a]->getID()==GEO_HUMAN && floorNum == 1)
 		{
-		
+
 			if(static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
 			{
 				static_cast <CCharacter*>(objList[a])->setRouteID(rand()%static_cast <CCharacter*>(objList[a])->AiRouteLocation.size());
@@ -1417,7 +1511,7 @@ void SP2::updateHuman(double dt)
 				{
 					cout<<"Cashier says hi"<<endl;
 				}
-				    
+
 			}
 			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)  
 			{    
@@ -1431,7 +1525,7 @@ void SP2::updateHuman(double dt)
 			else if(static_cast<CShopper*>(objList[a])->getRole()==3)
 			{
 				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
-				
+
 				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
 					cout<<"Shopper says: You're near me"<<endl;
@@ -1443,7 +1537,7 @@ void SP2::updateHuman(double dt)
 
 			else 
 			{
-				
+
 				for(int a = 0; a < objList2.size(); ++a)
 				{
 					if(objList2[a]->getID()==GEO_HUMAN  && floorNum == 2)
@@ -1461,7 +1555,6 @@ void SP2::updateHuman(double dt)
 		}
 	}
 }
-
 
 void SP2::Render()
 {
@@ -1647,6 +1740,33 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
+		//modelStack.Scale(.4,.4,1.5);
+		//// === hand model ===  
+		//modelStack.PushMatrix();
+		//modelStack.Translate(-1.5,-1.5,-1);
+		//RenderMesh(meshList[GEO_HAND], togglelight);
+		//modelStack.PopMatrix();
+		//// === inventory box ===
+		//modelStack.PushMatrix();
+		//modelStack.Scale(0.1,0.1,0.1);
+		//modelStack.Translate(-0.5,-1,-1);
+		//RenderMesh(meshList[GEO_INVENTORY], togglelight);
+		//if(hands[0] == NULL)
+		//{
+		//}
+		//if(hands[0]->getID() == GEO_ITEM)
+		//{
+		//	//RenderMesh(static_cast<CItem*>(hands[0])->getItem() , togglelight);
+		//	for(int i = 37; i  < 47 ; ++i)
+		//	{
+		//		if(static_cast<CItem*>(hands[0])->getItem() == meshList[i])
+		//		{
+		//			RenderMesh(meshList[i] , togglelight);
+		//		}
+		//	}
+		//}
+		//modelStack.PopMatrix();
+
 		if (hands[0] == NULL)
 		{
 			modelStack.Scale(.4,.4,1.5);
@@ -1738,6 +1858,7 @@ void SP2::renderSpecialItems()
 	RenderMesh(meshList[GEO_POTATO], togglelight);
 	modelStack.PopMatrix();
 }
+
 void SP2::renderShelf()
 {
 	modelStack.PushMatrix();
@@ -1838,63 +1959,94 @@ void SP2::renderCar()
 
 void SP2::renderGame(int a)// 1- treasure hunt 
 {
-	std::ostringstream sTF, sPS;
-	sTF << (int)timeFrame;//time given / time taken CHANGE IN UPDATE GAME
-	switch (a)
+	//** NOTE : ALL GAME ON FIRST FLOOR **//
+	if(floorNum == 1)
 	{
-	case 1 :
+		switch (a)
 		{
-			sPS << playerScore[0]; 
-			if(pickCorrect == false)
+		case 1 :
 			{
-				// display item to be picked up 
+				std::ostringstream sTF, sPS;
+				sTF << (int)timeFrame;//time given / time taken CHANGE IN UPDATE GAME
+				sPS << playerScore[0];
+				if(pickCorrect == false)
+				{
+					// display item to be picked up 
+					modelStack.PushMatrix();
+					modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
+					modelStack.Rotate(rotateHandY,0,1,0);
+					modelStack.Rotate(rotateHandX,1,0,0);
+					modelStack.Translate(4,2.5,4);
+					modelStack.Scale(2,2,2);
+					RenderMesh(meshList[randomItem] , false);
+					modelStack.PopMatrix();	
+				}
+				else
+				{
+					//if found correct , gain point plus new item to find
+					playerScore[0] += 1;
+					randomItem = rand() % 10 + GEO_INVENTORY_ITEM_1;
+					pickCorrect = false;
+				}
 				modelStack.PushMatrix();
-				modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
-				modelStack.Rotate(rotateHandY,0,1,0);
-				modelStack.Rotate(rotateHandX,1,0,0);
-				modelStack.Translate(4,2.5,4);
-				modelStack.Scale(2,2,2);
-				RenderMesh(meshList[randomItem] , false);
-				modelStack.PopMatrix();	
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
+				RenderTextOnScreen(meshList[GEO_TEXT] , sTF.str(), Color(1,0,0), 2 , 38 , 20);
+				RenderTextOnScreen(meshList[GEO_TEXT], "Score:", Color (1,0,0), 2, 30, 18);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,sPS.str(), Color(1,0,0), 2, 38 , 18);
+				modelStack.PopMatrix();
 			}
-			else
+			break;
+		case 2:
 			{
-				//if found correct , gain point plus new item to find
-				playerScore[0] += 1;
-				randomItem = rand() % 10 + 33;
-				pickCorrect = false;
+				std::ostringstream sTF , sIL;
+				sIL << itemLeft;
+				sTF << timeFrame;
+				if(itemLeft != 0)
+				{
+					modelStack.PushMatrix();
+					modelStack.Translate(supermarketPosition.x + 45, supermarketPosition.y + 22, supermarketPosition.z + 55);
+					modelStack.Scale(3,3,3);
+					if(checkoutList.size() > 0)
+					{
+						RenderMesh(checkoutList[checkoutList.size() - 1]->getItem(),togglelight);
+					}
+					modelStack.PopMatrix();
+				}
+				modelStack.PushMatrix();
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
+				RenderTextOnScreen(meshList[GEO_TEXT] , sTF.str(), Color(1,0,0), 2 , 38 , 20);
+				RenderTextOnScreen(meshList[GEO_TEXT], "Item Left:", Color (1,0,0), 2, 28, 18);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,sIL.str(), Color(1,0,0), 2, 38 , 18);
+				modelStack.PopMatrix();
 			}
-			modelStack.PushMatrix();
-			RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
-			RenderTextOnScreen(meshList[GEO_TEXT] , sTF.str(), Color(1,0,0), 2 , 38 , 20);
-			RenderTextOnScreen(meshList[GEO_TEXT], "Score:", Color (1,0,0), 2, 30, 18);
-			RenderTextOnScreen(meshList[GEO_TEXT] ,sPS.str(), Color(1,0,0), 2, 38 , 18);
-			modelStack.PopMatrix();
+			break;
+		case 3:
+			{
+			}
+			break;
+		case 0: // show story/game starting areas
+			{
+				glDisable(GL_CULL_FACE);
+				//============= GAME 1 : TREASURE HUNT ==========================
+				modelStack.PushMatrix();
+				modelStack.Translate(game1MaxBound.x - 2 * supermarketScale.x , camera.position.y, game1MaxBound.z - 2 * supermarketScale.z);
+				modelStack.Scale(supermarketScale.x, supermarketScale.y, supermarketScale.z);
+				RenderText(meshList[GEO_TEXT],"[T]" ,Color(1,0,0));
+				modelStack.Translate(0,-1,0);
+				RenderText(meshList[GEO_TEXT]," V " ,Color(1,0,0));
+				modelStack.PopMatrix();
+
+				//============ GAME 2 : CASHIER ==========================
+				modelStack.PushMatrix();
+				modelStack.Translate(game2MaxBound.x - (2 * supermarketScale.x) , camera.position.y, game2MaxBound.z - (2 * supermarketScale.z));
+				modelStack.Scale(supermarketScale.x ,supermarketScale.y, supermarketScale.z);
+				RenderText(meshList[GEO_TEXT],"[C]",Color(1,0,0));
+				modelStack.Translate(1,-1,0);
+				RenderText(meshList[GEO_TEXT] ,"V " , Color(1,0,0));
+				modelStack.PopMatrix();
+			}
+			break;
 		}
-		break;
-	case 2:
-		{
-		}
-		break;
-	case 3:
-		{
-		}
-		break;
-	case 0: // show story points
-		{
-			//============= GAME 1 : TREASURE HUNT ==========================
-			sPS << playerScore[0];
-			modelStack.PushMatrix();
-			glDisable(GL_CULL_FACE);
-			modelStack.Translate(game1MaxBound.x - 3 * supermarketScale.x , camera.position.y, game1MaxBound.z - 2 * supermarketScale.z);
-			modelStack.Scale(supermarketScale.x, supermarketScale.y, supermarketScale.z);
-			RenderText(meshList[GEO_TEXT],"[" ,Color(1,0,0));
-			RenderText(meshList[GEO_TEXT],sPS.str() , Color(1,0,0));
-			modelStack.Translate(0,-1,0);
-			RenderText(meshList[GEO_TEXT]," V " ,Color(1,0,0));
-			modelStack.PopMatrix();
-		}
-		break;
 	}
 }
 
