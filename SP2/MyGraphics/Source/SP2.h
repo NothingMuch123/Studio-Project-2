@@ -272,6 +272,7 @@ private:
 	void renderGame(int a);
 	void updateGame(double dt);
 	bool updateBoundCheckGame3();
+	void renderInstruction(int a);
 
 	void initMap();
 	void renderMap();
@@ -331,11 +332,10 @@ private:
 	float rotTardis, tardisPitch, tardisY;
 	bool pressed;
 	// game bound variables
-	bool ableStart; //display what to do to start game;
 	int playerScore[3]; // individual for each game
 	float timeFrame;
-	float totalCost;
-	int inGame;// in which game : 1 - treasure hunt(for now)
+	int inGame;// in which game
+	bool displayInstruction;
 
 	//game1 variables - treasure hunt
 	Vector3 game1MaxBound , game1MinBound; //search for items in list

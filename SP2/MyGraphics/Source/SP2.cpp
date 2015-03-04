@@ -1056,7 +1056,7 @@ void SP2::initGame()
 	playerScore[1] = 0; // 1 - for game 2
 	playerScore[2] = 0; // 2 - for game 3
 	timeFrame = 0; // time fame given to player can be used to display previous attempts
-	totalCost = 0; // total amount that is given to player 
+	displayInstruction = false; //displays instruction when pressed 'I'
 
 	// game 1 - shopper
 	Vector3 game1Position(supermarketPosition.x - (3 * supermarketScale.z) , supermarketPosition.y , supermarketPosition.z + ( 3 * supermarketScale.z));
@@ -1120,6 +1120,10 @@ void SP2::Update(double dt)
 		keypressed[K_SECOND_FLOOR] = Application::IsKeyPressed('P');
 		keypressed[K_ENTER_TROLLEY] = Application::IsKeyPressed('C');
 		keypressed[K_EXIT_TROLLEY] = Application::IsKeyPressed('V');
+		if(Application::IsKeyPressed('I')) // when key is pressed
+			displayInstruction = true;
+		else if(Application::IsKeyPressed('I') == false) // when key is released
+			 displayInstruction = false;
 
 		// Interactions
 		std::vector<CObj*> list;
@@ -1169,44 +1173,8 @@ void SP2::Update(double dt)
 							static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
 							hands[0] = NULL;
 						}
-						
-					}
-					/*if (keypressed[K_LEFT_PICK] && hands[0] == NULL && bagList.size() > 0)
-					{
-						hands[0] = static_cast<CObj*>(bagList[bagList.size() - 1 ]);
-						bagList.pop_back();
-					}
-					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && bagList.size() > 0)
-					{
-						hands[1] = static_cast<CObj*> (bagList[bagList.size() - 1]);
-						bagList.pop_back();
-					}
-				}*/
-				/*// ======== cashier table ============
-				else if (pObj->getID() == GEO_CASHIER_TABLE)
-				{
-					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
-					{
-						checkoutList.push_back(static_cast<CItem*>(hands[0]));
-						// when in game1 - checking for correct item picked 
-						if(inGame == 1 && static_cast<CItem*>(hands[0])->getItem() == meshList[randomItem -10])
 
-						if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
-						{
-							static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
-							hands[1] = NULL;
-						}
-						if (keypressed[K_LEFT_PICK] && hands[0] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
-						{
-							hands[0] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
-							static_cast<CTrolley*>(pObj)->itemList.pop_back();
-						}
-						if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
-						{
-							hands[1] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
-							static_cast<CTrolley*>(pObj)->itemList.pop_back();
-						}
-					}*/
+					}
 					else if(pObj->getID() == GEO_SECURITY_CAMERA_SCREEN)
 					{
 						if(keypressed[K_ENTER_CAM] && cam == false && floorNum == 2)
@@ -1288,34 +1256,34 @@ void SP2::Update(double dt)
 			}
 		}
 
-	updateHuman(dt);
-	updateSuperMarket(dt);
-	updateHands(dt);
-	updateCamera(dt);
-	if(floorNum == 1)
-	updateGame(dt);
-	if(cam == false) 
-	{
-		if(camera.position.x < mapMaxBound.z && camera.position.x > mapMinBound.x && camera.position.z < mapMaxBound.z && camera.position.z > mapMinBound.z)
-			updateMap();
-	}
+		updateHuman(dt);
+		updateSuperMarket(dt);
+		updateHands(dt);
+		updateCamera(dt);
+		if(floorNum == 1)
+			updateGame(dt);
+		if(cam == false) 
+		{
+			if(camera.position.x < mapMaxBound.z && camera.position.x > mapMinBound.x && camera.position.z < mapMaxBound.z && camera.position.z > mapMinBound.z)
+				updateMap();
+		}
 
-	if(Application::IsKeyPressed('Z'))
-	{
-		togglelight = true;
+		if(Application::IsKeyPressed('Z'))
+		{
+			togglelight = true;
+		}
+		if(Application::IsKeyPressed('X'))
+		{
+			togglelight = false;
+		}
+		static double fpsRefresh;
+		fpsRefresh += dt;
+		if (fpsRefresh >= 1)
+		{
+			fps = 1 / dt;
+			fpsRefresh = 0;
+		}
 	}
-	if(Application::IsKeyPressed('X'))
-	{
-		togglelight = false;
-	}
-	static double fpsRefresh;
-	fpsRefresh += dt;
-	if (fpsRefresh >= 1)
-	{
-		fps = 1 / dt;
-		fpsRefresh = 0;
-	}
-
 }
 
 void SP2::updateMap()
@@ -2041,6 +2009,9 @@ void SP2::Render()
 		}
 	}
 	renderGame(inGame);
+	if(inGame != 0)
+		renderInstruction(inGame);
+
 	if (hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
 	{
 		if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_1])
@@ -2576,12 +2547,6 @@ void SP2::renderGame(int a)// 1- treasure hunt
 				{
 					// display item to be picked up 
 					modelStack.PushMatrix();
-					/*modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
-					modelStack.Rotate(rotateHandY,0,1,0);
-					modelStack.Rotate(rotateHandX,1,0,0);
-					modelStack.Translate(4,2.5,4);
-					modelStack.Scale(2,2,2);
-					RenderMesh(meshList[randomItem] , false);*/
 					Render2D(meshList[randomItem], 10, 7, 5);
 					modelStack.PopMatrix();	
 				}
@@ -2644,12 +2609,12 @@ void SP2::renderGame(int a)// 1- treasure hunt
 				RenderMesh(meshList[GEO_GAME3_BOB_HAND],false);// ========== BOB's left Hand
 				modelStack.PopMatrix();
 				modelStack.PushMatrix();
-				modelStack.Translate(0.6,0.5,0);
+				modelStack.Translate(0.6,1.2,0);
 				modelStack.Scale(0.9,1.2,1);
 				RenderMesh(meshList[GEO_GAME3_BOB_LEG],false);// =========== BOB's right leg
 				modelStack.PopMatrix();
 				modelStack.PushMatrix();
-				modelStack.Translate(-0.6,0.5,0);
+				modelStack.Translate(-0.6,1.2,0);
 				modelStack.Scale(0.9,1.2,1);
 				RenderMesh(meshList[GEO_GAME3_BOB_LEG],false);// =========== BOB's left leg
 				modelStack.PopMatrix();
@@ -2692,6 +2657,39 @@ void SP2::renderGame(int a)// 1- treasure hunt
 			break;
 		}
 	}
+}
+
+void SP2::renderInstruction(int a)
+{
+	if(displayInstruction == true)
+	{
+		switch(a)
+		{
+		case 1: // shopper game
+			{
+				RenderTextOnScreen(meshList[GEO_TEXT],"find the items " , Color( 1,0,0), 3, 1, 6);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"bring put it into cashier" , Color(1,0,0),3 ,1 , 5);
+			}
+			break;
+		case 2: // cashier game
+			{
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"pick up items from table", Color(1,0,0), 3, 1, 6);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"put it into the paper bag",Color(1,0,0), 3, 1, 5);
+			}
+			break;
+		case 3: // guard game
+			{
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"use 'WASD' to move", Color(1,0,0), 3, 1, 6);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"You mad bro? " ,Color(1,0,0), 3, 3 ,5);
+			}
+			break;
+		}
+	}
+	else
+	{
+		RenderTextOnScreen(meshList[GEO_TEXT] ,"Press 'I' for instructions" ,Color (1,0,0), 3 , 1, 4);
+	}
+
 }
 
 void SP2::renderHuman() 
