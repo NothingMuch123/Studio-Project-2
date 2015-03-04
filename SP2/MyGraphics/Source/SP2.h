@@ -77,17 +77,6 @@ public:
 		GEO_DISPLAY3,
 		GEO_DISPLAY4,
 		GEO_TROLLEY,
-		GEO_POTATO,
-
-		GEO_BAG,
-		GEO_THOR,
-		GEO_TARDIS,
-		GEO_TARDIS_TOP,
-		GEO_TARDIS_MID,
-		GEO_TARDIS_SIGN,
-		GEO_TARDIS_BOT,
-		GEO_WUKONG,
-
 		// Items
 		GEO_ITEM,
 		GEO_ITEM_1,
@@ -100,6 +89,7 @@ public:
 		GEO_ITEM_8,
 		GEO_ITEM_9,
 		GEO_ITEM_10,
+		GEO_POTATO,
 		// inventory picture of items - do not touch 
 		GEO_INVENTORY_ITEM_1,
 		GEO_INVENTORY_ITEM_2,
@@ -130,18 +120,11 @@ public:
 		GEO_HUMAN_STAFF_HAND,
 		GEO_HUMAN_STAFF_LEG,
 
-		//Game 3 security - used in game 3 , being controlled by player
-		GEO_GAME3_BOB_BODY,
-		GEO_GAME3_BOB_ARM,
-		GEO_GAME3_BOB_HAND,
-		GEO_GAME3_BOB_LEG,
-
 		//Size referance - unit cube
 		GEO_CUBE,
 
 		//player
 		GEO_HAND,
-		GEO_INVENTORY,
 
 		NUM_GEOMETRY,
 	};
@@ -208,7 +191,6 @@ private:
 	void RenderMesh(Mesh *mesh, bool enableLight);
 	void RenderText(Mesh* mesh, std::string text, Color color);
 	void RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y);
-	void Render2D(Mesh* mesh, float size, float x, float y);
 
 	void setLights();
 	void getHandle();
@@ -236,7 +218,7 @@ private:
 	void initItems();
 	
 	void initSpecialItems();
-	void updateSpecialItems();
+	void updateSpecialitems();
 	void renderSpecialItems();
 
 	void initShelf(int Choice,Vector3 _translate, Vector3 _rotate);
@@ -244,7 +226,6 @@ private:
 	void renderShelf();
 
 	void initCabinet();
-	void updateCabinet(double dt);
 	void renderCabinet();
 
 	void initCamera();
@@ -258,10 +239,10 @@ private:
 	void updatePatch();
 	void renderPatch();
 
+	//TODO : define function for game 
 	void initGame(); 
 	void renderGame(int a);
 	void updateGame(double dt);
-	bool updateBoundCheckGame3();
 
 	bool togglelight;
 	double fps;
@@ -275,6 +256,7 @@ private:
 	Vector3 supermarketSize, supermarketPosition, supermarketScale, supermarketDoorMaxBound, supermarketDoorMinBound ;
 	Vector3 supermarketSecurityDoorMaxBound , supermarketSecurityDoorMinBound;
 	float translateSecurityZ;
+	bool checkoutBag;
 	std::vector<CItem*> checkoutList;
 
 	//Promoter Variables
@@ -316,12 +298,9 @@ private:
 	float temp;
 	CObj *tempP;
 
-	//Tardis Variables
-	float rotTardis, tardisPitch, tardisY;
-	bool pressed;
 	// game bound variables
 	bool ableStart; //display what to do to start game;
-	int playerScore[3]; // individual for each game
+	int playerScore[3];
 	float timeFrame;
 	float totalCost;
 	int inGame;// in which game : 1 - treasure hunt(for now)
@@ -330,16 +309,6 @@ private:
 	Vector3 game1MaxBound , game1MinBound; //search for items in list
 	bool pickCorrect; // used to check if item put into trolley is correct item
 	int randomItem; //generate random number to call from enum of geo items
-
-	//game2 variables - the spaming cashier
-	Vector3 game2MaxBound, game2MinBound;
-	int itemLeft; // number of items left on cashier table in game 2
-	std::vector<CItem*> bagList; // bottomless pit - used to store items
-	
-	//game3 variable - useless guard
-	Vector3 game3MaxBound, game3MinBound;
-	float bobMoveX, bobMoveZ, tempBobMoveX, tempBobMoveZ; // moving of security guard
-	bool game3 , hitSomething;
 };
 
 #endif

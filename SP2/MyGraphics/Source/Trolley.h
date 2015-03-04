@@ -4,6 +4,7 @@
 #include "Obj.h"
 #include "Camera3.h"
 #include "Item.h"
+#include "Character.h"
 
 class CTrolley : public CObj
 {
