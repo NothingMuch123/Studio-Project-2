@@ -1159,16 +1159,6 @@ void SP2::Update(double dt)
 							itemLeft -= 1;
 						}
 					}
-					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && bagList.size() > 0)
-					{
-						hands[0] = static_cast<CObj*>(bagList[bagList.size() - 1 ]);
-						bagList.pop_back();
-					}
-					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && bagList.size() > 0)
-					{
-						hands[1] = static_cast<CObj*> (bagList[bagList.size() - 1]);
-						bagList.pop_back();
-					}
 				}
 				// ======== cashier table ============
 				else if (pObj->getID() == GEO_CASHIER_TABLE)
@@ -1225,7 +1215,9 @@ void SP2::Update(double dt)
 	updateSuperMarket(dt);
 	updateHands(dt);
 	updateCamera(dt);
-	updateGame(dt);
+	if(floorNum == 1)
+		updateGame(dt);
+
 	if(Application::IsKeyPressed('Z'))
 	{
 		togglelight = true;
@@ -1305,7 +1297,6 @@ void SP2::updateGame(double dt)
 			inGame = 2;
 			timeFrame = 0;
 			itemLeft = 10;
-			playerScore[1] = 0;
 			// init items for game 2 - cashier table one 
 			for(int i = 0 ; i < 10 ; ++i)
 			{
@@ -1313,7 +1304,6 @@ void SP2::updateGame(double dt)
 				pItem = new CItem(GEO_ITEM, Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(1,1,1), meshList[a]);
 				checkoutList.push_back(pItem);
 			}
-			delete pItem;
 		}
 	}
 	//guard game start bound
@@ -1367,7 +1357,11 @@ void SP2::updateGame(double dt)
 			{
 				pItem = checkoutList[i];
 				delete pItem;
+				pItem = bagList[i];
+				delete pItem;
 			}
+			checkoutList.clear();
+			bagList.clear();
 		}
 	}
 	if(inGame == 3)
@@ -1433,7 +1427,7 @@ bool SP2::updateBoundCheckGame3()
 		pObj = objList[i];
 		if(pObj->getRender())
 		{
-			if(bobMoveX < pObj->getMaxBound().x && bobMoveX > pObj->getMinBound().x && bobMoveZ < pObj->getMaxBound().z && bobMoveZ > pObj->getMinBound().z )
+			if(bobMoveX - 7 < pObj->getMaxBound().x && bobMoveX + 7 > pObj->getMinBound().x && bobMoveZ < pObj->getMaxBound().z && bobMoveZ > pObj->getMinBound().z )
 			{
 				return true;
 			}
@@ -1853,6 +1847,7 @@ void SP2::Render()
 			}
 			else if(pObj->getID() == GEO_HUMAN)
 			{
+				if(inGame == 0)
 				renderHuman();
 			}
 			else if (pObj->getID() != GEO_SUPERMARKET_WALL)
@@ -2480,16 +2475,13 @@ void SP2::renderGame(int a)// 1- treasure hunt
 				std::ostringstream sTF , sIL;
 				sIL << itemLeft;
 				sTF << timeFrame;
-				if(itemLeft != 0)
+				if(checkoutList.size() > 0)
 				{
-					modelStack.PushMatrix();
-					modelStack.Translate(supermarketPosition.x + 45, supermarketPosition.y + 22, supermarketPosition.z + 55);
-					modelStack.Scale(3,3,3);
-					if(checkoutList.size() > 0)
-					{
+						modelStack.PushMatrix();
+						modelStack.Translate(supermarketPosition.x + 45, supermarketPosition.y + 22, supermarketPosition.z + 55 );
+						modelStack.Scale(3,3,3);
 						RenderMesh(checkoutList[checkoutList.size() - 1]->getItem(),togglelight);
-					}
-					modelStack.PopMatrix();
+						modelStack.PopMatrix();
 				}
 				modelStack.PushMatrix();
 				RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
