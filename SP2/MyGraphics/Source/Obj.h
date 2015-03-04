@@ -5,10 +5,6 @@
 
 class CObj
 {
-private:
-	bool InteractionBound;
-
-
 public:
 	CObj(void);
 	CObj(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size);
@@ -20,22 +16,14 @@ public:
 	void setTranslateX(float _translateX);
 	void setTranslate(Vector3 _translate);
 
-	void setInteractionBound(Vector3 Position,int Radius);//calculate when user is in range to interact and how big the radius of bound would be
-	bool getInteractionBound();
-
 	virtual void calcBound();
 	virtual ~CObj(void);
-	
-
 protected:
 	int ID;
 	Vector3 translate, rotate, scale;
 	Vector3 maxBound, minBound; //, interactMaxBound, interactMinBound;
 	Vector3 size;
 	bool render;
-
-
-	
 };
 
 #endif
