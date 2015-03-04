@@ -1747,7 +1747,7 @@ void SP2::updateCabinet(double dt)
 	{
 		if(objList2[a]->getID()== GEO_DISPLAY1 && floorNum == 2)
 		{
-			static_cast<CObj*> (objList2[a])->setInteractionBound(camera.position,50);
+			//static_cast<CObj*> (objList2[a])->setInteractionBound(camera.position,50);
 
 
 				if(objList2[a]->getID()==GEO_HUMAN  && floorNum == 2)
@@ -1768,7 +1768,7 @@ void SP2::updateCabinet(double dt)
 				}
 			}
 
-		}
+		
 	}
 	cout<<" "<<endl;
 }
