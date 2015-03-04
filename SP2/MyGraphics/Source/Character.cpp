@@ -10,7 +10,6 @@ CCharacter::CCharacter(void)
 
 void CCharacter::setMoveIsMax(bool MoveIsMax)
 {
-
 	this->MoveIsMax = MoveIsMax;
 }
 bool CCharacter::getMoveIsMax()
@@ -30,7 +29,6 @@ int CCharacter::getMovement()
 
 void CCharacter::UpdateMovement(int Max)
 {
-	cout<<this->Movement<<endl;
 	if(Movement>Max)
 	{
 		setMoveIsMax(!(getMoveIsMax()));
@@ -198,23 +196,7 @@ void CCharacter::WalkTo(Vector3 TargetPos)
 	}
 	else
 	{
-	if(TargetPos.z==this->getTranslate().z)
-	{
-		if(TargetPos.x>this->getTranslate().x)
-		{
-			this->setTranslate(Vector3(this->getTranslate().x+0.5,this->getTranslate().y,this->getTranslate().z));
-		}
-		else if(TargetPos.x<this->getTranslate().x)
-		{
-			this->setTranslate(Vector3(this->getTranslate().x-0.5,this->getTranslate().y,this->getTranslate().z));
-		}
-		else
-		{
-			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
-			this->setRotateY(-90);
-		}
-	}
-	else 
+	if(TargetPos.x==this->getTranslate().x)
 	{
 		if(TargetPos.z>this->getTranslate().z)
 		{
@@ -230,6 +212,26 @@ void CCharacter::WalkTo(Vector3 TargetPos)
 		{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
 		}
+	}
+	else 
+	{
+		if(TargetPos.x>this->getTranslate().x)
+		{
+			this->setTranslate(Vector3(this->getTranslate().x+0.5,this->getTranslate().y,this->getTranslate().z));
+			this->setRotateY(90);
+		}
+		else if(TargetPos.x<this->getTranslate().x)
+		{
+			this->setTranslate(Vector3(this->getTranslate().x-0.5,this->getTranslate().y,this->getTranslate().z));
+			this->setRotateY(-90);
+		}
+		else
+		{
+			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+			
+		}
+		
+		
 	}
 	}
 }

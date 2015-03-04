@@ -343,6 +343,8 @@ private:
 	Vector3 game3MaxBound, game3MinBound;
 	float bobMoveX, bobMoveZ, tempBobMoveX, tempBobMoveZ; // moving of security guard
 	bool game3 , hitSomething;
+
+	std::vector <CCharacter*> CharacterList;
 };
 
 #endif

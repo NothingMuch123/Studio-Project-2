@@ -19,10 +19,6 @@ bool CPromoter::InteractionBound(Vector3 Position)
 {
 	return 0;
 }
-string CPromoter::script(bool getIsControlled)
-{
-	return "hi";
-}
 
 string CPromoter::updateScript()
 {

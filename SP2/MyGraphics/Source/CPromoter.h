@@ -15,8 +15,6 @@ public:
 	string updateScript();
 
 	bool InteractionBound(Vector3 Position);
-
-	string script(bool getIsControlled);
 	
 	void updateChar(bool getIsControlled,double dt);
 
