@@ -150,7 +150,8 @@ public:
 
 		//player
 		GEO_HAND,
-		GEO_INVENTORY,
+		GEO_MAP_1,
+		GEO_MAP_PLAYER,
 
 		NUM_GEOMETRY,
 	};
@@ -272,6 +273,10 @@ private:
 	void updateGame(double dt);
 	bool updateBoundCheckGame3();
 
+	void initMap();
+	void renderMap();
+	void updateMap();
+
 	bool aiTalk;
 	float timer;
 
@@ -348,7 +353,12 @@ private:
 	bool game3 , hitSomething;
 
 	std::vector <CCharacter*> CharacterList;
+
 	bool mainmenu;
+
+	// mini map variables
+	Vector3 mapMaxBound, mapMinBound;
+	float mapPositionX, mapPositionZ;
 };
 
 #endif

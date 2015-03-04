@@ -94,6 +94,20 @@ void SP2::Init()
 	initCamera();
 	initGame();
 	initSpecialItems();
+	initMap();
+}
+
+void SP2::initMap()
+{
+	meshList[GEO_MAP_1] = MeshBuilder::GenerateQuad("map" , Color(1,1,1),TexCoord(1,1));
+	meshList[GEO_MAP_1]->textureID = LoadTGA("Image//map1.tga");
+	meshList[GEO_MAP_PLAYER] = MeshBuilder::GenerateQuad("map", Color(1,1,1),TexCoord(1,1));
+	meshList[GEO_MAP_PLAYER]->textureID = LoadTGA("Image//legendPlayer.tga");
+	mapPositionX = 0, mapPositionZ = 0;
+
+	//bound check - see if inside supermarket
+	mapMaxBound.Set(supermarketPosition.x + 170 , supermarketPosition.y, supermarketPosition.z + 154);
+	mapMinBound.Set(supermarketPosition.x - 170 , supermarketPosition.y , supermarketPosition.z - 154);
 }
 
 void SP2::initHands()
@@ -1274,28 +1288,40 @@ void SP2::Update(double dt)
 			}
 		}
 
-	if(inGame == 0)
-		updateHuman(dt);
+	updateHuman(dt);
 	updateSuperMarket(dt);
 	updateHands(dt);
 	updateCamera(dt);
+	if(floorNum == 1)
 	updateGame(dt);
-		if(Application::IsKeyPressed('Z'))
-		{
-			togglelight = true;
-		}
-		if(Application::IsKeyPressed('X'))
-		{
-			togglelight = false;
-		}
-		static double fpsRefresh;
-		fpsRefresh += dt;
-		if (fpsRefresh >= 1)
-		{
-			fps = 1 / dt;
-			fpsRefresh = 0;
-		}
+	if(cam == false) 
+	{
+		if(camera.position.x < mapMaxBound.z && camera.position.x > mapMinBound.x && camera.position.z < mapMaxBound.z && camera.position.z > mapMinBound.z)
+			updateMap();
 	}
+
+	if(Application::IsKeyPressed('Z'))
+	{
+		togglelight = true;
+	}
+	if(Application::IsKeyPressed('X'))
+	{
+		togglelight = false;
+	}
+	static double fpsRefresh;
+	fpsRefresh += dt;
+	if (fpsRefresh >= 1)
+	{
+		fps = 1 / dt;
+		fpsRefresh = 0;
+	}
+
+}
+
+void SP2::updateMap()
+{
+	mapPositionX = ( camera.position.x)/(supermarketScale.x * 13);//130
+	mapPositionZ = ( -camera.position.z)/(supermarketScale.z * 8.5);
 }
 
 void SP2::updateCamera(double dt)
@@ -1939,7 +1965,8 @@ void SP2::Render()
 			}
 			else if(pObj->getID() == GEO_HUMAN)
 			{
-				renderHuman();
+				if(inGame != 3)
+					renderHuman();
 			}
 			else if (pObj->getID() != GEO_SUPERMARKET_WALL)
 			{
@@ -2100,11 +2127,18 @@ void SP2::Render()
 			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,3);
 		}
 	}
+	renderMap();
 	renderText();
 	if (mainmenu)
 	{
 		RenderTextOnScreen(meshList[GEO_TEXT], "Press enter to continue", Color(0,0,1), 3, 2,10);
 	}
+}
+
+void SP2::renderMap()
+{
+	Render2D(meshList[GEO_MAP_1],10,7.5,0.5);
+	Render2D(meshList[GEO_MAP_PLAYER],4,18.75 + mapPositionX,1.2 + mapPositionZ);
 }
 
 void SP2::renderText()
