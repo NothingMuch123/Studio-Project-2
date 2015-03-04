@@ -18,48 +18,59 @@ CCashier::CCashier(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale,
 
 string CCashier::updateScript()
 {
-	switch(this->getScript())
+switch(this->getScript())
 	{
 	case 1:
 		{
-			string temp("hi");
+			string temp("Hi There!");
 			return temp;
 		}
 	case 2:
 		{
-			string temp("sup");
+			string temp("Can i have your Items?");
 			return temp;
 		}
 	case 3:
 		{
+			string temp("That would be $420 Sir");
+			return temp;
 		}
 	case 4:
 		{
+			string temp("Would you like some of our homegrown weed?");
+			return temp;
 		}
 	case 5:
 		{
+			string temp("You must be under 18 to buy Cigarettes!");
+			return temp;
 		}
 	case 6:
 		{
+			string temp("Do you want to build a Meshman?");
+			return temp;
 		}
 	case 7:
 		{
-
+			string temp("I used to be a shopper like you, then i took an arrow to the wallet");
+			return temp;
 		}
 	case 8:
 		{
+			string temp("Everything used to be peaceful around here, until the Great Singapore Sale attacked");
+			return temp;
 		}
 	case 9:
 		{
+			string temp("I started working last month, same as the promoter!");
+			return temp;
 		}
 	case 10:
 		{
-		}
-	default:
-		{
-			string temp("Do i know you?...");
+			string temp("Slicing Meat has a certain.. technique to it, don't you think?");
 			return temp;
 		}
+
 	}
 }
 

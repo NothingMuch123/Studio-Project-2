@@ -13,7 +13,7 @@ public:
 
 	string updateScript();
 
-	void setScript(bool getIsControlled,string Word); //IB=InteractionBound   1:Ai or User 2:Word to Pass In
+	//void setScript(int choice); //IB=InteractionBound   1:Ai or User 2:Word to Pass In
 	
 	void updateChar(bool getIsControlled,double dt);
 

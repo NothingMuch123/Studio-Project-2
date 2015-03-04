@@ -26,44 +26,55 @@ string CPromoter::updateScript()
 	{
 	case 1:
 		{
-			string temp("hi");
+			string temp("Hi There!");
 			return temp;
 		}
 	case 2:
 		{
-			string temp("sup");
+			string temp("Can i interest you in any items?");
 			return temp;
 		}
 	case 3:
 		{
+			string temp("Perhaps you would like to look at this radio?");
+			return temp;
 		}
 	case 4:
 		{
+			string temp("Perhaps you would like to look at this Iron?");
+			return temp;
 		}
 	case 5:
 		{
+			string temp("Perhaps you would like to look at this Can of Beans?");
+			return temp;
 		}
 	case 6:
 		{
+			string temp("How would you like to look at these knives?");
+			return temp;
 		}
 	case 7:
 		{
-
+			string temp("The Knives just came in from Germany, very sharp, swift and clean cuts, especially to meat");
+			return temp;
 		}
 	case 8:
 		{
+			string temp("*expertly flips knife");
+			return temp;
 		}
 	case 9:
 		{
+			string temp("*skillfully flips fedora");
+			return temp;
 		}
 	case 10:
 		{
-		}
-	default:
-		{
-			string temp("Do i know you?...");
+			string temp("This knife cut meat faster than paper cut you!");
 			return temp;
 		}
+	
 	}
 }
 

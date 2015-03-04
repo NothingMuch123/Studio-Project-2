@@ -101,7 +101,7 @@ int CCharacter::getRole()
 
 int CCharacter::getScript()
 {
-	return this->getScript();
+	return this->Script;
 }
 
 string CCharacter::updateScript()

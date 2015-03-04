@@ -1763,7 +1763,8 @@ void SP2::updateHuman(double dt)
 
 				if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
 				{
-					cout<<"Cashier says hi"<<endl;
+					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
 				}
 
 			}
@@ -1788,7 +1789,9 @@ void SP2::updateHuman(double dt)
 				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
 				{
 					static_cast<CSecurityGuard*>(objList[a])->setMovement(0);
-					cout<<"SecurityGuard says hi"<<endl; 
+					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+				
 				}
 
 			}
@@ -1807,7 +1810,9 @@ void SP2::updateHuman(double dt)
 				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
 					static_cast<CCashier*>(objList[a])->setMovement(0);
-					cout<<"Shopper says: You're near me"<<endl;
+					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+				
 				}
 			}
 
@@ -1818,7 +1823,9 @@ void SP2::updateHuman(double dt)
 				if(static_cast<CPromoter*>(objList[a])->getInteractionBound()==true)
 				{
 					static_cast<CPromoter*>(objList[a])->setMovement(0);
-					cout<<"Promoter says hi"<<endl;
+					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+				
 				}
 			}
 
