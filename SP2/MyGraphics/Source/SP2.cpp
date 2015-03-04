@@ -1,4 +1,4 @@
-#include "SP2.h"
+﻿#include "SP2.h"
 #include "GL\glew.h"
 
 #include "shader.hpp"
@@ -77,13 +77,13 @@ void SP2::Init()
 
 	srand(time(NULL));
 
-	initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
-	
-
-	initHuman(2,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
-
-	initValues();
 	initCar();
+
+	initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
+	initHuman(4,Vector3(-60,0,0 ) ,Vector3(0,90,0),camera.position,60);
+
+	initCar();
+	initValues();
 	initOuterSkybox();
 	initSuperMarket();
 	initPatch();
@@ -100,6 +100,9 @@ void SP2::initHands()
 	meshList[GEO_HAND]->textureID = LoadTGA("Image//Hand.tga");
 	rotateHandX = rotateHandY = trolleyRotateHandX = 0;
 	hands[0] = hands[1] = NULL;
+
+	meshList[GEO_INVENTORY] = MeshBuilder::GenerateQuad("inven" , Color(1,1,1),TexCoord(1,1));
+	meshList[GEO_INVENTORY]->textureID = LoadTGA("Image//inventoryImages//inventory_box.tga"); //hand inventory ui
 }
 
 void SP2::initCamera()
@@ -398,37 +401,78 @@ void SP2::initCar()
 void SP2::initCabinet()
 {	
 	//Special Display Cabinet with the Tardis
+	tardisY = 0;
+	rotTardis = 0;
+	tardisPitch = 0;
 	meshList[GEO_DISPLAY1] = MeshBuilder::GenerateOBJ("Display Cabinet with Tardis", "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY1] ->textureID = LoadTGA("Image//displayGallifrey.tga");
-	pObj = new CObj(GEO_DISPLAY1, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
-	pObj->calcBound();
+	pObj = new CObj(GEO_DISPLAY1, Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y *.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	//pObj->calcBound();
 	objList2.push_back(pObj);
 	//FangShu Display Cabinet
 	meshList[GEO_DISPLAY2] = MeshBuilder::GenerateOBJ("Display Cabinet with Potato", "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY2] ->textureID = LoadTGA("Image//displayPotato.tga");
-	pObj = new CObj(GEO_DISPLAY2, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
-	pObj->calcBound();
+	pObj = new CObj(GEO_DISPLAY2, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y*.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	//pObj->calcBound();
 	objList2.push_back(pObj);
 	//Tim Lin Display Cabinet
 	meshList[GEO_DISPLAY3] = MeshBuilder::GenerateOBJ("Display Cabinet with Tim Lin's Item",  "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY3]->textureID = LoadTGA("Image//displaySilver.tga");
-	pObj = new CObj(GEO_DISPLAY3, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
-	pObj->calcBound();
+	pObj = new CObj(GEO_DISPLAY3, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y*.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	//pObj->calcBound();
 	objList2.push_back(pObj);
 	//Rayson Display Cabinet
 	meshList[GEO_DISPLAY4] = MeshBuilder::GenerateOBJ("Display Cabinet with Thor's Item",  "OBJ//display_case.obj");
 	meshList[GEO_DISPLAY4]->textureID = LoadTGA("Image//displayCircuit.tga");
-	pObj = new CObj(GEO_DISPLAY4, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
-	pObj->calcBound();
+	pObj = new CObj(GEO_DISPLAY4, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y*.3,supermarketScale.z * 0.75), Vector3(3, 3 ,3));
+	//pObj->calcBound();
 	objList2.push_back(pObj);
 }
 
 void SP2::initSpecialItems()
 {
-	//Potato
+	//Time Potato
 	meshList[GEO_POTATO] = MeshBuilder::GenerateOBJ("Potato", "OBJ//potato.obj");
 	meshList[GEO_POTATO] ->textureID = LoadTGA("Image//potato.tga");
-	pObj = new CObj(GEO_POTATO, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 5.25 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x ,supermarketScale.y,supermarketScale.z * 0.75), Vector3(3, 3 ,3)); 
+	pObj = new CObj(GEO_POTATO, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1.5 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,-45), Vector3(supermarketScale.x* .15 ,supermarketScale.y * .15,supermarketScale.z * .15), Vector3(3, 3 ,3)); 
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//Mjolnir
+	meshList[GEO_THOR] = MeshBuilder::GenerateOBJ("Mjolnir", "OBJ//mjolnir.obj");
+	meshList[GEO_THOR]->textureID = LoadTGA("Image//mjolnir.tga");
+	pObj = new CObj(GEO_THOR, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .8 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .8 ,supermarketScale.y * .8,supermarketScale.z * .45886), Vector3(3, 3 ,3)); 
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//WUKONG'S STAFF
+	meshList[GEO_WUKONG] = MeshBuilder::GenerateOBJ("Jingu Bang", "OBJ//wukong_staff.obj");
+	meshList[GEO_WUKONG]->textureID = LoadTGA("Image//wukong_staff.tga");
+	pObj = new CObj(GEO_WUKONG, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .4 ,supermarketScale.y * .4,supermarketScale.z * .3), Vector3(3, 3 ,3)); 
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//TARDIS
+	//------------------------------------------------------------------------------TARDIS_BASE-------------------------------------------------------------------------------------------------
+	meshList[GEO_TARDIS_BOT] = MeshBuilder::GenerateOBJ("Tardis Base", "OBJ//tardis//tardis_base.obj");
+	meshList[GEO_TARDIS_BOT]->textureID = LoadTGA("Image//tardis//tardis_base.tga");
+	pObj = new CObj(GEO_TARDIS_BOT,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225), Vector3(9, 9 ,9)); 
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//------------------------------------------------------------------------------TARDIS_BODY------------------------------------------------------------------------------------------------
+	meshList[GEO_TARDIS_MID] = MeshBuilder::GenerateOBJ("Tardis Body", "OBJ//tardis//tardis_body.obj");
+	meshList[GEO_TARDIS_MID] -> textureID = LoadTGA("Image//tardis//tardis_body.tga");
+	pObj = new CObj(GEO_TARDIS_MID,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225),  Vector3(9, 9 ,9)); 
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//------------------------------------------------------------------------------TARDIS_SIGN-------------------------------------------------------------------------------------------------
+	meshList[GEO_TARDIS_SIGN] = MeshBuilder::GenerateOBJ("Tardis Sign", "OBJ//tardis//tardis_police.obj");
+	meshList[GEO_TARDIS_SIGN]->textureID = LoadTGA("Image//tardis//tardis_police.tga");
+	pObj = new CObj(GEO_TARDIS_SIGN,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225), Vector3(9, 9 ,9)); 
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	//------------------------------------------------------------------------------TARDIS_TOP--------------------------------------------------------------------------------------------------
+	meshList[GEO_TARDIS_TOP] = MeshBuilder::GenerateOBJ("Tardis Base", "OBJ//tardis//tardis_roof.obj");
+	meshList[GEO_TARDIS_TOP]->textureID = LoadTGA("Image//tardis//tardis_base.tga");
+	pObj = new CObj(GEO_TARDIS_TOP,Vector3 (supermarketPosition.x - 9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z - 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .3 ,supermarketScale.y * .3,supermarketScale.z * .225),  Vector3(9, 9 ,9)); 
+	pObj->calcBound();
 	objList2.push_back(pObj);
 }
 
@@ -471,11 +515,15 @@ void SP2::initSuperMarket()
 	meshList[GEO_TROLLEY] = MeshBuilder::GenerateOBJ("Trolley", "OBJ//Trolley.obj");
 	meshList[GEO_TROLLEY]->textureID = LoadTGA("Image//trolleytexture.tga");
 
+	//paper bag - used for game 2 cashier
+	meshList[GEO_BAG] = MeshBuilder::GenerateOBJ("Bag" , "OBJ//bag.obj");
+	meshList[GEO_BAG]->textureID = LoadTGA ("Image//bagTex.tga");
+
 	pObj = new CObj(GEO_SUPERMARKET_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
 	objList.push_back(pObj);
 	objList2.push_back(pObj);
 
-	pObj = new CObj(GEO_CASHIER_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 5 , 11));
+	pObj = new CObj(GEO_CASHIER_TABLE , Vector3(supermarketPosition.x + 4.1 * supermarketScale.x, supermarketPosition.y + 0.25 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x / 2, supermarketScale.y / 2, supermarketScale.z / 2), Vector3(4 , 3.5 , 11));
 	pObj->calcBound();
 	objList.push_back(pObj);
 
@@ -589,6 +637,11 @@ void SP2::initSuperMarket()
 	static_cast<CTrolley*>(pObj)->setCamera();
 	objList.push_back(pObj);
 	trolleyList.push_back(static_cast<CTrolley*>(pObj));
+
+	//paper bag
+	pObj = new CObj(GEO_BAG , supermarketPosition + Vector3( 45, 22, 95), Vector3(0,0,0), Vector3(2,2,2) , Vector3(3, 2, 1.5)); 
+	pObj->calcBound();
+	objList.push_back(pObj);
 
 	Vector3 leftStartPosition(supermarketPosition.x - ((supermarketScale.x * supermarketSize.x) / 2) + (33 * 1.5), 0, supermarketPosition.z - ((supermarketScale.z * supermarketSize.z) / 2) + (33 * 1.5));
 	// Left top row
@@ -718,9 +771,9 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		meshList[GEO_HUMAN_STAFF_LEG] = MeshBuilder::GenerateOBJ( "p_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_STAFF_LEG]->textureID = LoadTGA ("Image//Staff.tga");
 
-		pObj = new CPromoter(GEO_HUMAN,translation, Vector3(0,0,0),Vector3(4,7,4), Vector3(3, 4.6, 3), camera.position, radius);
+		pObj = new CPromoter(GEO_HUMAN,translation,rotation,Vector3(4,7,4), Vector3(3, 4.6, 3), camera.position, radius + 2);
 		pObj->calcBound();
-		objList2.push_back(pObj);
+		objList.push_back(pObj);
 	}
 
 	//Promoter Interaction Bound
@@ -870,9 +923,6 @@ void SP2::initValues()
 	fps = 60;
 	togglelight = false;
 
-
-
-
 	for(int a = 0; a<objList.size();++a)
 	{
 		if(objList[a]->getID() == GEO_HUMAN)
@@ -882,27 +932,26 @@ void SP2::initValues()
 			}
 			else if(static_cast <CCharacter*>(objList[a])->getRole()==2)//SecurityGuard
 			{
-				static_cast<CCharacter*>(objList[a])->setRouteID(0);
-
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,40));
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,-130));
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-130));
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,40));
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,80));
 			}
 			else if(static_cast <CCharacter*>(objList[a])->getRole()==3)//Shopper
 			{
 				static_cast <CCharacter*>(objList[a])->setRouteID(0);
-
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,0));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,0));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,-100));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
-
-				static_cast <CCharacter*>(objList[a])->AICamera.position=static_cast<CCharacter*>(objList[a])->getTranslate();
+			}
+			else if(static_cast <CCharacter*>(objList[a])->getRole()==4)//Promo
+			{
+				static_cast <CCharacter*>(objList[a])->setRouteID(0);
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,-100));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
 			}
 		}
 	}
@@ -950,17 +999,41 @@ void SP2::initGame()
 	timeFrame = 0; // time fame given to player can be used to display previous attempts
 	totalCost = 0; // total amount that is given to player 
 
-	// game 1 - treasure hunt
+	// game 1 - shopper
 	Vector3 game1Position(supermarketPosition.x - (3 * supermarketScale.z) , supermarketPosition.y , supermarketPosition.z + ( 3 * supermarketScale.z));
 	game1MaxBound.Set( game1Position.x + ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z + ( 2 * supermarketScale.z));
 	game1MinBound.Set( game1Position.x - ( 2 * supermarketScale.x ) , game1Position.y , game1Position.z - ( 2 * supermarketScale.z));
 	pickCorrect = false;
-	randomItem = rand() % 10 + 33; // generate random item - the inventory pic items
+	randomItem = rand() % 10 + GEO_INVENTORY_ITEM_1; // generate random item - the inventory pic items
+
+	//game2 - cashier
+	Vector3 game2Position(supermarketPosition.x + 55, supermarketPosition.y , supermarketPosition.z + 75 );
+	game2MaxBound.Set(game2Position.x + (2 * supermarketScale.x) , game2Position.y, game2Position.z + (2 * supermarketScale.z));
+	game2MinBound.Set(game2Position.x - (2 * supermarketScale.x) , game2Position.y, game2Position.z - (2 * supermarketScale.z));
+	itemLeft = 10; // item left to "check out
+
+	//game 3 - security guard
+	Vector3 game3Position(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z );
+	game3MaxBound.Set(game3Position.x + (2 * supermarketScale.x) , game3Position.y , game3Position.z + ( 2 * supermarketScale.z));
+	game3MinBound.Set(game3Position.x - (2 * supermarketScale.x) , game3Position.y , game3Position.z - ( 2 * supermarketScale.z));
+
+	game3 = false; // to tell if is inside game 3, used by security cam and game 3
+	bobMoveX = 0;
+	bobMoveZ = 0;
+	//initialize BOB - controllable security guard for game 3
+	meshList[GEO_GAME3_BOB_BODY] = MeshBuilder::GenerateOBJ("Bob's Body" ,"OBJ//humanModel_bodyNhead.obj");
+	meshList[GEO_GAME3_BOB_BODY]->textureID = LoadTGA("Image//Police.tga");
+	meshList[GEO_GAME3_BOB_ARM] = MeshBuilder::GenerateOBJ("Bob's arm" , "OBJ//humanModel_leftshoulder.obj");
+	meshList[GEO_GAME3_BOB_ARM]->textureID = LoadTGA("Image//Police.tga");
+	meshList[GEO_GAME3_BOB_HAND] = MeshBuilder::GenerateOBJ("Bob's hand " , "OBJ//humanModel_lefthand.obj");
+	meshList[GEO_GAME3_BOB_HAND]->textureID = LoadTGA("Image//Police.tga");
+	meshList[GEO_GAME3_BOB_LEG] = MeshBuilder::GenerateOBJ("BOB's leg", "OBJ//humanModel_leftLeg.obj");
+	meshList[GEO_GAME3_BOB_LEG]->textureID = LoadTGA("Image//Police.tga");
 }
 
 void SP2::Update(double dt)
 {
-
+	//rotTardis += 5;
 	if(cam == false)
 	{
 		if(Application::IsKeyPressed('1')) //enable back face culling
@@ -1064,19 +1137,62 @@ void SP2::Update(double dt)
 						cam = true;
 					}
 				}
-				/*else if (pObj->getID() == GEO_CASHIER_TABLE)
+				// ========= paper bag ===================
+				else if(pObj->getID() == GEO_BAG)
 				{
-				if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
-				{
-				checkoutList.push_back(static_cast<CItem*>(hands[0]);
-				hands[0] = NULL;
+					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+					{
+						bagList.push_back(static_cast<CItem*>(hands[0]));
+						hands[0] = NULL;
+						if(inGame == 2 && itemLeft > 0) // cashier game 
+						{
+							itemLeft -= 1;
+						}
+					}
+					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+					{
+						bagList.push_back(static_cast<CItem*>(hands[1]));
+						hands[1] = NULL;
+						if(inGame == 2 && itemLeft > 0) // cashier game 
+						{
+							itemLeft -= 1;
+						}
+					}
+					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && bagList.size() > 0)
+					{
+						hands[0] = static_cast<CObj*>(bagList[bagList.size() - 1 ]);
+						bagList.pop_back();
+					}
+					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && bagList.size() > 0)
+					{
+						hands[1] = static_cast<CObj*> (bagList[bagList.size() - 1]);
+						bagList.pop_back();
+					}
 				}
-				if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+				// ======== cashier table ============
+				else if (pObj->getID() == GEO_CASHIER_TABLE)
 				{
-				checkoutList.push_back(static_cast<CItem*>(hands[1]);
-				hands[1] = NULL;
+					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+					{
+						checkoutList.push_back(static_cast<CItem*>(hands[0]));
+						hands[0] = NULL;
+					}
+					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+					{
+						checkoutList.push_back(static_cast<CItem*>(hands[1]));
+						hands[1] = NULL;
+					}
+					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && checkoutList.size() > 0)
+					{
+						hands[0] = static_cast<CObj*>(checkoutList[checkoutList.size() - 1 ]);
+						checkoutList.pop_back();
+					}
+					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && checkoutList.size() > 0)
+					{
+						hands[1] = static_cast<CObj*> (checkoutList[checkoutList.size() - 1]);
+						checkoutList.pop_back();
+					}
 				}
-				}*/
 			}
 		}
 	}
@@ -1092,7 +1208,7 @@ void SP2::Update(double dt)
 			updateTrolley(dt);
 		}
 	}
-
+	updateCabinet(dt);
 	updateHuman(dt);
 	updateSuperMarket(dt);
 	updateHands(dt);
@@ -1121,6 +1237,7 @@ void SP2::updateCamera(double dt)
 {
 	if(cam == true)
 	{
+		glEnable(GL_CULL_FACE);
 		camera = cameraList[camNum]->camera;
 		if(Application::IsKeyPressed('1')) // toggle floor 1 cam 1
 		{
@@ -1143,7 +1260,7 @@ void SP2::updateCamera(double dt)
 			camNum = 1;
 		}
 	}
-	if(keypressed[K_EXIT_CAM] && cam == true)
+	if(keypressed[K_EXIT_CAM] && cam == true && game3 == false)
 	{
 		floorNum = 2;
 		cam = false;
@@ -1153,7 +1270,6 @@ void SP2::updateCamera(double dt)
 	{
 		camera.Update(dt, outerSkyboxMaxBound, outerSkyboxMinBound, objList, hands, floorNum, objList2);
 	}
-
 }
 
 void SP2::updateGame(double dt)
@@ -1164,23 +1280,138 @@ void SP2::updateGame(double dt)
 	{
 		if(keypressed[K_START_STORY] && inGame == 0)// check if want to start game + no game involved currently
 		{
-			saved = camera;
 			inGame = 1;
 			timeFrame = 30;
 			playerScore[0] = 0;
 		}
 	}
-	if(inGame == 1) // in treasure hunt mode aka game 1
+	// cashier game start bound
+	if(camera.position.x < game2MaxBound.x && camera.position.x > game2MinBound.x && camera.position.z < game2MaxBound.z && camera.position.z > game2MinBound.z)
 	{
-		timeFrame -= dt; //constant countdown
-		// getting out of game 1
-		if(timeFrame <= 0 && inGame == 1)
+		if(keypressed[K_START_STORY] && inGame == 0)
 		{
-			camera = saved;
-			inGame = 0;
-			Application::IsKeyPressed('R');
+			CItem *pItem;
+			inGame = 2;
+			timeFrame = 0;
+			itemLeft = 10;
+			playerScore[1] = 0;
+			// init items for game 2 - cashier table one 
+			for(int i = 0 ; i < 10 ; ++i)
+			{
+				int a = rand() % 10 + 28;
+				pItem = new CItem(GEO_ITEM, Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(1,1,1), meshList[a]);
+				checkoutList.push_back(pItem);
+			}
 		}
 	}
+	//guard game start bound
+	if(camera.position.x < game3MaxBound.x && camera.position.x > game3MinBound.x && camera.position.z < game3MaxBound.z && camera.position.z > game3MinBound.z)
+	{
+		if(keypressed[K_START_STORY] && inGame == 0)
+		{
+			game3 = true;
+			saved = camera;
+			cam = true;
+			inGame = 3;
+		}
+	}
+	if(inGame == 1) // in treasure hunt mode aka game 1
+	{
+		//constant countdown
+		timeFrame -= dt;
+		// getting out of game 1
+		if(timeFrame <= 0)
+		{
+			inGame = 0;
+		}
+	}
+	if(inGame == 2)
+	{
+		// constant increase
+		timeFrame += dt;
+		// getting out of game 2
+		if( itemLeft == 0 && inGame == 2)
+		{
+			playerScore[1] = timeFrame;
+			CItem *pItem;
+			inGame = 0;
+			for(int i = 0 ; i < checkoutList.size(); ++i)
+			{
+				pItem = checkoutList[i];
+				delete pItem;
+			}
+		}
+	}
+	if(inGame == 3)
+	{
+		//note to all - this story own time own target
+		// no points in this story though
+		// using WASD to move security guard got bound check - using referance from camera3 code
+		tempBobMoveX = bobMoveX ;
+		tempBobMoveZ = bobMoveZ ;
+
+		if(Application::IsKeyPressed('W'))
+		{
+			bobMoveX += 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+		if(Application::IsKeyPressed('S'))
+		{
+			bobMoveX -= 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+		if(Application::IsKeyPressed('D'))
+		{
+			bobMoveZ += 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+		if(Application::IsKeyPressed('A'))
+		{
+			bobMoveZ -= 1;
+			if(updateBoundCheckGame3())
+			{
+				bobMoveX = tempBobMoveX;
+				bobMoveZ = tempBobMoveZ;
+			}
+		}
+
+		if(keypressed[K_EXIT_CAM] && game3 == true)
+		{ 
+			floorNum = 1;
+			camera = saved;
+			game3 = false;
+			cam = false;
+			inGame = 0;
+		}
+	}
+}
+
+bool SP2::updateBoundCheckGame3()
+{
+	for(int i = 0 ; i < objList.size(); ++i)
+	{
+		pObj = objList[i];
+		if(pObj->getRender())
+		{
+			if(bobMoveX < pObj->getMaxBound().x && bobMoveX > pObj->getMinBound().x && bobMoveZ < pObj->getMaxBound().z && bobMoveZ > pObj->getMinBound().z )
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 void SP2::updateTrolley(double dt)
@@ -1413,9 +1644,13 @@ void SP2::updateHuman(double dt)
 {
 	for(int a = 0; a < objList.size(); ++a)
 	{
-		if(objList[a]->getID() == GEO_HUMAN)
+		if(objList[a]->getID()==GEO_HUMAN && floorNum == 1)
 		{
 
+			if(static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
+			{
+				static_cast <CCharacter*>(objList[a])->setRouteID(rand()%static_cast <CCharacter*>(objList[a])->AiRouteLocation.size());
+			}
 
 			static_cast <CCharacter*>(objList[a])->WalkTo(static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()]);
 
@@ -1428,79 +1663,82 @@ void SP2::updateHuman(double dt)
 				}
 
 			}
-			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)  //Security Guard
+			else if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)  
 			{    
 				static_cast<CSecurityGuard*> (objList[a])->setInteractionBound(camera.position,50);
-
-				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
-
-				if(static_cast<CSecurityGuard*>(objList[a])->getRouteID()==static_cast<CSecurityGuard*>(objList[a])->AiRouteLocation.size()-1)
-				{
-					static_cast<CSecurityGuard*>(objList[a])->setRouteID(0);
-				}
-
-				if(static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
-				{
-					static_cast <CCharacter*>(objList[a])->setRouteID(static_cast<CCharacter*>(objList[a])->getRouteID()+1);
-				}
-
-			
-
 				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
 				{
 					cout<<"Securityguard says hi"<<endl;   
 				}
 
 			}
-			else if(static_cast<CShopper*>(objList[a])->getRole()==3)//Shopper
+			else if(static_cast<CShopper*>(objList[a])->getRole()==3)
 			{
-				if(static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
-				{
-					static_cast <CCharacter*>(objList[a])->setRouteID(rand()%static_cast <CCharacter*>(objList[a])->AiRouteLocation.size());
-				}
 				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
-				for(int a = 0; a<objList.size();++a)
-				{
-					if(objList[a]->getID()==GEO_HUMAN)
-					{
-						/*	for(int b = 0;b<objList.size();++b)
-						{
-						if(objList[a]->getID()==GEO_TROLLEY)
-						{
-						if(objList[a]->getMaxBound().x>objList[b]->getMaxBound().x)
-						}
-						}*/
-					}
-				}
+
 				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
-
 					cout<<"Shopper says: You're near me"<<endl;
 				}
+
+
 			}
-
-
-			else if(static_cast<CShopper*>(objList[a])->getRole()==4)
+			else if(static_cast<CPromoter*>(objList[a])->getRole()==4)
 			{
-
-
-				if(objList2[a]->getID()==GEO_HUMAN  && floorNum == 2)
-				{
-					if(static_cast<CPromoter*>(objList2[a])->getRole()==4)
-					{
-						static_cast<CPromoter*> (objList2[a])->setInteractionBound(camera.position,50);
-						if(static_cast<CPromoter*>(objList2[a])->getInteractionBound()==true)
-							cout<<"Promoter says hi"<<endl;
-					}
-
-				}
+				static_cast<CPromoter*> (objList[a])->setInteractionBound(camera.position,50);
+				if(static_cast<CPromoter*>(objList[a])->getInteractionBound()==true)
+					cout<<"Promoter says hi"<<endl;
 			}
 
 		}
 	}
-	cout<<" "<<endl;
 }
 
+void SP2::updateCabinet(double dt)
+{
+	for(int a = 0; a < objList.size(); ++a)
+	{
+		if(objList2[a]->getID()== GEO_DISPLAY1 && floorNum == 2)
+		{
+			static_cast<CObj*> (objList2[a])->setInteractionBound(camera.position,50);
+
+			if(Application::IsKeyPressed('T') && floorNum == 2)
+			{
+				if(static_cast<CObj*> (objList2[a])->getInteractionBound() == true)
+				{
+					//animation
+					float tYM = 5;
+					float tYm = 0;
+					if(tardisY < tYM)
+					{
+						tardisY += 0.5;
+					}
+					else if(tardisY < tYm)
+					{
+						tardisY -= 0.5;
+					}
+					rotTardis += 5;
+					if(tardisPitch <= 45)
+					{
+						tardisPitch += 5;
+					}
+					cout<<"Is Animating" <<endl;
+				}
+			}
+			cout<<"Cabinet Bound's Detected"<<endl;
+		}
+
+		else if( objList2[a]->getID()== GEO_DISPLAY2 && floorNum == 2)
+		{}
+		else if(objList2[a]->getID()== GEO_DISPLAY3 && floorNum == 2)
+		{}
+		else if( objList2[a]->getID()== GEO_DISPLAY4 && floorNum == 2)
+		{}
+	}
+}
+void SP2::updateSpecialItems()
+{
+}
 
 void SP2::Render()
 {
@@ -1636,18 +1874,107 @@ void SP2::Render()
 		for (int i = 0; i < trolleyList.size(); ++i)
 		{
 			pObj = trolleyList[i];
-			for (int j = 0; j < 4; ++j)
-			{
-				modelStack.PushMatrix();
-				modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
-				modelStack.Rotate(j * 90, 0,1,0);
-				modelStack.Scale(5,5,5);
-				RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
-				modelStack.PopMatrix();
-			}
+			modelStack.PushMatrix();
+			modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
+			modelStack.Rotate(0, 0,1,0);
+			modelStack.Scale(5,5,5);
+			RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
+			modelStack.PopMatrix();
+			modelStack.PushMatrix();
+			modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y + (pObj->getScale().y * pObj->getSize().y * 1.3),pObj->getTranslate().z);
+			modelStack.Rotate(180, 0,1,0);
+			modelStack.Scale(5,5,5);
+			RenderText(meshList[GEO_TEXT], std::to_string(static_cast<long long>(static_cast<CTrolley*>(pObj)->itemList.size())), Color(1,0,0));
+			modelStack.PopMatrix();
 		}
 	}
 	renderGame(inGame);
+	if (hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+	{
+		if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_1])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_2])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_3])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_4])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_5])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_6])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_7])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_8])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_9])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,7.5,5);
+		}
+		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_10])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,5);
+		}
+	}
+	if (hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+	{
+		if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_1])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_2])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_3])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_4])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_5])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_6])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_7])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_8])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_9])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,7.5,4);
+		}
+		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_10])
+		{
+			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,4);
+		}
+	}
 	renderText();
 }
 
@@ -1655,7 +1982,7 @@ void SP2::renderText()
 {
 	std::ostringstream sFPS, sOrient, sPitch, sX, sY, sZ, cH;
 	sFPS << fps;
-	sPitch << rotateHandX;
+	sPitch << rotTardis;
 	sOrient << rotateHandY;
 	sX << camera.position.x;
 	sY << camera.position.y;
@@ -1686,26 +2013,29 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-		if (hands[0] == NULL)
+		/*if (hands[0] == NULL)
 		{
-			modelStack.Scale(.4,.4,1.5);
+		modelStack.Scale(.4,.4,1.5);
 		}
 		else if (hands[0]->getID() == GEO_ITEM)
 		{
-			modelStack.Scale(hands[0]->getScale().x, hands[0]->getScale().y, hands[0]->getScale().z);
-		}
+		modelStack.Scale(hands[0]->getScale().x, hands[0]->getScale().y, hands[0]->getScale().z);
+		}*/
+		modelStack.Scale(.4,.4,1.5);
 		modelStack.PushMatrix();
 
-		if (hands[0] == NULL)
+		/*if (hands[0] == NULL)
 		{
-			modelStack.Translate(-1.5,-1.5,-1);
-			RenderMesh(meshList[GEO_HAND], togglelight);
+		modelStack.Translate(-1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_HAND], togglelight);
 		}
 		else if (hands[0]->getID() == GEO_ITEM)
 		{
-			modelStack.Translate(-1.5, -1.5, -4);
-			RenderMesh(static_cast<CItem*>(hands[0])->getItem(), togglelight);
-		}
+		modelStack.Translate(-1.5, -1.5, -4);
+		RenderMesh(static_cast<CItem*>(hands[0])->getItem(), togglelight);
+		}*/
+		modelStack.Translate(-1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_HAND], togglelight);
 		modelStack.PopMatrix();
 
 		modelStack.PopMatrix();
@@ -1716,26 +2046,29 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-		if (hands[1] == NULL)
+		/*if (hands[1] == NULL)
 		{
-			modelStack.Scale(.4,.4,1.5);
+		modelStack.Scale(.4,.4,1.5);
 		}
 		else if (hands[1]->getID() == GEO_ITEM)
 		{
-			modelStack.Scale(hands[1]->getScale().x, hands[1]->getScale().y, hands[1]->getScale().z);
-		}
+		modelStack.Scale(hands[1]->getScale().x, hands[1]->getScale().y, hands[1]->getScale().z);
+		}*/
+		modelStack.Scale(.4,.4,1.5);
 		modelStack.PushMatrix();
 
-		if (hands[1] == NULL)
+		/*if (hands[1] == NULL)
 		{
-			modelStack.Translate(1.5,-1.5,-1);
-			RenderMesh(meshList[GEO_HAND], togglelight);
+		modelStack.Translate(1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_HAND], togglelight);
 		}
 		else if (hands[1]->getID() == GEO_ITEM)
 		{
-			modelStack.Translate(1.5, -1.5, -4);
-			RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
-		}
+		modelStack.Translate(1.5, -1.5, -4);
+		RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
+		}*/
+		modelStack.Translate(1.5,-1.5,-1);
+		RenderMesh(meshList[GEO_HAND], togglelight);
 		modelStack.PopMatrix();
 		modelStack.PopMatrix();
 	}
@@ -1771,12 +2104,63 @@ void SP2::renderCabinet()
 
 void SP2::renderSpecialItems()
 {
+	//POTATO
 	modelStack.PushMatrix();
 	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
-	modelStack.Scale(pObj->getScale().x * 1, pObj->getScale().y * 1, pObj->getScale().z * 1 );
+	modelStack.Scale(pObj->getScale().x * .1, pObj->getScale().y * .1, pObj->getScale().z * .1);
 	RenderMesh(meshList[GEO_POTATO], togglelight);
 	modelStack.PopMatrix();
+	//HAMMERTIME
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .1, pObj->getScale().y * .1, pObj->getScale().z * .1);
+	RenderMesh(meshList[GEO_THOR], togglelight);
+	modelStack.PopMatrix();
+	//WUKONG
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .1, pObj->getScale().y * .1, pObj->getScale().z * .1);
+	RenderMesh(meshList[GEO_WUKONG], togglelight);
+	modelStack.PopMatrix();
+	//--------------------------------TARDIS------------------------------
+	modelStack.PushMatrix();
+
+	//modelStack.Translate(0,tardisY,0);
+	modelStack.Rotate(rotTardis,0,1,0);
+
+
+	//modelStack.Rotate(tardisPitch,1,0,0);
+
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .1, pObj->getScale().y * .1, pObj->getScale().z * .1);
+	RenderMesh(meshList[GEO_TARDIS_TOP], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Rotate(rotTardis, 0 , 1, 0);
+	modelStack.Scale(pObj->getScale().x * .1, pObj->getScale().y * .1, pObj->getScale().z * .1);
+	RenderMesh(meshList[GEO_TARDIS_MID], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .1, pObj->getScale().y * .1, pObj->getScale().z * .1);
+	RenderMesh(meshList[GEO_TARDIS_SIGN], togglelight);
+	modelStack.PopMatrix();
+
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x,pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Scale(pObj->getScale().x * .1, pObj->getScale().y * .1, pObj->getScale().z * .1);
+	RenderMesh(meshList[GEO_TARDIS_BOT], togglelight);
+	modelStack.PopMatrix();
+
+
+	modelStack.PopMatrix();
+
 }
+
 void SP2::renderShelf()
 {
 	modelStack.PushMatrix();
@@ -1877,69 +2261,139 @@ void SP2::renderCar()
 
 void SP2::renderGame(int a)// 1- treasure hunt 
 {
-	std::ostringstream sTF, sPS;
-	sTF << (int)timeFrame;//time given / time taken CHANGE IN UPDATE GAME
-	switch (a)
+	//** NOTE : ALL GAME ON FIRST FLOOR **//
+	if(floorNum == 1)
 	{
-	case 1 :
+		switch (a)
 		{
-			sPS << playerScore[0]; 
-			if(pickCorrect == false)
+		case 1 :
 			{
-				// display item to be picked up 
+				std::ostringstream sTF, sPS;
+				sTF << (int)timeFrame;//time given / time taken CHANGE IN UPDATE GAME
+				sPS << playerScore[0];
+				if(pickCorrect == false)
+				{
+					// display item to be picked up 
+					modelStack.PushMatrix();
+					modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
+					modelStack.Rotate(rotateHandY,0,1,0);
+					modelStack.Rotate(rotateHandX,1,0,0);
+					modelStack.Translate(4,2.5,4);
+					modelStack.Scale(2,2,2);
+					RenderMesh(meshList[randomItem] , false);
+					modelStack.PopMatrix();	
+				}
+				else
+				{
+					//if found correct , gain point plus new item to find
+					playerScore[0] += 1;
+					randomItem = rand() % 10 + GEO_INVENTORY_ITEM_1;
+					pickCorrect = false;
+				}
 				modelStack.PushMatrix();
-				modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
-				modelStack.Rotate(rotateHandY,0,1,0);
-				modelStack.Rotate(rotateHandX,1,0,0);
-				modelStack.Translate(4,2.5,4);
-				modelStack.Scale(2,2,2);
-				RenderMesh(meshList[randomItem] , false);
-				modelStack.PopMatrix();	
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
+				RenderTextOnScreen(meshList[GEO_TEXT] , sTF.str(), Color(1,0,0), 2 , 38 , 20);
+				RenderTextOnScreen(meshList[GEO_TEXT], "Score:", Color (1,0,0), 2, 30, 18);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,sPS.str(), Color(1,0,0), 2, 38 , 18);
+				modelStack.PopMatrix();
 			}
-			else
+			break;
+		case 2:
 			{
-				//if found correct , gain point plus new item to find
-				playerScore[0] += 1;
-				randomItem = rand() % 10 + 33;
-				pickCorrect = false;
+				std::ostringstream sTF , sIL;
+				sIL << itemLeft;
+				sTF << timeFrame;
+				if(itemLeft != 0)
+				{
+					modelStack.PushMatrix();
+					modelStack.Translate(supermarketPosition.x + 45, supermarketPosition.y + 22, supermarketPosition.z + 55);
+					modelStack.Scale(3,3,3);
+					if(checkoutList.size() > 0)
+					{
+						RenderMesh(checkoutList[checkoutList.size() - 1]->getItem(),togglelight);
+					}
+					modelStack.PopMatrix();
+				}
+				modelStack.PushMatrix();
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
+				RenderTextOnScreen(meshList[GEO_TEXT] , sTF.str(), Color(1,0,0), 2 , 38 , 20);
+				RenderTextOnScreen(meshList[GEO_TEXT], "Item Left:", Color (1,0,0), 2, 28, 18);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,sIL.str(), Color(1,0,0), 2, 38 , 18);
+				modelStack.PopMatrix();
 			}
-			modelStack.PushMatrix();
-			RenderTextOnScreen(meshList[GEO_TEXT] ,"Time:", Color(1,0,0), 2 , 30, 20);
-			RenderTextOnScreen(meshList[GEO_TEXT] , sTF.str(), Color(1,0,0), 2 , 38 , 20);
-			RenderTextOnScreen(meshList[GEO_TEXT], "Score:", Color (1,0,0), 2, 30, 18);
-			RenderTextOnScreen(meshList[GEO_TEXT] ,sPS.str(), Color(1,0,0), 2, 38 , 18);
-			modelStack.PopMatrix();
+			break;
+		case 3: // guard control game - will render bob, all movement is in update game
+			{
+				modelStack.PushMatrix();
+				modelStack.Translate(supermarketPosition.x + bobMoveX , supermarketPosition.y + 5, supermarketPosition.z + bobMoveZ);
+				modelStack.Scale(supermarketScale.x/2 , supermarketScale.y/2 + 0.1, supermarketScale.z/4);	
+
+				RenderMesh(meshList[GEO_GAME3_BOB_BODY],false); // ======= BOB's BODY
+				modelStack.PushMatrix();
+				modelStack.Translate(1.5,2.8,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_ARM],false); // ========= BOB's RIGHT ARM
+				modelStack.Translate(0,-0.95,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_HAND],false); // ========= BOB's Right Hand
+				modelStack.PopMatrix();
+				modelStack.PushMatrix();
+				modelStack.Translate(-1.5,2.8,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_ARM],false); // ========= BOB's LEFT ARM
+				modelStack.Translate(0,-0.95,0);
+				RenderMesh(meshList[GEO_GAME3_BOB_HAND],false);// ========== BOB's left Hand
+				modelStack.PopMatrix();
+				modelStack.PushMatrix();
+				modelStack.Translate(0.6,0.5,0);
+				modelStack.Scale(0.9,1.2,1);
+				RenderMesh(meshList[GEO_GAME3_BOB_LEG],false);// =========== BOB's right leg
+				modelStack.PopMatrix();
+				modelStack.PushMatrix();
+				modelStack.Translate(-0.6,0.5,0);
+				modelStack.Scale(0.9,1.2,1);
+				RenderMesh(meshList[GEO_GAME3_BOB_LEG],false);// =========== BOB's left leg
+				modelStack.PopMatrix();
+
+				modelStack.PopMatrix();
+			}
+			break;
+		case 0: // show story/game starting areas
+			{
+				glDisable(GL_CULL_FACE);
+				//============= GAME 1 : TREASURE HUNT ==========================
+				modelStack.PushMatrix();
+				modelStack.Translate(game1MaxBound.x - 2 * supermarketScale.x , camera.position.y, game1MaxBound.z - 2 * supermarketScale.z);
+				modelStack.Scale(supermarketScale.x, supermarketScale.y, supermarketScale.z);
+				RenderText(meshList[GEO_TEXT],"[T]" ,Color(1,0,0));
+				modelStack.Translate(0,-1,0);
+				RenderText(meshList[GEO_TEXT]," V " ,Color(1,0,0));
+				modelStack.PopMatrix();
+
+				//============ GAME 2 : CASHIER ==========================
+				modelStack.PushMatrix();
+				modelStack.Translate(game2MaxBound.x - (2 * supermarketScale.x) , camera.position.y, game2MaxBound.z - (2 * supermarketScale.z));
+				modelStack.Scale(supermarketScale.x ,supermarketScale.y, supermarketScale.z);
+				RenderText(meshList[GEO_TEXT],"[C]",Color(1,0,0));
+				modelStack.Translate(1,-1,0);
+				RenderText(meshList[GEO_TEXT] ,"V " , Color(1,0,0));
+				modelStack.PopMatrix();
+
+				//============== GAME 3 : GUARD =========================
+				modelStack.PushMatrix();
+				modelStack.Translate(game3MaxBound.x - (2*supermarketScale.x) , camera.position.y ,game3MaxBound.z - (2 * supermarketScale.z));
+				modelStack.Scale(supermarketScale.x , supermarketScale.y, supermarketScale.z);
+				RenderText(meshList[GEO_TEXT] ,"[S]" ,Color(1,0,0));
+				modelStack.Translate(1,-1,0);
+				RenderText(meshList[GEO_TEXT],"V",Color(1,0,0));
+				modelStack.PopMatrix();
+				glEnable(GL_CULL_FACE);			
+			}
+			break;
 		}
-		break;
-	case 2:
-		{
-		}
-		break;
-	case 3:
-		{
-		}
-		break;
-	case 0: // show story points
-		{
-			//============= GAME 1 : TREASURE HUNT ==========================
-			sPS << playerScore[0];
-			modelStack.PushMatrix();
-			glDisable(GL_CULL_FACE);
-			modelStack.Translate(game1MaxBound.x - 3 * supermarketScale.x , camera.position.y, game1MaxBound.z - 2 * supermarketScale.z);
-			modelStack.Scale(supermarketScale.x, supermarketScale.y, supermarketScale.z);
-			RenderText(meshList[GEO_TEXT],"[" ,Color(1,0,0));
-			RenderText(meshList[GEO_TEXT],sPS.str() , Color(1,0,0));
-			modelStack.Translate(0,-1,0);
-			RenderText(meshList[GEO_TEXT]," V " ,Color(1,0,0));
-			modelStack.PopMatrix();
-		}
-		break;
 	}
 }
 
 void SP2::renderHuman() 
 {
-	pObj->calcBound();
+	//pObj->calcBound();
 
 	if(static_cast<CCharacter*>(pObj)->getRole()==1)
 	{
@@ -2298,6 +2752,40 @@ void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float si
 	}
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
+	projectionStack.PopMatrix();
+	viewStack.PopMatrix();
+	modelStack.PopMatrix();
+	glEnable(GL_DEPTH_TEST);
+}
+
+void SP2::Render2D(Mesh* mesh, float size, float x, float y)
+{
+	if(!mesh || mesh->textureID <= 0) //Proper error check
+		return;
+
+	glDisable(GL_DEPTH_TEST);
+	Mtx44 ortho;
+	ortho.SetToOrtho(0, 80, 0, 60, -10, 10); //size of screen UI
+	projectionStack.PushMatrix();
+	projectionStack.LoadMatrix(ortho);
+	viewStack.PushMatrix();
+	viewStack.LoadIdentity(); //No need camera for ortho mode
+	modelStack.PushMatrix();
+	modelStack.LoadIdentity(); //Reset modelStack
+	modelStack.Scale(size, size, size);
+	modelStack.Translate(x, y, 1);
+	glUniform1i(m_parameters[U_LIGHTENABLED], 0);
+	glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 1);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, mesh->textureID);
+	glUniform1i(m_parameters[U_COLOR_TEXTURE], 0);
+
+	Mtx44 MVP = projectionStack.Top() * viewStack.Top() * modelStack.Top();
+	glUniformMatrix4fv(m_parameters[U_MVP], 1, GL_FALSE, &MVP.a[0]);
+
+	mesh->Render();
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 	projectionStack.PopMatrix();
 	viewStack.PopMatrix();
 	modelStack.PopMatrix();

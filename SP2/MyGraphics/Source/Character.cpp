@@ -145,12 +145,6 @@ CCharacter::~CCharacter(void)
 
 void CCharacter::WalkTo(Vector3 TargetPos)
 {
-	if(this->getInteractionBound()==true)
-	{
-
-	}
-	else
-	{
 	if(TargetPos.z==this->getTranslate().z)
 	{
 		if(TargetPos.x>this->getTranslate().x)
@@ -180,7 +174,6 @@ void CCharacter::WalkTo(Vector3 TargetPos)
 		{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
 		}
-	}
 	}
 }
 //void CCharacter::calcBound()
