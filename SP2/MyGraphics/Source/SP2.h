@@ -263,6 +263,9 @@ private:
 	void updateGame(double dt);
 	bool updateBoundCheckGame3();
 
+	bool aiTalk;
+	float timer;
+
 	bool togglelight;
 	double fps;
 	bool keypressed[NUM_KEYPRESS];

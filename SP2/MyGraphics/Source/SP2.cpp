@@ -78,7 +78,7 @@ void SP2::Init()
 	srand(time(NULL));
 
 	initHuman(3,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
-
+	initHuman(4,Vector3(-60,0,0 ) ,Vector3(0,90,0),camera.position,60);
 
 	initHuman(2,Vector3(-60,0,65),Vector3(0,90,0),camera.position,60);	
 
@@ -919,6 +919,8 @@ void SP2::initValues()
 	cam = false;
 	fps = 60;
 	togglelight = false;
+	aiTalk == false;
+	timer = 0;
 
 
 
@@ -951,7 +953,15 @@ void SP2::initValues()
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,-100));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
-
+			}
+			else if(static_cast <CCharacter*>(objList[a])->getRole()==4)//Promo
+			{
+				static_cast <CCharacter*>(objList[a])->setRouteID(0);
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-100,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,0));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-100,0,-100));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,-100));
 				static_cast <CCharacter*>(objList[a])->AICamera.position=static_cast<CCharacter*>(objList[a])->getTranslate();
 			}
 		}
@@ -1216,7 +1226,6 @@ void SP2::Update(double dt)
 	updateHands(dt);
 	updateCamera(dt);
 	updateGame(dt);
-
 	if(Application::IsKeyPressed('Z'))
 	{
 		togglelight = true;
@@ -1674,6 +1683,7 @@ void SP2::updateHuman(double dt)
 				static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
 				if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
 				{
+					aiTalk = true;
 					cout<<"Cashier says hi"<<endl;
 				}
 
@@ -1698,6 +1708,7 @@ void SP2::updateHuman(double dt)
 
 				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
 				{
+					aiTalk = true;
 					cout<<"Securityguard says hi"<<endl;   
 				}
 
@@ -1709,29 +1720,34 @@ void SP2::updateHuman(double dt)
 					static_cast <CCharacter*>(objList[a])->setRouteID(rand()%static_cast <CCharacter*>(objList[a])->AiRouteLocation.size());
 				}
 				static_cast<CShopper*> (objList[a])->setInteractionBound(camera.position,50);
-				for(int a = 0; a<objList.size();++a)
-				{
-					if(objList[a]->getID()==GEO_HUMAN)
-					{
-						/*	for(int b = 0;b<objList.size();++b)
-						{
-						if(objList[a]->getID()==GEO_TROLLEY)
-						{
-						if(objList[a]->getMaxBound().x>objList[b]->getMaxBound().x)
-						}
-						}*/
-					}
-				}
+
 				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
-
+					aiTalk = true;
 					cout<<"Shopper says: You're near me"<<endl;
 				}
 			}
 
 
-			else if(static_cast<CShopper*>(objList[a])->getRole()==4)
+			else if(static_cast<CPromoter*>(objList[a])->getRole()==4)
 			{
+				static_cast<CPromoter*> (objList[a])->setInteractionBound(camera.position,50);
+				if(static_cast<CPromoter*>(objList[a])->getInteractionBound()==true)
+					aiTalk = true;
+					
+			}
+
+		}
+	}
+}
+
+void SP2::updateCabinet(double dt)
+{
+	for(int a = 0; a < objList.size(); ++a)
+	{
+		if(objList2[a]->getID()== GEO_DISPLAY1 && floorNum == 2)
+		{
+			static_cast<CObj*> (objList2[a])->setInteractionBound(camera.position,50);
 
 
 				if(objList2[a]->getID()==GEO_HUMAN  && floorNum == 2)
@@ -1743,6 +1759,12 @@ void SP2::updateHuman(double dt)
 							cout<<"Promoter says hi"<<endl;
 					}
 
+		else if( objList2[a]->getID()== GEO_DISPLAY2 && floorNum == 2)
+		{}
+		else if(objList2[a]->getID()== GEO_DISPLAY3 && floorNum == 2)
+		{}
+		else if( objList2[a]->getID()== GEO_DISPLAY4 && floorNum == 2)
+		{}
 				}
 			}
 
@@ -2015,7 +2037,146 @@ void SP2::renderText()
 	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 0, 0), 2, 4, 3);
 	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 0, 0), 2, 1, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 0, 0), 2, 4, 2);
-	RenderTextOnScreen(meshList[GEO_TEXT], "<o>", Color(1,0,0), 2, 19.2, 15);
+	RenderTextOnScreen(meshList[GEO_TEXT], ">o<", Color(1,0,0), 2, 19.2, 15);
+	
+	if(aiTalk == true  && timer < 500)
+	{
+		for(int a = 0; a < objList.size(); ++a)
+		{
+			if(static_cast<CCashier*>(objList[a])->getRole()==1)
+			{
+				int textNum = rand() % 10;
+				switch(textNum)
+				{
+				case 1:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
+					break;
+				case 2:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
+					break;
+				case 3:
+					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
+					break;
+				case 4:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
+					break;
+				case 5:
+					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
+					break;
+				case 6: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
+					break;
+				case 7:
+					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
+					break;
+				case 8:
+					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
+					break;
+				case 9: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
+				}
+			}
+			if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
+			{
+				int textNum = rand() % 10;
+				switch(textNum)
+				{
+				case 1:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
+					break;
+				case 2:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
+					break;
+				case 3:
+					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
+					break;
+				case 4:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
+					break;
+				case 5:
+					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
+					break;
+				case 6: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
+					break;
+				case 7:
+					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
+					break;
+				case 8:
+					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
+					break;
+				case 9: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
+				}
+			}
+			if(static_cast<CShopper*>(objList[a])->getRole()==3)
+			{
+				int textNum = rand() % 10;
+				switch(textNum)
+				{
+				case 1:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
+					break;
+				case 2:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
+					break;
+				case 3:
+					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
+					break;
+				case 4:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
+					break;
+				case 5:
+					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
+					break;
+				case 6: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
+					break;
+				case 7:
+					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
+					break;
+				case 8:
+					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
+					break;
+				case 9: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
+				}
+			}
+			if(static_cast<CPromoter*>(objList[a])->getRole()==4)
+			{
+				int textNum = rand() % 10;
+				switch(textNum)
+				{
+				case 1:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
+					break;
+				case 2:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
+					break;
+				case 3:
+					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
+					break;
+				case 4:
+					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
+					break;
+				case 5:
+					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
+					break;
+				case 6: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
+					break;
+				case 7:
+					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
+					break;
+				case 8:
+					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
+					break;
+				case 9: 
+					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
+				}
+			}
+		}
+	}
 }
 
 void SP2::renderHands()
