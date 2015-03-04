@@ -3,6 +3,8 @@
 
 CCharacter::CCharacter(void)
 {
+	this->setMoveIsMax(false);
+	this->setMovement(0);
 	this->IsControlled = false;
 }
 
@@ -77,12 +79,9 @@ void CCharacter::setInteractionBound(Vector3 Position,int Radius)
 		this->InteractionBound = false;
 	}
 }
-void CCharacter::setScript(string Word,bool withinIB)
+void CCharacter::setScript(int choice)
 {
-	if(withinIB = true)
-	{
-		this->Script = Word;
-	}
+	this->Script = choice;
 }
 bool CCharacter::getInteractionBound()
 {
@@ -102,10 +101,58 @@ int CCharacter::getRole()
 	return Role;
 }
 
-string CCharacter::getScript()
+int CCharacter::getScript()
 {
-	return Script;
+	return this->getScript();
 }
+
+string CCharacter::updateScript()
+{
+	switch(this->getScript())
+	{
+	case 1:
+		{
+			string temp("hi");
+			return temp;
+		}
+	case 2:
+		{
+			string temp("sup");
+			return temp;
+		}
+	case 3:
+		{
+		}
+	case 4:
+		{
+		}
+	case 5:
+		{
+		}
+	case 6:
+		{
+		}
+	case 7:
+		{
+
+		}
+	case 8:
+		{
+		}
+	case 9:
+		{
+		}
+	case 10:
+		{
+		}
+	default:
+		{
+			string temp("Do i know you?...");
+			return temp;
+		}
+	}
+}
+
 void CCharacter::updateChar(bool getIsControlled,double dt)
 {
 }
@@ -164,6 +211,7 @@ void CCharacter::WalkTo(Vector3 TargetPos)
 		else
 		{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+			this->setRotateY(-90);
 		}
 	}
 	else 
@@ -171,10 +219,12 @@ void CCharacter::WalkTo(Vector3 TargetPos)
 		if(TargetPos.z>this->getTranslate().z)
 		{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z+0.5));
+			this->setRotateY(0);
 		}
 		else if(TargetPos.z<this->getTranslate().z)
 		{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z-0.5));
+			this->setRotateY(180);
 		}
 		else
 		{

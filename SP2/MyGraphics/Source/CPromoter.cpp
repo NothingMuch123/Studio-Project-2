@@ -19,10 +19,56 @@ bool CPromoter::InteractionBound(Vector3 Position)
 {
 	return 0;
 }
-
 string CPromoter::script(bool getIsControlled)
 {
 	return "hi";
+}
+
+string CPromoter::updateScript()
+{
+	switch(this->getScript())
+	{
+	case 1:
+		{
+			string temp("hi");
+			return temp;
+		}
+	case 2:
+		{
+			string temp("sup");
+			return temp;
+		}
+	case 3:
+		{
+		}
+	case 4:
+		{
+		}
+	case 5:
+		{
+		}
+	case 6:
+		{
+		}
+	case 7:
+		{
+
+		}
+	case 8:
+		{
+		}
+	case 9:
+		{
+		}
+	case 10:
+		{
+		}
+	default:
+		{
+			string temp("Do i know you?...");
+			return temp;
+		}
+	}
 }
 
 void CPromoter::updateChar(bool getIsControlled,double dt)

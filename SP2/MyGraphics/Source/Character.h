@@ -18,7 +18,7 @@ private:
 
 	bool InteractionBound;
 
-	string Script;
+	int Script;
 
 	Mesh *Character;
 
@@ -51,8 +51,9 @@ public:
 	void setInteractionBound(Vector3 Position,int Radius);//calculate when user is in range to interact and how big the radius of bound would be
 	bool getInteractionBound();
 	
-	void setScript(string Word,bool withinIB);//IB=Interaction Bound
-	string getScript();
+	void setScript(int choice);//IB=Interaction Bound
+	int getScript();
+	virtual string updateScript();
 
 	void setmoveX(int moveX);
 	int getmoveX();

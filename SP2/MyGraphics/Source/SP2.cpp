@@ -1675,15 +1675,15 @@ void SP2::updateHuman(double dt)
 		if(objList[a]->getID() == GEO_HUMAN)
 		{
 
-
+			static_cast <CCharacter*>(objList[a])->UpdateMovement(30);
 			static_cast <CCharacter*>(objList[a])->WalkTo(static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()]);
 
-			if(static_cast<CCashier*>(objList[a])->getRole()==1)
+			if(static_cast<CCashier*>(objList[a])->getRole()==1) // Cashier
 			{
 				static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
 				if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
 				{
-					aiTalk = true;
+					static_cast<CCashier*>(objList[a])->setMovement(0);
 					cout<<"Cashier says hi"<<endl;
 				}
 
@@ -1708,8 +1708,8 @@ void SP2::updateHuman(double dt)
 
 				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
 				{
-					aiTalk = true;
-					cout<<"Securityguard says hi"<<endl;   
+					static_cast<CSecurityGuard*>(objList[a])->setMovement(0);
+					cout<<"SecurityGuard says hi"<<endl; 
 				}
 
 			}
@@ -1723,7 +1723,7 @@ void SP2::updateHuman(double dt)
 
 				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
-					aiTalk = true;
+					static_cast<CCashier*>(objList[a])->setMovement(0);
 					cout<<"Shopper says: You're near me"<<endl;
 				}
 			}
@@ -1733,8 +1733,10 @@ void SP2::updateHuman(double dt)
 			{
 				static_cast<CPromoter*> (objList[a])->setInteractionBound(camera.position,50);
 				if(static_cast<CPromoter*>(objList[a])->getInteractionBound()==true)
-					aiTalk = true;
-					
+				{
+					static_cast<CPromoter*>(objList[a])->setMovement(0);
+					cout<<"Promoter says hi"<<endl;
+				}
 			}
 
 		}
@@ -2609,12 +2611,14 @@ void SP2::renderHuman()
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
 		modelStack.Translate(-0.6,0.75,0);
+		modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_STAFF_LEG] , togglelight);
 		modelStack.PopMatrix();
 
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
 		modelStack.Translate(0.6,0.75,0);
+		modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_STAFF_LEG], togglelight);
 		modelStack.PopMatrix();
 		modelStack.PopMatrix();
@@ -2658,12 +2662,14 @@ void SP2::renderHuman()
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
 		modelStack.Translate(-0.6,0.75,0);
+		modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_LEG] , togglelight);
 		modelStack.PopMatrix();
 
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
 		modelStack.Translate(0.6,0.75,0);
+		modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_LEG], togglelight);
 		modelStack.PopMatrix();
 		modelStack.PopMatrix();
@@ -2707,12 +2713,14 @@ void SP2::renderHuman()
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
 		modelStack.Translate(-0.6,0.75,0);
+		modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG] , togglelight);
 		modelStack.PopMatrix();
 
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
 		modelStack.Translate(0.6,0.75,0);
+		modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG], togglelight);
 		modelStack.PopMatrix();
 		modelStack.PopMatrix();
@@ -2756,12 +2764,14 @@ void SP2::renderHuman()
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
 		modelStack.Translate(-0.6,0.75,0);
+		modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_STAFF_LEG] , togglelight);
 		modelStack.PopMatrix();
 
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
 		modelStack.Translate(0.6,0.75,0);
+		modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_STAFF_LEG], togglelight);
 		modelStack.PopMatrix();
 		modelStack.PopMatrix();
