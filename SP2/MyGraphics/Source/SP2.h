@@ -1,3 +1,12 @@
+/******************************************************************************/
+/*!
+\file	SP2.h
+\author Team 8
+\par	
+\brief
+Header file for SP2 scene class
+*/
+/******************************************************************************/
 #ifndef _SP2_H_
 #define _SP2_H_
 
@@ -293,16 +302,10 @@ private:
 	Vector3 outerSkyboxSize, outerSkyboxMaxBound, outerSkyboxMinBound;
 	float skyboxOffset;
 
-	// Car variables
-	std::vector<CCar*> carList;
-
 	// CObj variables // Holds every obj except for CItem || CItems will be stored in CShelf
 	std::vector<CObj*> objList;		//	** FIRST FLOOR **
 	std::vector<CObj*> objList2;	//	** SECOND FLOOR **
 	CObj *pObj;						// Points to an obj from the list
-
-	// Shelf variables
-	std::vector<CShelf*> shelfList;
 
 	//camera variables
 	bool cam;
@@ -345,6 +348,7 @@ private:
 	bool game3 , hitSomething;
 
 	std::vector <CCharacter*> CharacterList;
+	bool mainmenu;
 };
 
 #endif

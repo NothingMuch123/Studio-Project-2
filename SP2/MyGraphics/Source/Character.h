@@ -68,7 +68,7 @@ public:
 		
 	virtual void updateChar(bool getIsControlled,double dt);
 	
-	void WalkTo(Vector3 TargetPosition);
+	void WalkTo(Vector3 TargetPosition, std::vector<CObj*> _objList);
 
 	Camera3 AICamera;
 

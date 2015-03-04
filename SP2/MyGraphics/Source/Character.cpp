@@ -188,51 +188,84 @@ CCharacter::~CCharacter(void)
 {
 }
 
-void CCharacter::WalkTo(Vector3 TargetPos)
+void CCharacter::WalkTo(Vector3 TargetPos, std::vector<CObj*> _objList)
 {
+	Vector3 tempPosition = getTranslate();
 	if(this->getInteractionBound()==true)
 	{
 
 	}
 	else
 	{
-	if(TargetPos.x==this->getTranslate().x)
-	{
-		if(TargetPos.z>this->getTranslate().z)
+		if(TargetPos.x==this->getTranslate().x)
 		{
+			if(TargetPos.z>this->getTranslate().z)
+			{
+				this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z+0.5));
+				this->setRotateY(0);
+			}
+			else if(TargetPos.z<this->getTranslate().z)
+			{
+				this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z-0.5));
+				this->setRotateY(180);
+			}
+			else
+			{
+				this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+			}
+		}
+		else 
+		{
+			if(TargetPos.x>this->getTranslate().x)
+			{
+				this->setTranslate(Vector3(this->getTranslate().x+0.5,this->getTranslate().y,this->getTranslate().z));
+				this->setRotateY(90);
+			}
+			else if(TargetPos.x<this->getTranslate().x)
+			{
+				this->setTranslate(Vector3(this->getTranslate().x-0.5,this->getTranslate().y,this->getTranslate().z));
+				this->setRotateY(-90);
+			}
+			else 
+			{
+				this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+			}
+
+			/*this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+
+			if(TargetPos.z>this->getTranslate().z)
+			{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z+0.5));
 			this->setRotateY(0);
-		}
-		else if(TargetPos.z<this->getTranslate().z)
-		{
+			}
+			else if(TargetPos.z<this->getTranslate().z)
+			{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z-0.5));
 			this->setRotateY(180);
-		}
-		else
-		{
+			}
+			else
+			{
 			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
+			}
+			}*/
 		}
 	}
-	else 
+	
+	// Calculate new bound after moving
+	calcBound();
+	CObj *pObj;
+	if (_objList.size() != 0)
 	{
-		if(TargetPos.x>this->getTranslate().x)
+		for (int i = 0; i < _objList.size(); ++i)
 		{
-			this->setTranslate(Vector3(this->getTranslate().x+0.5,this->getTranslate().y,this->getTranslate().z));
-			this->setRotateY(90);
+			pObj = _objList[i];
+			if (minBound.x  < pObj->getMaxBound().x && maxBound.x > pObj->getMinBound().x && minBound.z < pObj->getMaxBound().z && maxBound.z > pObj->getMinBound().z && pObj->getID() == SP2::GEOMETRY_TYPE::GEO_TROLLEY)
+			{
+				setTranslate(tempPosition);
+				calcBound();
+				break;
+			}
 		}
-		else if(TargetPos.x<this->getTranslate().x)
-		{
-			this->setTranslate(Vector3(this->getTranslate().x-0.5,this->getTranslate().y,this->getTranslate().z));
-			this->setRotateY(-90);
-		}
-		else
-		{
-			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
-			
-		}
-		
-		
-	}
 	}
 }
 //void CCharacter::calcBound()

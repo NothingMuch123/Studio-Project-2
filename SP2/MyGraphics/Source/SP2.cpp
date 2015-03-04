@@ -25,8 +25,6 @@ SP2::~SP2()
 
 void SP2::Init()
 {
-
-
 	// Init VBO here
 
 	// Set background color to dark blue
@@ -50,7 +48,7 @@ void SP2::Init()
 	glBindVertexArray(m_vertexArrayID);
 
 	//Initialize camera settings
-	camera.Init(Vector3(0,30,30), Vector3(0,30,15), Vector3(0,1,0));
+	camera.Init(Vector3(0,30,380), Vector3(0,30,365), Vector3(0,1,0));
 
 	//Load vertex and fragment shaders
 	m_programID = LoadShaders( "Shader//Texture.vertexshader", "Shader//Text.fragmentshader" );
@@ -306,7 +304,6 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 	}
 
 	objList.push_back(pObj);
-	//shelfList.push_back(static_cast<CShelf*>(pObj));
 }
 
 void SP2::initItems()
@@ -396,7 +393,6 @@ void SP2::initCar()
 	pObj->calcBound();
 	static_cast<CCar*>(pObj)->setCamera();
 	objList.push_back(pObj);
-	carList.push_back(static_cast<CCar*>(pObj));
 }
 
 void SP2::initCabinet()
@@ -633,7 +629,37 @@ void SP2::initSuperMarket()
 	liftLeftDoor = pObj;
 
 	// Trolley
-	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-100,2,50), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-140,2,120), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
+	pObj->calcBound();
+	static_cast<CTrolley*>(pObj)->setCamera();
+	objList.push_back(pObj);
+	trolleyList.push_back(static_cast<CTrolley*>(pObj));
+
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-140,2,80), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
+	pObj->calcBound();
+	static_cast<CTrolley*>(pObj)->setCamera();
+	objList.push_back(pObj);
+	trolleyList.push_back(static_cast<CTrolley*>(pObj));
+
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-100,2,120), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
+	pObj->calcBound();
+	static_cast<CTrolley*>(pObj)->setCamera();
+	objList.push_back(pObj);
+	trolleyList.push_back(static_cast<CTrolley*>(pObj));
+
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-100,2,80), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
+	pObj->calcBound();
+	static_cast<CTrolley*>(pObj)->setCamera();
+	objList.push_back(pObj);
+	trolleyList.push_back(static_cast<CTrolley*>(pObj));
+
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-60,2,120), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
+	pObj->calcBound();
+	static_cast<CTrolley*>(pObj)->setCamera();
+	objList.push_back(pObj);
+	trolleyList.push_back(static_cast<CTrolley*>(pObj));
+
+	pObj = new CTrolley(GEO_TROLLEY, supermarketPosition + Vector3(-60,2,80), Vector3(0,0,0), Vector3(3,3,3), Vector3(5.3,7,5.3));
 	pObj->calcBound();
 	static_cast<CTrolley*>(pObj)->setCamera();
 	objList.push_back(pObj);
@@ -756,7 +782,7 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		meshList[GEO_HUMAN_SHOPPER_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_SHOPPER_LEG]->textureID = LoadTGA ("Image//Shopper.tga");
 
-		pObj = new CShopper(GEO_HUMAN,translation,rotation,Vector3(5,7,5),Vector3(4,4.5,4),camera.position,radius);//1));
+		pObj = new CShopper(GEO_HUMAN,translation,rotation,Vector3(4,7,4),Vector3(3,4.5,3),camera.position,radius);//1));
 		pObj->calcBound();
 		objList.push_back(pObj);
 		CharacterList.push_back(static_cast<CCharacter*>(pObj));
@@ -929,9 +955,7 @@ void SP2::initValues()
 	togglelight = false;
 	aiTalk == false;
 	timer = 0;
-
-
-
+	mainmenu = true;
 
 	for(int a = 0; a<objList.size();++a)
 	{
@@ -946,7 +970,7 @@ void SP2::initValues()
 			{
 				static_cast<CCharacter*>(objList[a])->setRouteID(0);
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,40));
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,-130));
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,-110));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-130));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,40));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
@@ -1054,122 +1078,86 @@ void SP2::initGame()
 
 void SP2::Update(double dt)
 {
-
-	if(cam == false)
+	if (mainmenu)
 	{
-		if(Application::IsKeyPressed('1')) //enable back face culling
-			glEnable(GL_CULL_FACE);
-		if(Application::IsKeyPressed('2')) //disable back face culling
-			glDisable(GL_CULL_FACE);
-		if(Application::IsKeyPressed('3'))
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
-		if(Application::IsKeyPressed('4'))
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
-	}
-	keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
-	keypressed[K_LEFT_PLACE] = Application::IsKeyPressed('F');
-	keypressed[K_START_STORY] = keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
-	keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
-	keypressed[K_FIRST_FLOOR] = Application::IsKeyPressed('O');
-	keypressed[K_SECOND_FLOOR] = Application::IsKeyPressed('P');
-	keypressed[K_ENTER_TROLLEY] = Application::IsKeyPressed('C');
-	keypressed[K_EXIT_TROLLEY] = Application::IsKeyPressed('V');
-
-	// Interactions
-	std::vector<CObj*> list;
-	if(floorNum == 1)
-	{
-		list = objList;
-	}
-	else if (floorNum == 2)
-	{
-		list = objList2;
-	}
-	for (int i = 0; i < list.size(); ++i)
-	{
-		pObj = list[i];
-		if (pObj->getRender())
+		if (Application::IsKeyPressed(VK_RETURN))
 		{
-			// check if target is within the bound of the size with scale [ need calcbound() ]
-			if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
+			mainmenu = false;
+		}
+	}
+	else
+	{
+		if(cam == false)
+		{
+			if(Application::IsKeyPressed('1')) //enable back face culling
+				glEnable(GL_CULL_FACE);
+			if(Application::IsKeyPressed('2')) //disable back face culling
+				glDisable(GL_CULL_FACE);
+			if(Application::IsKeyPressed('3'))
+				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //default fill mode
+			if(Application::IsKeyPressed('4'))
+				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
+		}
+		keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
+		keypressed[K_LEFT_PLACE] = Application::IsKeyPressed('F');
+		keypressed[K_START_STORY] = keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
+		keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
+		keypressed[K_FIRST_FLOOR] = Application::IsKeyPressed('O');
+		keypressed[K_SECOND_FLOOR] = Application::IsKeyPressed('P');
+		keypressed[K_ENTER_TROLLEY] = Application::IsKeyPressed('C');
+		keypressed[K_EXIT_TROLLEY] = Application::IsKeyPressed('V');
+
+		// Interactions
+		std::vector<CObj*> list;
+		if(floorNum == 1)
+		{
+			list = objList;
+		}
+		else if (floorNum == 2)
+		{
+			list = objList2;
+		}
+		for (int i = 0; i < list.size(); ++i)
+		{
+			pObj = list[i];
+			if (pObj->getRender())
 			{
-				// only enter car when both hand empty
-				if (pObj->getID() == GEO_CAR && keypressed[K_ENTER_CAR] && hands[0] == NULL && hands[1] == NULL) 
+				// check if target is within the bound of the size with scale [ need calcbound() ]
+				if (camera.target.x < pObj->getMaxBound().x && camera.target.x > pObj->getMinBound().x && camera.target.y < pObj->getMaxBound().y && camera.target.y > pObj->getMinBound().y && camera.target.z < pObj->getMaxBound().z && camera.target.z > pObj->getMinBound().z)
 				{
-					hands[0] = hands[1] = pObj;
-					saved = camera;
-					pObj->setRender(false);
-					camera = static_cast<CCar*>(pObj)->carCamera;
-					rotateHandX = 0;
-					rotateHandY = hands[0]->getRotate().y -90;
-				}
-				else if (pObj->getID() == GEO_SHELF)
-				{
-					updateShelf();
-				}
-				else if (pObj->getID() == GEO_TROLLEY)
-				{
-					// TROLLEY STUFFS ====================================================
-					if (keypressed[K_ENTER_TROLLEY] && hands[0] == NULL && hands[1] == NULL)
+					// only enter car when both hand empty
+					if (pObj->getID() == GEO_CAR && keypressed[K_ENTER_CAR] && hands[0] == NULL && hands[1] == NULL) 
 					{
 						hands[0] = hands[1] = pObj;
 						saved = camera;
-						camera = static_cast<CTrolley*>(pObj)->camera;
-						rotateHandX = trolleyRotateHandX;
-						rotateHandY = hands[0]->getRotate().y;
+						pObj->setRender(false);
+						camera = static_cast<CCar*>(pObj)->carCamera;
+						rotateHandX = 0;
+						rotateHandY = hands[0]->getRotate().y -90;
 					}
-					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+					else if (pObj->getID() == GEO_SHELF)
 					{
-						static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
-						hands[0] = NULL;
+						updateShelf();
 					}
-					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+					else if (pObj->getID() == GEO_TROLLEY)
 					{
-						static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
-						hands[1] = NULL;
-					}
-					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
-					{
-						hands[0] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
-						static_cast<CTrolley*>(pObj)->itemList.pop_back();
-					}
-					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
-					{
-						hands[1] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
-						static_cast<CTrolley*>(pObj)->itemList.pop_back();
-					}
-				}
-				else if(pObj->getID() == GEO_SECURITY_CAMERA_SCREEN)
-				{
-					if(keypressed[K_ENTER_CAM] && cam == false && floorNum == 2)
-					{
-						saved = camera; // saving camera data
-						camNum = 0;
-						cam = true;
-					}
-				}
-				// ========= paper bag ===================
-				else if(pObj->getID() == GEO_BAG)
-				{
-					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
-					{
-						bagList.push_back(static_cast<CItem*>(hands[0]));
-						hands[0] = NULL;
-						if(inGame == 2 && itemLeft > 0) // cashier game 
+						// TROLLEY STUFFS ====================================================
+						if (keypressed[K_ENTER_TROLLEY] && hands[0] == NULL && hands[1] == NULL)
 						{
-							itemLeft -= 1;
+							hands[0] = hands[1] = pObj;
+							saved = camera;
+							camera = static_cast<CTrolley*>(pObj)->camera;
+							rotateHandX = trolleyRotateHandX;
+							rotateHandY = hands[0]->getRotate().y;
 						}
-					}
-					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
-					{
-						bagList.push_back(static_cast<CItem*>(hands[1]));
-						hands[1] = NULL;
-						if(inGame == 2 && itemLeft > 0) // cashier game 
+						if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
 						{
-							itemLeft -= 1;
+							static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
+							hands[0] = NULL;
 						}
+						
 					}
-					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && bagList.size() > 0)
+					/*if (keypressed[K_LEFT_PICK] && hands[0] == NULL && bagList.size() > 0)
 					{
 						hands[0] = static_cast<CObj*>(bagList[bagList.size() - 1 ]);
 						bagList.pop_back();
@@ -1179,8 +1167,8 @@ void SP2::Update(double dt)
 						hands[1] = static_cast<CObj*> (bagList[bagList.size() - 1]);
 						bagList.pop_back();
 					}
-				}
-				// ======== cashier table ============
+				}*/
+				/*// ======== cashier table ============
 				else if (pObj->getID() == GEO_CASHIER_TABLE)
 				{
 					if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
@@ -1188,47 +1176,103 @@ void SP2::Update(double dt)
 						checkoutList.push_back(static_cast<CItem*>(hands[0]));
 						// when in game1 - checking for correct item picked 
 						if(inGame == 1 && static_cast<CItem*>(hands[0])->getItem() == meshList[randomItem -10])
+
+						if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
 						{
-							pickCorrect = true;
+							static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
+							hands[1] = NULL;
 						}
-						hands[0] = NULL;
-					}
-					if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
-					{
-						checkoutList.push_back(static_cast<CItem*>(hands[1]));
-						// when in game1 - checking for correct item picked
-						if(inGame == 1 && static_cast<CItem*>(hands[1])->getItem() == meshList[randomItem -10])
+						if (keypressed[K_LEFT_PICK] && hands[0] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
 						{
-							pickCorrect = true;
+							hands[0] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
+							static_cast<CTrolley*>(pObj)->itemList.pop_back();
 						}
-						hands[1] = NULL;
-					}
-					if (keypressed[K_LEFT_PICK] && hands[0] == NULL && checkoutList.size() > 0)
+						if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && static_cast<CTrolley*>(pObj)->itemList.size() > 0)
+						{
+							hands[1] = static_cast<CObj*>(static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1]);
+							static_cast<CTrolley*>(pObj)->itemList.pop_back();
+						}
+					}*/
+					else if(pObj->getID() == GEO_SECURITY_CAMERA_SCREEN)
 					{
-						hands[0] = static_cast<CObj*>(checkoutList[checkoutList.size() - 1 ]);
-						checkoutList.pop_back();
+						if(keypressed[K_ENTER_CAM] && cam == false && floorNum == 2)
+						{
+							saved = camera; // saving camera data
+							camNum = 0;
+							cam = true;
+						}
 					}
-					if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && checkoutList.size() > 0)
+					// ========= paper bag ===================
+					else if(pObj->getID() == GEO_BAG)
 					{
-						hands[1] = static_cast<CObj*> (checkoutList[checkoutList.size() - 1]);
-						checkoutList.pop_back();
+						if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+						{
+							bagList.push_back(static_cast<CItem*>(hands[0]));
+							hands[0] = NULL;
+							if(inGame == 2 && itemLeft > 0) // cashier game 
+							{
+								itemLeft -= 1;
+							}
+						}
+						if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+						{
+							bagList.push_back(static_cast<CItem*>(hands[1]));
+							hands[1] = NULL;
+							if(inGame == 2 && itemLeft > 0) // cashier game 
+							{
+								itemLeft -= 1;
+							}
+						}
+					}
+					// ======== cashier table ============
+					else if (pObj->getID() == GEO_CASHIER_TABLE)
+					{
+						if (keypressed[K_LEFT_PLACE] && hands[0] != NULL && hands[0]->getID() == GEO_ITEM)
+						{
+							checkoutList.push_back(static_cast<CItem*>(hands[0]));
+							// when in game1 - checking for correct item picked 
+							if(inGame == 1 && static_cast<CItem*>(hands[0])->getItem() == meshList[randomItem -10])
+							{
+								pickCorrect = true;
+							}
+							hands[0] = NULL;
+						}
+						if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+						{
+							checkoutList.push_back(static_cast<CItem*>(hands[1]));
+							// when in game1 - checking for correct item picked
+							if(inGame == 1 && static_cast<CItem*>(hands[1])->getItem() == meshList[randomItem -10])
+							{
+								pickCorrect = true;
+							}
+							hands[1] = NULL;
+						}
+						if (keypressed[K_LEFT_PICK] && hands[0] == NULL && checkoutList.size() > 0)
+						{
+							hands[0] = static_cast<CObj*>(checkoutList[checkoutList.size() - 1 ]);
+							checkoutList.pop_back();
+						}
+						if (keypressed[K_RIGHT_PICK] && hands[1] == NULL && checkoutList.size() > 0)
+						{
+							hands[1] = static_cast<CObj*> (checkoutList[checkoutList.size() - 1]);
+							checkoutList.pop_back();
+						}
 					}
 				}
 			}
 		}
-	}
 
-	if (hands[0] != NULL && hands[1] != NULL)
-	{
-		if (hands[0]->getID() == GEO_CAR && hands[1]->getID() == GEO_CAR)
+		if (hands[0] != NULL && hands[1] != NULL)
 		{
-			updateCar(dt);
+			if (hands[0]->getID() == GEO_CAR && hands[1]->getID() == GEO_CAR)
+			{
+				updateCar(dt);
+			}
+			else if (hands[0]->getID() == GEO_TROLLEY && hands[1]->getID() == GEO_TROLLEY)
+			{
+				updateTrolley(dt);
+			}
 		}
-		else if (hands[0]->getID() == GEO_TROLLEY && hands[1]->getID() == GEO_TROLLEY)
-		{
-			updateTrolley(dt);
-		}
-	}
 
 	if(inGame == 0)
 		updateHuman(dt);
@@ -1236,22 +1280,22 @@ void SP2::Update(double dt)
 	updateHands(dt);
 	updateCamera(dt);
 	updateGame(dt);
-	if(Application::IsKeyPressed('Z'))
-	{
-		togglelight = true;
+		if(Application::IsKeyPressed('Z'))
+		{
+			togglelight = true;
+		}
+		if(Application::IsKeyPressed('X'))
+		{
+			togglelight = false;
+		}
+		static double fpsRefresh;
+		fpsRefresh += dt;
+		if (fpsRefresh >= 1)
+		{
+			fps = 1 / dt;
+			fpsRefresh = 0;
+		}
 	}
-	if(Application::IsKeyPressed('X'))
-	{
-		togglelight = false;
-	}
-	static double fpsRefresh;
-	fpsRefresh += dt;
-	if (fpsRefresh >= 1)
-	{
-		fps = 1 / dt;
-		fpsRefresh = 0;
-	}
-
 }
 
 void SP2::updateCamera(double dt)
@@ -1323,7 +1367,6 @@ void SP2::updateGame(double dt)
 				pItem = new CItem(GEO_ITEM, Vector3(0,0,0), Vector3(0,0,0), Vector3(1,1,1), Vector3(1,1,1), meshList[a]);
 				checkoutList.push_back(pItem);
 			}
-			delete pItem;
 		}
 	}
 	//guard game start bound
@@ -1454,8 +1497,23 @@ bool SP2::updateBoundCheckGame3()
 
 void SP2::updateTrolley(double dt)
 {
+	rotateHandY = hands[0]->getRotate().y;
+	bool exit = true;
+	for (int i = 0; i < objList.size(); ++i)
+	{
+		pObj = objList[i];
+		if	(	// Skybox check
+			(camera.position.x > outerSkyboxMaxBound.x || camera.position.x < outerSkyboxMinBound.x || camera.position.z > outerSkyboxMaxBound.z || camera.position.z < outerSkyboxMinBound.z) || 
+			// Obj check
+			(camera.position.x < pObj->getMaxBound().x && camera.position.x > pObj->getMinBound().x && camera.position.z < pObj->getMaxBound().z && camera.position.z > pObj->getMinBound().z)
+			)
+		{
+			exit = false;
+			break;
+		}
+	}
 	static const float ROTATE_SPEED = 100.f;
-	if (keypressed[K_EXIT_TROLLEY])
+	if (keypressed[K_EXIT_TROLLEY] && exit)
 	{
 		static_cast<CTrolley*>(hands[0])->updatePosition();
 		hands[0]->calcBound();
@@ -1472,10 +1530,6 @@ void SP2::updateTrolley(double dt)
 void SP2::updateHands(double dt)
 {
 	static const float ROTATE_SPEED = 100.f;
-	if (rotateHandY >= 360 ||rotateHandY <= -360)
-	{
-		rotateHandY = 0;
-	}
 
 	if(cam == false)
 	{
@@ -1538,11 +1592,25 @@ void SP2::updateShelf()
 
 void SP2::updateSuperMarket(double dt)
 {
+	static bool trolleyNearLift = false;
 	static const float LIFT_SPEED = 0.1 * supermarketScale.x;
 	//lift door interaction (needed for both floors) [ closes when selected floor to go]
 	if(camera.position.x < supermarketLiftDoorMaxBound.x && camera.position.x > supermarketLiftDoorMinBound.x && camera.position.z < supermarketLiftDoorMaxBound.z && camera.position.z > supermarketLiftDoorMinBound.z)
 	{
-		if(disableLiftDoor == false)
+		if (hands[0] != NULL && hands[0]->getID() == GEO_TROLLEY)
+		{
+			trolleyNearLift = true;
+		}
+		else
+		{
+			trolleyNearLift = false;
+		}
+		if (trolleyNearLift)
+		{
+			disableLiftDoor = true;
+		}
+
+		if(disableLiftDoor == false && !trolleyNearLift)
 		{
 			if(translateLiftX < 2)
 			{
@@ -1692,9 +1760,8 @@ void SP2::updateHuman(double dt)
 	{
 		if(objList[a]->getID() == GEO_HUMAN)
 		{
-
 			static_cast <CCharacter*>(objList[a])->UpdateMovement(30);
-			static_cast <CCharacter*>(objList[a])->WalkTo(static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()]);
+			static_cast <CCharacter*>(objList[a])->WalkTo(static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()], objList);
 
 			if(static_cast<CCashier*>(objList[a])->getRole()==1) // Cashier
 			{
@@ -1751,7 +1818,7 @@ void SP2::updateHuman(double dt)
 			}
 
 
-			else if(static_cast<CPromoter*>(objList[a])->getRole()==4)
+			else if(static_cast<CPromoter*>(objList[a])->getRole()==4) // Promoter
 			{
 				static_cast<CPromoter*> (objList[a])->setInteractionBound(camera.position,50);
 				if(static_cast<CPromoter*>(objList[a])->getInteractionBound()==true)
@@ -1951,89 +2018,93 @@ void SP2::Render()
 	{
 		if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_1])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_2])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_3])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_4])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_5])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_6])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_7])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_8])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_9])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,0.5,3);
 		}
 		else if (static_cast<CItem*>(hands[0])->getItem() == meshList[GEO_ITEM_10])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,5);
+			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,0.5,3);
 		}
 	}
 	if (hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
 	{
 		if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_1])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_1],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_2])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_2],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_3])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_3],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_4])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_4],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_5])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_5],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_6])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_6],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_7])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_7],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_8])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_8],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_9])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_9],10,7.5,3);
 		}
 		else if (static_cast<CItem*>(hands[1])->getItem() == meshList[GEO_ITEM_10])
 		{
-			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,4);
+			Render2D(meshList[GEO_INVENTORY_ITEM_10],10,7.5,3);
 		}
 	}
 	renderText();
+	if (mainmenu)
+	{
+		RenderTextOnScreen(meshList[GEO_TEXT], "Press enter to continue", Color(0,0,1), 3, 2,10);
+	}
 }
 
 void SP2::renderText()
@@ -2471,12 +2542,13 @@ void SP2::renderGame(int a)// 1- treasure hunt
 				{
 					// display item to be picked up 
 					modelStack.PushMatrix();
-					modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
+					/*modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
 					modelStack.Rotate(rotateHandY,0,1,0);
 					modelStack.Rotate(rotateHandX,1,0,0);
 					modelStack.Translate(4,2.5,4);
 					modelStack.Scale(2,2,2);
-					RenderMesh(meshList[randomItem] , false);
+					RenderMesh(meshList[randomItem] , false);*/
+					Render2D(meshList[randomItem], 10, 7, 5);
 					modelStack.PopMatrix();	
 				}
 				else
@@ -2590,9 +2662,7 @@ void SP2::renderGame(int a)// 1- treasure hunt
 
 void SP2::renderHuman() 
 {
-	pObj->calcBound();
-
-	if(static_cast<CCharacter*>(pObj)->getRole()==1) // Cashier
+	if(static_cast<CCharacter*>(pObj)->getRole()==1)
 	{
 		modelStack.PushMatrix();
 		modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y,pObj->getTranslate().z);

@@ -312,8 +312,8 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		Vector3 tempTarget = target, tempPosition = position;
 		float yaw = (float)(-CAMERA_SPEED * dt);
 		Vector3 newUp(position.x, position.y + 1, position.z);
-		position += (position - newUp).Normalized() * yaw;
 		target += (position - newUp).Normalized() * yaw;
+		position += (position - newUp).Normalized() * yaw;
 
 		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
 		{
@@ -329,8 +329,8 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		Vector3 newUp(position.x, position.y + 1, position.z);
 		if(position.y < 35)
 		{
-			position += (position - newUp).Normalized() * yaw;
 			target += (position - newUp).Normalized() * yaw;
+			position += (position - newUp).Normalized() * yaw;
 		}
 
 		if (boundCheck(_outerSkyboxMaxBound, _outerSkyboxMinBound, _objList, _hands, floorNum, _objList2))
