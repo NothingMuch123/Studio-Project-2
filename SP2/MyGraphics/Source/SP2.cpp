@@ -939,6 +939,7 @@ void SP2::initValues()
 		{
 			if(static_cast <CCharacter*>(objList[a])->getRole()==1)//Cashier
 			{
+				static_cast<CCharacter*>(objList[a])->setRouteID(0);
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(70,0,65));
 			}
 			else if(static_cast <CCharacter*>(objList[a])->getRole()==2)//SecurityGuard
@@ -954,10 +955,10 @@ void SP2::initValues()
 			else if(static_cast <CCharacter*>(objList[a])->getRole()==3)//Shopper
 			{
 				static_cast <CCharacter*>(objList[a])->setRouteID(0);
+				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,300));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(-150,0,0));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,0));
-				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,300));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,0));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(150,0,-100));
 				static_cast <CCharacter*>(objList[a])->AiRouteLocation.push_back(Vector3(0,0,-100));
@@ -1698,6 +1699,7 @@ void SP2::updateHuman(double dt)
 			if(static_cast<CCashier*>(objList[a])->getRole()==1) // Cashier
 			{
 				static_cast<CCashier*> (objList[a])->setInteractionBound(camera.position,50);
+
 				if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
 				{
 					cout<<"Cashier says hi"<<endl;
@@ -1733,7 +1735,7 @@ void SP2::updateHuman(double dt)
 			{
 				if(static_cast <CCharacter*>(objList[a])->getRouteID()==0)
 				{
-					static_cast <CCharacter*>(objList[a])->setRouteID(0);
+					static_cast <CCharacter*>(objList[a])->setRouteID(1);
 				}
 				if(static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
 				{
