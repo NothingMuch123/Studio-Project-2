@@ -431,19 +431,19 @@ void SP2::initSpecialItems()
 	//Time Potato
 	meshList[GEO_POTATO] = MeshBuilder::GenerateOBJ("Potato", "OBJ//potato.obj");
 	meshList[GEO_POTATO] ->textureID = LoadTGA("Image//potato.tga");
-	pObj = new CObj(GEO_POTATO, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1.5 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,-45), Vector3(supermarketScale.x* .15 ,supermarketScale.y * .15,supermarketScale.z * .15), Vector3(3, 3 ,3)); 
+	pObj = new CObj(GEO_POTATO, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1.5 * supermarketScale.y, supermarketPosition.z * supermarketScale.z), Vector3(0,0,-45), Vector3(supermarketScale.x* .15 ,supermarketScale.y * .15,supermarketScale.z * .25), Vector3(3, 3 ,3)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//Mjolnir
 	meshList[GEO_THOR] = MeshBuilder::GenerateOBJ("Mjolnir", "OBJ//mjolnir.obj");
 	meshList[GEO_THOR]->textureID = LoadTGA("Image//mjolnir.tga");
-	pObj = new CObj(GEO_THOR, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .8 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .8 ,supermarketScale.y * .8,supermarketScale.z * .45886), Vector3(3, 3 ,3)); 
+	pObj = new CObj(GEO_THOR, Vector3 (supermarketPosition.x  * supermarketScale.x, supermarketPosition.y + .8 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .6 ,supermarketScale.y * .6,supermarketScale.z * .4), Vector3(3, 3 ,3)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//WUKONG'S STAFF
 	meshList[GEO_WUKONG] = MeshBuilder::GenerateOBJ("Jingu Bang", "OBJ//wukong_staff.obj");
 	meshList[GEO_WUKONG]->textureID = LoadTGA("Image//wukong_staff.tga");
-	pObj = new CObj(GEO_WUKONG, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .4 ,supermarketScale.y * .4,supermarketScale.z * .3), Vector3(3, 3 ,3)); 
+	pObj = new CObj(GEO_WUKONG, Vector3 (supermarketPosition.x -9 * supermarketScale.x, supermarketPosition.y + 1 * supermarketScale.y, supermarketPosition.z + 6 * supermarketScale.z), Vector3(0,0,0), Vector3(supermarketScale.x* .4 ,supermarketScale.y * .3,supermarketScale.z * .3), Vector3(3, 3 ,3)); 
 	pObj->calcBound();
 	objList2.push_back(pObj);
 	//TARDIS
@@ -1758,7 +1758,7 @@ void SP2::updateHuman(double dt)
 {
 	for(int a = 0; a < objList.size(); ++a)
 	{
-		if(objList[a]->getID() == GEO_HUMAN)
+		if(objList[a]->getID() == GEO_HUMAN && floorNum == 1)
 		{
 			static_cast <CCharacter*>(objList[a])->UpdateMovement(30);
 			static_cast <CCharacter*>(objList[a])->WalkTo(static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()], objList);
@@ -2699,13 +2699,11 @@ void SP2::renderHuman()
 
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
-		modelStack.Translate(-0.6,1,0);
-		modelStack.PushMatrix();
-		modelStack.Translate(0,-.25,0);
-		//modelStack.Translate(-0.6,0.75,0);
+;
+		modelStack.Translate(-0.6,0.75,0);
 		RenderMesh(meshList[GEO_HUMAN_STAFF_LEG] , togglelight);
 		modelStack.PopMatrix();
-		modelStack.PopMatrix();
+
 
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
@@ -2755,14 +2753,16 @@ void SP2::renderHuman()
 
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
-		modelStack.Translate(-0.6,0.75,0);
+		modelStack.Translate(-0.6,1.5,0);
+		modelStack.Scale(1,.75,1); 
 		modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_LEG] , togglelight);
 		modelStack.PopMatrix();
 
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
-		modelStack.Translate(0.6,0.75,0);
+		modelStack.Translate(0.6,1.5,0);
+		modelStack.Scale(1,.75,1); 
 		modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_LEG], togglelight);
 		modelStack.PopMatrix();
@@ -2806,14 +2806,16 @@ void SP2::renderHuman()
 
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
-		modelStack.Translate(-0.6,0.75,0);
+		modelStack.Translate(-0.6,1.5,0);
+		modelStack.Scale(1,.75,1); 
 		modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG] , togglelight);
 		modelStack.PopMatrix();
 
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
-		modelStack.Translate(0.6,0.75,0);
+		modelStack.Translate(0.6,1.5,0);
+		modelStack.Scale(1,.75,1);
 		modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
 		RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG], togglelight);
 		modelStack.PopMatrix();

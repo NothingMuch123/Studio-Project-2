@@ -1,0 +1,233 @@
+Cashier - Murderer
+Security Guard - Victim's Friend
+Shopper - Information Source
+Promoter - Accomplice
+
+
+static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+
+switch(this->getScript())
+	{
+	case 1:
+		{
+			string temp("Do not attempt to steal!");
+			return temp;
+		}
+	case 2:
+		{
+			string temp("Stay safe around these parts");
+			return temp;
+		}
+	case 3:
+		{
+			string temp("Oh I used to love shopping, then I grew up. You don't wanna do that.");
+			return temp;
+		}
+	case 4:
+		{
+			string temp("Either THROW THAT BAG OF WEED AWAY, or share some with me");
+			return temp;
+		}
+	case 5:
+		{
+			string temp("You're really nothing special arent you?");
+			return temp;
+		}
+	case 6:
+		{
+			string temp("Oh i wish I could Time travel");
+			return temp;
+		}
+	case 7:
+		{
+			string temp("*walkie-talkie crackles*");
+			return temp;
+		}
+	case 8:
+		{
+			string temp("There are a string of murders in this town, it started last month");
+			return temp;
+		}
+	case 9:
+		{
+			string temp("Don't stay out late at night");
+			return temp;
+		}
+	case 10:
+		{
+			string temp("Nice erm, arms you have");
+			return temp;
+		}
+	
+	}
+
+
+
+
+switch(this->getScript())
+	{
+	case 1:
+		{
+			string temp("Hi There!");
+			return temp;
+		}
+	case 2:
+		{
+			string temp("Can i interest you in any items?");
+			return temp;
+		}
+	case 3:
+		{
+			string temp("Perhaps you would like to look at this radio?");
+			return temp;
+		}
+	case 4:
+		{
+			string temp("Perhaps you would like to look at this Iron?");
+			return temp;
+		}
+	case 5:
+		{
+			string temp("Perhaps you would like to look at this Can of Beans?");
+			return temp;
+		}
+	case 6:
+		{
+			string temp("How would you like to look at these knives?");
+			return temp;
+		}
+	case 7:
+		{
+			string temp("The Knives just came in from Germany, very sharp, swift and clean cuts, especially to meat");
+			return temp;
+		}
+	case 8:
+		{
+			string temp("*expertly flips knife");
+			return temp;
+		}
+	case 9:
+		{
+			string temp("*skillfully flips fedora");
+			return temp;
+		}
+	case 10:
+		{
+			string temp("This knife cut meat faster than paper cut you!");
+			return temp;
+		}
+	
+	}
+
+switch(this->getScript())
+	{
+	case 1:
+		{
+			string temp("Hi There!");
+			return temp;
+		}
+	case 2:
+		{
+			string temp("Can i have your Items?");
+			return temp;
+		}
+	case 3:
+		{
+			string temp("That would be $420 Sir");
+			return temp;
+		}
+	case 4:
+		{
+			string temp("Would you like some of our homegrown weed?");
+			return temp;
+		}
+	case 5:
+		{
+			string temp("You must be under 18 to buy Cigarettes!");
+			return temp;
+		}
+	case 6:
+		{
+			string temp("Do you want to build a Meshman?");
+			return temp;
+		}
+	case 7:
+		{
+			string temp("I used to be a shopper like you, then i took an arrow to the wallet");
+			return temp;
+		}
+	case 8:
+		{
+			string temp("Everything used to be peaceful around here, until the Great Singapore Sale attacked");
+			return temp;
+		}
+	case 9:
+		{
+			string temp("I started working last month, same as the promoter!");
+			return temp;
+		}
+	case 10:
+		{
+			string temp("Slicing Meat has a certain.. technique to it, don't you think?");
+			return temp;
+		}
+
+	}
+
+
+switch(this->getScript())
+	{
+	case 1:
+		{
+			string temp("Hi There!");
+			return temp;
+		}
+	case 2:
+		{
+			string temp("What's your name?");
+			return temp;
+		}
+	case 3:
+		{
+			string temp("OH I WOULD RECCOMMEND GETTING THOSE");
+			return temp;
+		}
+	case 4:
+		{
+			string temp("Weed around these parts are widely considered the best in the world");
+			return temp;
+		}
+	case 5:
+		{
+			string temp("I live down the street! How about you?");
+			return temp;
+		}
+	case 6:
+		{
+			string temp("I have built many Meshmen in my lifetime");
+			return temp;
+		}
+	case 7:
+		{
+			string temp("I was actually replaced by that cashier a month back, by force");
+			return temp;
+		}
+	case 8:
+		{
+			string temp("These recent murders, they involve people who were last seen in this supermarket");
+			return temp;
+		}
+	case 9:
+		{
+			string temp("*phone rings*");
+			return temp;
+		}
+	case 10:
+		{
+			string temp("I miss civilisation");
+			return temp;
+		}
+	}
+
+
