@@ -24,9 +24,19 @@ private:
 
 	int Role,moveX,moveZ,RouteID;
 
-	
+	bool MoveIsMax;
+
+	int Movement;
 
 public:
+
+	void setMoveIsMax(bool MoveIsMax);
+	bool getMoveIsMax();
+
+	void setMovement(int Movement);
+	int getMovement();
+
+	void UpdateMovement(int Max);// the max angle the limbs can rotate up to
 
 	vector <Vector3> AiRouteLocation;
 

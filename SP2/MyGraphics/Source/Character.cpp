@@ -1,10 +1,56 @@
 #include "Character.h"
-
+#include "SP2.h"
 
 CCharacter::CCharacter(void)
 {
 	this->IsControlled = false;
 }
+
+void CCharacter::setMoveIsMax(bool MoveIsMax)
+{
+
+	this->MoveIsMax = MoveIsMax;
+}
+bool CCharacter::getMoveIsMax()
+{
+	return this->MoveIsMax;
+}
+
+void CCharacter::setMovement(int Movement)
+{
+	this->Movement = Movement;
+}
+
+int CCharacter::getMovement()
+{
+	return this->Movement;
+}
+
+void CCharacter::UpdateMovement(int Max)
+{
+	cout<<this->Movement<<endl;
+	if(Movement>Max)
+	{
+		setMoveIsMax(!(getMoveIsMax()));
+	}
+	if(Movement<-Max)
+	{
+		setMoveIsMax(!(getMoveIsMax()));
+	}
+	if(getMoveIsMax()==true)
+	{
+		int temp = this->getMovement();
+		temp+=5;
+		setMovement(temp);
+	}
+	if(getMoveIsMax()==false)
+	{
+		int temp = this->getMovement();
+		temp-=5;
+		setMovement(temp);
+	}
+}
+
 
 void CCharacter::setIsControlled(bool Choice)
 {
