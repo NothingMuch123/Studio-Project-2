@@ -75,9 +75,9 @@ void SP2::Init()
 
 	srand(time(NULL));
 
-	for(int a = 0;a<5;++a)
+	for(int a = 0;a<200;a+=50)
 	{
-	initHuman(3,Vector3(0,0,300),Vector3(0,90,0),camera.position,60);	
+	initHuman(3,Vector3(a,0,300),Vector3(0,90,0),camera.position,60);	
 	}
 
 	initHuman(2,Vector3(0,0,50),Vector3(0,90,0),camera.position,60);	
@@ -2739,7 +2739,8 @@ void SP2::renderHuman()
 		// ================================== R_LEGS ========================
 		modelStack.PushMatrix();
 ;
-		modelStack.Translate(-0.6,0.75,0);
+		modelStack.Translate(-0.6,1.5,0);
+		modelStack.Scale(1,0.75,1);
 		RenderMesh(meshList[GEO_HUMAN_STAFF_LEG] , togglelight);
 		modelStack.PopMatrix();
 
@@ -2747,7 +2748,8 @@ void SP2::renderHuman()
 		// =========================== L_LEGS ==============================
 		modelStack.PushMatrix();
 		modelStack.PushMatrix();
-		modelStack.Translate(0.6,0.75,0);
+		modelStack.Translate(0.6,1.5,0);
+		modelStack.Scale(1,0.75,1);
 		RenderMesh(meshList[GEO_HUMAN_STAFF_LEG], togglelight);
 		modelStack.PopMatrix();
 
