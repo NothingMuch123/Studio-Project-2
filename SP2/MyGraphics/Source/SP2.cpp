@@ -1797,7 +1797,7 @@ void SP2::updateHuman(double dt)
 			}
 			else if(static_cast<CShopper*>(objList[a])->getRole()==3)//Shopper
 			{
-				if(static_cast <CCharacter*>(objList[a])->getRouteID()==0)
+				if(static_cast <CCharacter*>(objList[a])->getRouteID()==0 && static_cast <CCharacter*>(objList[a])->getTranslate().x == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].x && static_cast <CCharacter*>(objList[a])->getTranslate().z == static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()].z)
 				{
 					static_cast <CCharacter*>(objList[a])->setRouteID(1);
 				}
