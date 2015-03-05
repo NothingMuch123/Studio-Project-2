@@ -4,7 +4,7 @@
 \author Team 8
 \par	
 \brief
-Header file for SP2 scene 
+Header file for SP2 scene class
 */
 /******************************************************************************/
 #ifndef _SP2_H_
@@ -57,6 +57,7 @@ public:
 		K_FIRST_FLOOR,
 		K_SECOND_FLOOR,
 		K_START_STORY,
+		K_TALK,
 		NUM_KEYPRESS,
 	};
 	enum GEOMETRY_TYPE
@@ -129,6 +130,8 @@ public:
 		//Human
 		//SHOPPER
 		GEO_HUMAN, // No mesh
+		GEO_NON_MOVING_SHOPPER, // No mesh
+		GEO_NON_MOVING_SECURITYGUARD, // No mesh
 
 		GEO_HUMAN_SHOPPER_BODY,
 		GEO_HUMAN_SHOPPER_ARM,
@@ -249,6 +252,8 @@ private:
 	void initHuman(int type,Vector3 translation,Vector3 rotation,Vector3 camPosition,int radius); // type: 1 - cashier, 2 - SecurityGuard, 3 - Shopper 
 	void updateHuman(double dt);
 	void renderHuman(); 
+	void renderNonMovingShopper();
+	void renderNonMovingSecurityGuard();
 
 	void initItems();
 	
@@ -363,8 +368,8 @@ private:
 
 	std::vector <CCharacter*> CharacterList;
 
-	bool mainmenu;
-	
+	bool mainmenu, talk;
+	double talkTimer;
 
 	// mini map variables
 	Vector3 mapMaxBound, mapMinBound;

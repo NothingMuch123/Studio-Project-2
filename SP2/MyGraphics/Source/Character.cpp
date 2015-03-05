@@ -363,24 +363,6 @@ void CCharacter::WalkTo(Vector3 TargetPos, std::vector<CObj*> _objList)
 			{
 				this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
 			}
-
-			/*this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
-
-			if(TargetPos.z>this->getTranslate().z)
-			{
-			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z+0.5));
-			this->setRotateY(0);
-			}
-			else if(TargetPos.z<this->getTranslate().z)
-			{
-			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z-0.5));
-			this->setRotateY(180);
-			}
-			else
-			{
-			this->setTranslate(Vector3(this->getTranslate().x,this->getTranslate().y,this->getTranslate().z));
-			}
-			}*/
 		}
 	}
 	

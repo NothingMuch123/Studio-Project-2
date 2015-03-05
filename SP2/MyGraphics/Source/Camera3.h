@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*!
 \file	Camera3.h
-\author Koh Fang Shu
+\author Team 8
 \par	
 \brief
 Header file for Camera3 Class. First person camera

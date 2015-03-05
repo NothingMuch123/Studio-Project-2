@@ -15,14 +15,32 @@
 using std::cout;
 using std::endl;
 
+/******************************************************************************/
+/*!
+\brief
+Default constructor.
+*/
+/******************************************************************************/
 SP2::SP2()
 {
 }
 
+/******************************************************************************/
+/*!
+\brief
+Destructor.
+*/
+/******************************************************************************/
 SP2::~SP2()
 {
 }
 
+/******************************************************************************/
+/*!
+\brief
+Init everything needed for the scene
+*/
+/******************************************************************************/
 void SP2::Init()
 {
 	// Init VBO here
@@ -63,9 +81,6 @@ void SP2::Init()
 
 	meshList[GEO_AXES] = MeshBuilder::GenerateAxes("reference", 1000, 1000, 1000);
 
-	//meshList[GEO_LIGHTBALL] = MeshBuilder::GenerateSphere("lightball", Color(1, 1, 1), 1, 0);
-	//meshList[GEO_LIGHTBALL2] = MeshBuilder::GenerateSphere("lightball2", Color(1, 1, 1), 1, 0);
-
 	meshList[GEO_TEXT] = MeshBuilder::GenerateText("Text", 16, 16);
 	meshList[GEO_TEXT]->textureID = LoadTGA("Image//Courier.tga");
 
@@ -75,14 +90,31 @@ void SP2::Init()
 
 	srand(time(NULL));
 
-	for(int a = 0;a<10;a++)
+	// Floor 1 NPCs
+	for(int a = 0;a<3;++a)
 	{
-	initHuman(3,Vector3(a,0,300),Vector3(0,90,0),camera.position,60);	
+		initHuman(3,Vector3(0,0,300),Vector3(0,90,0),camera.position,60);	
 	}
-
-	initHuman(2,Vector3(0,0,50),Vector3(0,90,0),camera.position,60);	
-
+	initHuman(2,Vector3(0,0,50),Vector3(0,90,0),camera.position,60);
 	initHuman(1,Vector3(80,0,40),Vector3(0,0,0),camera.position,60);
+
+	// Floor 2 NPCs
+	pObj = new CObj(GEO_NON_MOVING_SECURITYGUARD, Vector3(100,0,-50), Vector3(0,0,0), Vector3(4,7,4), Vector3(3, 4.6, 3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	pObj = new CObj(GEO_NON_MOVING_SECURITYGUARD, Vector3(100,0,50), Vector3(0,0,0), Vector3(4,7,4), Vector3(3, 4.6, 3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+
+	pObj = new CObj(GEO_NON_MOVING_SHOPPER, Vector3(-50,0,0), Vector3(0,0,0), Vector3(4,7,4),Vector3(3,4.5,3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	pObj = new CObj(GEO_NON_MOVING_SHOPPER, Vector3(0,0,0), Vector3(0,0,0), Vector3(4,7,4),Vector3(3,4.5,3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
+	pObj = new CObj(GEO_NON_MOVING_SHOPPER, Vector3(-50,0,100), Vector3(0,0,0), Vector3(4,7,4),Vector3(3,4.5,3));
+	pObj->calcBound();
+	objList2.push_back(pObj);
 
 	initValues();
 	initCar();
@@ -97,6 +129,12 @@ void SP2::Init()
 	initMap();
 }
 
+/******************************************************************************/
+/*!
+\brief
+Init floor 1 map
+*/
+/******************************************************************************/
 void SP2::initMap()
 {
 	meshList[GEO_MAP_1] = MeshBuilder::GenerateQuad("map" , Color(1,1,1),TexCoord(1,1));
@@ -112,6 +150,12 @@ void SP2::initMap()
 	mapMinBound.Set(supermarketPosition.x - 170 , supermarketPosition.y , supermarketPosition.z - 154);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Init player's hand
+*/
+/******************************************************************************/
 void SP2::initHands()
 {
 	meshList[GEO_HAND] = MeshBuilder::GenerateOBJ( "Hand" , "OBJ//Cube.obj");
@@ -120,6 +164,12 @@ void SP2::initHands()
 	hands[0] = hands[1] = NULL;
 }
 
+/******************************************************************************/
+/*!
+\brief
+Init security cameras and screens for security room
+*/
+/******************************************************************************/
 void SP2::initCamera()
 {
 	Vector3 cameraPosition( supermarketPosition.x - (15 * supermarketScale.x) , supermarketPosition.y + (10 * supermarketScale.y) , supermarketPosition.z - (8 * supermarketScale.z));
@@ -179,6 +229,18 @@ void SP2::initCamera()
 	translateSecurityZ = 0;
 }
 
+/******************************************************************************/
+/*!
+\brief
+Creates a shelf for floor 1
+\param Choice
+A number from GEOMETRY_TYPE enum to specify an item to populate on the shelf
+\param _translate
+Position to move from supermarket position
+\param _rotate
+Rotation on the spot
+*/
+/******************************************************************************/
 void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 {
 	CItem* pItem;
@@ -322,6 +384,12 @@ void SP2::initShelf(int Choice,Vector3 _translate, Vector3 _rotate)
 	objList.push_back(pObj);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Generate and load all item obj and texture (2D and 3D)
+*/
+/******************************************************************************/
 void SP2::initItems()
 {
 	meshList[GEO_ITEM_1] = MeshBuilder::GenerateOBJ("item" , "OBJ//ITEMS//box-1.obj");
@@ -386,20 +454,26 @@ void SP2::initItems()
 	meshList[GEO_INVENTORY_ITEM_10]->textureID = LoadTGA("Image//inventoryImages//inventory_box_10.tga");
 }
 
+/******************************************************************************/
+/*!
+\brief
+Generate car obj and texture and creating a car in scene
+*/
+/******************************************************************************/
 void SP2::initCar()
 {
 	meshList[GEO_CAR] = MeshBuilder::GenerateOBJ("Car", "OBJ//Car.obj");
 	meshList[GEO_CAR]->textureID = LoadTGA("Image//Car.tga");
-	meshList[GEO_CAR]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR]->material.kAmbient.Set(0.2f, 0.2f, 0.2f);
 	meshList[GEO_CAR]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_CAR]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR]->material.kSpecular.Set(0.1f, 0.1f, 0.1f);
 	meshList[GEO_CAR]->material.kShininess = 1.f;
 
 	meshList[GEO_CAR_TYRE] = MeshBuilder::GenerateOBJ("Car tyre", "OBJ//Car_tyre.obj");
 	meshList[GEO_CAR_TYRE]->textureID = LoadTGA("Image//Car_tyre.tga");
-	meshList[GEO_CAR_TYRE]->material.kAmbient.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR_TYRE]->material.kAmbient.Set(0.2f, 0.2f, 0.2f);
 	meshList[GEO_CAR_TYRE]->material.kDiffuse.Set(0.2f, 0.2f, 0.2f);
-	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(1.f, 1.f, 1.f);
+	meshList[GEO_CAR_TYRE]->material.kSpecular.Set(0.1f, 0.1f, 0.1f);
 	meshList[GEO_CAR_TYRE]->material.kShininess = 1.f;
 
 	meshList[GEO_CAR_SCREEN] = MeshBuilder::GenerateQuad("Car screen", Color(1,1,1), TexCoord(1,1));
@@ -411,6 +485,12 @@ void SP2::initCar()
 	objList.push_back(pObj);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Generate display cabinet obj and texture
+*/
+/******************************************************************************/
 void SP2::initCabinet()
 {	
 	//Special Display Cabinet with the Tardis
@@ -442,6 +522,12 @@ void SP2::initCabinet()
 	objList2.push_back(pObj);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Generate obj and texture of items that will be placed on display cabinet
+*/
+/******************************************************************************/
 void SP2::initSpecialItems()
 {
 	//Time Potato
@@ -489,6 +575,12 @@ void SP2::initSpecialItems()
 	objList2.push_back(pObj);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Generate supermarket related obj and texture and create them on the first and second floor
+*/
+/******************************************************************************/
 void SP2::initSuperMarket()
 {
 	// Supermarket
@@ -741,6 +833,22 @@ void SP2::initSuperMarket()
 
 }
 
+/******************************************************************************/
+/*!
+\brief
+Generate NPC obj and texture and creating them into the scene
+\param Choice
+Determines what type of NPC
+\param translation
+Position of the NPC
+\param rotation
+Rotation of the NPC
+\param camPosition
+NPC's camera position
+\param radius
+The distance between player and NPC that allows interaction
+*/
+/******************************************************************************/
 void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camPosition,int radius) // only human body is stored in obj list 
 {
 	if(Choice ==1)//HUMAN STAFF
@@ -757,7 +865,7 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		meshList[GEO_HUMAN_STAFF_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_STAFF_LEG]->textureID = LoadTGA ("Image//Staff.tga");
 
-		pObj = new CCashier(GEO_HUMAN,translation, rotation,Vector3(4,7,4), Vector3(3, 4.6, 3),camera.position,radius);//1.6));
+		pObj = new CCashier(GEO_HUMAN,translation, rotation,Vector3(4,7,4), Vector3(3, 4.6, 3),camera.position,radius);
 		pObj->calcBound();
 		objList.push_back(pObj);
 		CharacterList.push_back(static_cast<CCharacter*>(pObj));
@@ -778,7 +886,7 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		meshList[GEO_HUMAN_SECURITYGUARD_LEG]->textureID = LoadTGA ("Image//Police.tga");
 
 
-		pObj = new CSecurityGuard(GEO_HUMAN,translation, rotation,Vector3(4,7,4), Vector3(3, 4.6, 3),camera.position,radius);//1.6));
+		pObj = new CSecurityGuard(GEO_HUMAN,translation, rotation,Vector3(4,7,4), Vector3(3, 4.6, 3),camera.position,radius);
 		pObj->calcBound();
 		objList.push_back(pObj);
 		CharacterList.push_back(static_cast<CCharacter*>(pObj));
@@ -798,7 +906,7 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		meshList[GEO_HUMAN_SHOPPER_LEG] = MeshBuilder::GenerateOBJ( "l_leg" , "OBJ//HumanModel_leftleg.obj");
 		meshList[GEO_HUMAN_SHOPPER_LEG]->textureID = LoadTGA ("Image//Shopper.tga");
 
-		pObj = new CShopper(GEO_HUMAN,translation,rotation,Vector3(4,7,4),Vector3(3,4.5,3),camera.position,radius);//1));
+		pObj = new CShopper(GEO_HUMAN,translation,rotation,Vector3(4,7,4),Vector3(3,4.5,3),camera.position,radius);
 		pObj->calcBound();
 		objList.push_back(pObj);
 		CharacterList.push_back(static_cast<CCharacter*>(pObj));
@@ -822,13 +930,14 @@ void SP2::initHuman(int Choice,Vector3 translation,Vector3 rotation,Vector3 camP
 		objList2.push_back(pObj);
 		CharacterList.push_back(static_cast<CCharacter*>(pObj));
 	}
-
-	//Promoter Interaction Bound
-	//Vector3 promoterPosition(supermarketPosition.x, supermarketPosition.y, supermarketPosition.z + ((supermarketScale.z * supermarketSize.z) / 2));
-	//promoterMaxBound.Set(promoterPosition.x + (3 * supermarketScale.x), promoterPosition.y, promoterPosition.z + (5 * supermarketScale.z));
-	//promoterMinBound.Set(promoterPosition.x - (3 * supermarketScale.x), promoterPosition.y, promoterPosition.z - (5 * supermarketScale.z));
 }
 
+/******************************************************************************/
+/*!
+\brief
+Creates a wall patch for second floor
+*/
+/******************************************************************************/
 void SP2::initPatch()
 {
 	meshList[GEO_PATCH] = MeshBuilder::GenerateOBJ("wallpatch",  "OBJ//wallpatcher.obj");
@@ -866,33 +975,45 @@ void SP2::initPatch()
 
 }
 
+/******************************************************************************/
+/*!
+\brief
+Light variables for all lights
+*/
+/******************************************************************************/
 void SP2::setLights()
 {
-	lights[0].type = Light::LIGHT_SPOT;
-	lights[0].position.Set(0, 0, 0);
+	lights[0].type = Light::LIGHT_DIRECTIONAL;
+	lights[0].position.Set(50,50,50);
 	lights[0].color.Set(1, 1, 1);
 	lights[0].power = 5;
 	lights[0].kC = 1.0f;
 	lights[0].kL = 0.01f;
 	lights[0].kQ = 0.000f;
-	lights[0].cosCutoff = cos(Math::DegreeToRadian(5));
-	lights[0].cosInner = cos(Math::DegreeToRadian(1));
+	lights[0].cosCutoff = cos(Math::DegreeToRadian(45));
+	lights[0].cosInner = cos(Math::DegreeToRadian(30));
 	lights[0].exponent = 3.f;
-	lights[0].spotDirection.Set(0,1,0);
+	lights[0].spotDirection.Set(1,1,1);
 
-	lights[1].type = Light::LIGHT_POINT;
-	lights[1].position.Set(0, 0, 0);
+	lights[1].type = Light::LIGHT_DIRECTIONAL;
+	lights[1].position.Set(-50,-50,-50);
 	lights[1].color.Set(1, 1, 1);
-	lights[1].power = 1;
+	lights[1].power = 5;
 	lights[1].kC = 1.f;
 	lights[1].kL = 0.01f;
 	lights[1].kQ = 0.001f;
 	lights[1].cosCutoff = cos(Math::DegreeToRadian(45));
 	lights[1].cosInner = cos(Math::DegreeToRadian(30));
 	lights[1].exponent = 3.f;
-	lights[1].spotDirection.Set(0.f, 1.f, 0.f);
+	lights[1].spotDirection.Set(-1,-1,-1);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Get a handle for our "MVP" & "textColor" uniform
+*/
+/******************************************************************************/
 void SP2::getHandle()
 {
 	// Get a handle for our "MVP" uniform
@@ -937,6 +1058,12 @@ void SP2::getHandle()
 	glUniform1i(m_parameters[U_NUMLIGHTS], 2);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Passing uniform parameters
+*/
+/******************************************************************************/
 void SP2::lightParameters()
 {
 	// Make sure you pass uniform parameters after glUseProgram()
@@ -962,6 +1089,12 @@ void SP2::lightParameters()
 	glUniform1f(m_parameters[U_LIGHT1_EXPONENT], lights[1].exponent);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Init of misc values
+*/
+/******************************************************************************/
 void SP2::initValues()
 {
 	floorNum = 1; // start at first floor
@@ -972,6 +1105,8 @@ void SP2::initValues()
 	aiTalk == false;
 	timer = 0;
 	mainmenu = true;
+	talk = false;
+	talkTimer = 0;
 
 	for(int a = 0; a<objList.size();++a)
 	{
@@ -1024,6 +1159,12 @@ void SP2::initValues()
 
 }
 
+/******************************************************************************/
+/*!
+\brief
+Generate skybox obj and texture and init values for skybox
+*/
+/******************************************************************************/
 void SP2::initOuterSkybox()
 {
 	meshList[GEO_OUTER_FRONT] = MeshBuilder::GenerateQuad("Outer skybox front", Color(1,1,1), TexCoord(1,1));
@@ -1050,6 +1191,12 @@ void SP2::initOuterSkybox()
 	outerSkyboxMinBound.Set(-outerSkyboxSize.x/2 + skyboxOffset*2, skyboxOffset, -outerSkyboxSize.z/2 + skyboxOffset*2);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Init values for game
+*/
+/******************************************************************************/
 void SP2::initGame()
 {
 	inGame = 0 ;
@@ -1091,6 +1238,14 @@ void SP2::initGame()
 	meshList[GEO_GAME3_BOB_LEG]->textureID = LoadTGA("Image//Police.tga");
 }
 
+/******************************************************************************/
+/*!
+\brief
+Update scene
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::Update(double dt)
 {
 	if (mainmenu)
@@ -1115,7 +1270,7 @@ void SP2::Update(double dt)
 		}
 		keypressed[K_EXIT_CAM] = keypressed[K_LEFT_PICK] = keypressed[K_EXIT_CAR] = Application::IsKeyPressed('Q');
 		keypressed[K_LEFT_PLACE] = Application::IsKeyPressed('F');
-		keypressed[K_START_STORY] = keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = Application::IsKeyPressed('E');
+		keypressed[K_START_STORY] = keypressed[K_ENTER_CAM] = keypressed[K_RIGHT_PICK] = keypressed[K_ENTER_CAR] = keypressed[K_TALK] = Application::IsKeyPressed('E');
 		keypressed[K_RIGHT_PLACE] = Application::IsKeyPressed('G');
 		keypressed[K_FIRST_FLOOR] = Application::IsKeyPressed('O');
 		keypressed[K_SECOND_FLOOR] = Application::IsKeyPressed('P');
@@ -1174,10 +1329,27 @@ void SP2::Update(double dt)
 							static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[0]));
 							hands[0] = NULL;
 						}
-
-
-						
-
+						if (keypressed[K_RIGHT_PLACE] && hands[1] != NULL && hands[1]->getID() == GEO_ITEM)
+						{
+							static_cast<CTrolley*>(pObj)->itemList.push_back(static_cast<CItem*>(hands[1]));
+							hands[1] = NULL;
+						}
+						if (keypressed[K_LEFT_PICK] && hands[0] == NULL)
+						{
+							if (static_cast<CTrolley*>(pObj)->itemList.size() > 0)
+							{
+								hands[0] = static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1];
+								static_cast<CTrolley*>(pObj)->itemList.pop_back();
+							}
+						}
+						if (keypressed[K_RIGHT_PICK] && hands[1] == NULL)
+						{
+							if (static_cast<CTrolley*>(pObj)->itemList.size() > 0)
+							{
+								hands[1] = static_cast<CTrolley*>(pObj)->itemList[static_cast<CTrolley*>(pObj)->itemList.size() - 1];
+								static_cast<CTrolley*>(pObj)->itemList.pop_back();
+							}
+						}
 					}
 					else if(pObj->getID() == GEO_SECURITY_CAMERA_SCREEN)
 					{
@@ -1244,8 +1416,19 @@ void SP2::Update(double dt)
 							checkoutList.pop_back();
 						}
 					}
+					else if ((pObj->getID() == GEO_HUMAN || pObj->getID() == GEO_NON_MOVING_SECURITYGUARD || pObj->getID() == GEO_NON_MOVING_SHOPPER) && keypressed[K_TALK])
+					{
+						talk = true;
+						talkTimer = 0;
+					}
 				}
 			}
+		}
+		talkTimer += dt;
+		if (talk && talkTimer > 2)
+		{
+			talk = false;
+			talkTimer = 0;
 		}
 
 		if (hands[0] != NULL && hands[1] != NULL)
@@ -1306,12 +1489,27 @@ void SP2::Update(double dt)
 
 	}
 }
+
+/******************************************************************************/
+/*!
+\brief
+Update character's position on minimap
+*/
+/******************************************************************************/
 void SP2::updateMap()
 {
 	mapPositionX = ( camera.position.x)/(supermarketScale.x * 13);//130
 	mapPositionZ = ( -camera.position.z)/(supermarketScale.z * 8.5);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Update security camera viewpoint
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::updateCamera(double dt)
 {
 	if(cam == true)
@@ -1351,6 +1549,14 @@ void SP2::updateCamera(double dt)
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Update game
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::updateGame(double dt)
 {
 	static const float ROTATE_SPEED = 100.f;
@@ -1493,6 +1699,12 @@ void SP2::updateGame(double dt)
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Bound check for game 3
+*/
+/******************************************************************************/
 bool SP2::updateBoundCheckGame3()
 {
 	for(int i = 0 ; i < objList.size(); ++i)
@@ -1509,6 +1721,14 @@ bool SP2::updateBoundCheckGame3()
 	return false;
 }
 
+/******************************************************************************/
+/*!
+\brief
+Update the trolley that is being pushed
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::updateTrolley(double dt)
 {
 	rotateHandY = hands[0]->getRotate().y;
@@ -1541,6 +1761,14 @@ void SP2::updateTrolley(double dt)
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Update transformation for hand when player moves
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::updateHands(double dt)
 {
 	static const float ROTATE_SPEED = 100.f;
@@ -1571,6 +1799,12 @@ void SP2::updateHands(double dt)
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Check for interactions between player and shelf and updates it
+*/
+/******************************************************************************/
 void SP2::updateShelf()
 {
 	// Pick up item for left hand
@@ -1604,6 +1838,14 @@ void SP2::updateShelf()
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Door and lift interaction within the supermarket
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::updateSuperMarket(double dt)
 {
 	static bool trolleyNearLift = false;
@@ -1736,6 +1978,14 @@ void SP2::updateSuperMarket(double dt)
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Update the current car that is being droved
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::updateCar(double dt)//updating car
 {
 	static const float ROTATE_SPEED = 100.f;
@@ -1768,6 +2018,14 @@ void SP2::updateCar(double dt)//updating car
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+NPC movement
+\param dt
+Time since previous update call
+*/
+/******************************************************************************/
 void SP2::updateHuman(double dt)
 {
 	for(int a = 0; a < objList.size(); ++a)
@@ -1783,8 +2041,8 @@ void SP2::updateHuman(double dt)
 
 				if(static_cast<CCashier*>(objList[a])->getInteractionBound()==true)
 				{
-					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
-					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+					//static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					//RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 2, 2);
 				}
 
 			}
@@ -1809,8 +2067,8 @@ void SP2::updateHuman(double dt)
 				if(static_cast<CSecurityGuard*>(objList[a])->getInteractionBound()==true)
 				{
 					static_cast<CSecurityGuard*>(objList[a])->setMovement(0);
-					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
-					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+					//static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					//RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
 				
 				}
 
@@ -1830,8 +2088,8 @@ void SP2::updateHuman(double dt)
 				if(static_cast<CShopper*>(objList[a])->getInteractionBound()==true)
 				{
 					static_cast<CCashier*>(objList[a])->setMovement(0);
-					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
-					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+					//static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					//RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
 				
 				}
 			}
@@ -1843,8 +2101,8 @@ void SP2::updateHuman(double dt)
 				if(static_cast<CPromoter*>(objList[a])->getInteractionBound()==true)
 				{
 					static_cast<CPromoter*>(objList[a])->setMovement(0);
-					static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
-					RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
+					//static_cast<CCashier*>(objList[a])->setScript(rand() % 10+1);
+					//RenderTextOnScreen(meshList[GEO_TEXT], static_cast<CCashier*>(objList[a])->updateScript(),Color(0,0,0), 2, 15, 20);
 				
 				}
 			}
@@ -1853,9 +2111,12 @@ void SP2::updateHuman(double dt)
 	}
 }
 
-
-
-
+/******************************************************************************/
+/*!
+\brief
+Render everything in the scene
+*/
+/******************************************************************************/
 void SP2::Render()
 {
 	// Render VBO here
@@ -1868,40 +2129,40 @@ void SP2::Render()
 	/*// Light 1
 	if(lights[0].type == Light::LIGHT_DIRECTIONAL)
 	{
-	Vector3 lightDir(lights[0].position.x, lights[0].position.y, lights[0].position.z);
-	Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
-	glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightDirection_cameraspace.x);
+		Vector3 lightDir(lights[0].position.x, lights[0].position.y, lights[0].position.z);
+		Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
+		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightDirection_cameraspace.x);
 	}
 	else if(lights[0].type == Light::LIGHT_SPOT)
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
-	glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
-	Vector3 spotDirection_cameraspace = viewStack.Top() * lights[0].spotDirection;
-	glUniform3fv(m_parameters[U_LIGHT0_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
+		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
+		Vector3 spotDirection_cameraspace = viewStack.Top() * lights[0].spotDirection;
+		glUniform3fv(m_parameters[U_LIGHT0_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
 	}
 	else
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
-	glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[0].position;
+		glUniform3fv(m_parameters[U_LIGHT0_POSITION], 1, &lightPosition_cameraspace.x);
 	}
 	// Light 2
 	if(lights[1].type == Light::LIGHT_DIRECTIONAL)
 	{
-	Vector3 lightDir(lights[1].position.x, lights[1].position.y, lights[1].position.z);
-	Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
-	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightDirection_cameraspace.x);
+		Vector3 lightDir(lights[1].position.x, lights[1].position.y, lights[1].position.z);
+		Vector3 lightDirection_cameraspace = viewStack.Top() * lightDir;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightDirection_cameraspace.x);
 	}
 	else if(lights[1].type == Light::LIGHT_SPOT)
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
-	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
-	Vector3 spotDirection_cameraspace = viewStack.Top() * lights[1].spotDirection;
-	glUniform3fv(m_parameters[U_LIGHT1_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
+		Vector3 spotDirection_cameraspace = viewStack.Top() * lights[1].spotDirection;
+		glUniform3fv(m_parameters[U_LIGHT1_SPOTDIRECTION], 1, &spotDirection_cameraspace.x);
 	}
 	else
 	{
-	Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
-	glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
+		Position lightPosition_cameraspace = viewStack.Top() * lights[1].position;
+		glUniform3fv(m_parameters[U_LIGHT1_POSITION], 1, &lightPosition_cameraspace.x);
 	}*/
 
 	renderOuterSkybox();
@@ -1935,6 +2196,14 @@ void SP2::Render()
 			{
 				if(inGame != 3)
 					renderHuman();
+			}
+			else if (pObj->getID() == GEO_NON_MOVING_SECURITYGUARD)
+			{
+				renderNonMovingSecurityGuard();
+			}
+			else if (pObj->getID() == GEO_NON_MOVING_SHOPPER)
+			{
+				renderNonMovingShopper();
 			}
 			else if (pObj->getID() != GEO_SUPERMARKET_WALL)
 			{
@@ -1977,13 +2246,6 @@ void SP2::Render()
 		RenderMesh(meshList[GEO_CAR_SCREEN], togglelight);
 		modelStack.PopMatrix();
 	}
-
-	//// Target test
-	//modelStack.PushMatrix();
-	//modelStack.Translate(camera.target.x, camera.target.y, camera.target.z);
-	//modelStack.Scale(1,1,1);
-	//RenderMesh(meshList[GEO_CUBE], togglelight);
-	//modelStack.PopMatrix();
 
 	RenderMesh(meshList[GEO_AXES], false);
 	if (floorNum == 1)
@@ -2106,6 +2368,12 @@ void SP2::Render()
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render minimap and player's position
+*/
+/******************************************************************************/
 void SP2::renderMap()
 {
 	if(floorNum == 1)
@@ -2115,170 +2383,32 @@ void SP2::renderMap()
 	Render2D(meshList[GEO_MAP_PLAYER],4,18.75 + mapPositionX,1.2 + mapPositionZ);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render all text on screen
+*/
+/******************************************************************************/
 void SP2::renderText()
 {
-	std::ostringstream sFPS, sOrient, sPitch, sX, sY, sZ, cH;
+	std::ostringstream sFPS;
 	sFPS << fps;
-	sPitch << rotateHandX;
-	sOrient << rotateHandY;
-	sX << camera.position.x;
-	sY << camera.position.y;
-	sZ << camera.position.z;
 
 	RenderTextOnScreen(meshList[GEO_TEXT], "FPS: ", Color(0, 0, 0), 2, 1, 1);
 	RenderTextOnScreen(meshList[GEO_TEXT], sFPS.str(), Color(0, 0, 0), 2, 6, 1);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Orientation: ", Color(0, 0, 0), 2, 1, 5);
-	RenderTextOnScreen(meshList[GEO_TEXT], sOrient.str(), Color(0, 0, 0), 2, 20, 5);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Pitch: ", Color(0, 0, 0), 2, 1, 6);
-	RenderTextOnScreen(meshList[GEO_TEXT], sPitch.str(), Color(0, 0, 0), 2, 10, 6);  
-	RenderTextOnScreen(meshList[GEO_TEXT], "X: ", Color(0, 0, 0), 2, 1, 4);
-	RenderTextOnScreen(meshList[GEO_TEXT], sX.str(), Color(0, 0, 0), 2, 4, 4);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Y: ", Color(0, 0, 0), 2, 1, 3);
-	RenderTextOnScreen(meshList[GEO_TEXT], sY.str(), Color(0, 0, 0), 2, 4, 3);
-	RenderTextOnScreen(meshList[GEO_TEXT], "Z: ", Color(0, 0, 0), 2, 1, 2);
-	RenderTextOnScreen(meshList[GEO_TEXT], sZ.str(), Color(0, 0, 0), 2, 4, 2);
 	RenderTextOnScreen(meshList[GEO_TEXT], ">o<", Color(1,0,0), 2, 19.2, 15);
-
-	if(aiTalk == true  && timer < 500)
+	if (talk)
 	{
-		for(int a = 0; a < objList.size(); ++a)
-		{
-			if(static_cast<CCashier*>(objList[a])->getRole()==1)
-			{
-				int textNum = rand() % 10;
-				switch(textNum)
-				{
-				case 1:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
-					break;
-				case 2:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
-					break;
-				case 3:
-					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
-					break;
-				case 4:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
-					break;
-				case 5:
-					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
-					break;
-				case 6: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
-					break;
-				case 7:
-					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
-					break;
-				case 8:
-					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
-					break;
-				case 9: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
-				}
-			}
-			if(static_cast<CSecurityGuard*>(objList[a])->getRole()==2)
-			{
-				int textNum = rand() % 10;
-				switch(textNum)
-				{
-				case 1:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
-					break;
-				case 2:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
-					break;
-				case 3:
-					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
-					break;
-				case 4:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
-					break;
-				case 5:
-					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
-					break;
-				case 6: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
-					break;
-				case 7:
-					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
-					break;
-				case 8:
-					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
-					break;
-				case 9: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
-				}
-			}
-			if(static_cast<CShopper*>(objList[a])->getRole()==3)
-			{
-				int textNum = rand() % 10;
-				switch(textNum)
-				{
-				case 1:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
-					break;
-				case 2:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
-					break;
-				case 3:
-					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
-					break;
-				case 4:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
-					break;
-				case 5:
-					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
-					break;
-				case 6: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
-					break;
-				case 7:
-					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
-					break;
-				case 8:
-					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
-					break;
-				case 9: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
-				}
-			}
-			if(static_cast<CPromoter*>(objList[a])->getRole()==4)
-			{
-				int textNum = rand() % 10;
-				switch(textNum)
-				{
-				case 1:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Hi There!",Color(0,0,0), 2, 0, -2);
-					break;
-				case 2:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Can I have your Items?", Color(0,0,0), 2, 0, -2);
-					break;
-				case 3:
-					RenderTextOnScreen(meshList[GEO_TEXT], "That would be $420.69 Sir", Color(0,0,0), 2, 0, -2);
-					break;
-				case 4:
-					RenderTextOnScreen(meshList[GEO_TEXT], "Would you like some of our home grown and cultured weed?", Color(0,0,0), 2, 0,-2);
-					break;
-				case 5:
-					RenderTextOnScreen(meshList[GEO_TEXT], "You must be under 18 to buy cigarettes Sir!", Color(0,0,0), 2, 0, -2);
-					break;
-				case 6: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "Do you want to build a MeshMan?", Color (0,0,0), 2, 0, -2);
-					break;
-				case 7:
-					RenderTextOnScreen(meshList[GEO_TEXT], "I used to be a shopper JUST like you, then i got broke", Color(0,0,0), 2, 0, -2);
-					break;
-				case 8:
-					RenderTextOnScreen(meshList[GEO_TEXT], " Everything used to be peacful around here, then the Great Singapore Sales atacked", Color(0,0,0), 1, 0, -2);
-					break;
-				case 9: 
-					RenderTextOnScreen(meshList[GEO_TEXT], "The art of slicing is very delicate, don't you think?", Color(0,0,0), 2, 0, -2);
-				}
-			}
-		}
+		RenderTextOnScreen(meshList[GEO_TEXT], "Hi!", Color(0, 0, 0), 3, 12, 4);
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render player's hands
+*/
+/******************************************************************************/
 void SP2::renderHands()
 {
 	if(cam == false)
@@ -2289,27 +2419,9 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-		/*if (hands[0] == NULL)
-		{
-		modelStack.Scale(.4,.4,1.5);
-		}
-		else if (hands[0]->getID() == GEO_ITEM)
-		{
-		modelStack.Scale(hands[0]->getScale().x, hands[0]->getScale().y, hands[0]->getScale().z);
-		}*/
 		modelStack.Scale(.4,.4,1.5);
 		modelStack.PushMatrix();
 
-		/*if (hands[0] == NULL)
-		{
-		modelStack.Translate(-1.5,-1.5,-1);
-		RenderMesh(meshList[GEO_HAND], togglelight);
-		}
-		else if (hands[0]->getID() == GEO_ITEM)
-		{
-		modelStack.Translate(-1.5, -1.5, -4);
-		RenderMesh(static_cast<CItem*>(hands[0])->getItem(), togglelight);
-		}*/
 		modelStack.Translate(-1.5,-1.5,-1);
 		RenderMesh(meshList[GEO_HAND], togglelight);
 		modelStack.PopMatrix();
@@ -2322,27 +2434,9 @@ void SP2::renderHands()
 
 		modelStack.Rotate(rotateHandY, 0, 1, 0);
 		modelStack.Rotate(rotateHandX,1,0,0);
-		/*if (hands[1] == NULL)
-		{
-		modelStack.Scale(.4,.4,1.5);
-		}
-		else if (hands[1]->getID() == GEO_ITEM)
-		{
-		modelStack.Scale(hands[1]->getScale().x, hands[1]->getScale().y, hands[1]->getScale().z);
-		}*/
 		modelStack.Scale(.4,.4,1.5);
 		modelStack.PushMatrix();
 
-		/*if (hands[1] == NULL)
-		{
-		modelStack.Translate(1.5,-1.5,-1);
-		RenderMesh(meshList[GEO_HAND], togglelight);
-		}
-		else if (hands[1]->getID() == GEO_ITEM)
-		{
-		modelStack.Translate(1.5, -1.5, -4);
-		RenderMesh(static_cast<CItem*>(hands[1])->getItem(), togglelight);
-		}*/
 		modelStack.Translate(1.5,-1.5,-1);
 		RenderMesh(meshList[GEO_HAND], togglelight);
 		modelStack.PopMatrix();
@@ -2350,6 +2444,12 @@ void SP2::renderHands()
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render display cabinet
+*/
+/******************************************************************************/
 void SP2::renderCabinet()
 {
 	//Tardis Display Shelf
@@ -2378,6 +2478,12 @@ void SP2::renderCabinet()
 	modelStack.PopMatrix();
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render items in display cabinet
+*/
+/******************************************************************************/
 void SP2::renderSpecialItems()
 {
 	//POTATO
@@ -2434,8 +2540,14 @@ void SP2::renderSpecialItems()
 
 
 	modelStack.PopMatrix();
-
 }
+
+/******************************************************************************/
+/*!
+\brief
+Render shelf with its item
+*/
+/******************************************************************************/
 void SP2::renderShelf()
 {
 	modelStack.PushMatrix();
@@ -2471,6 +2583,12 @@ void SP2::renderShelf()
 
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render supermarket doors
+*/
+/******************************************************************************/
 void SP2::renderSuperMarket()
 {
 
@@ -2509,6 +2627,12 @@ void SP2::renderSuperMarket()
 	modelStack.PopMatrix();
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render car
+*/
+/******************************************************************************/
 void SP2::renderCar()
 {
 	modelStack.PushMatrix();								// Start of car
@@ -2534,6 +2658,12 @@ void SP2::renderCar()
 	modelStack.PopMatrix();									// End of car
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render game related obj
+*/
+/******************************************************************************/
 void SP2::renderGame(int a)// 1- treasure hunt 
 {
 	//** NOTE : ALL GAME ON FIRST FLOOR **//
@@ -2662,6 +2792,12 @@ void SP2::renderGame(int a)// 1- treasure hunt
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render instructions for games
+*/
+/******************************************************************************/
 void SP2::renderInstruction(int a)
 {
 	if(displayInstruction == true)
@@ -2671,7 +2807,7 @@ void SP2::renderInstruction(int a)
 		case 1: // shopper game
 			{
 				RenderTextOnScreen(meshList[GEO_TEXT],"find the items " , Color( 1,0,0), 3, 1, 6);
-				RenderTextOnScreen(meshList[GEO_TEXT] ,"bring put it into cashier" , Color(1,0,0),3 ,1 , 5);
+				RenderTextOnScreen(meshList[GEO_TEXT] ,"Put it into cashier table" , Color(1,0,0),3 ,1 , 5);
 			}
 			break;
 		case 2: // cashier game
@@ -2695,6 +2831,132 @@ void SP2::renderInstruction(int a)
 
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render non-moving security guard
+*/
+/******************************************************************************/
+void SP2::renderNonMovingSecurityGuard()
+{
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+	modelStack.Rotate(pObj->getRotate().z, 0,0,1);
+	modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
+	modelStack.PushMatrix();
+	RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_BODY], togglelight);
+	modelStack.PopMatrix();
+	// ================================ L_SHOULDERs =======================
+	modelStack.PushMatrix();
+	modelStack.Translate(1.5,2.8,0);
+	RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_ARM], togglelight); 
+	modelStack.PopMatrix();
+	//=============================== L_HANDS =========================
+	modelStack.PushMatrix();
+	modelStack.Translate(1.5,2,0);
+	RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_HAND], togglelight);
+
+	modelStack.PopMatrix();
+
+	// ================================ R_SHOULDER =======================
+	modelStack.PushMatrix();
+	modelStack.Translate(-1.5,2.8, 0);
+	RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_ARM], togglelight);
+	modelStack.PopMatrix();
+	//=============================== R_HANDS =========================
+	modelStack.PushMatrix();
+	modelStack.Translate(-1.5,2,0);
+	RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_HAND], togglelight);
+	modelStack.PopMatrix();
+
+
+	// ================================== R_LEGS ========================
+	modelStack.PushMatrix();
+	modelStack.Translate(-0.6,1.5,0);
+	modelStack.Scale(1,.75,1); 
+	//modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
+	RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_LEG] , togglelight);
+	modelStack.PopMatrix();
+
+	// =========================== L_LEGS ==============================
+	modelStack.PushMatrix();
+	modelStack.Translate(0.6,1.5,0);
+	modelStack.Scale(1,.75,1); 
+	//modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
+	RenderMesh(meshList[GEO_HUMAN_SECURITYGUARD_LEG], togglelight);
+	modelStack.PopMatrix();
+	modelStack.PopMatrix();
+}
+
+/******************************************************************************/
+/*!
+\brief
+Render non-moving shopper
+*/
+/******************************************************************************/
+void SP2::renderNonMovingShopper()
+{
+	modelStack.PushMatrix();
+	modelStack.PushMatrix();
+	modelStack.Translate(pObj->getTranslate().x, pObj->getTranslate().y, pObj->getTranslate().z);
+	modelStack.Rotate(pObj->getRotate().x, 1,0,0);
+	modelStack.Rotate(pObj->getRotate().y, 0,1,0);
+	modelStack.Rotate(pObj->getRotate().z, 0,0,1);	
+	modelStack.Scale(pObj->getScale().x, pObj->getScale().y, pObj->getScale().z);
+	modelStack.PushMatrix();
+	RenderMesh(meshList[GEO_HUMAN_SHOPPER_BODY], togglelight);
+	modelStack.PopMatrix();
+	// ================================ L_SHOULDERs =======================
+	modelStack.PushMatrix();
+	modelStack.Translate(1.5,2.8,0);
+	RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], togglelight); 
+	modelStack.PopMatrix();
+	//=============================== L_HANDS =========================
+	modelStack.PushMatrix();
+	modelStack.Translate(1.5,2,0);
+	RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], togglelight);
+
+	modelStack.PopMatrix();
+
+	// ================================ R_SHOULDER =======================
+	modelStack.PushMatrix();
+	modelStack.Translate(-1.5,2.8, 0);
+	RenderMesh(meshList[GEO_HUMAN_SHOPPER_ARM], togglelight);
+	modelStack.PopMatrix();
+	//=============================== R_HANDS =========================
+	modelStack.PushMatrix();
+	modelStack.Translate(-1.5,2,0);
+	RenderMesh(meshList[GEO_HUMAN_SHOPPER_HAND], togglelight);
+	modelStack.PopMatrix();
+
+
+	// ================================== R_LEGS ========================
+	modelStack.PushMatrix();
+	modelStack.Translate(-0.6,1.5,0);
+	modelStack.Scale(1,.75,1); 
+	//modelStack.Rotate(-(static_cast<CCharacter*>(pObj)->getMovement()),1,0,0);
+	RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG] , togglelight);
+	modelStack.PopMatrix();
+
+	// =========================== L_LEGS ==============================
+	modelStack.PushMatrix();
+	modelStack.Translate(0.6,1.5,0);
+	modelStack.Scale(1,.75,1);
+	//modelStack.Rotate(static_cast<CCharacter*>(pObj)->getMovement(),1,0,0);
+	RenderMesh(meshList[GEO_HUMAN_SHOPPER_LEG], togglelight);
+	modelStack.PopMatrix();
+	modelStack.PopMatrix();
+	modelStack.PopMatrix();
+}
+
+/******************************************************************************/
+/*!
+\brief
+Render NPC
+*/
+/******************************************************************************/
 void SP2::renderHuman() 
 {
 	if(static_cast<CCharacter*>(pObj)->getRole()==1)
@@ -2911,6 +3173,12 @@ void SP2::renderHuman()
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render outer skybox
+*/
+/******************************************************************************/
 void SP2::renderOuterSkybox()
 {
 	modelStack.PushMatrix();
@@ -2956,6 +3224,12 @@ void SP2::renderOuterSkybox()
 
 }
 
+/******************************************************************************/
+/*!
+\brief
+Delete everything in objList and objList2
+*/
+/******************************************************************************/
 void SP2::Exit()
 {
 	// Cleanup VBO here
@@ -2965,9 +3239,20 @@ void SP2::Exit()
 	{
 		pObj = objList[i];
 		delete pObj;
+		pObj = NULL;
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render a mesh into the scene
+\param mesh
+The mesh to be rendered
+\param enableLight
+Render with or without lights
+*/
+/******************************************************************************/
 void SP2::RenderMesh(Mesh *mesh, bool enableLight)
 {
 	Mtx44 MVP, modelView, modelView_inverse_transpose;
@@ -3010,6 +3295,18 @@ void SP2::RenderMesh(Mesh *mesh, bool enableLight)
 	}
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render test in world
+\param mesh
+Text's mesh
+\param text
+Text to be rendered
+\param color
+Color of the text
+*/
+/******************************************************************************/
 void SP2::RenderText(Mesh* mesh, std::string text, Color color)
 {
 	if(!mesh || mesh->textureID <= 0) //Proper error check
@@ -3037,6 +3334,24 @@ void SP2::RenderText(Mesh* mesh, std::string text, Color color)
 	glEnable(GL_DEPTH_TEST);
 }
 
+/******************************************************************************/
+/*!
+\brief
+Render text on screen
+\param
+Text's mesh
+\param text
+Text to be rendered
+\param color
+Color for text
+\param size
+Size of the text
+\param x
+Position of text along x axis
+\param y
+Position of text along y axis
+*/
+/******************************************************************************/
 void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float size, float x, float y)
 {
 	if(!mesh || mesh->textureID <= 0) //Proper error check
@@ -3076,6 +3391,21 @@ void SP2::RenderTextOnScreen(Mesh* mesh, std::string text, Color color, float si
 	modelStack.PopMatrix();
 	glEnable(GL_DEPTH_TEST);
 }
+
+/******************************************************************************/
+/*!
+\brief
+Render in 2D
+\param mesh
+Mesh to be rendered
+\param size
+Size of mesh
+\param x
+Position of mesh along x axis
+\param y
+Position of mesh along y axis
+*/
+/******************************************************************************/
 void SP2::Render2D(Mesh* mesh, float size, float x, float y)
 {
 	//if(!mesh || mesh->textureID <= 0) //Proper error check
