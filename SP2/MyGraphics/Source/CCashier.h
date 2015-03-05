@@ -1,8 +1,25 @@
+/******************************************************************************/
+/*!
+\file	CCashier.h
+\author Team 8
+\par	
+\brief
+Header file for Cashier Class
+*/
+/******************************************************************************/
 #ifndef CCASHIER_H
 #define CASHIER_H
 
 #include "Character.h"
 
+/******************************************************************************/
+/*!
+	Class CCashier:
+\brief
+Defines functions
+(updateScript)
+*/
+/******************************************************************************/
 class CCashier : public CCharacter
 {
 private:
@@ -15,7 +32,7 @@ public:
 
 	//void setScript(int choice); //IB=InteractionBound   1:Ai or User 2:Word to Pass In
 	
-	void updateChar(bool getIsControlled,double dt);
+	//void updateChar(bool getIsControlled,double dt);
 
 	~CCashier(void);
 };

@@ -1,8 +1,24 @@
+/******************************************************************************/
+/*!
+\file	CSecurityGuard.h
+\author Team 8
+\par	
+\brief
+Header file for CSecurityGuard Class
+*/
+/******************************************************************************/
 #ifndef CSECURITYGUARD_H
 #define CSECURITYGUARD_H
 
 #include "Character.h"
-
+/******************************************************************************/
+/*!
+	Class CSecurityGuard:
+\brief
+Defines string
+(updateScript)
+*/
+/******************************************************************************/
 class CSecurityGuard : public CCharacter
 {
 private:
@@ -13,7 +29,7 @@ public:
 	
 	string updateScript();
 
-	void updateChar(bool getIsControlled,double dt);
+	//void updateChar(bool getIsControlled,double dt);
 
 	~CSecurityGuard(void);
 };

@@ -72,9 +72,11 @@ string CSecurityGuard::updateScript()
 	
 	}
 }
+/*
 void CSecurityGuard::updateChar(bool getIsControlled,double dt)
 {
 }
+*/
 
 CSecurityGuard::~CSecurityGuard(void)
 {

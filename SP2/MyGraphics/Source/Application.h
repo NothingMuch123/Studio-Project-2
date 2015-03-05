@@ -1,9 +1,23 @@
-
+/******************************************************************************/
+/*!
+\file	Application.h
+\author Team 8
+\par	
+\brief
+Header file for Application Class
+*/
+/******************************************************************************/
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
 #include "timer.h"
-
+/******************************************************************************/
+/*!
+	Class:Application
+\brief
+Application Class
+*/
+/******************************************************************************/
 class Application
 {
 public:

@@ -1,9 +1,26 @@
+/******************************************************************************/
+/*!
+\file	Shelf.h
+\author Team 8
+\par	
+\brief
+Header file for Shelf Class
+*/
+/******************************************************************************/
+
 #ifndef SHELF_H
 #define SHELF_H
 
 #include "Obj.h"
 #include "Item.h"
 #include <vector>
+
+/******************************************************************************/
+/*!
+		Class CShelf:
+\brief	Defines Default Values for Shelf
+*/
+/******************************************************************************/
 
 class CShelf : public CObj
 {

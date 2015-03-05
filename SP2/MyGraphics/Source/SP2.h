@@ -4,7 +4,7 @@
 \author Team 8
 \par	
 \brief
-Header file for SP2 scene class
+Header file for SP2 scene 
 */
 /******************************************************************************/
 #ifndef _SP2_H_
@@ -32,6 +32,12 @@ using std::cout;
 using std::endl;
 #include "CPromoter.h"
 
+/******************************************************************************/
+/*!
+		Class SP2:
+\brief	Stores the Enums, Functions, parameters and variables for SP2.cpp
+*/
+/******************************************************************************/
 
 class SP2 : public Scene
 {

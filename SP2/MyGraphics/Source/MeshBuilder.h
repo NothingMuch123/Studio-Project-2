@@ -1,3 +1,12 @@
+/******************************************************************************/
+/*!
+\file	MeshBuilder.h
+\author Team 8
+\par	
+\brief
+Header file for MeshBuilder Class
+*/
+/******************************************************************************/
 #ifndef MESH_BUILDER_H
 #define MESH_BUILDER_H
 

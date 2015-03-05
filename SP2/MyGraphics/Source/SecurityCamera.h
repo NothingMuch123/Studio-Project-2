@@ -1,6 +1,24 @@
+/******************************************************************************/
+/*!
+\file	SecurityCamera.h
+\author Team 8
+\par	
+\brief
+Header file for SecurityCamera Class
+*/
+/******************************************************************************/
+
 #pragma once
-#include "obj.h"
+#include "Obj.h"
 #include "Camera3.h"
+
+/******************************************************************************/
+/*!
+		Class CSecurityCamera:
+\brief	Defines Default Values for Security Camera 
+*/
+/******************************************************************************/
+
 class CSecurityCamera :
 	public CObj
 {

@@ -77,11 +77,11 @@ string CPromoter::updateScript()
 	
 	}
 }
-
+/*
 void CPromoter::updateChar(bool getIsControlled,double dt)
 {
 }
-
+*/
 CPromoter::~CPromoter(void)
 {
 }

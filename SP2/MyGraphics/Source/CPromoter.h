@@ -1,8 +1,26 @@
+/******************************************************************************/
+/*!
+\file	CPromoter.h
+\author Team 8
+\par	
+\brief
+Header file for CPromoter Class
+*/
+/******************************************************************************/
 #pragma once
 #ifndef CPROMOTER_H
 #define CPROMOTER
 
 #include "Character.h"
+
+/******************************************************************************/
+/*!
+	Class CPromoter:
+\brief
+Defines functions
+(updateScript, InteractionBound)
+*/
+/******************************************************************************/
 
 class CPromoter : public CCharacter
 {
@@ -16,7 +34,7 @@ public:
 
 	bool InteractionBound(Vector3 Position);
 	
-	void updateChar(bool getIsControlled,double dt);
+	//void updateChar(bool getIsControlled,double dt);
 
 	~CPromoter(void);
 };

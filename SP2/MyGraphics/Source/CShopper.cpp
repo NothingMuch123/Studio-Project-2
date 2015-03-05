@@ -74,10 +74,11 @@ string CShopper::updateScript()
 	}
 }
 
+/*
 void CShopper::updateChar(bool getIsControlled,double dt)
 {
 }
-
+*/
 CShopper::~CShopper(void)
 {
 }

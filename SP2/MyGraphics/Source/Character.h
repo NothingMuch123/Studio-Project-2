@@ -1,3 +1,12 @@
+/******************************************************************************/
+/*!
+\file	Character.h
+\author Team 8
+\par	
+\brief
+Header file for Character Class
+*/
+/******************************************************************************/
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
@@ -9,6 +18,22 @@
 
 using std::string;
 using std::vector;
+
+/******************************************************************************/
+/*!
+	Class: CCharacter
+
+\brief 
+Defines default values of CCharacter's properties, 
+(IsControlled, InteractionBound, Script, Role, moveX, moveZ, RouteID, MoveIsMax, Movement)
+
+Functions,
+(setMoveIsMax, getMoveIsMax, setMovement, getMovement, updateMovement, setIsControlled, getIsControlled, setRole, getRole, setInteractionBound, getInteractionBound, setScript, getScript, updateScript, setmoveX, getmoveX, setmoveZ, setRouteID, getRouteID, getCharacter, updateChar, WalkTo)
+
+Vector
+(AiRouteLocation)
+*/
+/******************************************************************************/
 
 class CCharacter : public CObj
 {

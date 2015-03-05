@@ -74,11 +74,11 @@ switch(this->getScript())
 	}
 }
 
-
+/*
 void CCashier::updateChar(bool getIsControlled,double dt)
 {
 }
-
+*/
 CCashier::~CCashier(void)
 {
 }

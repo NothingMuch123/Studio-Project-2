@@ -1,7 +1,25 @@
+/******************************************************************************/
+/*!
+\file	CShopper.h
+\author Team 8
+\par	
+\brief
+Header file for CShopper Class
+*/
+/******************************************************************************/
 #ifndef CSHOPPER_H
 #define CSHOPPER_H
 
 #include "Character.h"
+
+/******************************************************************************/
+/*!
+	Class CShopper:
+\brief
+Defines string
+(updateScript)
+*/
+/******************************************************************************/
 
 class CShopper : public CCharacter
 {
@@ -14,7 +32,7 @@ public:
 	
 	string updateScript();
 
-	void updateChar(bool getIsControlled,double dt);
+	//void updateChar(bool getIsControlled,double dt);
 
 	~CShopper(void);
 };

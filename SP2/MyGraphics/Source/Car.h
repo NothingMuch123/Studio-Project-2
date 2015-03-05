@@ -13,6 +13,13 @@ Header file for car class
 #include "Obj.h"
 #include "Camera3.h"
 
+/******************************************************************************/
+/*!
+	Class: Car
+\brief Defines the default values of the Car's properties (position, target, up, view) and its various function (calcbound, setCamera, updatePosition).
+*/
+/******************************************************************************/
+
 class CCar : public CObj
 {
 public:

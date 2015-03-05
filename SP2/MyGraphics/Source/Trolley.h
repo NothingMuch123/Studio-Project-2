@@ -1,3 +1,12 @@
+/******************************************************************************/
+/*!
+\file	Trolley.h
+\author Team 8
+\par	
+\brief
+Header file for Trolley 
+*/
+/******************************************************************************/
 #ifndef TROLLEY_H
 #define TROLLEY_H
 
@@ -5,6 +14,13 @@
 #include "Camera3.h"
 #include "Item.h"
 #include "Character.h"
+
+/******************************************************************************/
+/*!
+		Class Trolley:
+\brief	Defines the functions for Trolley.cpp
+*/
+/******************************************************************************/
 
 class CTrolley : public CObj
 {

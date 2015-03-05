@@ -1,6 +1,22 @@
+/******************************************************************************/
+/*!
+\file	Material.h
+\author Team 8
+\par	
+\brief
+Header file for Material Class
+*/
+/******************************************************************************/
 #ifndef MATERIAL_H
 #define MATERIAL_H
+/******************************************************************************/
+/*!
+	struct Component:
+\brief
+Defines default values ( r , g , b ) and sets the color of Mesh
 
+*/
+/******************************************************************************/
 struct Component
 {
 	float r, g, b;
@@ -15,6 +31,14 @@ struct Component
 		this->b = b;
 	}
 };
+
+/******************************************************************************/
+/*!
+	struct Material:      
+\brief Sets default values kAmbient, kDiffuse, kSpecular and kShiniess
+and uses those values to set Material of the Mesh
+*/
+/******************************************************************************/
 
 struct Material
 {
