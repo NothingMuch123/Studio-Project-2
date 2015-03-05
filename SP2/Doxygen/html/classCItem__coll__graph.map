@@ -1,0 +1,7 @@
+<map id="CItem" name="CItem">
+<area shape="rect" id="node2" href="$classCObj.html" title="Stores Item Data. " alt="" coords="52,287,103,313"/>
+<area shape="rect" id="node3" href="$structVector3.html" title="Defines a 3D vector and its methods. " alt="" coords="5,124,72,151"/>
+<area shape="rect" id="node8" href="$structMaterial.html" title="Sets default values kAmbient, kDiffuse, kSpecular and kShiniess and uses those values to set Material..." alt="" coords="438,287,506,313"/>
+<area shape="rect" id="node9" href="$structComponent.html" title="Defines default values ( r , g , b ) and sets the color of Mesh. " alt="" coords="336,124,424,151"/>
+<area shape="rect" id="node7" href="$classMesh.html" title="To store VBO (vertex &amp; color buffer) and IBO (index buffer) " alt="" coords="259,420,314,447"/>
+</map>

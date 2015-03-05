@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="Obj_8h" kind="file">
+    <compoundname>Obj.h</compoundname>
+    <includes refid="Vector3_8h" local="yes">Vector3.h</includes>
+    <includedby refid="Camera3_8h" local="yes">MyGraphics/Source/Camera3.h</includedby>
+    <includedby refid="Item_8h" local="yes">MyGraphics/Source/Item.h</includedby>
+    <includedby refid="Car_8h" local="yes">MyGraphics/Source/Car.h</includedby>
+    <includedby refid="Shelf_8h" local="yes">MyGraphics/Source/Shelf.h</includedby>
+    <includedby refid="Trolley_8h" local="yes">MyGraphics/Source/Trolley.h</includedby>
+    <includedby refid="Character_8h" local="yes">MyGraphics/Source/Character.h</includedby>
+    <includedby refid="SecurityCamera_8h" local="yes">MyGraphics/Source/SecurityCamera.h</includedby>
+    <includedby refid="Obj_8cpp" local="yes">MyGraphics/Source/Obj.cpp</includedby>
+    <incdepgraph>
+      <node id="2046">
+        <label>MyGraphics/Source/Obj.h</label>
+        <link refid="Obj.h"/>
+        <childnode refid="2047" relation="include">
+        </childnode>
+      </node>
+      <node id="2049">
+        <label>cmath</label>
+      </node>
+      <node id="2050">
+        <label>exception</label>
+      </node>
+      <node id="2051">
+        <label>ctime</label>
+      </node>
+      <node id="2048">
+        <label>MyMath.h</label>
+        <link refid="MyMath_8h"/>
+        <childnode refid="2049" relation="include">
+        </childnode>
+        <childnode refid="2050" relation="include">
+        </childnode>
+        <childnode refid="2051" relation="include">
+        </childnode>
+        <childnode refid="2052" relation="include">
+        </childnode>
+      </node>
+      <node id="2052">
+        <label>cstdlib</label>
+      </node>
+      <node id="2053">
+        <label>iostream</label>
+      </node>
+      <node id="2047">
+        <label>Vector3.h</label>
+        <link refid="Vector3_8h"/>
+        <childnode refid="2048" relation="include">
+        </childnode>
+        <childnode refid="2053" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2068">
+        <label>MyGraphics/Source/CSecurityGuard.h</label>
+        <link refid="CSecurityGuard_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2069" relation="include">
+        </childnode>
+      </node>
+      <node id="2059">
+        <label>MyGraphics/Source/Character.cpp</label>
+        <link refid="Character_8cpp"/>
+      </node>
+      <node id="2063">
+        <label>MyGraphics/Source/Trolley.h</label>
+        <link refid="Trolley_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2064" relation="include">
+        </childnode>
+      </node>
+      <node id="2054">
+        <label>MyGraphics/Source/Obj.h</label>
+        <link refid="Obj.h"/>
+        <childnode refid="2055" relation="include">
+        </childnode>
+        <childnode refid="2076" relation="include">
+        </childnode>
+        <childnode refid="2061" relation="include">
+        </childnode>
+        <childnode refid="2077" relation="include">
+        </childnode>
+        <childnode refid="2063" relation="include">
+        </childnode>
+        <childnode refid="2065" relation="include">
+        </childnode>
+        <childnode refid="2074" relation="include">
+        </childnode>
+        <childnode refid="2080" relation="include">
+        </childnode>
+      </node>
+      <node id="2077">
+        <label>MyGraphics/Source/Shelf.h</label>
+        <link refid="Shelf_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2078" relation="include">
+        </childnode>
+      </node>
+      <node id="2055">
+        <label>MyGraphics/Source/Camera3.h</label>
+        <link refid="Camera3_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2061" relation="include">
+        </childnode>
+        <childnode refid="2063" relation="include">
+        </childnode>
+        <childnode refid="2065" relation="include">
+        </childnode>
+        <childnode refid="2074" relation="include">
+        </childnode>
+        <childnode refid="2058" relation="include">
+        </childnode>
+      </node>
+      <node id="2061">
+        <label>MyGraphics/Source/Car.h</label>
+        <link refid="Car_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2058" relation="include">
+        </childnode>
+        <childnode refid="2062" relation="include">
+        </childnode>
+      </node>
+      <node id="2080">
+        <label>MyGraphics/Source/Obj.cpp</label>
+        <link refid="Obj_8cpp"/>
+      </node>
+      <node id="2064">
+        <label>MyGraphics/Source/Trolley.cpp</label>
+        <link refid="Trolley_8cpp"/>
+      </node>
+      <node id="2056">
+        <label>MyGraphics/Source/SP2.h</label>
+        <link refid="SP2_8h"/>
+        <childnode refid="2057" relation="include">
+        </childnode>
+        <childnode refid="2058" relation="include">
+        </childnode>
+        <childnode refid="2059" relation="include">
+        </childnode>
+        <childnode refid="2060" relation="include">
+        </childnode>
+      </node>
+      <node id="2066">
+        <label>MyGraphics/Source/CCashier.h</label>
+        <link refid="CCashier_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2067" relation="include">
+        </childnode>
+      </node>
+      <node id="2060">
+        <label>MyGraphics/Source/SP2.cpp</label>
+        <link refid="SP2_8cpp"/>
+      </node>
+      <node id="2070">
+        <label>MyGraphics/Source/CShopper.h</label>
+        <link refid="CShopper_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2071" relation="include">
+        </childnode>
+      </node>
+      <node id="2062">
+        <label>MyGraphics/Source/Car.cpp</label>
+        <link refid="Car_8cpp"/>
+      </node>
+      <node id="2078">
+        <label>MyGraphics/Source/Shelf.cpp</label>
+        <link refid="Shelf_8cpp"/>
+      </node>
+      <node id="2076">
+        <label>MyGraphics/Source/Item.h</label>
+        <link refid="Item_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2077" relation="include">
+        </childnode>
+        <childnode refid="2063" relation="include">
+        </childnode>
+        <childnode refid="2079" relation="include">
+        </childnode>
+      </node>
+      <node id="2073">
+        <label>MyGraphics/Source/CPromoter.cpp</label>
+        <link refid="CPromoter_8cpp"/>
+      </node>
+      <node id="2065">
+        <label>MyGraphics/Source/Character.h</label>
+        <link refid="Character_8h"/>
+        <childnode refid="2063" relation="include">
+        </childnode>
+        <childnode refid="2066" relation="include">
+        </childnode>
+        <childnode refid="2068" relation="include">
+        </childnode>
+        <childnode refid="2070" relation="include">
+        </childnode>
+        <childnode refid="2072" relation="include">
+        </childnode>
+        <childnode refid="2059" relation="include">
+        </childnode>
+      </node>
+      <node id="2067">
+        <label>MyGraphics/Source/CCashier.cpp</label>
+        <link refid="CCashier_8cpp"/>
+      </node>
+      <node id="2071">
+        <label>MyGraphics/Source/CShopper.cpp</label>
+        <link refid="CShopper_8cpp"/>
+      </node>
+      <node id="2072">
+        <label>MyGraphics/Source/CPromoter.h</label>
+        <link refid="CPromoter_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2073" relation="include">
+        </childnode>
+      </node>
+      <node id="2057">
+        <label>MyGraphics/Source/Application.cpp</label>
+        <link refid="Application_8cpp"/>
+      </node>
+      <node id="2075">
+        <label>MyGraphics/Source/SecurityCamera.cpp</label>
+        <link refid="SecurityCamera_8cpp"/>
+      </node>
+      <node id="2074">
+        <label>MyGraphics/Source/SecurityCamera.h</label>
+        <link refid="SecurityCamera_8h"/>
+        <childnode refid="2056" relation="include">
+        </childnode>
+        <childnode refid="2075" relation="include">
+        </childnode>
+      </node>
+      <node id="2079">
+        <label>MyGraphics/Source/Item.cpp</label>
+        <link refid="Item_8cpp"/>
+      </node>
+      <node id="2069">
+        <label>MyGraphics/Source/CSecurityGuard.cpp</label>
+        <link refid="CSecurityGuard_8cpp"/>
+      </node>
+      <node id="2058">
+        <label>MyGraphics/Source/Camera3.cpp</label>
+        <link refid="Camera3_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classCObj" prot="public">CObj</innerclass>
+    <briefdescription>
+<para>Header file for Obj Class. </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Team 8 </para></simplesect>
+<simplesect kind="par"><title></title><para></para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>OBJ_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OBJ_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Vector3_8h" kindref="compound">Vector3.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classCObj" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCObj" kindref="compound">CObj</ref></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" kindref="member">CObj</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" kindref="member">CObj</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_ID,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_translate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_rotate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_scale,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_size);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" kindref="member">getTranslate</ref>(),<sp/><ref refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" kindref="member">getRotate</ref>(),<sp/><ref refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" kindref="member">getScale</ref>(),<sp/><ref refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" kindref="member">getMaxBound</ref>(),<sp/><ref refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" kindref="member">getMinBound</ref>()</highlight><highlight class="comment">/*,<sp/>getInteractMaxBound(),<sp/>getInteractMinBound()*/</highlight><highlight class="normal">,<sp/><ref refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" kindref="member">getSize</ref>();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" kindref="member">getID</ref>();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" kindref="member">getRender</ref>();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a49c6900587972793886aa657315a1ce0" kindref="member">setRender</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_render);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" kindref="member">setRotateY</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_rotateY);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" kindref="member">setTranslateX</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_translateX);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a2273f89ec226972ceff644152eaed600" kindref="member">setTranslate</ref>(<ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_translate);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" kindref="member">calcBound</ref>();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classCObj_1ae91204ead5104d927cf09d64385da46b" kindref="member">~CObj</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="38" refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" kindref="member">ID</ref>;</highlight></codeline>
+<codeline lineno="39" refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>,<sp/><ref refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" kindref="member">rotate</ref>,<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>;</highlight></codeline>
+<codeline lineno="40" refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" kindref="member">maxBound</ref>,<sp/><ref refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" kindref="member">minBound</ref>;<sp/></highlight><highlight class="comment">//,<sp/>interactMaxBound,<sp/>interactMinBound;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="42" refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" kindref="member">render</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h"/>
+  </compounddef>
+</doxygen>

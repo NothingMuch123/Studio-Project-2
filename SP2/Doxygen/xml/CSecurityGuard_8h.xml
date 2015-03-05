@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="CSecurityGuard_8h" kind="file">
+    <compoundname>CSecurityGuard.h</compoundname>
+    <includes refid="Character_8h" local="yes">Character.h</includes>
+    <includedby refid="SP2_8h" local="yes">MyGraphics/Source/SP2.h</includedby>
+    <includedby refid="CSecurityGuard_8cpp" local="yes">MyGraphics/Source/CSecurityGuard.cpp</includedby>
+    <incdepgraph>
+      <node id="1764">
+        <label>MyGraphics/Source/CSecurityGuard.h</label>
+        <link refid="CSecurityGuard.h"/>
+        <childnode refid="1765" relation="include">
+        </childnode>
+      </node>
+      <node id="1766">
+        <label>Obj.h</label>
+        <link refid="Obj_8h"/>
+        <childnode refid="1767" relation="include">
+        </childnode>
+      </node>
+      <node id="1769">
+        <label>cmath</label>
+      </node>
+      <node id="1774">
+        <label>Camera3.h</label>
+        <link refid="Camera3_8h"/>
+        <childnode refid="1775" relation="include">
+        </childnode>
+        <childnode refid="1776" relation="include">
+        </childnode>
+        <childnode refid="1777" relation="include">
+        </childnode>
+        <childnode refid="1766" relation="include">
+        </childnode>
+      </node>
+      <node id="1780">
+        <label>Material.h</label>
+        <link refid="Material_8h"/>
+      </node>
+      <node id="1779">
+        <label>string</label>
+      </node>
+      <node id="1770">
+        <label>exception</label>
+      </node>
+      <node id="1775">
+        <label>Camera.h</label>
+        <link refid="Camera_8h"/>
+        <childnode refid="1767" relation="include">
+        </childnode>
+      </node>
+      <node id="1781">
+        <label>string.h</label>
+      </node>
+      <node id="1771">
+        <label>ctime</label>
+      </node>
+      <node id="1777">
+        <label>vector</label>
+      </node>
+      <node id="1776">
+        <label>Mtx44.h</label>
+        <link refid="Mtx44_8h"/>
+        <childnode refid="1768" relation="include">
+        </childnode>
+        <childnode refid="1767" relation="include">
+        </childnode>
+      </node>
+      <node id="1768">
+        <label>MyMath.h</label>
+        <link refid="MyMath_8h"/>
+        <childnode refid="1769" relation="include">
+        </childnode>
+        <childnode refid="1770" relation="include">
+        </childnode>
+        <childnode refid="1771" relation="include">
+        </childnode>
+        <childnode refid="1772" relation="include">
+        </childnode>
+      </node>
+      <node id="1765">
+        <label>Character.h</label>
+        <link refid="Character_8h"/>
+        <childnode refid="1766" relation="include">
+        </childnode>
+        <childnode refid="1774" relation="include">
+        </childnode>
+        <childnode refid="1777" relation="include">
+        </childnode>
+        <childnode refid="1778" relation="include">
+        </childnode>
+        <childnode refid="1781" relation="include">
+        </childnode>
+      </node>
+      <node id="1772">
+        <label>cstdlib</label>
+      </node>
+      <node id="1773">
+        <label>iostream</label>
+      </node>
+      <node id="1767">
+        <label>Vector3.h</label>
+        <link refid="Vector3_8h"/>
+        <childnode refid="1768" relation="include">
+        </childnode>
+        <childnode refid="1773" relation="include">
+        </childnode>
+      </node>
+      <node id="1778">
+        <label>Mesh.h</label>
+        <link refid="Mesh_8h"/>
+        <childnode refid="1768" relation="include">
+        </childnode>
+        <childnode refid="1779" relation="include">
+        </childnode>
+        <childnode refid="1780" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1782">
+        <label>MyGraphics/Source/CSecurityGuard.h</label>
+        <link refid="CSecurityGuard.h"/>
+        <childnode refid="1783" relation="include">
+        </childnode>
+        <childnode refid="1788" relation="include">
+        </childnode>
+      </node>
+      <node id="1786">
+        <label>MyGraphics/Source/Character.cpp</label>
+        <link refid="Character_8cpp"/>
+      </node>
+      <node id="1783">
+        <label>MyGraphics/Source/SP2.h</label>
+        <link refid="SP2_8h"/>
+        <childnode refid="1784" relation="include">
+        </childnode>
+        <childnode refid="1785" relation="include">
+        </childnode>
+        <childnode refid="1786" relation="include">
+        </childnode>
+        <childnode refid="1787" relation="include">
+        </childnode>
+      </node>
+      <node id="1787">
+        <label>MyGraphics/Source/SP2.cpp</label>
+        <link refid="SP2_8cpp"/>
+      </node>
+      <node id="1784">
+        <label>MyGraphics/Source/Application.cpp</label>
+        <link refid="Application_8cpp"/>
+      </node>
+      <node id="1788">
+        <label>MyGraphics/Source/CSecurityGuard.cpp</label>
+        <link refid="CSecurityGuard_8cpp"/>
+      </node>
+      <node id="1785">
+        <label>MyGraphics/Source/Camera3.cpp</label>
+        <link refid="Camera3_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classCSecurityGuard" prot="public">CSecurityGuard</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CSECURITYGUARD_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CSECURITYGUARD_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Character_8h" kindref="compound">Character.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="classCSecurityGuard" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCSecurityGuard" kindref="compound">CSecurityGuard</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classCCharacter" kindref="compound">CCharacter</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCSecurityGuard_1ac812fb12686f5c72fd323ae76af008fb" kindref="member">CSecurityGuard</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCSecurityGuard_1ac812fb12686f5c72fd323ae76af008fb" kindref="member">CSecurityGuard</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_ID,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_translate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_rotate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_scale,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_size,<ref refid="structVector3" kindref="compound">Vector3</ref><sp/>camPosition,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>radius);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classCSecurityGuard_1a8fdb386b324189c74004f6350ca4ef1a" kindref="member">updateScript</ref>();</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCSecurityGuard_1ace1b13e647b292513a3c11736ee3fab2" kindref="member">~CSecurityGuard</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CSecurityGuard.h"/>
+  </compounddef>
+</doxygen>

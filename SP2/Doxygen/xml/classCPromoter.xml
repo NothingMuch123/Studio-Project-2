@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCPromoter" kind="class" prot="public">
+    <compoundname>CPromoter</compoundname>
+    <basecompoundref refid="classCCharacter" prot="public" virt="non-virtual">CCharacter</basecompoundref>
+    <includes refid="CPromoter_8h" local="no">CPromoter.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCPromoter_1a12dbc455015430db1dcb59293c55cf9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CPromoter::CPromoter</definition>
+        <argsstring>(void)</argsstring>
+        <name>CPromoter</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCPromoter" kindref="compound">CPromoter</ref> default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.h" line="30" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CPromoter::CPromoter</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, Vector3 camPosition, int radius)</argsstring>
+        <name>CPromoter</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>camPosition</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classCPromoter" kindref="compound">CPromoter</ref> overloaded constructror. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_ID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ID for human in objList </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_translate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- translation of <ref refid="classCPromoter" kindref="compound">CPromoter</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_rotate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- rotation of promoter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- scale of promoter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the size of human object model  camPosition - camera position from promoter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the radius of the interaction bound for Promoter NPC </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.cpp" bodystart="32" bodyend="41"/>
+        <references refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" compoundref="Obj_8h" startline="38">CObj::ID</references>
+        <references refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" compoundref="Obj_8h" startline="39">CObj::rotate</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" compoundref="Character_8cpp" startline="124" endline="134">CCharacter::setInteractionBound</references>
+        <references refid="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" compoundref="Character_8cpp" startline="110" endline="113">CCharacter::setRole</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+      </memberdef>
+      <memberdef kind="function" id="classCPromoter_1a32783fa35aaecbcd1de980666b394411" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>string</type>
+        <definition>string CPromoter::updateScript</definition>
+        <argsstring>()</argsstring>
+        <name>updateScript</name>
+        <reimplements refid="classCCharacter_1a993d515a1764e3db2c3e982035364a97">updateScript</reimplements>
+        <briefdescription>
+<para>returns the new script for the promoter NPC </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.h" line="33" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.cpp" bodystart="60" bodyend="116"/>
+        <references refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" compoundref="Character_8cpp" startline="183" endline="186">CCharacter::getScript</references>
+      </memberdef>
+      <memberdef kind="function" id="classCPromoter_1ac6c7623932ba49c9f899848d86e4ba07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CPromoter::InteractionBound</definition>
+        <argsstring>(Vector3 Position)</argsstring>
+        <name>InteractionBound</name>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>Position</declname>
+        </param>
+        <briefdescription>
+<para>returns if camera is within interaction bound of promoter </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername><ref refid="structPosition" kindref="compound">Position</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the position of the NPC </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.h" line="35" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.cpp" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classCPromoter_1a097c73955fc7a907277efb7feea9853a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CPromoter::~CPromoter</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CPromoter</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCPromoter" kindref="compound">CPromoter</ref> deconstructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.h" line="39" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.cpp" bodystart="123" bodyend="125"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines functions (updateScript, InteractionBound) </para>    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classCPromoter" kindref="compound">CPromoter</ref>: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="397">
+        <label>CPromoter</label>
+        <link refid="classCPromoter"/>
+        <childnode refid="398" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="399">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+      <node id="398">
+        <label>CCharacter</label>
+        <link refid="classCCharacter"/>
+        <childnode refid="399" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="400">
+        <label>CPromoter</label>
+        <link refid="classCPromoter"/>
+        <childnode refid="401" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="413">
+        <label>Component</label>
+        <link refid="structComponent"/>
+        <childnode refid="404" relation="usage">
+          <edgelabel>g</edgelabel>
+          <edgelabel>r</edgelabel>
+          <edgelabel>b</edgelabel>
+        </childnode>
+      </node>
+      <node id="410">
+        <label>vector&lt; Vector3 &gt;</label>
+      </node>
+      <node id="411">
+        <label>Mesh</label>
+        <link refid="classMesh"/>
+        <childnode refid="412" relation="usage">
+          <edgelabel>material</edgelabel>
+        </childnode>
+        <childnode refid="414" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+        <childnode refid="415" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="416" relation="usage">
+          <edgelabel>textureID</edgelabel>
+          <edgelabel>indexBuffer</edgelabel>
+          <edgelabel>indexSize</edgelabel>
+          <edgelabel>vertexBuffer</edgelabel>
+        </childnode>
+      </node>
+      <node id="414">
+        <label>DRAW_MODE</label>
+      </node>
+      <node id="408">
+        <label>Camera</label>
+        <link refid="classCamera"/>
+        <childnode refid="403" relation="usage">
+          <edgelabel>target</edgelabel>
+          <edgelabel>view</edgelabel>
+          <edgelabel>position</edgelabel>
+          <edgelabel>up</edgelabel>
+        </childnode>
+      </node>
+      <node id="415">
+        <label>string</label>
+      </node>
+      <node id="412">
+        <label>Material</label>
+        <link refid="structMaterial"/>
+        <childnode refid="404" relation="usage">
+          <edgelabel>kShininess</edgelabel>
+        </childnode>
+        <childnode refid="413" relation="usage">
+          <edgelabel>kDiffuse</edgelabel>
+          <edgelabel>kAmbient</edgelabel>
+          <edgelabel>kSpecular</edgelabel>
+        </childnode>
+      </node>
+      <node id="404">
+        <label>float</label>
+      </node>
+      <node id="409">
+        <label>Mtx44</label>
+        <link refid="classMtx44"/>
+        <childnode refid="404" relation="usage">
+          <edgelabel>a</edgelabel>
+        </childnode>
+      </node>
+      <node id="407">
+        <label>Camera3</label>
+        <link refid="classCamera3"/>
+        <childnode refid="408" relation="public-inheritance">
+        </childnode>
+        <childnode refid="405" relation="usage">
+          <edgelabel>current</edgelabel>
+        </childnode>
+        <childnode refid="403" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>defaultTarget</edgelabel>
+          <edgelabel>defaultPosition</edgelabel>
+          <edgelabel>defaultUp</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>defaultView</edgelabel>
+        </childnode>
+        <childnode refid="409" relation="usage">
+          <edgelabel>rotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="405">
+        <label>int</label>
+      </node>
+      <node id="402">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="403" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="405" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="406" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="401">
+        <label>CCharacter</label>
+        <link refid="classCCharacter"/>
+        <childnode refid="402" relation="public-inheritance">
+        </childnode>
+        <childnode refid="407" relation="usage">
+          <edgelabel>AICamera</edgelabel>
+        </childnode>
+        <childnode refid="410" relation="usage">
+          <edgelabel>AiRouteLocation</edgelabel>
+        </childnode>
+        <childnode refid="405" relation="usage">
+          <edgelabel>moveX</edgelabel>
+          <edgelabel>moveZ</edgelabel>
+          <edgelabel>Movement</edgelabel>
+          <edgelabel>Role</edgelabel>
+          <edgelabel>RouteID</edgelabel>
+          <edgelabel>Script</edgelabel>
+        </childnode>
+        <childnode refid="406" relation="usage">
+          <edgelabel>MoveIsMax</edgelabel>
+          <edgelabel>InteractionBound</edgelabel>
+          <edgelabel>IsControlled</edgelabel>
+        </childnode>
+        <childnode refid="411" relation="usage">
+          <edgelabel>Character</edgelabel>
+        </childnode>
+      </node>
+      <node id="416">
+        <label>unsigned</label>
+      </node>
+      <node id="406">
+        <label>bool</label>
+      </node>
+      <node id="403">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="404" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.h" line="26" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CPromoter.h" bodystart="25" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classCCharacter_1a023d235cc1ca560545c5fe6b6943c0fb" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>AICamera</name></member>
+      <member refid="classCCharacter_1a6be580397e8e7410eda486a1ed6fb1ca" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>AiRouteLocation</name></member>
+      <member refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" prot="public" virt="virtual"><scope>CPromoter</scope><name>calcBound</name></member>
+      <member refid="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>CCharacter</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>CObj</name></member>
+      <member refid="classCPromoter_1a12dbc455015430db1dcb59293c55cf9d" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>CPromoter</name></member>
+      <member refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>CPromoter</name></member>
+      <member refid="classCCharacter_1a47825085c9b1050d45063f9e7af82c08" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getCharacter</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getID</name></member>
+      <member refid="classCCharacter_1a1b92d591b5ea09d5c4df21c92a487013" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getInteractionBound</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getMinBound</name></member>
+      <member refid="classCCharacter_1a4b4c0093c82dea16cb9bb2714f33866d" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getMoveIsMax</name></member>
+      <member refid="classCCharacter_1a2900d40f688adebadfcb75f95fff5e24" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getMovement</name></member>
+      <member refid="classCCharacter_1a46770a42f57b14937ae9abf30e38d500" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getmoveX</name></member>
+      <member refid="classCCharacter_1af9d119a351d5dd90d23d3833d88061d8" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getmoveZ</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getRender</name></member>
+      <member refid="classCCharacter_1aa84d3b8ff304592ad39e14836b2b4825" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getRole</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getRotate</name></member>
+      <member refid="classCCharacter_1adc03f408c0bcd843e6d91cee40686b1f" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getRouteID</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getScale</name></member>
+      <member refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getScript</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>ID</name></member>
+      <member refid="classCPromoter_1ac6c7623932ba49c9f899848d86e4ba07" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>InteractionBound</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>scale</name></member>
+      <member refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setInteractionBound</name></member>
+      <member refid="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setMoveIsMax</name></member>
+      <member refid="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setMovement</name></member>
+      <member refid="classCCharacter_1ad3f9883a464f42c7d39f598f8a41991d" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setmoveX</name></member>
+      <member refid="classCCharacter_1ac71975856654bb3bc3ecea2a70f533d5" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setmoveZ</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setRender</name></member>
+      <member refid="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setRole</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setRotateY</name></member>
+      <member refid="classCCharacter_1a9053e02df6391f46a5bca5b4e541f87b" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setRouteID</name></member>
+      <member refid="classCCharacter_1a0352bb4afdc14f804c5d30b86a689a30" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setScript</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CPromoter</scope><name>translate</name></member>
+      <member refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>UpdateMovement</name></member>
+      <member refid="classCPromoter_1a32783fa35aaecbcd1de980666b394411" prot="public" virt="virtual"><scope>CPromoter</scope><name>updateScript</name></member>
+      <member refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>WalkTo</name></member>
+      <member refid="classCCharacter_1a6176ffa71d744eed17566ab6d61e37bf" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>~CCharacter</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CPromoter</scope><name>~CObj</name></member>
+      <member refid="classCPromoter_1a097c73955fc7a907277efb7feea9853a" prot="public" virt="non-virtual"><scope>CPromoter</scope><name>~CPromoter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

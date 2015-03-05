@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="Mesh_8h" kind="file">
+    <compoundname>Mesh.h</compoundname>
+    <includes refid="MyMath_8h" local="yes">MyMath.h</includes>
+    <includes local="no">string</includes>
+    <includes refid="Material_8h" local="yes">Material.h</includes>
+    <includedby refid="MeshBuilder_8h" local="yes">MyGraphics/Source/MeshBuilder.h</includedby>
+    <includedby refid="Item_8h" local="yes">MyGraphics/Source/Item.h</includedby>
+    <includedby refid="Character_8h" local="yes">MyGraphics/Source/Character.h</includedby>
+    <includedby refid="Mesh_8cpp" local="yes">MyGraphics/Source/Mesh.cpp</includedby>
+    <incdepgraph>
+      <node id="1968">
+        <label>cmath</label>
+      </node>
+      <node id="1973">
+        <label>Material.h</label>
+        <link refid="Material_8h"/>
+      </node>
+      <node id="1972">
+        <label>string</label>
+      </node>
+      <node id="1969">
+        <label>exception</label>
+      </node>
+      <node id="1970">
+        <label>ctime</label>
+      </node>
+      <node id="1967">
+        <label>MyMath.h</label>
+        <link refid="MyMath_8h"/>
+        <childnode refid="1968" relation="include">
+        </childnode>
+        <childnode refid="1969" relation="include">
+        </childnode>
+        <childnode refid="1970" relation="include">
+        </childnode>
+        <childnode refid="1971" relation="include">
+        </childnode>
+      </node>
+      <node id="1971">
+        <label>cstdlib</label>
+      </node>
+      <node id="1966">
+        <label>MyGraphics/Source/Mesh.h</label>
+        <link refid="Mesh.h"/>
+        <childnode refid="1967" relation="include">
+        </childnode>
+        <childnode refid="1972" relation="include">
+        </childnode>
+        <childnode refid="1973" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1981">
+        <label>MyGraphics/Source/MeshBuilder.cpp</label>
+        <link refid="MeshBuilder_8cpp"/>
+      </node>
+      <node id="1991">
+        <label>MyGraphics/Source/CSecurityGuard.h</label>
+        <link refid="CSecurityGuard_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1992" relation="include">
+        </childnode>
+      </node>
+      <node id="1979">
+        <label>MyGraphics/Source/Character.cpp</label>
+        <link refid="Character_8cpp"/>
+      </node>
+      <node id="1985">
+        <label>MyGraphics/Source/Trolley.h</label>
+        <link refid="Trolley_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1986" relation="include">
+        </childnode>
+      </node>
+      <node id="1983">
+        <label>MyGraphics/Source/Shelf.h</label>
+        <link refid="Shelf_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1984" relation="include">
+        </childnode>
+      </node>
+      <node id="1986">
+        <label>MyGraphics/Source/Trolley.cpp</label>
+        <link refid="Trolley_8cpp"/>
+      </node>
+      <node id="1976">
+        <label>MyGraphics/Source/SP2.h</label>
+        <link refid="SP2_8h"/>
+        <childnode refid="1977" relation="include">
+        </childnode>
+        <childnode refid="1978" relation="include">
+        </childnode>
+        <childnode refid="1979" relation="include">
+        </childnode>
+        <childnode refid="1980" relation="include">
+        </childnode>
+      </node>
+      <node id="1975">
+        <label>MyGraphics/Source/MeshBuilder.h</label>
+        <link refid="MeshBuilder_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1981" relation="include">
+        </childnode>
+      </node>
+      <node id="1989">
+        <label>MyGraphics/Source/CCashier.h</label>
+        <link refid="CCashier_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1990" relation="include">
+        </childnode>
+      </node>
+      <node id="1980">
+        <label>MyGraphics/Source/SP2.cpp</label>
+        <link refid="SP2_8cpp"/>
+      </node>
+      <node id="1993">
+        <label>MyGraphics/Source/CShopper.h</label>
+        <link refid="CShopper_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1994" relation="include">
+        </childnode>
+      </node>
+      <node id="1984">
+        <label>MyGraphics/Source/Shelf.cpp</label>
+        <link refid="Shelf_8cpp"/>
+      </node>
+      <node id="1982">
+        <label>MyGraphics/Source/Item.h</label>
+        <link refid="Item_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1983" relation="include">
+        </childnode>
+        <childnode refid="1985" relation="include">
+        </childnode>
+        <childnode refid="1987" relation="include">
+        </childnode>
+      </node>
+      <node id="1996">
+        <label>MyGraphics/Source/CPromoter.cpp</label>
+        <link refid="CPromoter_8cpp"/>
+      </node>
+      <node id="1988">
+        <label>MyGraphics/Source/Character.h</label>
+        <link refid="Character_8h"/>
+        <childnode refid="1985" relation="include">
+        </childnode>
+        <childnode refid="1989" relation="include">
+        </childnode>
+        <childnode refid="1991" relation="include">
+        </childnode>
+        <childnode refid="1993" relation="include">
+        </childnode>
+        <childnode refid="1995" relation="include">
+        </childnode>
+        <childnode refid="1979" relation="include">
+        </childnode>
+      </node>
+      <node id="1990">
+        <label>MyGraphics/Source/CCashier.cpp</label>
+        <link refid="CCashier_8cpp"/>
+      </node>
+      <node id="1994">
+        <label>MyGraphics/Source/CShopper.cpp</label>
+        <link refid="CShopper_8cpp"/>
+      </node>
+      <node id="1974">
+        <label>MyGraphics/Source/Mesh.h</label>
+        <link refid="Mesh.h"/>
+        <childnode refid="1975" relation="include">
+        </childnode>
+        <childnode refid="1982" relation="include">
+        </childnode>
+        <childnode refid="1988" relation="include">
+        </childnode>
+        <childnode refid="1997" relation="include">
+        </childnode>
+      </node>
+      <node id="1997">
+        <label>MyGraphics/Source/Mesh.cpp</label>
+        <link refid="Mesh_8cpp"/>
+      </node>
+      <node id="1995">
+        <label>MyGraphics/Source/CPromoter.h</label>
+        <link refid="CPromoter_8h"/>
+        <childnode refid="1976" relation="include">
+        </childnode>
+        <childnode refid="1996" relation="include">
+        </childnode>
+      </node>
+      <node id="1977">
+        <label>MyGraphics/Source/Application.cpp</label>
+        <link refid="Application_8cpp"/>
+      </node>
+      <node id="1987">
+        <label>MyGraphics/Source/Item.cpp</label>
+        <link refid="Item_8cpp"/>
+      </node>
+      <node id="1992">
+        <label>MyGraphics/Source/CSecurityGuard.cpp</label>
+        <link refid="CSecurityGuard_8cpp"/>
+      </node>
+      <node id="1978">
+        <label>MyGraphics/Source/Camera3.cpp</label>
+        <link refid="Camera3_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classMesh" prot="public">Mesh</innerclass>
+    <briefdescription>
+<para>Header file for <ref refid="classMesh" kindref="compound">Mesh</ref> Class. </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Team 8 </para></simplesect>
+<simplesect kind="par"><title></title><para></para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MESH_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MESH_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MyMath_8h" kindref="compound">MyMath.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Material_8h" kindref="compound">Material.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="22"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classMesh" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classMesh" kindref="compound">Mesh</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26" refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307" kindref="member">DRAW_MODE</ref></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28" refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a0f1cef52a562b3047017043dd427e2a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a0f1cef52a562b3047017043dd427e2a9" kindref="member">DRAW_TRIANGLES</ref>,<sp/></highlight><highlight class="comment">//default<sp/>mode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" kindref="member">DRAW_TRIANGLE_STRIP</ref>,</highlight></codeline>
+<codeline lineno="30" refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a2eacb69a1ffbcde68e12fb36f8c88639" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a2eacb69a1ffbcde68e12fb36f8c88639" kindref="member">DRAW_LINES</ref>,</highlight></codeline>
+<codeline lineno="31" refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307afd8968f2a4b30487c794fbd15024c34e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307afd8968f2a4b30487c794fbd15024c34e" kindref="member">DRAW_MODE_LAST</ref>,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh_1a8618160123ac2c27985d7ae34ad58cae" kindref="member">Mesh</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;meshName);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh_1a5efe4da1a4c0971cfb037bd70304c303" kindref="member">~Mesh</ref>();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classMesh_1a75e66bcd90c09492676a4cfe5b23c3af" kindref="member">Render</ref>();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classMesh_1a75e66bcd90c09492676a4cfe5b23c3af" kindref="member">Render</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>offset,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classMesh_1aa956ea809178c5713ca3e9220cee7980" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classMesh_1aa956ea809178c5713ca3e9220cee7980" kindref="member">name</ref>;</highlight></codeline>
+<codeline lineno="39" refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307" kindref="member">DRAW_MODE</ref><sp/><ref refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" kindref="member">mode</ref>;</highlight></codeline>
+<codeline lineno="40" refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" kindref="member">vertexBuffer</ref>;</highlight></codeline>
+<codeline lineno="41" refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" kindref="member">indexBuffer</ref>;</highlight></codeline>
+<codeline lineno="42" refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" kindref="member">indexSize</ref>;</highlight></codeline>
+<codeline lineno="43" refid="classMesh_1a3368c3bc60dd176e522df1542b764847" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structMaterial" kindref="compound">Material</ref><sp/><ref refid="classMesh_1a3368c3bc60dd176e522df1542b764847" kindref="member">material</ref>;</highlight></codeline>
+<codeline lineno="44" refid="classMesh_1a7abd957a6487641e00c8fb855397bccd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="classMesh_1a7abd957a6487641e00c8fb855397bccd" kindref="member">textureID</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Mesh.h"/>
+  </compounddef>
+</doxygen>

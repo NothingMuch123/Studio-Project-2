@@ -1,0 +1,12 @@
+<map id="CObj" name="CObj">
+<area shape="rect" id="node2" href="$classCCar.html" title="Defines the default values of the Car&#39;s properties (position, target, up, view), its various states (..." alt="" coords="89,80,140,107"/>
+<area shape="rect" id="node3" href="$classCCharacter.html" title="Defines default values of CCharacter&#39;s properties, (IsControlled, InteractionBound, Script, Role, moveX, moveZ, RouteID, MoveIsMax, Movement) " alt="" coords="165,80,251,107"/>
+<area shape="rect" id="node8" href="$classCItem.html" title="Defines function (calcBound) Mesh (*getItem, *item) " alt="" coords="276,80,332,107"/>
+<area shape="rect" id="node9" href="$classCSecurityCamera.html" title="Defines Default Values for Security Camera. " alt="" coords="357,80,481,107"/>
+<area shape="rect" id="node10" href="$classCShelf.html" title="Defines Default Values for Shelf. " alt="" coords="505,80,565,107"/>
+<area shape="rect" id="node11" href="$classCTrolley.html" title="Defines the functions for Trolley.cpp. " alt="" coords="589,80,659,107"/>
+<area shape="rect" id="node4" href="$classCCashier.html" title="Defines functions (updateScript) " alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node5" href="$classCPromoter.html" title="Defines functions (updateScript, InteractionBound) " alt="" coords="105,155,189,181"/>
+<area shape="rect" id="node6" href="$classCSecurityGuard.html" title="Defines string (updateScript) " alt="" coords="213,155,328,181"/>
+<area shape="rect" id="node7" href="$classCShopper.html" title="Defines string (updateScript) " alt="" coords="353,155,431,181"/>
+</map>

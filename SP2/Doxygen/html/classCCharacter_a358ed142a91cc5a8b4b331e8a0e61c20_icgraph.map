@@ -1,0 +1,4 @@
+<map id="CCharacter::setMoveIsMax" name="CCharacter::setMoveIsMax">
+<area shape="rect" id="node2" href="$classCCharacter.html#a0a45163210c01ba76eff3d79b2ec6e10" title="CCharacter default constructor. " alt="" coords="249,5,409,32"/>
+<area shape="rect" id="node3" href="$classCCharacter.html#a6137bb4913c5ff0636f47d3d22404aad" title="update movement of NPC leg " alt="" coords="232,56,427,83"/>
+</map>

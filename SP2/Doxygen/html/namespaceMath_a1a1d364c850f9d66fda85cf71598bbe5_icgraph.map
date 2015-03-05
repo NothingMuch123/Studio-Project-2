@@ -1,0 +1,5 @@
+<map id="Math::RadianToDegree" name="Math::RadianToDegree">
+<area shape="rect" id="node2" href="$classCamera3.html#ad1be9248d08c50b8ae40a11256d0d5da" title="Update the Camera&#39;s position, target, up and view location based on the time passed since the last up..." alt="" coords="208,5,331,32"/>
+<area shape="rect" id="node3" href="$classSP2.html#a63e8fc77b7ccf252b7c6804d8c8e59c2" title="Update security camera viewpoint. " alt="" coords="379,5,517,32"/>
+<area shape="rect" id="node4" href="$classSP2.html#a075edf39d3102610bf7f404ae3b8d38c" title="Update scene. " alt="" coords="565,5,661,32"/>
+</map>

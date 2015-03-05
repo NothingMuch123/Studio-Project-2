@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="Trolley_8cpp" kind="file">
+    <compoundname>Trolley.cpp</compoundname>
+    <includes refid="Trolley_8h" local="yes">Trolley.h</includes>
+    <incdepgraph>
+      <node id="2262">
+        <label>Trolley.h</label>
+        <link refid="Trolley_8h"/>
+        <childnode refid="2263" relation="include">
+        </childnode>
+        <childnode refid="2271" relation="include">
+        </childnode>
+        <childnode refid="2275" relation="include">
+        </childnode>
+        <childnode refid="2279" relation="include">
+        </childnode>
+      </node>
+      <node id="2263">
+        <label>Obj.h</label>
+        <link refid="Obj_8h"/>
+        <childnode refid="2264" relation="include">
+        </childnode>
+      </node>
+      <node id="2266">
+        <label>cmath</label>
+      </node>
+      <node id="2271">
+        <label>Camera3.h</label>
+        <link refid="Camera3_8h"/>
+        <childnode refid="2272" relation="include">
+        </childnode>
+        <childnode refid="2273" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+        <childnode refid="2263" relation="include">
+        </childnode>
+      </node>
+      <node id="2278">
+        <label>Material.h</label>
+        <link refid="Material_8h"/>
+      </node>
+      <node id="2277">
+        <label>string</label>
+      </node>
+      <node id="2261">
+        <label>MyGraphics/Source/Trolley.cpp</label>
+        <link refid="Trolley.cpp"/>
+        <childnode refid="2262" relation="include">
+        </childnode>
+      </node>
+      <node id="2267">
+        <label>exception</label>
+      </node>
+      <node id="2272">
+        <label>Camera.h</label>
+        <link refid="Camera_8h"/>
+        <childnode refid="2264" relation="include">
+        </childnode>
+      </node>
+      <node id="2280">
+        <label>string.h</label>
+      </node>
+      <node id="2268">
+        <label>ctime</label>
+      </node>
+      <node id="2274">
+        <label>vector</label>
+      </node>
+      <node id="2275">
+        <label>Item.h</label>
+        <link refid="Item_8h"/>
+        <childnode refid="2263" relation="include">
+        </childnode>
+        <childnode refid="2276" relation="include">
+        </childnode>
+      </node>
+      <node id="2273">
+        <label>Mtx44.h</label>
+        <link refid="Mtx44_8h"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2264" relation="include">
+        </childnode>
+      </node>
+      <node id="2265">
+        <label>MyMath.h</label>
+        <link refid="MyMath_8h"/>
+        <childnode refid="2266" relation="include">
+        </childnode>
+        <childnode refid="2267" relation="include">
+        </childnode>
+        <childnode refid="2268" relation="include">
+        </childnode>
+        <childnode refid="2269" relation="include">
+        </childnode>
+      </node>
+      <node id="2279">
+        <label>Character.h</label>
+        <link refid="Character_8h"/>
+        <childnode refid="2263" relation="include">
+        </childnode>
+        <childnode refid="2271" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+        <childnode refid="2276" relation="include">
+        </childnode>
+        <childnode refid="2280" relation="include">
+        </childnode>
+      </node>
+      <node id="2269">
+        <label>cstdlib</label>
+      </node>
+      <node id="2270">
+        <label>iostream</label>
+      </node>
+      <node id="2264">
+        <label>Vector3.h</label>
+        <link refid="Vector3_8h"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2270" relation="include">
+        </childnode>
+      </node>
+      <node id="2276">
+        <label>Mesh.h</label>
+        <link refid="Mesh_8h"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2277" relation="include">
+        </childnode>
+        <childnode refid="2278" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Trolley_8h" kindref="compound">Trolley.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="classCTrolley_1a600fefa0abdb35b1dd981814c033ab93" refkind="member"><highlight class="normal"><ref refid="classCTrolley_1a600fefa0abdb35b1dd981814c033ab93" kindref="member">CTrolley::CTrolley</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classCTrolley_1a4d77e1639dfe44793750eda15008137e" refkind="member"><highlight class="normal"><ref refid="classCTrolley_1a600fefa0abdb35b1dd981814c033ab93" kindref="member">CTrolley::CTrolley</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_ID,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_translate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_rotate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_scale,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_size)<sp/>:<sp/><ref refid="classCObj" kindref="compound">CObj</ref>(_ID,<sp/>_translate,<sp/>_rotate,<sp/>_scale,<sp/>_size)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="classCTrolley_1a766c7dbcd36f190ca5bd4390f1d91029" refkind="member"><highlight class="normal"><ref refid="classCTrolley_1a766c7dbcd36f190ca5bd4390f1d91029" kindref="member">CTrolley::~CTrolley</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="38"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" kindref="member">CTrolley::setCamera</ref>()</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>reverseDirection<sp/>=<sp/>(<ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref><sp/>-<sp/>(<ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>-<ref refid="structVector3" kindref="compound">Vector3</ref>(0,0,-1))).<ref refid="structVector3_1a2da0f00c5529bced69763320dac9c414" kindref="member">Normalized</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" kindref="member">position</ref><sp/>=<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref><sp/>-<sp/>(reverseDirection<sp/>*<sp/>(((<ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>*<sp/><ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref>)<sp/>/<sp/>2)<sp/>+<sp/>10));</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" kindref="member">position</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>+=<sp/>30;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a7b1215b2f9c2a71cd41e4225c7df31e8" kindref="member">target</ref><sp/>=<sp/><ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" kindref="member">position</ref><sp/>+<sp/><ref refid="structVector3" kindref="compound">Vector3</ref>(0,0,-15);</highlight><highlight class="comment">//(reverseDirection<sp/>*<sp/>(((scale.z<sp/>*<sp/>size.z)<sp/>/<sp/>2)<sp/>-<sp/>4));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1ab76ce866ca2acd6ab54447f474077245" kindref="member">up</ref><sp/>=<sp/><ref refid="structVector3" kindref="compound">Vector3</ref>(0,1,0);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="53"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" kindref="member">CTrolley::updatePosition</ref>()</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>cameraYTarget(<ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a7b1215b2f9c2a71cd41e4225c7df31e8" kindref="member">target</ref>);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cameraYTarget.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>=<sp/><ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" kindref="member">position</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>direction<sp/>=<sp/>(<ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" kindref="member">position</ref><sp/>-<sp/>cameraYTarget).Normalized();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref><sp/>=<sp/><ref refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" kindref="member">camera</ref>.<ref refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" kindref="member">position</ref><sp/>-<sp/>(direction<sp/>*<sp/>(((<ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>*<sp/><ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref>)<sp/>/<sp/>2)<sp/>+<sp/>10));</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>-=<sp/>30;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="68"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" kindref="member">CTrolley::calcBound</ref>()</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>offset<sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" kindref="member">maxBound</ref>.<ref refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" kindref="member">Set</ref>(<ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>+<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref>)<sp/>/<sp/>2)<sp/>+<sp/>offset,<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>+<sp/>(<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref>)<sp/>+<sp/>offset,<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>+<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref>)<sp/>/<sp/>2)<sp/>+<sp/>offset);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" kindref="member">minBound</ref>.<ref refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" kindref="member">Set</ref>(<ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>-<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref>)<sp/>/<sp/>2)<sp/>-<sp/>offset,<sp/>0,<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>-<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref>)<sp/>/<sp/>2)<sp/>-<sp/>offset);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.cpp"/>
+  </compounddef>
+</doxygen>

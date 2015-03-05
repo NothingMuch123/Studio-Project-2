@@ -1,0 +1,939 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCCharacter" kind="class" prot="public">
+    <compoundname>CCharacter</compoundname>
+    <basecompoundref refid="classCObj" prot="public" virt="non-virtual">CObj</basecompoundref>
+    <derivedcompoundref refid="classCCashier" prot="public" virt="non-virtual">CCashier</derivedcompoundref>
+    <derivedcompoundref refid="classCPromoter" prot="public" virt="non-virtual">CPromoter</derivedcompoundref>
+    <derivedcompoundref refid="classCSecurityGuard" prot="public" virt="non-virtual">CSecurityGuard</derivedcompoundref>
+    <derivedcompoundref refid="classCShopper" prot="public" virt="non-virtual">CShopper</derivedcompoundref>
+    <includes refid="Character_8h" local="no">Character.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCCharacter_1a19ddf60382975118b81435daa5fffddb" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CCharacter::IsControlled</definition>
+        <argsstring></argsstring>
+        <name>IsControlled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="41" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="41" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" compoundref="Character_8cpp" startline="9" endline="14">CCharacter</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1aad3e63cc6a37439cc7659262f0321d2a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CCharacter::InteractionBound</definition>
+        <argsstring></argsstring>
+        <name>InteractionBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="42" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1a1b92d591b5ea09d5c4df21c92a487013" compoundref="Character_8cpp" startline="153" endline="156">getInteractionBound</referencedby>
+        <referencedby refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" compoundref="Character_8cpp" startline="124" endline="134">setInteractionBound</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1afd1bd5ef30dd1cb58a45981f57856cd2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CCharacter::Script</definition>
+        <argsstring></argsstring>
+        <name>Script</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="43" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" compoundref="Character_8cpp" startline="183" endline="186">getScript</referencedby>
+        <referencedby refid="classCCharacter_1a0352bb4afdc14f804c5d30b86a689a30" compoundref="Character_8cpp" startline="143" endline="146">setScript</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1a8b585b09ca5724ab10018f86c831853c" prot="private" static="no" mutable="no">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh* CCharacter::Character</definition>
+        <argsstring></argsstring>
+        <name>Character</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="44" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1a47825085c9b1050d45063f9e7af82c08" compoundref="Character_8cpp" startline="163" endline="166">getCharacter</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1a77736632ea900be37a5a334eeab86a62" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CCharacter::Role</definition>
+        <argsstring></argsstring>
+        <name>Role</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="45" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1aa84d3b8ff304592ad39e14836b2b4825" compoundref="Character_8cpp" startline="173" endline="176">getRole</referencedby>
+        <referencedby refid="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" compoundref="Character_8cpp" startline="110" endline="113">setRole</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1a368fd7665c12a39bcd12125e81158518" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CCharacter::moveX</definition>
+        <argsstring></argsstring>
+        <name>moveX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="45" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1a46770a42f57b14937ae9abf30e38d500" compoundref="Character_8cpp" startline="257" endline="260">getmoveX</referencedby>
+        <referencedby refid="classCCharacter_1ad3f9883a464f42c7d39f598f8a41991d" compoundref="Character_8cpp" startline="247" endline="250">setmoveX</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1a4cf8872dae479dd14e4dc5c01149e149" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CCharacter::moveZ</definition>
+        <argsstring></argsstring>
+        <name>moveZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="45" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1af9d119a351d5dd90d23d3833d88061d8" compoundref="Character_8cpp" startline="279" endline="282">getmoveZ</referencedby>
+        <referencedby refid="classCCharacter_1ac71975856654bb3bc3ecea2a70f533d5" compoundref="Character_8cpp" startline="269" endline="272">setmoveZ</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1ad5228f5c6d553a8eb086314bab580f99" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CCharacter::RouteID</definition>
+        <argsstring></argsstring>
+        <name>RouteID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="45" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1adc03f408c0bcd843e6d91cee40686b1f" compoundref="Character_8cpp" startline="301" endline="304">getRouteID</referencedby>
+        <referencedby refid="classCCharacter_1a9053e02df6391f46a5bca5b4e541f87b" compoundref="Character_8cpp" startline="291" endline="294">setRouteID</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1a23e1f4286f805d0c2aba0ed90d80e8e3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CCharacter::MoveIsMax</definition>
+        <argsstring></argsstring>
+        <name>MoveIsMax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="46" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1a4b4c0093c82dea16cb9bb2714f33866d" compoundref="Character_8cpp" startline="33" endline="36">getMoveIsMax</referencedby>
+        <referencedby refid="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" compoundref="Character_8cpp" startline="23" endline="26">setMoveIsMax</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1a20115afa11aa4e0d86ad1a30b60a78c3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CCharacter::Movement</definition>
+        <argsstring></argsstring>
+        <name>Movement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="47" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classCCharacter_1a2900d40f688adebadfcb75f95fff5e24" compoundref="Character_8cpp" startline="55" endline="58">getMovement</referencedby>
+        <referencedby refid="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" compoundref="Character_8cpp" startline="45" endline="48">setMovement</referencedby>
+        <referencedby refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" compoundref="Character_8cpp" startline="67" endline="89">UpdateMovement</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCCharacter_1a6be580397e8e7410eda486a1ed6fb1ca" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="structVector3" kindref="compound">Vector3</ref> &gt;</type>
+        <definition>vector&lt;Vector3&gt; CCharacter::AiRouteLocation</definition>
+        <argsstring></argsstring>
+        <name>AiRouteLocation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="54" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCCharacter_1a023d235cc1ca560545c5fe6b6943c0fb" prot="public" static="no" mutable="no">
+        <type><ref refid="classCamera3" kindref="compound">Camera3</ref></type>
+        <definition>Camera3 CCharacter::AICamera</definition>
+        <argsstring></argsstring>
+        <name>AICamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="71" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setMoveIsMax</definition>
+        <argsstring>(bool MoveIsMax)</argsstring>
+        <name>setMoveIsMax</name>
+        <param>
+          <type>bool</type>
+          <declname>MoveIsMax</declname>
+        </param>
+        <briefdescription>
+<para>setting if legs can continue to move /param MoveIsMax - check if can continue to move </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="49" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="23" bodyend="26"/>
+        <references refid="classCCharacter_1a23e1f4286f805d0c2aba0ed90d80e8e3" compoundref="Character_8h" startline="46">MoveIsMax</references>
+        <referencedby refid="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" compoundref="Character_8cpp" startline="9" endline="14">CCharacter</referencedby>
+        <referencedby refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" compoundref="Character_8cpp" startline="67" endline="89">UpdateMovement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a4b4c0093c82dea16cb9bb2714f33866d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CCharacter::getMoveIsMax</definition>
+        <argsstring>()</argsstring>
+        <name>getMoveIsMax</name>
+        <briefdescription>
+<para>return bool if cannot continue to move </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="50" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="33" bodyend="36"/>
+        <references refid="classCCharacter_1a23e1f4286f805d0c2aba0ed90d80e8e3" compoundref="Character_8h" startline="46">MoveIsMax</references>
+        <referencedby refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" compoundref="Character_8cpp" startline="67" endline="89">UpdateMovement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setMovement</definition>
+        <argsstring>(int Movement)</argsstring>
+        <name>setMovement</name>
+        <param>
+          <type>int</type>
+          <declname>Movement</declname>
+        </param>
+        <briefdescription>
+<para>set movement of NPC movement leg </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Movement</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- see if moving </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="51" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="45" bodyend="48"/>
+        <references refid="classCCharacter_1a20115afa11aa4e0d86ad1a30b60a78c3" compoundref="Character_8h" startline="47">Movement</references>
+        <referencedby refid="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" compoundref="Character_8cpp" startline="9" endline="14">CCharacter</referencedby>
+        <referencedby refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" compoundref="Character_8cpp" startline="67" endline="89">UpdateMovement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a2900d40f688adebadfcb75f95fff5e24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int CCharacter::getMovement</definition>
+        <argsstring>()</argsstring>
+        <name>getMovement</name>
+        <briefdescription>
+<para>return movement of NPC leg </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="52" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="55" bodyend="58"/>
+        <references refid="classCCharacter_1a20115afa11aa4e0d86ad1a30b60a78c3" compoundref="Character_8h" startline="47">Movement</references>
+        <referencedby refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" compoundref="Character_8cpp" startline="67" endline="89">UpdateMovement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::UpdateMovement</definition>
+        <argsstring>(int Max)</argsstring>
+        <name>UpdateMovement</name>
+        <param>
+          <type>int</type>
+          <declname>Max</declname>
+        </param>
+        <briefdescription>
+<para>update movement of NPC leg </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- check if leg has hit max angle </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="53" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="67" bodyend="89"/>
+        <references refid="classCCharacter_1a4b4c0093c82dea16cb9bb2714f33866d" compoundref="Character_8cpp" startline="33" endline="36">getMoveIsMax</references>
+        <references refid="classCCharacter_1a2900d40f688adebadfcb75f95fff5e24" compoundref="Character_8cpp" startline="55" endline="58">getMovement</references>
+        <references refid="classCCharacter_1a20115afa11aa4e0d86ad1a30b60a78c3" compoundref="Character_8h" startline="47">Movement</references>
+        <references refid="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" compoundref="Character_8cpp" startline="23" endline="26">setMoveIsMax</references>
+        <references refid="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" compoundref="Character_8cpp" startline="45" endline="48">setMovement</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CCharacter::CCharacter</definition>
+        <argsstring>(void)</argsstring>
+        <name>CCharacter</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCCharacter" kindref="compound">CCharacter</ref> default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="55" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="9" bodyend="14"/>
+        <references refid="classCCharacter_1a19ddf60382975118b81435daa5fffddb" compoundref="Character_8h" startline="41">IsControlled</references>
+        <references refid="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" compoundref="Character_8cpp" startline="23" endline="26">setMoveIsMax</references>
+        <references refid="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" compoundref="Character_8cpp" startline="45" endline="48">setMovement</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setRole</definition>
+        <argsstring>(int Role)</argsstring>
+        <name>setRole</name>
+        <param>
+          <type>int</type>
+          <declname>Role</declname>
+        </param>
+        <briefdescription>
+<para>Set role of the NPC. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Role</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>using int to set roles </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="56" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="110" bodyend="113"/>
+        <references refid="classCCharacter_1a77736632ea900be37a5a334eeab86a62" compoundref="Character_8h" startline="45">Role</references>
+        <referencedby refid="classCCashier_1a084746e56b7d02893fb29f6793403a07" compoundref="CCashier_8cpp" startline="18" endline="27">CCashier::CCashier</referencedby>
+        <referencedby refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" compoundref="CPromoter_8cpp" startline="32" endline="41">CPromoter::CPromoter</referencedby>
+        <referencedby refid="classCSecurityGuard_1a10fd5ed13acde874db6cca76487a7fe6" compoundref="CSecurityGuard_8cpp" startline="33" endline="42">CSecurityGuard::CSecurityGuard</referencedby>
+        <referencedby refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" compoundref="CShopper_8cpp" startline="33" endline="42">CShopper::CShopper</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1aa84d3b8ff304592ad39e14836b2b4825" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int CCharacter::getRole</definition>
+        <argsstring>()</argsstring>
+        <name>getRole</name>
+        <briefdescription>
+<para>return the role of the NPC </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="57" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="173" bodyend="176"/>
+        <references refid="classCCharacter_1a77736632ea900be37a5a334eeab86a62" compoundref="Character_8h" startline="45">Role</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setInteractionBound</definition>
+        <argsstring>(Vector3 Position, int Radius)</argsstring>
+        <name>setInteractionBound</name>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>Position</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>Radius</declname>
+        </param>
+        <briefdescription>
+<para>creates interaction bounds for NPC using NPC position and radius </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername><ref refid="structPosition" kindref="compound">Position</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- position of the NPC </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the radius of the interaction bound from the NPC position </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="58" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="124" bodyend="134"/>
+        <references refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" compoundref="Obj_8cpp" startline="41" endline="44">CObj::getTranslate</references>
+        <references refid="classCCharacter_1aad3e63cc6a37439cc7659262f0321d2a" compoundref="Character_8h" startline="42">InteractionBound</references>
+        <referencedby refid="classCCashier_1a084746e56b7d02893fb29f6793403a07" compoundref="CCashier_8cpp" startline="18" endline="27">CCashier::CCashier</referencedby>
+        <referencedby refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" compoundref="CPromoter_8cpp" startline="32" endline="41">CPromoter::CPromoter</referencedby>
+        <referencedby refid="classCSecurityGuard_1a10fd5ed13acde874db6cca76487a7fe6" compoundref="CSecurityGuard_8cpp" startline="33" endline="42">CSecurityGuard::CSecurityGuard</referencedby>
+        <referencedby refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" compoundref="CShopper_8cpp" startline="33" endline="42">CShopper::CShopper</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a1b92d591b5ea09d5c4df21c92a487013" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CCharacter::getInteractionBound</definition>
+        <argsstring>()</argsstring>
+        <name>getInteractionBound</name>
+        <briefdescription>
+<para>returns if camera is in interaction bounds for NPC </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="59" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="153" bodyend="156"/>
+        <references refid="classCCharacter_1aad3e63cc6a37439cc7659262f0321d2a" compoundref="Character_8h" startline="42">InteractionBound</references>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a0352bb4afdc14f804c5d30b86a689a30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setScript</definition>
+        <argsstring>(int choice)</argsstring>
+        <name>setScript</name>
+        <param>
+          <type>int</type>
+          <declname>choice</declname>
+        </param>
+        <briefdescription>
+<para>sets the script of the NPC </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername><ref refid="structPosition" kindref="compound">Position</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- choice set which script the NPC is reading off </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="60" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="143" bodyend="146"/>
+        <references refid="classCCharacter_1afd1bd5ef30dd1cb58a45981f57856cd2" compoundref="Character_8h" startline="43">Script</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int CCharacter::getScript</definition>
+        <argsstring>()</argsstring>
+        <name>getScript</name>
+        <briefdescription>
+<para>return the script phrases </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="61" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="183" bodyend="186"/>
+        <references refid="classCCharacter_1afd1bd5ef30dd1cb58a45981f57856cd2" compoundref="Character_8h" startline="43">Script</references>
+        <referencedby refid="classCCashier_1a1ca5016ca1c844e0af6c3abf9ce6d45e" compoundref="CCashier_8cpp" startline="34" endline="90">CCashier::updateScript</referencedby>
+        <referencedby refid="classCSecurityGuard_1a8fdb386b324189c74004f6350ca4ef1a" compoundref="CSecurityGuard_8cpp" startline="49" endline="105">CSecurityGuard::updateScript</referencedby>
+        <referencedby refid="classCShopper_1a915af6d114c243b82200399346f5e70c" compoundref="CShopper_8cpp" startline="49" endline="104">CShopper::updateScript</referencedby>
+        <referencedby refid="classCPromoter_1a32783fa35aaecbcd1de980666b394411" compoundref="CPromoter_8cpp" startline="60" endline="116">CPromoter::updateScript</referencedby>
+        <referencedby refid="classCCharacter_1a993d515a1764e3db2c3e982035364a97" compoundref="Character_8cpp" startline="193" endline="238">updateScript</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a993d515a1764e3db2c3e982035364a97" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>string</type>
+        <definition>string CCharacter::updateScript</definition>
+        <argsstring>()</argsstring>
+        <name>updateScript</name>
+        <reimplementedby refid="classCCashier_1a1ca5016ca1c844e0af6c3abf9ce6d45e">updateScript</reimplementedby>
+        <reimplementedby refid="classCSecurityGuard_1a8fdb386b324189c74004f6350ca4ef1a">updateScript</reimplementedby>
+        <reimplementedby refid="classCShopper_1a915af6d114c243b82200399346f5e70c">updateScript</reimplementedby>
+        <reimplementedby refid="classCPromoter_1a32783fa35aaecbcd1de980666b394411">updateScript</reimplementedby>
+        <briefdescription>
+<para>updates and change the script </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="62" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="193" bodyend="238"/>
+        <references refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" compoundref="Character_8cpp" startline="183" endline="186">getScript</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1ad3f9883a464f42c7d39f598f8a41991d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setmoveX</definition>
+        <argsstring>(int moveX)</argsstring>
+        <name>setmoveX</name>
+        <param>
+          <type>int</type>
+          <declname>moveX</declname>
+        </param>
+        <briefdescription>
+<para>make the NPC move along the x aixs </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>moveX</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- amount of x units to move </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="63" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="247" bodyend="250"/>
+        <references refid="classCCharacter_1a368fd7665c12a39bcd12125e81158518" compoundref="Character_8h" startline="45">moveX</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a46770a42f57b14937ae9abf30e38d500" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int CCharacter::getmoveX</definition>
+        <argsstring>()</argsstring>
+        <name>getmoveX</name>
+        <briefdescription>
+<para>returns the number of units to move along X </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="64" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="257" bodyend="260"/>
+        <references refid="classCCharacter_1a368fd7665c12a39bcd12125e81158518" compoundref="Character_8h" startline="45">moveX</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1ac71975856654bb3bc3ecea2a70f533d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setmoveZ</definition>
+        <argsstring>(int moveZ)</argsstring>
+        <name>setmoveZ</name>
+        <param>
+          <type>int</type>
+          <declname>moveZ</declname>
+        </param>
+        <briefdescription>
+<para>make the NPC move along the z aixs </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>moveZ</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- amount of z units to move </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="65" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="269" bodyend="272"/>
+        <references refid="classCCharacter_1a4cf8872dae479dd14e4dc5c01149e149" compoundref="Character_8h" startline="45">moveZ</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1af9d119a351d5dd90d23d3833d88061d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int CCharacter::getmoveZ</definition>
+        <argsstring>()</argsstring>
+        <name>getmoveZ</name>
+        <briefdescription>
+<para>returns the number of units to move along X </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="66" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="279" bodyend="282"/>
+        <references refid="classCCharacter_1a4cf8872dae479dd14e4dc5c01149e149" compoundref="Character_8h" startline="45">moveZ</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a9053e02df6391f46a5bca5b4e541f87b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::setRouteID</definition>
+        <argsstring>(int RouteID)</argsstring>
+        <name>setRouteID</name>
+        <param>
+          <type>int</type>
+          <declname>RouteID</declname>
+        </param>
+        <briefdescription>
+<para>Sets the route for NPC. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>RouteID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the points of interest to the NPC </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="67" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="291" bodyend="294"/>
+        <references refid="classCCharacter_1ad5228f5c6d553a8eb086314bab580f99" compoundref="Character_8h" startline="45">RouteID</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1adc03f408c0bcd843e6d91cee40686b1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int CCharacter::getRouteID</definition>
+        <argsstring>()</argsstring>
+        <name>getRouteID</name>
+        <briefdescription>
+<para>returns points of interest </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="68" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="301" bodyend="304"/>
+        <references refid="classCCharacter_1ad5228f5c6d553a8eb086314bab580f99" compoundref="Character_8h" startline="45">RouteID</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a47825085c9b1050d45063f9e7af82c08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * CCharacter::getCharacter</definition>
+        <argsstring>()</argsstring>
+        <name>getCharacter</name>
+        <briefdescription>
+<para>return character mesh pointer </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="69" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="163" bodyend="166"/>
+        <references refid="classCCharacter_1a8b585b09ca5724ab10018f86c831853c" compoundref="Character_8h" startline="44">Character</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCharacter::WalkTo</definition>
+        <argsstring>(Vector3 TargetPosition, std::vector&lt; CObj * &gt; _objList)</argsstring>
+        <name>WalkTo</name>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>TargetPosition</declname>
+          <defname>TargetPos</defname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classCObj" kindref="compound">CObj</ref> * &gt;</type>
+          <declname>_objList</declname>
+        </param>
+        <briefdescription>
+<para>makes the NPC move towards the target locations </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>TargetPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the target the NPC is moving towards </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_objList</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the objects on the first floor </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="70" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="324" bodyend="385"/>
+        <references refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" compoundref="Obj_8cpp" startline="130" endline="135">CObj::calcBound</references>
+        <references refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" compoundref="Obj_8cpp" startline="119" endline="122">CObj::getID</references>
+        <references refid="classCCharacter_1a1b92d591b5ea09d5c4df21c92a487013" compoundref="Character_8cpp" startline="153" endline="156">getInteractionBound</references>
+        <references refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" compoundref="Obj_8cpp" startline="80" endline="83">CObj::getMaxBound</references>
+        <references refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" compoundref="Obj_8cpp" startline="93" endline="96">CObj::getMinBound</references>
+        <references refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" compoundref="Obj_8cpp" startline="41" endline="44">CObj::getTranslate</references>
+        <references refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" compoundref="Obj_8h" startline="40">CObj::maxBound</references>
+        <references refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" compoundref="Obj_8h" startline="40">CObj::minBound</references>
+        <references refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" compoundref="Obj_8cpp" startline="167" endline="170">CObj::setRotateY</references>
+        <references refid="classCObj_1a2273f89ec226972ceff644152eaed600" compoundref="Obj_8cpp" startline="189" endline="192">CObj::setTranslate</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCharacter_1a6176ffa71d744eed17566ab6d61e37bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CCharacter::~CCharacter</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CCharacter</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCCharacter" kindref="compound">CCharacter</ref> deconstructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="72" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.cpp" bodystart="311" bodyend="313"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines default values of <ref refid="classCCharacter" kindref="compound">CCharacter</ref>&apos;s properties, (IsControlled, InteractionBound, Script, Role, moveX, moveZ, RouteID, MoveIsMax, Movement) </para>    </briefdescription>
+    <detaileddescription>
+<para>Class: <ref refid="classCCharacter" kindref="compound">CCharacter</ref></para><para>Functions, (setMoveIsMax, getMoveIsMax, setMovement, getMovement, updateMovement, setIsControlled, getIsControlled, setRole, getRole, setInteractionBound, getInteractionBound, setScript, getScript, updateScript, setmoveX, getmoveX, setmoveZ, setRouteID, getRouteID, getCharacter, updateChar, WalkTo)</para><para>Vector (AiRouteLocation) </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="342">
+        <label>CPromoter</label>
+        <link refid="classCPromoter"/>
+        <childnode refid="339" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="344">
+        <label>CShopper</label>
+        <link refid="classCShopper"/>
+        <childnode refid="339" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="341">
+        <label>CCashier</label>
+        <link refid="classCCashier"/>
+        <childnode refid="339" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="340">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+      <node id="339">
+        <label>CCharacter</label>
+        <link refid="classCCharacter"/>
+        <childnode refid="340" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="343">
+        <label>CSecurityGuard</label>
+        <link refid="classCSecurityGuard"/>
+        <childnode refid="339" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="357">
+        <label>Component</label>
+        <link refid="structComponent"/>
+        <childnode refid="348" relation="usage">
+          <edgelabel>g</edgelabel>
+          <edgelabel>r</edgelabel>
+          <edgelabel>b</edgelabel>
+        </childnode>
+      </node>
+      <node id="354">
+        <label>vector&lt; Vector3 &gt;</label>
+      </node>
+      <node id="355">
+        <label>Mesh</label>
+        <link refid="classMesh"/>
+        <childnode refid="356" relation="usage">
+          <edgelabel>material</edgelabel>
+        </childnode>
+        <childnode refid="358" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+        <childnode refid="359" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="360" relation="usage">
+          <edgelabel>textureID</edgelabel>
+          <edgelabel>indexBuffer</edgelabel>
+          <edgelabel>indexSize</edgelabel>
+          <edgelabel>vertexBuffer</edgelabel>
+        </childnode>
+      </node>
+      <node id="358">
+        <label>DRAW_MODE</label>
+      </node>
+      <node id="352">
+        <label>Camera</label>
+        <link refid="classCamera"/>
+        <childnode refid="347" relation="usage">
+          <edgelabel>target</edgelabel>
+          <edgelabel>view</edgelabel>
+          <edgelabel>position</edgelabel>
+          <edgelabel>up</edgelabel>
+        </childnode>
+      </node>
+      <node id="359">
+        <label>string</label>
+      </node>
+      <node id="356">
+        <label>Material</label>
+        <link refid="structMaterial"/>
+        <childnode refid="348" relation="usage">
+          <edgelabel>kShininess</edgelabel>
+        </childnode>
+        <childnode refid="357" relation="usage">
+          <edgelabel>kDiffuse</edgelabel>
+          <edgelabel>kAmbient</edgelabel>
+          <edgelabel>kSpecular</edgelabel>
+        </childnode>
+      </node>
+      <node id="348">
+        <label>float</label>
+      </node>
+      <node id="353">
+        <label>Mtx44</label>
+        <link refid="classMtx44"/>
+        <childnode refid="348" relation="usage">
+          <edgelabel>a</edgelabel>
+        </childnode>
+      </node>
+      <node id="351">
+        <label>Camera3</label>
+        <link refid="classCamera3"/>
+        <childnode refid="352" relation="public-inheritance">
+        </childnode>
+        <childnode refid="349" relation="usage">
+          <edgelabel>current</edgelabel>
+        </childnode>
+        <childnode refid="347" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>defaultTarget</edgelabel>
+          <edgelabel>defaultPosition</edgelabel>
+          <edgelabel>defaultUp</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>defaultView</edgelabel>
+        </childnode>
+        <childnode refid="353" relation="usage">
+          <edgelabel>rotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="349">
+        <label>int</label>
+      </node>
+      <node id="346">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="347" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="349" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="350" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="345">
+        <label>CCharacter</label>
+        <link refid="classCCharacter"/>
+        <childnode refid="346" relation="public-inheritance">
+        </childnode>
+        <childnode refid="351" relation="usage">
+          <edgelabel>AICamera</edgelabel>
+        </childnode>
+        <childnode refid="354" relation="usage">
+          <edgelabel>AiRouteLocation</edgelabel>
+        </childnode>
+        <childnode refid="349" relation="usage">
+          <edgelabel>moveX</edgelabel>
+          <edgelabel>moveZ</edgelabel>
+          <edgelabel>Movement</edgelabel>
+          <edgelabel>Role</edgelabel>
+          <edgelabel>RouteID</edgelabel>
+          <edgelabel>Script</edgelabel>
+        </childnode>
+        <childnode refid="350" relation="usage">
+          <edgelabel>MoveIsMax</edgelabel>
+          <edgelabel>InteractionBound</edgelabel>
+          <edgelabel>IsControlled</edgelabel>
+        </childnode>
+        <childnode refid="355" relation="usage">
+          <edgelabel>Character</edgelabel>
+        </childnode>
+      </node>
+      <node id="360">
+        <label>unsigned</label>
+      </node>
+      <node id="350">
+        <label>bool</label>
+      </node>
+      <node id="347">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="348" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" line="39" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h" bodystart="38" bodyend="74"/>
+    <listofallmembers>
+      <member refid="classCCharacter_1a023d235cc1ca560545c5fe6b6943c0fb" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>AICamera</name></member>
+      <member refid="classCCharacter_1a6be580397e8e7410eda486a1ed6fb1ca" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>AiRouteLocation</name></member>
+      <member refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" prot="public" virt="virtual"><scope>CCharacter</scope><name>calcBound</name></member>
+      <member refid="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>CCharacter</name></member>
+      <member refid="classCCharacter_1a8b585b09ca5724ab10018f86c831853c" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>Character</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>CObj</name></member>
+      <member refid="classCCharacter_1a47825085c9b1050d45063f9e7af82c08" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getCharacter</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getID</name></member>
+      <member refid="classCCharacter_1a1b92d591b5ea09d5c4df21c92a487013" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getInteractionBound</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getMinBound</name></member>
+      <member refid="classCCharacter_1a4b4c0093c82dea16cb9bb2714f33866d" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getMoveIsMax</name></member>
+      <member refid="classCCharacter_1a2900d40f688adebadfcb75f95fff5e24" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getMovement</name></member>
+      <member refid="classCCharacter_1a46770a42f57b14937ae9abf30e38d500" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getmoveX</name></member>
+      <member refid="classCCharacter_1af9d119a351d5dd90d23d3833d88061d8" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getmoveZ</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getRender</name></member>
+      <member refid="classCCharacter_1aa84d3b8ff304592ad39e14836b2b4825" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getRole</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getRotate</name></member>
+      <member refid="classCCharacter_1adc03f408c0bcd843e6d91cee40686b1f" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getRouteID</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getScale</name></member>
+      <member refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getScript</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>ID</name></member>
+      <member refid="classCCharacter_1aad3e63cc6a37439cc7659262f0321d2a" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>InteractionBound</name></member>
+      <member refid="classCCharacter_1a19ddf60382975118b81435daa5fffddb" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>IsControlled</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>minBound</name></member>
+      <member refid="classCCharacter_1a23e1f4286f805d0c2aba0ed90d80e8e3" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>MoveIsMax</name></member>
+      <member refid="classCCharacter_1a20115afa11aa4e0d86ad1a30b60a78c3" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>Movement</name></member>
+      <member refid="classCCharacter_1a368fd7665c12a39bcd12125e81158518" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>moveX</name></member>
+      <member refid="classCCharacter_1a4cf8872dae479dd14e4dc5c01149e149" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>moveZ</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>render</name></member>
+      <member refid="classCCharacter_1a77736632ea900be37a5a334eeab86a62" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>Role</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>rotate</name></member>
+      <member refid="classCCharacter_1ad5228f5c6d553a8eb086314bab580f99" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>RouteID</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>scale</name></member>
+      <member refid="classCCharacter_1afd1bd5ef30dd1cb58a45981f57856cd2" prot="private" virt="non-virtual"><scope>CCharacter</scope><name>Script</name></member>
+      <member refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setInteractionBound</name></member>
+      <member refid="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setMoveIsMax</name></member>
+      <member refid="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setMovement</name></member>
+      <member refid="classCCharacter_1ad3f9883a464f42c7d39f598f8a41991d" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setmoveX</name></member>
+      <member refid="classCCharacter_1ac71975856654bb3bc3ecea2a70f533d5" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setmoveZ</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setRender</name></member>
+      <member refid="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setRole</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setRotateY</name></member>
+      <member refid="classCCharacter_1a9053e02df6391f46a5bca5b4e541f87b" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setRouteID</name></member>
+      <member refid="classCCharacter_1a0352bb4afdc14f804c5d30b86a689a30" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setScript</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CCharacter</scope><name>translate</name></member>
+      <member refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>UpdateMovement</name></member>
+      <member refid="classCCharacter_1a993d515a1764e3db2c3e982035364a97" prot="public" virt="virtual"><scope>CCharacter</scope><name>updateScript</name></member>
+      <member refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>WalkTo</name></member>
+      <member refid="classCCharacter_1a6176ffa71d744eed17566ab6d61e37bf" prot="public" virt="non-virtual"><scope>CCharacter</scope><name>~CCharacter</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CCharacter</scope><name>~CObj</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

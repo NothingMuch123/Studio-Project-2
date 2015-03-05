@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="Car_8h" kind="file">
+    <compoundname>Car.h</compoundname>
+    <includes refid="Obj_8h" local="yes">Obj.h</includes>
+    <includes refid="Camera3_8h" local="yes">Camera3.h</includes>
+    <includedby refid="SP2_8h" local="yes">MyGraphics/Source/SP2.h</includedby>
+    <includedby refid="Camera3_8cpp" local="yes">MyGraphics/Source/Camera3.cpp</includedby>
+    <includedby refid="Car_8cpp" local="yes">MyGraphics/Source/Car.cpp</includedby>
+    <incdepgraph>
+      <node id="1565">
+        <label>Obj.h</label>
+        <link refid="Obj_8h"/>
+        <childnode refid="1566" relation="include">
+        </childnode>
+      </node>
+      <node id="1568">
+        <label>cmath</label>
+      </node>
+      <node id="1573">
+        <label>Camera3.h</label>
+        <link refid="Camera3_8h"/>
+        <childnode refid="1574" relation="include">
+        </childnode>
+        <childnode refid="1575" relation="include">
+        </childnode>
+        <childnode refid="1576" relation="include">
+        </childnode>
+        <childnode refid="1565" relation="include">
+        </childnode>
+      </node>
+      <node id="1564">
+        <label>MyGraphics/Source/Car.h</label>
+        <link refid="Car.h"/>
+        <childnode refid="1565" relation="include">
+        </childnode>
+        <childnode refid="1573" relation="include">
+        </childnode>
+      </node>
+      <node id="1569">
+        <label>exception</label>
+      </node>
+      <node id="1574">
+        <label>Camera.h</label>
+        <link refid="Camera_8h"/>
+        <childnode refid="1566" relation="include">
+        </childnode>
+      </node>
+      <node id="1570">
+        <label>ctime</label>
+      </node>
+      <node id="1576">
+        <label>vector</label>
+      </node>
+      <node id="1575">
+        <label>Mtx44.h</label>
+        <link refid="Mtx44_8h"/>
+        <childnode refid="1567" relation="include">
+        </childnode>
+        <childnode refid="1566" relation="include">
+        </childnode>
+      </node>
+      <node id="1567">
+        <label>MyMath.h</label>
+        <link refid="MyMath_8h"/>
+        <childnode refid="1568" relation="include">
+        </childnode>
+        <childnode refid="1569" relation="include">
+        </childnode>
+        <childnode refid="1570" relation="include">
+        </childnode>
+        <childnode refid="1571" relation="include">
+        </childnode>
+      </node>
+      <node id="1571">
+        <label>cstdlib</label>
+      </node>
+      <node id="1572">
+        <label>iostream</label>
+      </node>
+      <node id="1566">
+        <label>Vector3.h</label>
+        <link refid="Vector3_8h"/>
+        <childnode refid="1567" relation="include">
+        </childnode>
+        <childnode refid="1572" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1581">
+        <label>MyGraphics/Source/Character.cpp</label>
+        <link refid="Character_8cpp"/>
+      </node>
+      <node id="1577">
+        <label>MyGraphics/Source/Car.h</label>
+        <link refid="Car.h"/>
+        <childnode refid="1578" relation="include">
+        </childnode>
+        <childnode refid="1580" relation="include">
+        </childnode>
+        <childnode refid="1583" relation="include">
+        </childnode>
+      </node>
+      <node id="1578">
+        <label>MyGraphics/Source/SP2.h</label>
+        <link refid="SP2_8h"/>
+        <childnode refid="1579" relation="include">
+        </childnode>
+        <childnode refid="1580" relation="include">
+        </childnode>
+        <childnode refid="1581" relation="include">
+        </childnode>
+        <childnode refid="1582" relation="include">
+        </childnode>
+      </node>
+      <node id="1582">
+        <label>MyGraphics/Source/SP2.cpp</label>
+        <link refid="SP2_8cpp"/>
+      </node>
+      <node id="1583">
+        <label>MyGraphics/Source/Car.cpp</label>
+        <link refid="Car_8cpp"/>
+      </node>
+      <node id="1579">
+        <label>MyGraphics/Source/Application.cpp</label>
+        <link refid="Application_8cpp"/>
+      </node>
+      <node id="1580">
+        <label>MyGraphics/Source/Camera3.cpp</label>
+        <link refid="Camera3_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classCCar" prot="public">CCar</innerclass>
+    <briefdescription>
+<para>Header file for car class. </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Team 8 </para></simplesect>
+<simplesect kind="par"><title></title><para></para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CAR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CAR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Obj_8h" kindref="compound">Obj.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Camera3_8h" kindref="compound">Camera3.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="21"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classCCar" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCCar" kindref="compound">CCar</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classCObj" kindref="compound">CObj</ref></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCCar_1a5ed512541b66ab40fd1cb1a72bda3f5c" kindref="member">CCar</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCCar_1a5ed512541b66ab40fd1cb1a72bda3f5c" kindref="member">CCar</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_ID,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_translate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_rotate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_scale,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_size);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCCar_1a3a82eb6a6de876dfe9622158ce580b15" kindref="member">~CCar</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCar_1a47969e0981edc4b6e705e601d55748f0" kindref="member">calcBound</ref>();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCar_1a230a3663dc1f7d9e31d4ff2a2e8a2309" kindref="member">setCamera</ref>();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCar_1a3f17013b5293c3bca252fd1c3e57443b" kindref="member">updatePosition</ref>();</highlight></codeline>
+<codeline lineno="31" refid="classCCar_1acf311bf7c5480e8bdfd19ab29bdf6c66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCamera3" kindref="compound">Camera3</ref><sp/><ref refid="classCCar_1acf311bf7c5480e8bdfd19ab29bdf6c66" kindref="member">carCamera</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h"/>
+  </compounddef>
+</doxygen>

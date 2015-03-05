@@ -1,0 +1,622 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classMeshBuilder" kind="class" prot="public">
+    <compoundname>MeshBuilder</compoundname>
+    <includes refid="MeshBuilder_8h" local="no">MeshBuilder.h</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classMeshBuilder_1a78d37e2b0cc068eec801f17c367100e7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateAxes</definition>
+        <argsstring>(const std::string &amp;meshName, float lengthX, float lengthY, float lengthZ)</argsstring>
+        <name>GenerateAxes</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lengthX</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lengthY</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lengthZ</declname>
+        </param>
+        <briefdescription>
+<para>Generate the vertices of a reference Axes; Use red for x-axis, green for y-axis, blue for z-axis Then generate the VBO/IBO and store them in <ref refid="classMesh" kindref="compound">Mesh</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>meshName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- name of mesh </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthX</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- x-axis should start at -lengthX / 2 and end at lengthX / 2 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthY</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- y-axis should start at -lengthY / 2 and end at lengthY / 2 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthZ</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- z-axis should start at -lengthZ / 2 and end at lengthZ / 2</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to mesh storing VBO/IBO of reference axes </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="18" bodyend="59"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a2eacb69a1ffbcde68e12fb36f8c88639" compoundref="Mesh_8h" startline="30">Mesh::DRAW_LINES</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+        <referencedby refid="classSP2_1a8669c489b6a968f367a4610b254ac992" compoundref="SP2_8cpp" startline="44" endline="130">SP2::Init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1a121c8f7be60bf3f81b8f0bee48e917a5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateQuad</definition>
+        <argsstring>(const std::string &amp;meshName, Color color, TexCoord _texCoord)</argsstring>
+        <name>GenerateQuad</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type><ref refid="structTexCoord" kindref="compound">TexCoord</ref></type>
+          <declname>_texCoord</declname>
+        </param>
+        <briefdescription>
+<para>Generate the vertices of a quad; Use random color for each vertex Then generate the VBO/IBO and store them in <ref refid="classMesh" kindref="compound">Mesh</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>meshName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- name of mesh </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthX</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- width of quad </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthY</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- height of quad</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to mesh storing VBO/IBO of quad </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="28" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="74" bodyend="119"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a0f1cef52a562b3047017043dd427e2a9" compoundref="Mesh_8h" startline="28">Mesh::DRAW_TRIANGLES</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structTexCoord_1a64b4ceeb1733c478cb4b5b1216146c32" compoundref="Vertex_8h" startline="24" endline="24">TexCoord::Set</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="structVertex_1a717d827da388b9c4847d1f5343959c78" compoundref="Vertex_8h" startline="77">Vertex::texCoord</references>
+        <references refid="structTexCoord_1a3be8371ac57f9ddc6ff5853e4bb58190" compoundref="Vertex_8h" startline="22">TexCoord::u</references>
+        <references refid="structTexCoord_1ad525bc2c53d6402267c51022db33f85e" compoundref="Vertex_8h" startline="22">TexCoord::v</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+        <referencedby refid="classSP2_1a55323a792d3f8fa6f7bbde473e4a6f56" compoundref="SP2_8cpp" startline="463" endline="486">SP2::initCar</referencedby>
+        <referencedby refid="classSP2_1a3d30faae9bbea42123473889d74639c3" compoundref="SP2_8cpp" startline="393" endline="455">SP2::initItems</referencedby>
+        <referencedby refid="classSP2_1af3ecc3ac74d1ce4c5263dabff4772029" compoundref="SP2_8cpp" startline="138" endline="151">SP2::initMap</referencedby>
+        <referencedby refid="classSP2_1ac49274ba640cd39ea836e22e548cc1db" compoundref="SP2_8cpp" startline="1168" endline="1192">SP2::initOuterSkybox</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1a5e777328dc946f483beb5645d8f24c4a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateCube</definition>
+        <argsstring>(const std::string &amp;meshName, Color color)</argsstring>
+        <name>GenerateCube</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Generate the vertices of a cube; Use random color for each vertex Then generate the VBO/IBO and store them in <ref refid="classMesh" kindref="compound">Mesh</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>meshName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- name of mesh </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthX</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- width of cube </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthY</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- height of cube </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lengthZ</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- depth of cube</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to mesh storing VBO/IBO of cube </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="29" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="135" bodyend="322"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a0f1cef52a562b3047017043dd427e2a9" compoundref="Mesh_8h" startline="28">Mesh::DRAW_TRIANGLES</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1ad332f1df32029d2a3f962930134526e0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateCircle</definition>
+        <argsstring>(const std::string &amp;meshName, Color color, int radius)</argsstring>
+        <name>GenerateCircle</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="30" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="324" bodyend="359"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="namespaceMath_1ac04b987cc6c574a059e68cb58f58c09a" compoundref="MyMath_8h" startline="49" endline="52">Math::DegreeToRadian</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" compoundref="Mesh_8h" startline="29">Mesh::DRAW_TRIANGLE_STRIP</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1a66927115d121bb3d78bd3d5ceafc2e1e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateRing</definition>
+        <argsstring>(const std::string &amp;meshName, Color color, int iRadius, int oRadius)</argsstring>
+        <name>GenerateRing</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iRadius</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>oRadius</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="361" bodyend="396"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="namespaceMath_1ac04b987cc6c574a059e68cb58f58c09a" compoundref="MyMath_8h" startline="49" endline="52">Math::DegreeToRadian</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" compoundref="Mesh_8h" startline="29">Mesh::DRAW_TRIANGLE_STRIP</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1afa35848f2302d221f7e2889c0d8fbcea" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateSphere</definition>
+        <argsstring>(const std::string &amp;meshName, Color color, double radius, bool hemisphere=false)</argsstring>
+        <name>GenerateSphere</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hemisphere</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="32" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="398" bodyend="460"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="namespaceMath_1ac04b987cc6c574a059e68cb58f58c09a" compoundref="MyMath_8h" startline="49" endline="52">Math::DegreeToRadian</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" compoundref="Mesh_8h" startline="29">Mesh::DRAW_TRIANGLE_STRIP</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1aef3c152d1ba5dc0deb677400a0e586e7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateCylinder</definition>
+        <argsstring>(const std::string &amp;meshName, Color color, double radius, double height, bool hemicylinder=false)</argsstring>
+        <name>GenerateCylinder</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hemicylinder</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="33" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="462" bodyend="531"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="namespaceMath_1ac04b987cc6c574a059e68cb58f58c09a" compoundref="MyMath_8h" startline="49" endline="52">Math::DegreeToRadian</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" compoundref="Mesh_8h" startline="29">Mesh::DRAW_TRIANGLE_STRIP</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1a95305b21c12ae623cfdd5ceda8d051cf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateTorus</definition>
+        <argsstring>(const std::string &amp;meshName, Color color, unsigned int numStack, unsigned int numSlice, float oRadius, float iRadius)</argsstring>
+        <name>GenerateTorus</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>numStack</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>numSlice</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>oRadius</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>iRadius</declname>
+        </param>
+        <briefdescription>
+<para>Generate the vertices of a torus; Use color for each vertex Then generate the VBO/IBO and store them in <ref refid="classMesh" kindref="compound">Mesh</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>meshName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- name of mesh </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- color of mesh </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numStack</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- number of stacks for torus </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numSlice</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- number of slices for torus </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iRadius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Inner radius of torus </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>oRadius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Outer radius of torus </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to mesh storing VBO/IBO of cube </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="34" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="548" bodyend="595"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="namespaceMath_1ac04b987cc6c574a059e68cb58f58c09a" compoundref="MyMath_8h" startline="49" endline="52">Math::DegreeToRadian</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" compoundref="Mesh_8h" startline="29">Mesh::DRAW_TRIANGLE_STRIP</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVector3_1aaef4f25a38878a640ab4a48002a7eff8" compoundref="Vector3_8cpp" startline="358" endline="367">Vector3::Normalize</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1a872ac4680fd684788296eb67bce7d97a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateCone</definition>
+        <argsstring>(const std::string &amp;meshName, Color color, double radius, double height)</argsstring>
+        <name>GenerateCone</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type><ref refid="structColor" kindref="compound">Color</ref></type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+<para>Generate the vertices of a cone; Use color for each vertex Then generate the VBO/IBO and store them in <ref refid="classMesh" kindref="compound">Mesh</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>meshName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- name of mesh </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- color of mesh </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- radius of cone </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- height of cone </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to mesh storing VBO/IBO of cube </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="35" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="610" bodyend="647"/>
+        <references refid="structVertex_1a3a3ff3f6cf46b1848795991e8159b922" compoundref="Vertex_8h" startline="75">Vertex::color</references>
+        <references refid="namespaceMath_1ac04b987cc6c574a059e68cb58f58c09a" compoundref="MyMath_8h" startline="49" endline="52">Math::DegreeToRadian</references>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a76fb83917a3507580897f6e86656927d" compoundref="Mesh_8h" startline="29">Mesh::DRAW_TRIANGLE_STRIP</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1adce2d4b3d1191c69328519bdf231c344" compoundref="Vertex_8h" startline="76">Vertex::normal</references>
+        <references refid="structVector3_1aaef4f25a38878a640ab4a48002a7eff8" compoundref="Vector3_8cpp" startline="358" endline="367">Vector3::Normalize</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1aba87550d7726a610c911fbb977fd3575" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateOBJ</definition>
+        <argsstring>(const std::string &amp;meshName, const std::string &amp;file_path)</argsstring>
+        <name>GenerateOBJ</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="36" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="649" bodyend="676"/>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a0f1cef52a562b3047017043dd427e2a9" compoundref="Mesh_8h" startline="28">Mesh::DRAW_TRIANGLES</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="LoadOBJ_8cpp_1aa99ef9426a57205ed8acb8f7d41f3bae" compoundref="LoadOBJ_8cpp" startline="149" endline="189">IndexVBO</references>
+        <references refid="LoadOBJ_8cpp_1aa634e9cac0a72d751731db6b4479cbda" compoundref="LoadOBJ_8cpp" startline="7" endline="121">LoadOBJ</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+        <referencedby refid="classSP2_1a8669c489b6a968f367a4610b254ac992" compoundref="SP2_8cpp" startline="44" endline="130">SP2::Init</referencedby>
+        <referencedby refid="classSP2_1a063dbabf8ae6064a35aa583f120cfb77" compoundref="SP2_8cpp" startline="494" endline="523">SP2::initCabinet</referencedby>
+        <referencedby refid="classSP2_1a525f39654448315484eff0ccac19d67d" compoundref="SP2_8cpp" startline="173" endline="230">SP2::initCamera</referencedby>
+        <referencedby refid="classSP2_1a55323a792d3f8fa6f7bbde473e4a6f56" compoundref="SP2_8cpp" startline="463" endline="486">SP2::initCar</referencedby>
+        <referencedby refid="classSP2_1ae1c61e3cd0a5edbd30d8981646ee75e6" compoundref="SP2_8cpp" startline="1200" endline="1239">SP2::initGame</referencedby>
+        <referencedby refid="classSP2_1a2ed8ac060a941450531a26cab1910874" compoundref="SP2_8cpp" startline="159" endline="165">SP2::initHands</referencedby>
+        <referencedby refid="classSP2_1a7539be0f68626b236ff31f7d45607cb2" compoundref="SP2_8cpp" startline="852" endline="933">SP2::initHuman</referencedby>
+        <referencedby refid="classSP2_1a3d30faae9bbea42123473889d74639c3" compoundref="SP2_8cpp" startline="393" endline="455">SP2::initItems</referencedby>
+        <referencedby refid="classSP2_1a845086c5ec12c7f6f84f700a39120ddd" compoundref="SP2_8cpp" startline="941" endline="976">SP2::initPatch</referencedby>
+        <referencedby refid="classSP2_1a13def9dd43eab5fb9410369d3f7c3082" compoundref="SP2_8cpp" startline="531" endline="576">SP2::initSpecialItems</referencedby>
+        <referencedby refid="classSP2_1a45f900f7dd8033f3e3fe40619cc76125" compoundref="SP2_8cpp" startline="584" endline="834">SP2::initSuperMarket</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMeshBuilder_1aac7c87881dbc08f8d41f2068e0f40c76" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * MeshBuilder::GenerateText</definition>
+        <argsstring>(const std::string &amp;meshName, unsigned numRow, unsigned numCol)</argsstring>
+        <name>GenerateText</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>meshName</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>numRow</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>numCol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="37" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.cpp" bodystart="678" bodyend="729"/>
+        <references refid="classMesh_1a3d73fcae9980b9a36297a8481cf1a307a0f1cef52a562b3047017043dd427e2a9" compoundref="Mesh_8h" startline="28">Mesh::DRAW_TRIANGLES</references>
+        <references refid="classMesh_1ad5efa4d45e469674dfa3765e479e4a73" compoundref="Mesh_8h" startline="41">Mesh::indexBuffer</references>
+        <references refid="classMesh_1ac6d6f70d161b9dd66c5ca79a187d86df" compoundref="Mesh_8h" startline="42">Mesh::indexSize</references>
+        <references refid="classMesh_1ae12937ea9bdacb3b7b786f60fe42448e" compoundref="Mesh_8h" startline="39">Mesh::mode</references>
+        <references refid="structVertex_1a8791e77df49f6996a19a8dd17cee8d5c" compoundref="Vertex_8h" startline="74">Vertex::pos</references>
+        <references refid="structTexCoord_1a64b4ceeb1733c478cb4b5b1216146c32" compoundref="Vertex_8h" startline="24" endline="24">TexCoord::Set</references>
+        <references refid="structPosition_1a2919b2441baf7a2f799791d65a1cfc15" compoundref="Vertex_8h" startline="39" endline="44">Position::Set</references>
+        <references refid="structVertex_1a717d827da388b9c4847d1f5343959c78" compoundref="Vertex_8h" startline="77">Vertex::texCoord</references>
+        <references refid="classMesh_1a1e99394b36ad335804acd2461a736cfb" compoundref="Mesh_8h" startline="40">Mesh::vertexBuffer</references>
+        <referencedby refid="classSP2_1a8669c489b6a968f367a4610b254ac992" compoundref="SP2_8cpp" startline="44" endline="130">SP2::Init</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Provides methods to generate mesh of different shapes. </para>    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classMeshBuilder" kindref="compound">MeshBuilder</ref>: </para>    </detaileddescription>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" line="25" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/MeshBuilder.h" bodystart="24" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classMeshBuilder_1a78d37e2b0cc068eec801f17c367100e7" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateAxes</name></member>
+      <member refid="classMeshBuilder_1ad332f1df32029d2a3f962930134526e0" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateCircle</name></member>
+      <member refid="classMeshBuilder_1a872ac4680fd684788296eb67bce7d97a" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateCone</name></member>
+      <member refid="classMeshBuilder_1a5e777328dc946f483beb5645d8f24c4a" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateCube</name></member>
+      <member refid="classMeshBuilder_1aef3c152d1ba5dc0deb677400a0e586e7" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateCylinder</name></member>
+      <member refid="classMeshBuilder_1aba87550d7726a610c911fbb977fd3575" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateOBJ</name></member>
+      <member refid="classMeshBuilder_1a121c8f7be60bf3f81b8f0bee48e917a5" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateQuad</name></member>
+      <member refid="classMeshBuilder_1a66927115d121bb3d78bd3d5ceafc2e1e" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateRing</name></member>
+      <member refid="classMeshBuilder_1afa35848f2302d221f7e2889c0d8fbcea" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateSphere</name></member>
+      <member refid="classMeshBuilder_1aac7c87881dbc08f8d41f2068e0f40c76" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateText</name></member>
+      <member refid="classMeshBuilder_1a95305b21c12ae623cfdd5ceda8d051cf" prot="public" virt="non-virtual"><scope>MeshBuilder</scope><name>GenerateTorus</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

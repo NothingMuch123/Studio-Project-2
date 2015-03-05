@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCCar" kind="class" prot="public">
+    <compoundname>CCar</compoundname>
+    <basecompoundref refid="classCObj" prot="public" virt="non-virtual">CObj</basecompoundref>
+    <includes refid="Car_8h" local="no">Car.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCCar_1acf311bf7c5480e8bdfd19ab29bdf6c66" prot="public" static="no" mutable="no">
+        <type><ref refid="classCamera3" kindref="compound">Camera3</ref></type>
+        <definition>Camera3 CCar::carCamera</definition>
+        <argsstring></argsstring>
+        <name>carCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="classCCar_1a230a3663dc1f7d9e31d4ff2a2e8a2309" compoundref="Car_8cpp" startline="62" endline="69">setCamera</referencedby>
+        <referencedby refid="classSP2_1a265be5921305015c6390757aa4bba8ee" compoundref="SP2_8cpp" startline="1989" endline="2019">SP2::updateCar</referencedby>
+        <referencedby refid="classCCar_1a3f17013b5293c3bca252fd1c3e57443b" compoundref="Car_8cpp" startline="77" endline="81">updatePosition</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCCar_1a5ed512541b66ab40fd1cb1a72bda3f5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CCar::CCar</definition>
+        <argsstring>(void)</argsstring>
+        <name>CCar</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCCar" kindref="compound">CCar</ref> default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="25" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCCar_1a90b2b73b8e80294bd744812d043ea178" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CCar::CCar</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size)</argsstring>
+        <name>CCar</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classCCar" kindref="compound">CCar</ref> overloaded constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_ID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- car ID </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_translate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Sets the translation of the car </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_rotate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Set the rotation of the car </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Set the scale of the car </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- The size of the object car model </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="26" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.cpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classCCar_1a3a82eb6a6de876dfe9622158ce580b15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CCar::~CCar</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CCar</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCCar" kindref="compound">CCar</ref> destructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.cpp" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classCCar_1a47969e0981edc4b6e705e601d55748f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void CCar::calcBound</definition>
+        <argsstring>()</argsstring>
+        <name>calcBound</name>
+        <reimplements refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1">calcBound</reimplements>
+        <briefdescription>
+<para>Calculates bound based on translate, scale and size. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="28" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.cpp" bodystart="49" bodyend="54"/>
+        <references refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" compoundref="Obj_8h" startline="40">CObj::maxBound</references>
+        <references refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" compoundref="Obj_8h" startline="40">CObj::minBound</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCar_1a230a3663dc1f7d9e31d4ff2a2e8a2309" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCar::setCamera</definition>
+        <argsstring>()</argsstring>
+        <name>setCamera</name>
+        <briefdescription>
+<para>Sets values for camera for position and target when entered car. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="29" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.cpp" bodystart="62" bodyend="69"/>
+        <references refid="classCCar_1acf311bf7c5480e8bdfd19ab29bdf6c66" compoundref="Car_8h" startline="31">carCamera</references>
+        <references refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" compoundref="Camera_8h" startline="26">Camera::position</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="classCamera_1a7b1215b2f9c2a71cd41e4225c7df31e8" compoundref="Camera_8h" startline="27">Camera::target</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="classCamera_1ab76ce866ca2acd6ab54447f474077245" compoundref="Camera_8h" startline="28">Camera::up</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+      </memberdef>
+      <memberdef kind="function" id="classCCar_1a3f17013b5293c3bca252fd1c3e57443b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CCar::updatePosition</definition>
+        <argsstring>()</argsstring>
+        <name>updatePosition</name>
+        <briefdescription>
+<para>Update position based on car&apos;s camera. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="30" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.cpp" bodystart="77" bodyend="81"/>
+        <references refid="classCCar_1acf311bf7c5480e8bdfd19ab29bdf6c66" compoundref="Car_8h" startline="31">carCamera</references>
+        <references refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" compoundref="Camera_8h" startline="26">Camera::position</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines the default values of the Car&apos;s properties (position, target, up, view), its various states (Init, Update, Reset) and calculates the bounds. </para>    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classCCar" kindref="compound">CCar</ref>: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="308">
+        <label>CCar</label>
+        <link refid="classCCar"/>
+        <childnode refid="309" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="309">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="317">
+        <label>Camera</label>
+        <link refid="classCamera"/>
+        <childnode refid="312" relation="usage">
+          <edgelabel>target</edgelabel>
+          <edgelabel>view</edgelabel>
+          <edgelabel>position</edgelabel>
+          <edgelabel>up</edgelabel>
+        </childnode>
+      </node>
+      <node id="313">
+        <label>float</label>
+      </node>
+      <node id="318">
+        <label>Mtx44</label>
+        <link refid="classMtx44"/>
+        <childnode refid="313" relation="usage">
+          <edgelabel>a</edgelabel>
+        </childnode>
+      </node>
+      <node id="316">
+        <label>Camera3</label>
+        <link refid="classCamera3"/>
+        <childnode refid="317" relation="public-inheritance">
+        </childnode>
+        <childnode refid="314" relation="usage">
+          <edgelabel>current</edgelabel>
+        </childnode>
+        <childnode refid="312" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>defaultTarget</edgelabel>
+          <edgelabel>defaultPosition</edgelabel>
+          <edgelabel>defaultUp</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>defaultView</edgelabel>
+        </childnode>
+        <childnode refid="318" relation="usage">
+          <edgelabel>rotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="314">
+        <label>int</label>
+      </node>
+      <node id="310">
+        <label>CCar</label>
+        <link refid="classCCar"/>
+        <childnode refid="311" relation="public-inheritance">
+        </childnode>
+        <childnode refid="316" relation="usage">
+          <edgelabel>carCamera</edgelabel>
+        </childnode>
+      </node>
+      <node id="311">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="312" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="314" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="315" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="315">
+        <label>bool</label>
+      </node>
+      <node id="312">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="313" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" line="23" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Car.h" bodystart="22" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classCCar_1a47969e0981edc4b6e705e601d55748f0" prot="public" virt="virtual"><scope>CCar</scope><name>calcBound</name></member>
+      <member refid="classCCar_1acf311bf7c5480e8bdfd19ab29bdf6c66" prot="public" virt="non-virtual"><scope>CCar</scope><name>carCamera</name></member>
+      <member refid="classCCar_1a5ed512541b66ab40fd1cb1a72bda3f5c" prot="public" virt="non-virtual"><scope>CCar</scope><name>CCar</name></member>
+      <member refid="classCCar_1a90b2b73b8e80294bd744812d043ea178" prot="public" virt="non-virtual"><scope>CCar</scope><name>CCar</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CCar</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CCar</scope><name>CObj</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CCar</scope><name>getID</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CCar</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CCar</scope><name>getMinBound</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CCar</scope><name>getRender</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CCar</scope><name>getRotate</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CCar</scope><name>getScale</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CCar</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CCar</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CCar</scope><name>ID</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CCar</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CCar</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CCar</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CCar</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CCar</scope><name>scale</name></member>
+      <member refid="classCCar_1a230a3663dc1f7d9e31d4ff2a2e8a2309" prot="public" virt="non-virtual"><scope>CCar</scope><name>setCamera</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CCar</scope><name>setRender</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CCar</scope><name>setRotateY</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CCar</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CCar</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CCar</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CCar</scope><name>translate</name></member>
+      <member refid="classCCar_1a3f17013b5293c3bca252fd1c3e57443b" prot="public" virt="non-virtual"><scope>CCar</scope><name>updatePosition</name></member>
+      <member refid="classCCar_1a3a82eb6a6de876dfe9622158ce580b15" prot="public" virt="non-virtual"><scope>CCar</scope><name>~CCar</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CCar</scope><name>~CObj</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

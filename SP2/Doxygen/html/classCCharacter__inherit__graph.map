@@ -1,0 +1,7 @@
+<map id="CCharacter" name="CCharacter">
+<area shape="rect" id="node3" href="$classCCashier.html" title="Defines functions (updateScript) " alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node4" href="$classCPromoter.html" title="Defines functions (updateScript, InteractionBound) " alt="" coords="105,155,189,181"/>
+<area shape="rect" id="node5" href="$classCSecurityGuard.html" title="Defines string (updateScript) " alt="" coords="213,155,328,181"/>
+<area shape="rect" id="node6" href="$classCShopper.html" title="Defines string (updateScript) " alt="" coords="353,155,431,181"/>
+<area shape="rect" id="node2" href="$classCObj.html" title="Stores Item Data. " alt="" coords="183,5,233,32"/>
+</map>

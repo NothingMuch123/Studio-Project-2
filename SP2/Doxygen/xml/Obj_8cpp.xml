@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="Obj_8cpp" kind="file">
+    <compoundname>Obj.cpp</compoundname>
+    <includes refid="Obj_8h" local="yes">Obj.h</includes>
+    <incdepgraph>
+      <node id="2037">
+        <label>Obj.h</label>
+        <link refid="Obj_8h"/>
+        <childnode refid="2038" relation="include">
+        </childnode>
+      </node>
+      <node id="2040">
+        <label>cmath</label>
+      </node>
+      <node id="2036">
+        <label>MyGraphics/Source/Obj.cpp</label>
+        <link refid="Obj.cpp"/>
+        <childnode refid="2037" relation="include">
+        </childnode>
+      </node>
+      <node id="2041">
+        <label>exception</label>
+      </node>
+      <node id="2042">
+        <label>ctime</label>
+      </node>
+      <node id="2039">
+        <label>MyMath.h</label>
+        <link refid="MyMath_8h"/>
+        <childnode refid="2040" relation="include">
+        </childnode>
+        <childnode refid="2041" relation="include">
+        </childnode>
+        <childnode refid="2042" relation="include">
+        </childnode>
+        <childnode refid="2043" relation="include">
+        </childnode>
+      </node>
+      <node id="2043">
+        <label>cstdlib</label>
+      </node>
+      <node id="2044">
+        <label>iostream</label>
+      </node>
+      <node id="2038">
+        <label>Vector3.h</label>
+        <link refid="Vector3_8h"/>
+        <childnode refid="2039" relation="include">
+        </childnode>
+        <childnode refid="2044" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Obj_8h" kindref="compound">Obj.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" refkind="member"><highlight class="normal"><ref refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" kindref="member">CObj::CObj</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>:<sp/>ID(-1),<sp/>translate(0,<sp/>0,<sp/>0),<sp/>rotate(0,<sp/>0,<sp/>0),<sp/>scale(1,<sp/>1,<sp/>1),<sp/>maxBound(0,<sp/>0,<sp/>0),<sp/>minBound(0,<sp/>0,<sp/>0),<sp/>size(1,<sp/>1,<sp/>1),<sp/>render(true)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classCObj_1ae3967169281132dfb5148f061e72798a" refkind="member"><highlight class="normal"><ref refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" kindref="member">CObj::CObj</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_ID,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_translate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_rotate,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_scale,<sp/><ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_size)<sp/>:<sp/>ID(_ID),<sp/>translate(_translate),<sp/>rotate(_rotate),<sp/>scale(_scale),<sp/>size(_size),<sp/>render(true)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="classCObj_1ae91204ead5104d927cf09d64385da46b" refkind="member"><highlight class="normal"><ref refid="classCObj_1ae91204ead5104d927cf09d64385da46b" kindref="member">CObj::~CObj</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="40"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" refkind="member"><highlight class="normal"><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" kindref="member">CObj::getTranslate</ref>()</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="53"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" refkind="member"><highlight class="normal"><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" kindref="member">CObj::getRotate</ref>()</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" kindref="member">rotate</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="66"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" refkind="member"><highlight class="normal"><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" kindref="member">CObj::getScale</ref>()</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="79"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" refkind="member"><highlight class="normal"><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" kindref="member">CObj::getMaxBound</ref>()</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" kindref="member">maxBound</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="92"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" refkind="member"><highlight class="normal"><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" kindref="member">CObj::getMinBound</ref>()</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" kindref="member">minBound</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="105"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" refkind="member"><highlight class="normal"><ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" kindref="member">CObj::getSize</ref>()</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="118"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" kindref="member">CObj::getID</ref>()</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" kindref="member">ID</ref>;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="129"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" kindref="member">CObj::calcBound</ref>()</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>offset<sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" kindref="member">maxBound</ref>.<ref refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" kindref="member">Set</ref>(<ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>+<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref>)<sp/>/<sp/>2)<sp/>+<sp/>offset,<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>+<sp/>(<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref>)<sp/>+<sp/>offset,<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>+<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref>)<sp/>/<sp/>2)<sp/>+<sp/>offset);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" kindref="member">minBound</ref>.<ref refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" kindref="member">Set</ref>(<ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>-<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref>)<sp/>/<sp/>2)<sp/>-<sp/>offset,<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>-<sp/>(<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref>)<sp/>-<sp/>offset<sp/>,<sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>-<sp/>((<ref refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" kindref="member">size</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref><sp/>*<sp/><ref refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" kindref="member">scale</ref>.<ref refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" kindref="member">z</ref>)<sp/>/<sp/>2)<sp/>-<sp/>offset);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="144"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" kindref="member">CObj::getRender</ref>()</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" kindref="member">render</ref>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="155"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="classCObj_1a49c6900587972793886aa657315a1ce0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a49c6900587972793886aa657315a1ce0" kindref="member">CObj::setRender</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_render)</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" kindref="member">render</ref><sp/>=<sp/>_render;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="166"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" kindref="member">CObj::setRotateY</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_rotateY)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" kindref="member">rotate</ref>.<ref refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" kindref="member">y</ref><sp/>=<sp/>_rotateY;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="177"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" kindref="member">CObj::setTranslateX</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_translateX)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref>.<ref refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" kindref="member">x</ref><sp/>=<sp/>_translateX;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="188"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="classCObj_1a2273f89ec226972ceff644152eaed600" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCObj_1a2273f89ec226972ceff644152eaed600" kindref="member">CObj::setTranslate</ref>(<ref refid="structVector3" kindref="compound">Vector3</ref><sp/>_translate)</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" kindref="member">translate</ref><sp/>=<sp/>_translate;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp"/>
+  </compounddef>
+</doxygen>

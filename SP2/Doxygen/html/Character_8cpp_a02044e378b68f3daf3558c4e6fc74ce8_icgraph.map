@@ -1,0 +1,4 @@
+<map id="WalkTo" name="WalkTo">
+<area shape="rect" id="node2" href="$classSP2.html#ac15aad28840943607def336ebe1009d1" title="NPC movement. " alt="" coords="120,5,255,32"/>
+<area shape="rect" id="node3" href="$classSP2.html#a075edf39d3102610bf7f404ae3b8d38c" title="Update scene. " alt="" coords="303,5,399,32"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="SP2" name="SP2">
+<area shape="rect" id="node2" href="$classScene.html" title="Stores Scene States. " alt="" coords="743,215,802,241"/>
+<area shape="rect" id="node3" href="$structLight.html" title="Defines Enums(LIGHT_POINT, LIGHT_DIRECTIONAL, LIGHT_SPOT) Default Values (positions, color, power, kC, kL, kQ, cosCutOff, cosInner, exponent) " alt="" coords="372,129,423,156"/>
+<area shape="rect" id="node6" href="$structVector3.html" title="Defines a 3D vector and its methods. " alt="" coords="128,484,195,511"/>
+<area shape="rect" id="node7" href="$structPosition.html" title="sets Position " alt="" coords="127,208,196,235"/>
+<area shape="rect" id="node8" href="$structColor.html" title="sets color " alt="" coords="135,268,187,295"/>
+<area shape="rect" id="node15" href="$classMtx44.html" title="A 4 by 4 matrix. " alt="" coords="246,1048,305,1075"/>
+<area shape="rect" id="node23" href="$structMaterial.html" title="Sets default values kAmbient, kDiffuse, kSpecular and kShiniess and uses those values to set Material..." alt="" coords="363,1229,431,1256"/>
+<area shape="rect" id="node24" href="$structComponent.html" title="Defines default values ( r , g , b ) and sets the color of Mesh. " alt="" coords="117,1203,205,1229"/>
+<area shape="rect" id="node10" href="$classCObj.html" title="Stores Item Data. " alt="" coords="747,717,798,744"/>
+<area shape="rect" id="node13" href="$classCamera3.html" title="Defines the default values of the Camera&#39;s properties (position, target, up, view) and its various st..." alt="" coords="735,465,810,492"/>
+<area shape="rect" id="node14" href="$classCamera.html" title="Defines the default values of the Camera&#39;s properties (position, target, up, view) and its various st..." alt="" coords="364,389,431,416"/>
+<area shape="rect" id="node16" href="$classMS.html" title="Matrix Stack class. " alt="" coords="751,1028,794,1055"/>
+<area shape="rect" id="node22" href="$classMesh.html" title="To store VBO (vertex &amp; color buffer) and IBO (index buffer) " alt="" coords="745,1281,800,1308"/>
+</map>

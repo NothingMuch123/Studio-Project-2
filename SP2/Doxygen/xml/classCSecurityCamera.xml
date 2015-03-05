@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCSecurityCamera" kind="class" prot="public">
+    <compoundname>CSecurityCamera</compoundname>
+    <basecompoundref refid="classCObj" prot="public" virt="non-virtual">CObj</basecompoundref>
+    <includes refid="SecurityCamera_8h" local="no">SecurityCamera.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCSecurityCamera_1afa93bb31fd937d582b5dd5688408c28d" prot="public" static="no" mutable="no">
+        <type><ref refid="classCamera3" kindref="compound">Camera3</ref></type>
+        <definition>Camera3 CSecurityCamera::camera</definition>
+        <argsstring></argsstring>
+        <name>camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="32" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="classCSecurityCamera_1ad398e0d3152585d538ecd6f4d3992d23" compoundref="SecurityCamera_8cpp" startline="29" endline="34">CSecurityCamera</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCSecurityCamera_1a58b2842371d6ced6d2812ae1345ed7be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CSecurityCamera::CSecurityCamera</definition>
+        <argsstring>(void)</argsstring>
+        <name>CSecurityCamera</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="26" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCSecurityCamera_1a81305c2e7dd4c27de2b29fac99c74901" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>CSecurityCamera::~CSecurityCamera</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CSecurityCamera</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Destructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.cpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classCSecurityCamera_1ad398e0d3152585d538ecd6f4d3992d23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CSecurityCamera::CSecurityCamera</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, Vector3 _target)</argsstring>
+        <name>CSecurityCamera</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_target</declname>
+        </param>
+        <briefdescription>
+<para>Overloaded constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="28" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.cpp" bodystart="29" bodyend="34"/>
+        <references refid="classCSecurityCamera_1afa93bb31fd937d582b5dd5688408c28d" compoundref="SecurityCamera_8h" startline="32">camera</references>
+        <references refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" compoundref="Camera_8h" startline="26">Camera::position</references>
+        <references refid="classCamera_1a7b1215b2f9c2a71cd41e4225c7df31e8" compoundref="Camera_8h" startline="27">Camera::target</references>
+        <references refid="classCamera_1ab76ce866ca2acd6ab54447f474077245" compoundref="Camera_8h" startline="28">Camera::up</references>
+      </memberdef>
+      <memberdef kind="function" id="classCSecurityCamera_1a362c6e71bddd1d425e38a5e6dd97ac3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CSecurityCamera::getCameraPosition</definition>
+        <argsstring>()</argsstring>
+        <name>getCameraPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="29" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classCSecurityCamera_1ad3dac5606c661b70aa64818733039e36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CSecurityCamera::getCameraTarget</definition>
+        <argsstring>()</argsstring>
+        <name>getCameraTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classCSecurityCamera_1a274de18c0473b4864a6c72b422324426" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CSecurityCamera::getCameraUp</definition>
+        <argsstring>()</argsstring>
+        <name>getCameraUp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="31" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines Default Values for Security <ref refid="classCamera" kindref="compound">Camera</ref>. </para>    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classCSecurityCamera" kindref="compound">CSecurityCamera</ref>: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="417">
+        <label>CSecurityCamera</label>
+        <link refid="classCSecurityCamera"/>
+        <childnode refid="418" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="418">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="426">
+        <label>Camera</label>
+        <link refid="classCamera"/>
+        <childnode refid="421" relation="usage">
+          <edgelabel>target</edgelabel>
+          <edgelabel>view</edgelabel>
+          <edgelabel>position</edgelabel>
+          <edgelabel>up</edgelabel>
+        </childnode>
+      </node>
+      <node id="422">
+        <label>float</label>
+      </node>
+      <node id="427">
+        <label>Mtx44</label>
+        <link refid="classMtx44"/>
+        <childnode refid="422" relation="usage">
+          <edgelabel>a</edgelabel>
+        </childnode>
+      </node>
+      <node id="425">
+        <label>Camera3</label>
+        <link refid="classCamera3"/>
+        <childnode refid="426" relation="public-inheritance">
+        </childnode>
+        <childnode refid="423" relation="usage">
+          <edgelabel>current</edgelabel>
+        </childnode>
+        <childnode refid="421" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>defaultTarget</edgelabel>
+          <edgelabel>defaultPosition</edgelabel>
+          <edgelabel>defaultUp</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>defaultView</edgelabel>
+        </childnode>
+        <childnode refid="427" relation="usage">
+          <edgelabel>rotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="423">
+        <label>int</label>
+      </node>
+      <node id="419">
+        <label>CSecurityCamera</label>
+        <link refid="classCSecurityCamera"/>
+        <childnode refid="420" relation="public-inheritance">
+        </childnode>
+        <childnode refid="425" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+      </node>
+      <node id="420">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="421" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="423" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="424" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="424">
+        <label>bool</label>
+      </node>
+      <node id="421">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="422" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" line="24" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/SecurityCamera.h" bodystart="22" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" prot="public" virt="virtual"><scope>CSecurityCamera</scope><name>calcBound</name></member>
+      <member refid="classCSecurityCamera_1afa93bb31fd937d582b5dd5688408c28d" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>camera</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>CObj</name></member>
+      <member refid="classCSecurityCamera_1a58b2842371d6ced6d2812ae1345ed7be" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>CSecurityCamera</name></member>
+      <member refid="classCSecurityCamera_1ad398e0d3152585d538ecd6f4d3992d23" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>CSecurityCamera</name></member>
+      <member refid="classCSecurityCamera_1a362c6e71bddd1d425e38a5e6dd97ac3b" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getCameraPosition</name></member>
+      <member refid="classCSecurityCamera_1ad3dac5606c661b70aa64818733039e36" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getCameraTarget</name></member>
+      <member refid="classCSecurityCamera_1a274de18c0473b4864a6c72b422324426" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getCameraUp</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getID</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getMinBound</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getRender</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getRotate</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getScale</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>ID</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>scale</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>setRender</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>setRotateY</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CSecurityCamera</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CSecurityCamera</scope><name>translate</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CSecurityCamera</scope><name>~CObj</name></member>
+      <member refid="classCSecurityCamera_1a81305c2e7dd4c27de2b29fac99c74901" prot="public" virt="virtual"><scope>CSecurityCamera</scope><name>~CSecurityCamera</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

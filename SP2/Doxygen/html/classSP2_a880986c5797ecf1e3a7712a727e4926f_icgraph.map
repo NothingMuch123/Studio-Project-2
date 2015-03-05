@@ -1,0 +1,4 @@
+<map id="SP2::initShelf" name="SP2::initShelf">
+<area shape="rect" id="node2" href="$classSP2.html#a45f900f7dd8033f3e3fe40619cc76125" title="Generate supermarket related obj and texture and create them on the first and second floor..." alt="" coords="155,5,301,32"/>
+<area shape="rect" id="node3" href="$classSP2.html#a8669c489b6a968f367a4610b254ac992" title="Init everything needed for the scene. " alt="" coords="349,5,421,32"/>
+</map>

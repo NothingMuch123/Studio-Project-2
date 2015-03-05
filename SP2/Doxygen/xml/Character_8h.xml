@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="Character_8h" kind="file">
+    <compoundname>Character.h</compoundname>
+    <includes refid="Obj_8h" local="yes">Obj.h</includes>
+    <includes refid="Camera3_8h" local="yes">Camera3.h</includes>
+    <includes local="no">vector</includes>
+    <includes refid="Mesh_8h" local="yes">Mesh.h</includes>
+    <includes local="no">string.h</includes>
+    <includedby refid="Trolley_8h" local="yes">MyGraphics/Source/Trolley.h</includedby>
+    <includedby refid="CCashier_8h" local="yes">MyGraphics/Source/CCashier.h</includedby>
+    <includedby refid="CSecurityGuard_8h" local="yes">MyGraphics/Source/CSecurityGuard.h</includedby>
+    <includedby refid="CShopper_8h" local="yes">MyGraphics/Source/CShopper.h</includedby>
+    <includedby refid="CPromoter_8h" local="yes">MyGraphics/Source/CPromoter.h</includedby>
+    <includedby refid="Character_8cpp" local="yes">MyGraphics/Source/Character.cpp</includedby>
+    <incdepgraph>
+      <node id="1667">
+        <label>Obj.h</label>
+        <link refid="Obj_8h"/>
+        <childnode refid="1668" relation="include">
+        </childnode>
+      </node>
+      <node id="1670">
+        <label>cmath</label>
+      </node>
+      <node id="1675">
+        <label>Camera3.h</label>
+        <link refid="Camera3_8h"/>
+        <childnode refid="1676" relation="include">
+        </childnode>
+        <childnode refid="1677" relation="include">
+        </childnode>
+        <childnode refid="1678" relation="include">
+        </childnode>
+        <childnode refid="1667" relation="include">
+        </childnode>
+      </node>
+      <node id="1681">
+        <label>Material.h</label>
+        <link refid="Material_8h"/>
+      </node>
+      <node id="1680">
+        <label>string</label>
+      </node>
+      <node id="1671">
+        <label>exception</label>
+      </node>
+      <node id="1676">
+        <label>Camera.h</label>
+        <link refid="Camera_8h"/>
+        <childnode refid="1668" relation="include">
+        </childnode>
+      </node>
+      <node id="1682">
+        <label>string.h</label>
+      </node>
+      <node id="1672">
+        <label>ctime</label>
+      </node>
+      <node id="1678">
+        <label>vector</label>
+      </node>
+      <node id="1677">
+        <label>Mtx44.h</label>
+        <link refid="Mtx44_8h"/>
+        <childnode refid="1669" relation="include">
+        </childnode>
+        <childnode refid="1668" relation="include">
+        </childnode>
+      </node>
+      <node id="1669">
+        <label>MyMath.h</label>
+        <link refid="MyMath_8h"/>
+        <childnode refid="1670" relation="include">
+        </childnode>
+        <childnode refid="1671" relation="include">
+        </childnode>
+        <childnode refid="1672" relation="include">
+        </childnode>
+        <childnode refid="1673" relation="include">
+        </childnode>
+      </node>
+      <node id="1666">
+        <label>MyGraphics/Source/Character.h</label>
+        <link refid="Character.h"/>
+        <childnode refid="1667" relation="include">
+        </childnode>
+        <childnode refid="1675" relation="include">
+        </childnode>
+        <childnode refid="1678" relation="include">
+        </childnode>
+        <childnode refid="1679" relation="include">
+        </childnode>
+        <childnode refid="1682" relation="include">
+        </childnode>
+      </node>
+      <node id="1673">
+        <label>cstdlib</label>
+      </node>
+      <node id="1674">
+        <label>iostream</label>
+      </node>
+      <node id="1668">
+        <label>Vector3.h</label>
+        <link refid="Vector3_8h"/>
+        <childnode refid="1669" relation="include">
+        </childnode>
+        <childnode refid="1674" relation="include">
+        </childnode>
+      </node>
+      <node id="1679">
+        <label>Mesh.h</label>
+        <link refid="Mesh_8h"/>
+        <childnode refid="1669" relation="include">
+        </childnode>
+        <childnode refid="1680" relation="include">
+        </childnode>
+        <childnode refid="1681" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1693">
+        <label>MyGraphics/Source/CSecurityGuard.h</label>
+        <link refid="CSecurityGuard_8h"/>
+        <childnode refid="1685" relation="include">
+        </childnode>
+        <childnode refid="1694" relation="include">
+        </childnode>
+      </node>
+      <node id="1688">
+        <label>MyGraphics/Source/Character.cpp</label>
+        <link refid="Character_8cpp"/>
+      </node>
+      <node id="1684">
+        <label>MyGraphics/Source/Trolley.h</label>
+        <link refid="Trolley_8h"/>
+        <childnode refid="1685" relation="include">
+        </childnode>
+        <childnode refid="1690" relation="include">
+        </childnode>
+      </node>
+      <node id="1690">
+        <label>MyGraphics/Source/Trolley.cpp</label>
+        <link refid="Trolley_8cpp"/>
+      </node>
+      <node id="1685">
+        <label>MyGraphics/Source/SP2.h</label>
+        <link refid="SP2_8h"/>
+        <childnode refid="1686" relation="include">
+        </childnode>
+        <childnode refid="1687" relation="include">
+        </childnode>
+        <childnode refid="1688" relation="include">
+        </childnode>
+        <childnode refid="1689" relation="include">
+        </childnode>
+      </node>
+      <node id="1691">
+        <label>MyGraphics/Source/CCashier.h</label>
+        <link refid="CCashier_8h"/>
+        <childnode refid="1685" relation="include">
+        </childnode>
+        <childnode refid="1692" relation="include">
+        </childnode>
+      </node>
+      <node id="1689">
+        <label>MyGraphics/Source/SP2.cpp</label>
+        <link refid="SP2_8cpp"/>
+      </node>
+      <node id="1695">
+        <label>MyGraphics/Source/CShopper.h</label>
+        <link refid="CShopper_8h"/>
+        <childnode refid="1685" relation="include">
+        </childnode>
+        <childnode refid="1696" relation="include">
+        </childnode>
+      </node>
+      <node id="1698">
+        <label>MyGraphics/Source/CPromoter.cpp</label>
+        <link refid="CPromoter_8cpp"/>
+      </node>
+      <node id="1683">
+        <label>MyGraphics/Source/Character.h</label>
+        <link refid="Character.h"/>
+        <childnode refid="1684" relation="include">
+        </childnode>
+        <childnode refid="1691" relation="include">
+        </childnode>
+        <childnode refid="1693" relation="include">
+        </childnode>
+        <childnode refid="1695" relation="include">
+        </childnode>
+        <childnode refid="1697" relation="include">
+        </childnode>
+        <childnode refid="1688" relation="include">
+        </childnode>
+      </node>
+      <node id="1692">
+        <label>MyGraphics/Source/CCashier.cpp</label>
+        <link refid="CCashier_8cpp"/>
+      </node>
+      <node id="1696">
+        <label>MyGraphics/Source/CShopper.cpp</label>
+        <link refid="CShopper_8cpp"/>
+      </node>
+      <node id="1697">
+        <label>MyGraphics/Source/CPromoter.h</label>
+        <link refid="CPromoter_8h"/>
+        <childnode refid="1685" relation="include">
+        </childnode>
+        <childnode refid="1698" relation="include">
+        </childnode>
+      </node>
+      <node id="1686">
+        <label>MyGraphics/Source/Application.cpp</label>
+        <link refid="Application_8cpp"/>
+      </node>
+      <node id="1694">
+        <label>MyGraphics/Source/CSecurityGuard.cpp</label>
+        <link refid="CSecurityGuard_8cpp"/>
+      </node>
+      <node id="1687">
+        <label>MyGraphics/Source/Camera3.cpp</label>
+        <link refid="Camera3_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classCCharacter" prot="public">CCharacter</innerclass>
+    <briefdescription>
+<para>Header file for Character Class. </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Team 8 </para></simplesect>
+<simplesect kind="par"><title></title><para></para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CHARACTER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CHARACTER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Obj_8h" kindref="compound">Obj.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Camera3_8h" kindref="compound">Camera3.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Mesh_8h" kindref="compound">Mesh.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>std::string;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>std::vector;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classCCharacter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCCharacter" kindref="compound">CCharacter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classCObj" kindref="compound">CObj</ref></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="41" refid="classCCharacter_1a19ddf60382975118b81435daa5fffddb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a19ddf60382975118b81435daa5fffddb" kindref="member">IsControlled</ref>;</highlight></codeline>
+<codeline lineno="42" refid="classCCharacter_1aad3e63cc6a37439cc7659262f0321d2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1aad3e63cc6a37439cc7659262f0321d2a" kindref="member">InteractionBound</ref>;</highlight></codeline>
+<codeline lineno="43" refid="classCCharacter_1afd1bd5ef30dd1cb58a45981f57856cd2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1afd1bd5ef30dd1cb58a45981f57856cd2" kindref="member">Script</ref>;</highlight></codeline>
+<codeline lineno="44" refid="classCCharacter_1a8b585b09ca5724ab10018f86c831853c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh" kindref="compound">Mesh</ref><sp/>*<ref refid="classCCharacter_1a8b585b09ca5724ab10018f86c831853c" kindref="member">Character</ref>;</highlight></codeline>
+<codeline lineno="45" refid="classCCharacter_1ad5228f5c6d553a8eb086314bab580f99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a77736632ea900be37a5a334eeab86a62" kindref="member">Role</ref>,<ref refid="classCCharacter_1a368fd7665c12a39bcd12125e81158518" kindref="member">moveX</ref>,<ref refid="classCCharacter_1a4cf8872dae479dd14e4dc5c01149e149" kindref="member">moveZ</ref>,<ref refid="classCCharacter_1ad5228f5c6d553a8eb086314bab580f99" kindref="member">RouteID</ref>;</highlight></codeline>
+<codeline lineno="46" refid="classCCharacter_1a23e1f4286f805d0c2aba0ed90d80e8e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a23e1f4286f805d0c2aba0ed90d80e8e3" kindref="member">MoveIsMax</ref>;</highlight></codeline>
+<codeline lineno="47" refid="classCCharacter_1a20115afa11aa4e0d86ad1a30b60a78c3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a20115afa11aa4e0d86ad1a30b60a78c3" kindref="member">Movement</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" kindref="member">setMoveIsMax</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MoveIsMax);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a4b4c0093c82dea16cb9bb2714f33866d" kindref="member">getMoveIsMax</ref>();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" kindref="member">setMovement</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Movement);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a2900d40f688adebadfcb75f95fff5e24" kindref="member">getMovement</ref>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" kindref="member">UpdateMovement</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespaceMath_1af25f5d487204a1402974cb46444cfc74" kindref="member">Max</ref>);</highlight><highlight class="comment">//<sp/>the<sp/>max<sp/>angle<sp/>the<sp/>limbs<sp/>can<sp/>rotate<sp/>up<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classCCharacter_1a6be580397e8e7410eda486a1ed6fb1ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector<sp/>&lt;Vector3&gt;<sp/><ref refid="classCCharacter_1a6be580397e8e7410eda486a1ed6fb1ca" kindref="member">AiRouteLocation</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" kindref="member">CCharacter</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" kindref="member">setRole</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Role);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1aa84d3b8ff304592ad39e14836b2b4825" kindref="member">getRole</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" kindref="member">setInteractionBound</ref>(<ref refid="structVector3" kindref="compound">Vector3</ref><sp/><ref refid="structPosition" kindref="compound">Position</ref>,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Radius);</highlight><highlight class="comment">//calculate<sp/>when<sp/>user<sp/>is<sp/>in<sp/>range<sp/>to<sp/>interact<sp/>and<sp/>how<sp/>big<sp/>the<sp/>radius<sp/>of<sp/>bound<sp/>would<sp/>be</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a1b92d591b5ea09d5c4df21c92a487013" kindref="member">getInteractionBound</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a0352bb4afdc14f804c5d30b86a689a30" kindref="member">setScript</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>choice);</highlight><highlight class="comment">//IB=Interaction<sp/>Bound</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" kindref="member">getScript</ref>();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a993d515a1764e3db2c3e982035364a97" kindref="member">updateScript</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1ad3f9883a464f42c7d39f598f8a41991d" kindref="member">setmoveX</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>moveX);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a46770a42f57b14937ae9abf30e38d500" kindref="member">getmoveX</ref>();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1ac71975856654bb3bc3ecea2a70f533d5" kindref="member">setmoveZ</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>moveZ);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1af9d119a351d5dd90d23d3833d88061d8" kindref="member">getmoveZ</ref>();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a9053e02df6391f46a5bca5b4e541f87b" kindref="member">setRouteID</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>RouteID);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1adc03f408c0bcd843e6d91cee40686b1f" kindref="member">getRouteID</ref>();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classMesh" kindref="compound">Mesh</ref>*<sp/><ref refid="classCCharacter_1a47825085c9b1050d45063f9e7af82c08" kindref="member">getCharacter</ref>();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" kindref="member">WalkTo</ref>(<ref refid="structVector3" kindref="compound">Vector3</ref><sp/>TargetPosition,<sp/>std::vector&lt;CObj*&gt;<sp/>_objList);</highlight></codeline>
+<codeline lineno="71" refid="classCCharacter_1a023d235cc1ca560545c5fe6b6943c0fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCamera3" kindref="compound">Camera3</ref><sp/><ref refid="classCCharacter_1a023d235cc1ca560545c5fe6b6943c0fb" kindref="member">AICamera</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCCharacter_1a6176ffa71d744eed17566ab6d61e37bf" kindref="member">~CCharacter</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Character.h"/>
+  </compounddef>
+</doxygen>

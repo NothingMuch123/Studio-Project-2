@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCShelf" kind="class" prot="public">
+    <compoundname>CShelf</compoundname>
+    <basecompoundref refid="classCObj" prot="public" virt="non-virtual">CObj</basecompoundref>
+    <includes refid="Shelf_8h" local="no">Shelf.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCShelf_1acba31532c34693f9da24e8fcc64a4caf" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classCItem" kindref="compound">CItem</ref> * &gt;</type>
+        <definition>std::vector&lt;CItem*&gt; CShelf::itemList</definition>
+        <argsstring></argsstring>
+        <name>itemList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCShelf_1a5a0b60af515a5324c966cdf5f4829ce8" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structVector3" kindref="compound">Vector3</ref> &gt;</type>
+        <definition>std::vector&lt;Vector3&gt; CShelf::itemPosition</definition>
+        <argsstring></argsstring>
+        <name>itemPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="32" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCShelf_1ab8cb2e2f3cf4fdb3103e146369cfafae" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CShelf::limit</definition>
+        <argsstring></argsstring>
+        <name>limit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="33" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCShelf_1a1f598c30135def9a87c203a1d7920e5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CShelf::CShelf</definition>
+        <argsstring>(void)</argsstring>
+        <name>CShelf</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="28" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCShelf_1a8cb914c060938875a38afd14c328de77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CShelf::CShelf</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, int _limit)</argsstring>
+        <name>CShelf</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_limit</declname>
+        </param>
+        <briefdescription>
+<para>Overloaded constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="29" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.cpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classCShelf_1aa24ef9abb2e9fe54a0313d405f6ac30d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>CShelf::~CShelf</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CShelf</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Destructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="30" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.cpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void CShelf::calcBound</definition>
+        <argsstring>()</argsstring>
+        <name>calcBound</name>
+        <reimplements refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1">calcBound</reimplements>
+        <briefdescription>
+<para>Calculate bounds based on translate, size and scale. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="34" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.cpp" bodystart="39" bodyend="44"/>
+        <references refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" compoundref="Obj_8h" startline="40">CObj::maxBound</references>
+        <references refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" compoundref="Obj_8h" startline="40">CObj::minBound</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines Default Values for Shelf. </para>    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classCShelf" kindref="compound">CShelf</ref>: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="448">
+        <label>CShelf</label>
+        <link refid="classCShelf"/>
+        <childnode refid="449" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="449">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="456">
+        <label>vector&lt; Vector3 &gt;</label>
+      </node>
+      <node id="453">
+        <label>float</label>
+      </node>
+      <node id="454">
+        <label>int</label>
+      </node>
+      <node id="450">
+        <label>CShelf</label>
+        <link refid="classCShelf"/>
+        <childnode refid="451" relation="public-inheritance">
+        </childnode>
+        <childnode refid="456" relation="usage">
+          <edgelabel>itemPosition</edgelabel>
+        </childnode>
+        <childnode refid="454" relation="usage">
+          <edgelabel>limit</edgelabel>
+        </childnode>
+        <childnode refid="457" relation="usage">
+          <edgelabel>itemList</edgelabel>
+        </childnode>
+      </node>
+      <node id="457">
+        <label>vector&lt; CItem * &gt;</label>
+      </node>
+      <node id="451">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="452" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="454" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="455" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="455">
+        <label>bool</label>
+      </node>
+      <node id="452">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="453" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" line="26" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Shelf.h" bodystart="25" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb" prot="public" virt="virtual"><scope>CShelf</scope><name>calcBound</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CShelf</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CShelf</scope><name>CObj</name></member>
+      <member refid="classCShelf_1a1f598c30135def9a87c203a1d7920e5c" prot="public" virt="non-virtual"><scope>CShelf</scope><name>CShelf</name></member>
+      <member refid="classCShelf_1a8cb914c060938875a38afd14c328de77" prot="public" virt="non-virtual"><scope>CShelf</scope><name>CShelf</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getID</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getMinBound</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getRender</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getRotate</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getScale</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CShelf</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>ID</name></member>
+      <member refid="classCShelf_1acba31532c34693f9da24e8fcc64a4caf" prot="public" virt="non-virtual"><scope>CShelf</scope><name>itemList</name></member>
+      <member refid="classCShelf_1a5a0b60af515a5324c966cdf5f4829ce8" prot="public" virt="non-virtual"><scope>CShelf</scope><name>itemPosition</name></member>
+      <member refid="classCShelf_1ab8cb2e2f3cf4fdb3103e146369cfafae" prot="public" virt="non-virtual"><scope>CShelf</scope><name>limit</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>scale</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CShelf</scope><name>setRender</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CShelf</scope><name>setRotateY</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CShelf</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CShelf</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CShelf</scope><name>translate</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CShelf</scope><name>~CObj</name></member>
+      <member refid="classCShelf_1aa24ef9abb2e9fe54a0313d405f6ac30d" prot="public" virt="virtual"><scope>CShelf</scope><name>~CShelf</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

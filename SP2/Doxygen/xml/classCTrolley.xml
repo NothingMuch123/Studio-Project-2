@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCTrolley" kind="class" prot="public">
+    <compoundname>CTrolley</compoundname>
+    <basecompoundref refid="classCObj" prot="public" virt="non-virtual">CObj</basecompoundref>
+    <includes refid="Trolley_8h" local="no">Trolley.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" prot="public" static="no" mutable="no">
+        <type><ref refid="classCamera3" kindref="compound">Camera3</ref></type>
+        <definition>Camera3 CTrolley::camera</definition>
+        <argsstring></argsstring>
+        <name>camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="34" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" compoundref="Trolley_8cpp" startline="39" endline="46">setCamera</referencedby>
+        <referencedby refid="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" compoundref="Trolley_8cpp" startline="54" endline="61">updatePosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCTrolley_1ab1fc39b77e4d01ed6b519033f5e414d2" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classCItem" kindref="compound">CItem</ref> * &gt;</type>
+        <definition>std::vector&lt;CItem*&gt; CTrolley::itemList</definition>
+        <argsstring></argsstring>
+        <name>itemList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="35" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCTrolley_1a600fefa0abdb35b1dd981814c033ab93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CTrolley::CTrolley</definition>
+        <argsstring>(void)</argsstring>
+        <name>CTrolley</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCTrolley" kindref="compound">CTrolley</ref> default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="28" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCTrolley_1a4d77e1639dfe44793750eda15008137e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CTrolley::CTrolley</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size)</argsstring>
+        <name>CTrolley</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classCTrolley" kindref="compound">CTrolley</ref> overloaded constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="29" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.cpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classCTrolley_1a766c7dbcd36f190ca5bd4390f1d91029" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>CTrolley::~CTrolley</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CTrolley</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCTrolley" kindref="compound">CTrolley</ref> destructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="30" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.cpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CTrolley::setCamera</definition>
+        <argsstring>()</argsstring>
+        <name>setCamera</name>
+        <briefdescription>
+<para>Set camera for trolley during init stage. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.cpp" bodystart="39" bodyend="46"/>
+        <references refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" compoundref="Trolley_8h" startline="34">camera</references>
+        <references refid="structVector3_1a2da0f00c5529bced69763320dac9c414" compoundref="Vector3_8cpp" startline="337" endline="343">Vector3::Normalized</references>
+        <references refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" compoundref="Camera_8h" startline="26">Camera::position</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCamera_1a7b1215b2f9c2a71cd41e4225c7df31e8" compoundref="Camera_8h" startline="27">Camera::target</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="classCamera_1ab76ce866ca2acd6ab54447f474077245" compoundref="Camera_8h" startline="28">Camera::up</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+      </memberdef>
+      <memberdef kind="function" id="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CTrolley::updatePosition</definition>
+        <argsstring>()</argsstring>
+        <name>updatePosition</name>
+        <briefdescription>
+<para>Update trolley&apos;s position based on where the new camera position is. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="32" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.cpp" bodystart="54" bodyend="61"/>
+        <references refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" compoundref="Trolley_8h" startline="34">camera</references>
+        <references refid="classCamera_1a3b229874a00253021a1b6c61657fa5ab" compoundref="Camera_8h" startline="26">Camera::position</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCamera_1a7b1215b2f9c2a71cd41e4225c7df31e8" compoundref="Camera_8h" startline="27">Camera::target</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+        <referencedby refid="classCamera3_1ad1be9248d08c50b8ae40a11256d0d5da" compoundref="Camera3_8cpp" startline="58" endline="523">Camera3::Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void CTrolley::calcBound</definition>
+        <argsstring>()</argsstring>
+        <name>calcBound</name>
+        <reimplements refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1">calcBound</reimplements>
+        <briefdescription>
+<para>Calculate bound with translate, size and scale. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="33" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.cpp" bodystart="69" bodyend="74"/>
+        <references refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" compoundref="Obj_8h" startline="40">CObj::maxBound</references>
+        <references refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" compoundref="Obj_8h" startline="40">CObj::minBound</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines the functions for <ref refid="Trolley_8cpp" kindref="compound">Trolley.cpp</ref>. </para>    </briefdescription>
+    <detaileddescription>
+<para>Class Trolley: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="479">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+      <node id="478">
+        <label>CTrolley</label>
+        <link refid="classCTrolley"/>
+        <childnode refid="479" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="487">
+        <label>Camera</label>
+        <link refid="classCamera"/>
+        <childnode refid="482" relation="usage">
+          <edgelabel>target</edgelabel>
+          <edgelabel>view</edgelabel>
+          <edgelabel>position</edgelabel>
+          <edgelabel>up</edgelabel>
+        </childnode>
+      </node>
+      <node id="483">
+        <label>float</label>
+      </node>
+      <node id="488">
+        <label>Mtx44</label>
+        <link refid="classMtx44"/>
+        <childnode refid="483" relation="usage">
+          <edgelabel>a</edgelabel>
+        </childnode>
+      </node>
+      <node id="486">
+        <label>Camera3</label>
+        <link refid="classCamera3"/>
+        <childnode refid="487" relation="public-inheritance">
+        </childnode>
+        <childnode refid="484" relation="usage">
+          <edgelabel>current</edgelabel>
+        </childnode>
+        <childnode refid="482" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>defaultTarget</edgelabel>
+          <edgelabel>defaultPosition</edgelabel>
+          <edgelabel>defaultUp</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>defaultView</edgelabel>
+        </childnode>
+        <childnode refid="488" relation="usage">
+          <edgelabel>rotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="484">
+        <label>int</label>
+      </node>
+      <node id="489">
+        <label>vector&lt; CItem * &gt;</label>
+      </node>
+      <node id="481">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="482" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="484" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="485" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="480">
+        <label>CTrolley</label>
+        <link refid="classCTrolley"/>
+        <childnode refid="481" relation="public-inheritance">
+        </childnode>
+        <childnode refid="486" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="489" relation="usage">
+          <edgelabel>itemList</edgelabel>
+        </childnode>
+      </node>
+      <node id="485">
+        <label>bool</label>
+      </node>
+      <node id="482">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="483" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" line="26" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Trolley.h" bodystart="25" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" prot="public" virt="virtual"><scope>CTrolley</scope><name>calcBound</name></member>
+      <member refid="classCTrolley_1a1e60001c50a17e0c87fc7c170c2cb8ee" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>camera</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>CObj</name></member>
+      <member refid="classCTrolley_1a600fefa0abdb35b1dd981814c033ab93" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>CTrolley</name></member>
+      <member refid="classCTrolley_1a4d77e1639dfe44793750eda15008137e" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>CTrolley</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getID</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getMinBound</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getRender</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getRotate</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getScale</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>ID</name></member>
+      <member refid="classCTrolley_1ab1fc39b77e4d01ed6b519033f5e414d2" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>itemList</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>scale</name></member>
+      <member refid="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>setCamera</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>setRender</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>setRotateY</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CTrolley</scope><name>translate</name></member>
+      <member refid="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" prot="public" virt="non-virtual"><scope>CTrolley</scope><name>updatePosition</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CTrolley</scope><name>~CObj</name></member>
+      <member refid="classCTrolley_1a766c7dbcd36f190ca5bd4390f1d91029" prot="public" virt="virtual"><scope>CTrolley</scope><name>~CTrolley</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

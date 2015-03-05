@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="LoadTGA_8h" kind="file">
+    <compoundname>LoadTGA.h</compoundname>
+    <includedby refid="LoadTGA_8cpp" local="yes">MyGraphics/Source/LoadTGA.cpp</includedby>
+    <includedby refid="SP2_8cpp" local="yes">MyGraphics/Source/SP2.cpp</includedby>
+    <invincdepgraph>
+      <node id="1920">
+        <label>MyGraphics/Source/SP2.cpp</label>
+        <link refid="SP2_8cpp"/>
+      </node>
+      <node id="1919">
+        <label>MyGraphics/Source/LoadTGA.cpp</label>
+        <link refid="LoadTGA_8cpp"/>
+      </node>
+      <node id="1918">
+        <label>MyGraphics/Source/LoadTGA.h</label>
+        <link refid="LoadTGA.h"/>
+        <childnode refid="1919" relation="include">
+        </childnode>
+        <childnode refid="1920" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="LoadTGA_8h_1a459a80ca6de67a1e3493bfb66ae317e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLuint</type>
+        <definition>GLuint LoadTGA</definition>
+        <argsstring>(const char *file_path)</argsstring>
+        <name>LoadTGA</name>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/LoadTGA.h" line="13" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/LoadTGA.cpp" bodystart="8" bodyend="65"/>
+        <referencedby refid="classSP2_1a8669c489b6a968f367a4610b254ac992" compoundref="SP2_8cpp" startline="44" endline="130">SP2::Init</referencedby>
+        <referencedby refid="classSP2_1a063dbabf8ae6064a35aa583f120cfb77" compoundref="SP2_8cpp" startline="494" endline="523">SP2::initCabinet</referencedby>
+        <referencedby refid="classSP2_1a525f39654448315484eff0ccac19d67d" compoundref="SP2_8cpp" startline="173" endline="230">SP2::initCamera</referencedby>
+        <referencedby refid="classSP2_1a55323a792d3f8fa6f7bbde473e4a6f56" compoundref="SP2_8cpp" startline="463" endline="486">SP2::initCar</referencedby>
+        <referencedby refid="classSP2_1ae1c61e3cd0a5edbd30d8981646ee75e6" compoundref="SP2_8cpp" startline="1200" endline="1239">SP2::initGame</referencedby>
+        <referencedby refid="classSP2_1a2ed8ac060a941450531a26cab1910874" compoundref="SP2_8cpp" startline="159" endline="165">SP2::initHands</referencedby>
+        <referencedby refid="classSP2_1a7539be0f68626b236ff31f7d45607cb2" compoundref="SP2_8cpp" startline="852" endline="933">SP2::initHuman</referencedby>
+        <referencedby refid="classSP2_1a3d30faae9bbea42123473889d74639c3" compoundref="SP2_8cpp" startline="393" endline="455">SP2::initItems</referencedby>
+        <referencedby refid="classSP2_1af3ecc3ac74d1ce4c5263dabff4772029" compoundref="SP2_8cpp" startline="138" endline="151">SP2::initMap</referencedby>
+        <referencedby refid="classSP2_1ac49274ba640cd39ea836e22e548cc1db" compoundref="SP2_8cpp" startline="1168" endline="1192">SP2::initOuterSkybox</referencedby>
+        <referencedby refid="classSP2_1a845086c5ec12c7f6f84f700a39120ddd" compoundref="SP2_8cpp" startline="941" endline="976">SP2::initPatch</referencedby>
+        <referencedby refid="classSP2_1a13def9dd43eab5fb9410369d3f7c3082" compoundref="SP2_8cpp" startline="531" endline="576">SP2::initSpecialItems</referencedby>
+        <referencedby refid="classSP2_1a45f900f7dd8033f3e3fe40619cc76125" compoundref="SP2_8cpp" startline="584" endline="834">SP2::initSuperMarket</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Header file for LoadTGA Class. </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Team 8 </para></simplesect>
+<simplesect kind="par"><title></title><para></para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/******************************************************************************/</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>LOAD_TGA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOAD_TGA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">GLuint<sp/><ref refid="LoadTGA_8h_1a459a80ca6de67a1e3493bfb66ae317e4" kindref="member">LoadTGA</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*file_path);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/LoadTGA.h"/>
+  </compounddef>
+</doxygen>

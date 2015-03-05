@@ -1,0 +1,5 @@
+<map id="CSecurityGuard::CSecurityGuard" name="CSecurityGuard::CSecurityGuard">
+<area shape="rect" id="node2" href="$classCCharacter.html#a24612446b31a1ffbca5263839d1afe3f" title="creates interaction bounds for NPC using NPC position and radius " alt="" coords="232,5,405,47"/>
+<area shape="rect" id="node4" href="$classCCharacter.html#ac1cd493a2eb5ac7a1d798f9f5ce2d36d" title="Set role of the NPC. " alt="" coords="249,71,388,98"/>
+<area shape="rect" id="node3" href="$classCObj.html#aabc1461905ca5f5879b81cc536a62b0f" title="return translate values " alt="" coords="453,13,584,39"/>
+</map>

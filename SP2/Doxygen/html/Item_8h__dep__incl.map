@@ -1,0 +1,12 @@
+<map id="MyGraphics/Source/Item.h" name="MyGraphics/Source/Item.h">
+<area shape="rect" id="node2" href="$SP2_8h.html" title="Header file for SP2 scene class. " alt="" coords="404,155,581,181"/>
+<area shape="rect" id="node7" href="$Shelf_8h.html" title="Header file for Shelf Class. " alt="" coords="274,80,455,107"/>
+<area shape="rect" id="node9" href="$Trolley_8h.html" title="Header file for Trolley. " alt="" coords="531,80,721,107"/>
+<area shape="rect" id="node11" href="$Item_8cpp.html" title="MyGraphics/Source/Item.cpp" alt="" coords="745,80,936,107"/>
+<area shape="rect" id="node3" href="$Application_8cpp.html" title="MyGraphics/Source/Application.cpp" alt="" coords="5,229,236,256"/>
+<area shape="rect" id="node4" href="$Camera3_8cpp.html" title="MyGraphics/Source/Camera3.cpp" alt="" coords="261,229,479,256"/>
+<area shape="rect" id="node5" href="$Character_8cpp.html" title="MyGraphics/Source/Character.cpp" alt="" coords="504,229,727,256"/>
+<area shape="rect" id="node6" href="$SP2_8cpp.html" title="MyGraphics/Source/SP2.cpp" alt="" coords="751,229,941,256"/>
+<area shape="rect" id="node8" href="$Shelf_8cpp.html" title="MyGraphics/Source/Shelf.cpp" alt="" coords="185,155,379,181"/>
+<area shape="rect" id="node10" href="$Trolley_8cpp.html" title="MyGraphics/Source/Trolley.cpp" alt="" coords="605,155,809,181"/>
+</map>

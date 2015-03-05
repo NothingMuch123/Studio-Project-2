@@ -1,0 +1,4 @@
+<map id="CCharacter::CCharacter" name="CCharacter::CCharacter">
+<area shape="rect" id="node2" href="$classCCharacter.html#a358ed142a91cc5a8b4b331e8a0e61c20" title="setting if legs can continue to move /param MoveIsMax &#45; check if can continue to move ..." alt="" coords="213,5,392,32"/>
+<area shape="rect" id="node3" href="$classCCharacter.html#afd11e90227bf8b87ea9400512a4be88e" title="set movement of NPC movement leg " alt="" coords="217,56,389,83"/>
+</map>

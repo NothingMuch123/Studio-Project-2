@@ -1,0 +1,681 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCObj" kind="class" prot="public">
+    <compoundname>CObj</compoundname>
+    <derivedcompoundref refid="classCCar" prot="public" virt="non-virtual">CCar</derivedcompoundref>
+    <derivedcompoundref refid="classCCharacter" prot="public" virt="non-virtual">CCharacter</derivedcompoundref>
+    <derivedcompoundref refid="classCItem" prot="public" virt="non-virtual">CItem</derivedcompoundref>
+    <derivedcompoundref refid="classCSecurityCamera" prot="public" virt="non-virtual">CSecurityCamera</derivedcompoundref>
+    <derivedcompoundref refid="classCShelf" prot="public" virt="non-virtual">CShelf</derivedcompoundref>
+    <derivedcompoundref refid="classCTrolley" prot="public" virt="non-virtual">CTrolley</derivedcompoundref>
+    <includes refid="Obj_8h" local="no">Obj.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CObj::ID</definition>
+        <argsstring></argsstring>
+        <name>ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="38" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classCCashier_1a084746e56b7d02893fb29f6793403a07" compoundref="CCashier_8cpp" startline="18" endline="27">CCashier::CCashier</referencedby>
+        <referencedby refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" compoundref="CPromoter_8cpp" startline="32" endline="41">CPromoter::CPromoter</referencedby>
+        <referencedby refid="classCSecurityGuard_1a10fd5ed13acde874db6cca76487a7fe6" compoundref="CSecurityGuard_8cpp" startline="33" endline="42">CSecurityGuard::CSecurityGuard</referencedby>
+        <referencedby refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" compoundref="CShopper_8cpp" startline="33" endline="42">CShopper::CShopper</referencedby>
+        <referencedby refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" compoundref="Obj_8cpp" startline="119" endline="122">getID</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" static="no" mutable="no">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::translate</definition>
+        <argsstring></argsstring>
+        <name>translate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="39" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classCCar_1a47969e0981edc4b6e705e601d55748f0" compoundref="Car_8cpp" startline="49" endline="54">CCar::calcBound</referencedby>
+        <referencedby refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" compoundref="Trolley_8cpp" startline="69" endline="74">CTrolley::calcBound</referencedby>
+        <referencedby refid="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb" compoundref="Shelf_8cpp" startline="39" endline="44">CShelf::calcBound</referencedby>
+        <referencedby refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" compoundref="Obj_8cpp" startline="130" endline="135">calcBound</referencedby>
+        <referencedby refid="classCItem_1a517b7148c5d2371a83d17496c085989f" compoundref="Item_8cpp" startline="59" endline="64">CItem::calcBound</referencedby>
+        <referencedby refid="classCCashier_1a084746e56b7d02893fb29f6793403a07" compoundref="CCashier_8cpp" startline="18" endline="27">CCashier::CCashier</referencedby>
+        <referencedby refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" compoundref="CPromoter_8cpp" startline="32" endline="41">CPromoter::CPromoter</referencedby>
+        <referencedby refid="classCSecurityGuard_1a10fd5ed13acde874db6cca76487a7fe6" compoundref="CSecurityGuard_8cpp" startline="33" endline="42">CSecurityGuard::CSecurityGuard</referencedby>
+        <referencedby refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" compoundref="CShopper_8cpp" startline="33" endline="42">CShopper::CShopper</referencedby>
+        <referencedby refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" compoundref="Obj_8cpp" startline="41" endline="44">getTranslate</referencedby>
+        <referencedby refid="classCCar_1a230a3663dc1f7d9e31d4ff2a2e8a2309" compoundref="Car_8cpp" startline="62" endline="69">CCar::setCamera</referencedby>
+        <referencedby refid="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" compoundref="Trolley_8cpp" startline="39" endline="46">CTrolley::setCamera</referencedby>
+        <referencedby refid="classCObj_1a2273f89ec226972ceff644152eaed600" compoundref="Obj_8cpp" startline="189" endline="192">setTranslate</referencedby>
+        <referencedby refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" compoundref="Obj_8cpp" startline="178" endline="181">setTranslateX</referencedby>
+        <referencedby refid="classCCar_1a3f17013b5293c3bca252fd1c3e57443b" compoundref="Car_8cpp" startline="77" endline="81">CCar::updatePosition</referencedby>
+        <referencedby refid="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" compoundref="Trolley_8cpp" startline="54" endline="61">CTrolley::updatePosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" static="no" mutable="no">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::rotate</definition>
+        <argsstring></argsstring>
+        <name>rotate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="39" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classCCashier_1a084746e56b7d02893fb29f6793403a07" compoundref="CCashier_8cpp" startline="18" endline="27">CCashier::CCashier</referencedby>
+        <referencedby refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" compoundref="CPromoter_8cpp" startline="32" endline="41">CPromoter::CPromoter</referencedby>
+        <referencedby refid="classCSecurityGuard_1a10fd5ed13acde874db6cca76487a7fe6" compoundref="CSecurityGuard_8cpp" startline="33" endline="42">CSecurityGuard::CSecurityGuard</referencedby>
+        <referencedby refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" compoundref="CShopper_8cpp" startline="33" endline="42">CShopper::CShopper</referencedby>
+        <referencedby refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" compoundref="Obj_8cpp" startline="54" endline="57">getRotate</referencedby>
+        <referencedby refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" compoundref="Obj_8cpp" startline="167" endline="170">setRotateY</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" static="no" mutable="no">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::scale</definition>
+        <argsstring></argsstring>
+        <name>scale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="39" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classCCar_1a47969e0981edc4b6e705e601d55748f0" compoundref="Car_8cpp" startline="49" endline="54">CCar::calcBound</referencedby>
+        <referencedby refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" compoundref="Trolley_8cpp" startline="69" endline="74">CTrolley::calcBound</referencedby>
+        <referencedby refid="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb" compoundref="Shelf_8cpp" startline="39" endline="44">CShelf::calcBound</referencedby>
+        <referencedby refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" compoundref="Obj_8cpp" startline="130" endline="135">calcBound</referencedby>
+        <referencedby refid="classCItem_1a517b7148c5d2371a83d17496c085989f" compoundref="Item_8cpp" startline="59" endline="64">CItem::calcBound</referencedby>
+        <referencedby refid="classCCashier_1a084746e56b7d02893fb29f6793403a07" compoundref="CCashier_8cpp" startline="18" endline="27">CCashier::CCashier</referencedby>
+        <referencedby refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" compoundref="CPromoter_8cpp" startline="32" endline="41">CPromoter::CPromoter</referencedby>
+        <referencedby refid="classCSecurityGuard_1a10fd5ed13acde874db6cca76487a7fe6" compoundref="CSecurityGuard_8cpp" startline="33" endline="42">CSecurityGuard::CSecurityGuard</referencedby>
+        <referencedby refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" compoundref="CShopper_8cpp" startline="33" endline="42">CShopper::CShopper</referencedby>
+        <referencedby refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" compoundref="Obj_8cpp" startline="67" endline="70">getScale</referencedby>
+        <referencedby refid="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" compoundref="Trolley_8cpp" startline="39" endline="46">CTrolley::setCamera</referencedby>
+        <referencedby refid="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" compoundref="Trolley_8cpp" startline="54" endline="61">CTrolley::updatePosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" static="no" mutable="no">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::maxBound</definition>
+        <argsstring></argsstring>
+        <name>maxBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="40" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classCCar_1a47969e0981edc4b6e705e601d55748f0" compoundref="Car_8cpp" startline="49" endline="54">CCar::calcBound</referencedby>
+        <referencedby refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" compoundref="Trolley_8cpp" startline="69" endline="74">CTrolley::calcBound</referencedby>
+        <referencedby refid="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb" compoundref="Shelf_8cpp" startline="39" endline="44">CShelf::calcBound</referencedby>
+        <referencedby refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" compoundref="Obj_8cpp" startline="130" endline="135">calcBound</referencedby>
+        <referencedby refid="classCItem_1a517b7148c5d2371a83d17496c085989f" compoundref="Item_8cpp" startline="59" endline="64">CItem::calcBound</referencedby>
+        <referencedby refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" compoundref="Obj_8cpp" startline="80" endline="83">getMaxBound</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" static="no" mutable="no">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::minBound</definition>
+        <argsstring></argsstring>
+        <name>minBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="40" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classCCar_1a47969e0981edc4b6e705e601d55748f0" compoundref="Car_8cpp" startline="49" endline="54">CCar::calcBound</referencedby>
+        <referencedby refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" compoundref="Trolley_8cpp" startline="69" endline="74">CTrolley::calcBound</referencedby>
+        <referencedby refid="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb" compoundref="Shelf_8cpp" startline="39" endline="44">CShelf::calcBound</referencedby>
+        <referencedby refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" compoundref="Obj_8cpp" startline="130" endline="135">calcBound</referencedby>
+        <referencedby refid="classCItem_1a517b7148c5d2371a83d17496c085989f" compoundref="Item_8cpp" startline="59" endline="64">CItem::calcBound</referencedby>
+        <referencedby refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" compoundref="Obj_8cpp" startline="93" endline="96">getMinBound</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" static="no" mutable="no">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="41" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="41" bodyend="-1"/>
+        <referencedby refid="classCCar_1a47969e0981edc4b6e705e601d55748f0" compoundref="Car_8cpp" startline="49" endline="54">CCar::calcBound</referencedby>
+        <referencedby refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19" compoundref="Trolley_8cpp" startline="69" endline="74">CTrolley::calcBound</referencedby>
+        <referencedby refid="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb" compoundref="Shelf_8cpp" startline="39" endline="44">CShelf::calcBound</referencedby>
+        <referencedby refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" compoundref="Obj_8cpp" startline="130" endline="135">calcBound</referencedby>
+        <referencedby refid="classCItem_1a517b7148c5d2371a83d17496c085989f" compoundref="Item_8cpp" startline="59" endline="64">CItem::calcBound</referencedby>
+        <referencedby refid="classCCashier_1a084746e56b7d02893fb29f6793403a07" compoundref="CCashier_8cpp" startline="18" endline="27">CCashier::CCashier</referencedby>
+        <referencedby refid="classCPromoter_1af1b97818ccca9ae1a8b3af7545635552" compoundref="CPromoter_8cpp" startline="32" endline="41">CPromoter::CPromoter</referencedby>
+        <referencedby refid="classCSecurityGuard_1a10fd5ed13acde874db6cca76487a7fe6" compoundref="CSecurityGuard_8cpp" startline="33" endline="42">CSecurityGuard::CSecurityGuard</referencedby>
+        <referencedby refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" compoundref="CShopper_8cpp" startline="33" endline="42">CShopper::CShopper</referencedby>
+        <referencedby refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" compoundref="Obj_8cpp" startline="106" endline="109">getSize</referencedby>
+        <referencedby refid="classCTrolley_1af642fe4e1bd5a69cd2362d3cc29008dd" compoundref="Trolley_8cpp" startline="39" endline="46">CTrolley::setCamera</referencedby>
+        <referencedby refid="classSP2_1ac15aad28840943607def336ebe1009d1" compoundref="SP2_8cpp" startline="2029" endline="2112">SP2::updateHuman</referencedby>
+        <referencedby refid="classCTrolley_1a7805f67ab7781017e98e4171ae747a43" compoundref="Trolley_8cpp" startline="54" endline="61">CTrolley::updatePosition</referencedby>
+        <referencedby refid="classSP2_1aa04c669fdd2436c94f202a0ac02d79d8" compoundref="SP2_8cpp" startline="1808" endline="1839">SP2::updateShelf</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CObj::render</definition>
+        <argsstring></argsstring>
+        <name>render</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="42" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" compoundref="Obj_8cpp" startline="145" endline="148">getRender</referencedby>
+        <referencedby refid="classCObj_1a49c6900587972793886aa657315a1ce0" compoundref="Obj_8cpp" startline="156" endline="159">setRender</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CObj::CObj</definition>
+        <argsstring>(void)</argsstring>
+        <name>CObj</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="25" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CObj::CObj</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size)</argsstring>
+        <name>CObj</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <briefdescription>
+<para>Overloaded constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="26" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::getTranslate</definition>
+        <argsstring>()</argsstring>
+        <name>getTranslate</name>
+        <briefdescription>
+<para>return translate values </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>translate values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="41" bodyend="44"/>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">translate</references>
+        <referencedby refid="classSP2_1a525f39654448315484eff0ccac19d67d" compoundref="SP2_8cpp" startline="173" endline="230">SP2::initCamera</referencedby>
+        <referencedby refid="classSP2_1a845086c5ec12c7f6f84f700a39120ddd" compoundref="SP2_8cpp" startline="941" endline="976">SP2::initPatch</referencedby>
+        <referencedby refid="classSP2_1a880986c5797ecf1e3a7712a727e4926f" compoundref="SP2_8cpp" startline="244" endline="385">SP2::initShelf</referencedby>
+        <referencedby refid="classSP2_1a90159ea511cadcc99364c6f75d108a71" compoundref="SP2_8cpp" startline="2120" endline="2369">SP2::Render</referencedby>
+        <referencedby refid="classSP2_1a238e22d024155bd4189af3d45422196c" compoundref="SP2_8cpp" startline="2453" endline="2479">SP2::renderCabinet</referencedby>
+        <referencedby refid="classSP2_1a6179d25019c59e2dfe3636165d422ab9" compoundref="SP2_8cpp" startline="2636" endline="2659">SP2::renderCar</referencedby>
+        <referencedby refid="classSP2_1a42f96f71d087ff72e859863bf14a6388" compoundref="SP2_8cpp" startline="2960" endline="3174">SP2::renderHuman</referencedby>
+        <referencedby refid="classSP2_1a3488eb081d0bbfb10073fc1219e100dd" compoundref="SP2_8cpp" startline="2840" endline="2891">SP2::renderNonMovingSecurityGuard</referencedby>
+        <referencedby refid="classSP2_1a23d935210fa416b1baae868a60052339" compoundref="SP2_8cpp" startline="2899" endline="2952">SP2::renderNonMovingShopper</referencedby>
+        <referencedby refid="classSP2_1abf9d3833011ba1b5cf8cc1f5956dd658" compoundref="SP2_8cpp" startline="2551" endline="2584">SP2::renderShelf</referencedby>
+        <referencedby refid="classSP2_1a3b5d36a07d80b96c4d10821bc2be230f" compoundref="SP2_8cpp" startline="2487" endline="2543">SP2::renderSpecialItems</referencedby>
+        <referencedby refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" compoundref="Character_8cpp" startline="124" endline="134">CCharacter::setInteractionBound</referencedby>
+        <referencedby refid="classSP2_1a25319ffa1054b06ea5573dde21bf46c6" compoundref="SP2_8cpp" startline="1849" endline="1979">SP2::updateSuperMarket</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::getRotate</definition>
+        <argsstring>()</argsstring>
+        <name>getRotate</name>
+        <briefdescription>
+<para>return rotate values </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>rotate values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="54" bodyend="57"/>
+        <references refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" compoundref="Obj_8h" startline="39">rotate</references>
+        <referencedby refid="classSP2_1a90159ea511cadcc99364c6f75d108a71" compoundref="SP2_8cpp" startline="2120" endline="2369">SP2::Render</referencedby>
+        <referencedby refid="classSP2_1a6179d25019c59e2dfe3636165d422ab9" compoundref="SP2_8cpp" startline="2636" endline="2659">SP2::renderCar</referencedby>
+        <referencedby refid="classSP2_1a42f96f71d087ff72e859863bf14a6388" compoundref="SP2_8cpp" startline="2960" endline="3174">SP2::renderHuman</referencedby>
+        <referencedby refid="classSP2_1a3488eb081d0bbfb10073fc1219e100dd" compoundref="SP2_8cpp" startline="2840" endline="2891">SP2::renderNonMovingSecurityGuard</referencedby>
+        <referencedby refid="classSP2_1a23d935210fa416b1baae868a60052339" compoundref="SP2_8cpp" startline="2899" endline="2952">SP2::renderNonMovingShopper</referencedby>
+        <referencedby refid="classSP2_1abf9d3833011ba1b5cf8cc1f5956dd658" compoundref="SP2_8cpp" startline="2551" endline="2584">SP2::renderShelf</referencedby>
+        <referencedby refid="classSP2_1a265be5921305015c6390757aa4bba8ee" compoundref="SP2_8cpp" startline="1989" endline="2019">SP2::updateCar</referencedby>
+        <referencedby refid="classSP2_1a5969f5827de1d8ae56f9c2099ef1aca3" compoundref="SP2_8cpp" startline="1732" endline="1762">SP2::updateTrolley</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::getScale</definition>
+        <argsstring>()</argsstring>
+        <name>getScale</name>
+        <briefdescription>
+<para>return scale values </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>scale values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="67" bodyend="70"/>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">scale</references>
+        <referencedby refid="classSP2_1a90159ea511cadcc99364c6f75d108a71" compoundref="SP2_8cpp" startline="2120" endline="2369">SP2::Render</referencedby>
+        <referencedby refid="classSP2_1a238e22d024155bd4189af3d45422196c" compoundref="SP2_8cpp" startline="2453" endline="2479">SP2::renderCabinet</referencedby>
+        <referencedby refid="classSP2_1a6179d25019c59e2dfe3636165d422ab9" compoundref="SP2_8cpp" startline="2636" endline="2659">SP2::renderCar</referencedby>
+        <referencedby refid="classSP2_1a42f96f71d087ff72e859863bf14a6388" compoundref="SP2_8cpp" startline="2960" endline="3174">SP2::renderHuman</referencedby>
+        <referencedby refid="classSP2_1a3488eb081d0bbfb10073fc1219e100dd" compoundref="SP2_8cpp" startline="2840" endline="2891">SP2::renderNonMovingSecurityGuard</referencedby>
+        <referencedby refid="classSP2_1a23d935210fa416b1baae868a60052339" compoundref="SP2_8cpp" startline="2899" endline="2952">SP2::renderNonMovingShopper</referencedby>
+        <referencedby refid="classSP2_1abf9d3833011ba1b5cf8cc1f5956dd658" compoundref="SP2_8cpp" startline="2551" endline="2584">SP2::renderShelf</referencedby>
+        <referencedby refid="classSP2_1a3b5d36a07d80b96c4d10821bc2be230f" compoundref="SP2_8cpp" startline="2487" endline="2543">SP2::renderSpecialItems</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::getMaxBound</definition>
+        <argsstring>()</argsstring>
+        <name>getMaxBound</name>
+        <briefdescription>
+<para>return maxBound values </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>maxBound values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="80" bodyend="83"/>
+        <references refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" compoundref="Obj_8h" startline="40">maxBound</references>
+        <referencedby refid="classCamera3_1a01319d0912d69baa1adcc6fad892d0de" compoundref="Camera3_8cpp" startline="559" endline="614">Camera3::boundCheck</referencedby>
+        <referencedby refid="classCamera3_1ad1be9248d08c50b8ae40a11256d0d5da" compoundref="Camera3_8cpp" startline="58" endline="523">Camera3::Update</referencedby>
+        <referencedby refid="classSP2_1a075edf39d3102610bf7f404ae3b8d38c" compoundref="SP2_8cpp" startline="1249" endline="1491">SP2::Update</referencedby>
+        <referencedby refid="classSP2_1a75428836bed53345eb3b76178ace9857" compoundref="SP2_8cpp" startline="1708" endline="1722">SP2::updateBoundCheckGame3</referencedby>
+        <referencedby refid="classSP2_1a5969f5827de1d8ae56f9c2099ef1aca3" compoundref="SP2_8cpp" startline="1732" endline="1762">SP2::updateTrolley</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::getMinBound</definition>
+        <argsstring>()</argsstring>
+        <name>getMinBound</name>
+        <briefdescription>
+<para>return minBound values </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>minBound values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="93" bodyend="96"/>
+        <references refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" compoundref="Obj_8h" startline="40">minBound</references>
+        <referencedby refid="classCamera3_1a01319d0912d69baa1adcc6fad892d0de" compoundref="Camera3_8cpp" startline="559" endline="614">Camera3::boundCheck</referencedby>
+        <referencedby refid="classCamera3_1ad1be9248d08c50b8ae40a11256d0d5da" compoundref="Camera3_8cpp" startline="58" endline="523">Camera3::Update</referencedby>
+        <referencedby refid="classSP2_1a075edf39d3102610bf7f404ae3b8d38c" compoundref="SP2_8cpp" startline="1249" endline="1491">SP2::Update</referencedby>
+        <referencedby refid="classSP2_1a75428836bed53345eb3b76178ace9857" compoundref="SP2_8cpp" startline="1708" endline="1722">SP2::updateBoundCheckGame3</referencedby>
+        <referencedby refid="classSP2_1a5969f5827de1d8ae56f9c2099ef1aca3" compoundref="SP2_8cpp" startline="1732" endline="1762">SP2::updateTrolley</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+        <definition>Vector3 CObj::getSize</definition>
+        <argsstring>()</argsstring>
+        <name>getSize</name>
+        <briefdescription>
+<para>return size values </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>size values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="27" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="106" bodyend="109"/>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">size</references>
+        <referencedby refid="classSP2_1a90159ea511cadcc99364c6f75d108a71" compoundref="SP2_8cpp" startline="2120" endline="2369">SP2::Render</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int CObj::getID</definition>
+        <argsstring>()</argsstring>
+        <name>getID</name>
+        <briefdescription>
+<para>return ID </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ID similar to <ref refid="classSP2_1ad60364d83f44504a7e99b5c28db91f0c" kindref="member">SP2::GEOMETRY_TYPE</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="28" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="119" bodyend="122"/>
+        <references refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" compoundref="Obj_8h" startline="38">ID</references>
+        <referencedby refid="classCamera3_1a01319d0912d69baa1adcc6fad892d0de" compoundref="Camera3_8cpp" startline="559" endline="614">Camera3::boundCheck</referencedby>
+        <referencedby refid="classSP2_1a90159ea511cadcc99364c6f75d108a71" compoundref="SP2_8cpp" startline="2120" endline="2369">SP2::Render</referencedby>
+        <referencedby refid="classCamera3_1ad1be9248d08c50b8ae40a11256d0d5da" compoundref="Camera3_8cpp" startline="58" endline="523">Camera3::Update</referencedby>
+        <referencedby refid="classSP2_1a075edf39d3102610bf7f404ae3b8d38c" compoundref="SP2_8cpp" startline="1249" endline="1491">SP2::Update</referencedby>
+        <referencedby refid="classSP2_1a041380e35d3d9b6dda0cb4372d23c25b" compoundref="SP2_8cpp" startline="1560" endline="1700">SP2::updateGame</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CObj::getRender</definition>
+        <argsstring>()</argsstring>
+        <name>getRender</name>
+        <briefdescription>
+<para>return render state </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>render state </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="29" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="145" bodyend="148"/>
+        <references refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" compoundref="Obj_8h" startline="42">render</references>
+        <referencedby refid="classCamera3_1a01319d0912d69baa1adcc6fad892d0de" compoundref="Camera3_8cpp" startline="559" endline="614">Camera3::boundCheck</referencedby>
+        <referencedby refid="classSP2_1a90159ea511cadcc99364c6f75d108a71" compoundref="SP2_8cpp" startline="2120" endline="2369">SP2::Render</referencedby>
+        <referencedby refid="classSP2_1a075edf39d3102610bf7f404ae3b8d38c" compoundref="SP2_8cpp" startline="1249" endline="1491">SP2::Update</referencedby>
+        <referencedby refid="classSP2_1a75428836bed53345eb3b76178ace9857" compoundref="SP2_8cpp" startline="1708" endline="1722">SP2::updateBoundCheckGame3</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CObj::setRender</definition>
+        <argsstring>(bool _render)</argsstring>
+        <name>setRender</name>
+        <param>
+          <type>bool</type>
+          <declname>_render</declname>
+        </param>
+        <briefdescription>
+<para>set render state </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="30" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="156" bodyend="159"/>
+        <references refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" compoundref="Obj_8h" startline="42">render</references>
+        <referencedby refid="classSP2_1a075edf39d3102610bf7f404ae3b8d38c" compoundref="SP2_8cpp" startline="1249" endline="1491">SP2::Update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CObj::setRotateY</definition>
+        <argsstring>(float _rotateY)</argsstring>
+        <name>setRotateY</name>
+        <param>
+          <type>float</type>
+          <declname>_rotateY</declname>
+        </param>
+        <briefdescription>
+<para>set rotation on y axis </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="167" bodyend="170"/>
+        <references refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" compoundref="Obj_8h" startline="39">rotate</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <referencedby refid="classCamera3_1ad1be9248d08c50b8ae40a11256d0d5da" compoundref="Camera3_8cpp" startline="58" endline="523">Camera3::Update</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CObj::setTranslateX</definition>
+        <argsstring>(float _translateX)</argsstring>
+        <name>setTranslateX</name>
+        <param>
+          <type>float</type>
+          <declname>_translateX</declname>
+        </param>
+        <briefdescription>
+<para>set rotation on x axis </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="32" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="178" bodyend="181"/>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">translate</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <referencedby refid="classSP2_1a25319ffa1054b06ea5573dde21bf46c6" compoundref="SP2_8cpp" startline="1849" endline="1979">SP2::updateSuperMarket</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CObj::setTranslate</definition>
+        <argsstring>(Vector3 _translate)</argsstring>
+        <name>setTranslate</name>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <briefdescription>
+<para>set translation </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="33" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="189" bodyend="192"/>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">translate</references>
+        <referencedby refid="classSP2_1aa04c669fdd2436c94f202a0ac02d79d8" compoundref="SP2_8cpp" startline="1808" endline="1839">SP2::updateShelf</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void CObj::calcBound</definition>
+        <argsstring>()</argsstring>
+        <name>calcBound</name>
+        <reimplementedby refid="classCCar_1a47969e0981edc4b6e705e601d55748f0">calcBound</reimplementedby>
+        <reimplementedby refid="classCTrolley_1a1e308de84eed284d189ce9be3d2cfb19">calcBound</reimplementedby>
+        <reimplementedby refid="classCShelf_1a142e0871e30aed6e395015e7b78d7dfb">calcBound</reimplementedby>
+        <reimplementedby refid="classCItem_1a517b7148c5d2371a83d17496c085989f">calcBound</reimplementedby>
+        <briefdescription>
+<para>Calculates bound based on translate, size and scale. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="35" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="130" bodyend="135"/>
+        <references refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" compoundref="Obj_8h" startline="40">maxBound</references>
+        <references refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" compoundref="Obj_8h" startline="40">minBound</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">scale</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">size</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">translate</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+        <referencedby refid="classSP2_1a8669c489b6a968f367a4610b254ac992" compoundref="SP2_8cpp" startline="44" endline="130">SP2::Init</referencedby>
+        <referencedby refid="classSP2_1a063dbabf8ae6064a35aa583f120cfb77" compoundref="SP2_8cpp" startline="494" endline="523">SP2::initCabinet</referencedby>
+        <referencedby refid="classSP2_1a525f39654448315484eff0ccac19d67d" compoundref="SP2_8cpp" startline="173" endline="230">SP2::initCamera</referencedby>
+        <referencedby refid="classSP2_1a55323a792d3f8fa6f7bbde473e4a6f56" compoundref="SP2_8cpp" startline="463" endline="486">SP2::initCar</referencedby>
+        <referencedby refid="classSP2_1a7539be0f68626b236ff31f7d45607cb2" compoundref="SP2_8cpp" startline="852" endline="933">SP2::initHuman</referencedby>
+        <referencedby refid="classSP2_1a845086c5ec12c7f6f84f700a39120ddd" compoundref="SP2_8cpp" startline="941" endline="976">SP2::initPatch</referencedby>
+        <referencedby refid="classSP2_1a880986c5797ecf1e3a7712a727e4926f" compoundref="SP2_8cpp" startline="244" endline="385">SP2::initShelf</referencedby>
+        <referencedby refid="classSP2_1a45f900f7dd8033f3e3fe40619cc76125" compoundref="SP2_8cpp" startline="584" endline="834">SP2::initSuperMarket</referencedby>
+        <referencedby refid="classCamera3_1ad1be9248d08c50b8ae40a11256d0d5da" compoundref="Camera3_8cpp" startline="58" endline="523">Camera3::Update</referencedby>
+        <referencedby refid="classSP2_1a25319ffa1054b06ea5573dde21bf46c6" compoundref="SP2_8cpp" startline="1849" endline="1979">SP2::updateSuperMarket</referencedby>
+        <referencedby refid="classSP2_1a5969f5827de1d8ae56f9c2099ef1aca3" compoundref="SP2_8cpp" startline="1732" endline="1762">SP2::updateTrolley</referencedby>
+        <referencedby refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" compoundref="Character_8cpp" startline="324" endline="385">CCharacter::WalkTo</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>CObj::~CObj</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CObj</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Destructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="36" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.cpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Stores Item Data. </para>    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classCObj" kindref="compound">CObj</ref>: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="379">
+        <label>CPromoter</label>
+        <link refid="classCPromoter"/>
+        <childnode refid="377" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="381">
+        <label>CShopper</label>
+        <link refid="classCShopper"/>
+        <childnode refid="377" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="382">
+        <label>CItem</label>
+        <link refid="classCItem"/>
+        <childnode refid="375" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="378">
+        <label>CCashier</label>
+        <link refid="classCCashier"/>
+        <childnode refid="377" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="383">
+        <label>CSecurityCamera</label>
+        <link refid="classCSecurityCamera"/>
+        <childnode refid="375" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="384">
+        <label>CShelf</label>
+        <link refid="classCShelf"/>
+        <childnode refid="375" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="376">
+        <label>CCar</label>
+        <link refid="classCCar"/>
+        <childnode refid="375" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="375">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+      <node id="385">
+        <label>CTrolley</label>
+        <link refid="classCTrolley"/>
+        <childnode refid="375" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="377">
+        <label>CCharacter</label>
+        <link refid="classCCharacter"/>
+        <childnode refid="375" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="380">
+        <label>CSecurityGuard</label>
+        <link refid="classCSecurityGuard"/>
+        <childnode refid="377" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="388">
+        <label>float</label>
+      </node>
+      <node id="389">
+        <label>int</label>
+      </node>
+      <node id="386">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="387" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="389" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="390" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="390">
+        <label>bool</label>
+      </node>
+      <node id="387">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="388" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" line="23" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Obj.h" bodystart="22" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" prot="public" virt="virtual"><scope>CObj</scope><name>calcBound</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CObj</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CObj</scope><name>CObj</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CObj</scope><name>getID</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CObj</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CObj</scope><name>getMinBound</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CObj</scope><name>getRender</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CObj</scope><name>getRotate</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CObj</scope><name>getScale</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CObj</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CObj</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CObj</scope><name>ID</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CObj</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CObj</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CObj</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CObj</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CObj</scope><name>scale</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CObj</scope><name>setRender</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CObj</scope><name>setRotateY</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CObj</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CObj</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CObj</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CObj</scope><name>translate</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CObj</scope><name>~CObj</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

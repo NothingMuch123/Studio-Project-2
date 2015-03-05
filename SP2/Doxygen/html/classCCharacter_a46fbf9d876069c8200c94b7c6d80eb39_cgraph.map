@@ -1,0 +1,11 @@
+<map id="CCharacter::WalkTo" name="CCharacter::WalkTo">
+<area shape="rect" id="node2" href="$classCObj.html#a02c5f01fb81e29c019c175a7170fd0b1" title="Calculates bound based on translate, size and scale. " alt="" coords="219,5,339,32"/>
+<area shape="rect" id="node4" href="$classCObj.html#a20bb4b48824fc4832d02604aaf494ecd" title="return ID " alt="" coords="234,56,323,83"/>
+<area shape="rect" id="node5" href="$classCCharacter.html#a1b92d591b5ea09d5c4df21c92a487013" title="returns if camera is in interaction bounds for NPC " alt="" coords="192,107,365,149"/>
+<area shape="rect" id="node6" href="$classCObj.html#ac1ce4bb52eeb099b1f8d628025dd701b" title="return maxBound values " alt="" coords="209,173,348,200"/>
+<area shape="rect" id="node7" href="$classCObj.html#a74de75f4870da1e1377cf2e543744c81" title="return minBound values " alt="" coords="211,224,346,251"/>
+<area shape="rect" id="node8" href="$classCObj.html#aabc1461905ca5f5879b81cc536a62b0f" title="return translate values " alt="" coords="213,275,344,301"/>
+<area shape="rect" id="node9" href="$classCObj.html#a7a9c6a823c311f44bb9a3ca18c33a525" title="set rotation on y axis " alt="" coords="217,325,341,352"/>
+<area shape="rect" id="node10" href="$classCObj.html#a2273f89ec226972ceff644152eaed600" title="set translation " alt="" coords="213,376,344,403"/>
+<area shape="rect" id="node3" href="$structVector3.html#a9c25d604bd52b162cfcb56302ef032bb" title="Set the elements of this vector. " alt="" coords="413,5,508,32"/>
+</map>

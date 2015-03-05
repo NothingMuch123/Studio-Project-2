@@ -1,0 +1,5 @@
+<map id="CObj::setTranslate" name="CObj::setTranslate">
+<area shape="rect" id="node2" href="$classSP2.html#aa04c669fdd2436c94f202a0ac02d79d8" title="Check for interactions between player and shelf and updates it. " alt="" coords="192,5,315,32"/>
+<area shape="rect" id="node4" href="$classCCharacter.html#a46fbf9d876069c8200c94b7c6d80eb39" title="makes the NPC move towards the target locations " alt="" coords="184,56,323,83"/>
+<area shape="rect" id="node3" href="$classSP2.html#a075edf39d3102610bf7f404ae3b8d38c" title="Update scene. " alt="" coords="371,5,467,32"/>
+</map>

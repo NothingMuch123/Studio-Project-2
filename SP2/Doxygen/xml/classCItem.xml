@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCItem" kind="class" prot="public">
+    <compoundname>CItem</compoundname>
+    <basecompoundref refid="classCObj" prot="public" virt="non-virtual">CObj</basecompoundref>
+    <includes refid="Item_8h" local="no">Item.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCItem_1aa41f21d3d2557c575d65a4969a39e8f0" prot="private" static="no" mutable="no">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh* CItem::item</definition>
+        <argsstring></argsstring>
+        <name>item</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" line="39" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classCItem_1a34fe2ed773bb78cbed01aa373546c358" compoundref="Item_8cpp" startline="49" endline="52">getItem</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCItem_1aa476a2d773330b4e6c0e8d33bd722185" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CItem::CItem</definition>
+        <argsstring>(void)</argsstring>
+        <name>CItem</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCItem" kindref="compound">CItem</ref> default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCItem_1a3f3558da66e7aa5902ea8361d2ba1d73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CItem::CItem</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, Mesh *_item)</argsstring>
+        <name>CItem</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <param>
+          <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+          <declname>_item</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classCItem" kindref="compound">CItem</ref> overloaded constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_ID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- ID for items in objList </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_translate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- translation for item </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_rotate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- rotation for item </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the scaling of the item </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the size of the item model  *_item - pointer mesh of the item </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" line="32" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.cpp" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classCItem_1a00aeafeeaf647c7059b9d325ac5a1108" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>CItem::~CItem</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CItem</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCItem" kindref="compound">CItem</ref> deconstructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" line="33" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.cpp" bodystart="40" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classCItem_1a34fe2ed773bb78cbed01aa373546c358" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classMesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * CItem::getItem</definition>
+        <argsstring>()</argsstring>
+        <name>getItem</name>
+        <briefdescription>
+<para>returns the mesh pointer of item </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" line="35" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.cpp" bodystart="49" bodyend="52"/>
+        <references refid="classCItem_1aa41f21d3d2557c575d65a4969a39e8f0" compoundref="Item_8h" startline="39">item</references>
+        <referencedby refid="classSP2_1abf9d3833011ba1b5cf8cc1f5956dd658" compoundref="SP2_8cpp" startline="2551" endline="2584">SP2::renderShelf</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCItem_1a517b7148c5d2371a83d17496c085989f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void CItem::calcBound</definition>
+        <argsstring>()</argsstring>
+        <name>calcBound</name>
+        <reimplements refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1">calcBound</reimplements>
+        <briefdescription>
+<para>using the size and scale of item to calculate the max and min bound of item </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" line="36" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.cpp" bodystart="59" bodyend="64"/>
+        <references refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" compoundref="Obj_8h" startline="40">CObj::maxBound</references>
+        <references refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" compoundref="Obj_8h" startline="40">CObj::minBound</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="structVector3_1a9c25d604bd52b162cfcb56302ef032bb" compoundref="Vector3_8cpp" startline="67" endline="72">Vector3::Set</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+        <references refid="structVector3_1a7e2d3237b29a2f29d7b3d8b2934e35f2" compoundref="Vector3_8h" startline="27">Vector3::x</references>
+        <references refid="structVector3_1a86eb35a9fa2d5a49e7fad66a35fa9c13" compoundref="Vector3_8h" startline="27">Vector3::y</references>
+        <references refid="structVector3_1aa8c9461eb24bd2c364258078811a3e9d" compoundref="Vector3_8h" startline="27">Vector3::z</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines function (calcBound) <ref refid="classMesh" kindref="compound">Mesh</ref> (*getItem, *item) </para>    </briefdescription>
+    <detaileddescription>
+<para>Class Item: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="361">
+        <label>CItem</label>
+        <link refid="classCItem"/>
+        <childnode refid="362" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="362">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="371">
+        <label>Component</label>
+        <link refid="structComponent"/>
+        <childnode refid="366" relation="usage">
+          <edgelabel>g</edgelabel>
+          <edgelabel>r</edgelabel>
+          <edgelabel>b</edgelabel>
+        </childnode>
+      </node>
+      <node id="369">
+        <label>Mesh</label>
+        <link refid="classMesh"/>
+        <childnode refid="370" relation="usage">
+          <edgelabel>material</edgelabel>
+        </childnode>
+        <childnode refid="372" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+        <childnode refid="373" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="374" relation="usage">
+          <edgelabel>textureID</edgelabel>
+          <edgelabel>indexBuffer</edgelabel>
+          <edgelabel>indexSize</edgelabel>
+          <edgelabel>vertexBuffer</edgelabel>
+        </childnode>
+      </node>
+      <node id="363">
+        <label>CItem</label>
+        <link refid="classCItem"/>
+        <childnode refid="364" relation="public-inheritance">
+        </childnode>
+        <childnode refid="369" relation="usage">
+          <edgelabel>item</edgelabel>
+        </childnode>
+      </node>
+      <node id="372">
+        <label>DRAW_MODE</label>
+      </node>
+      <node id="373">
+        <label>string</label>
+      </node>
+      <node id="370">
+        <label>Material</label>
+        <link refid="structMaterial"/>
+        <childnode refid="366" relation="usage">
+          <edgelabel>kShininess</edgelabel>
+        </childnode>
+        <childnode refid="371" relation="usage">
+          <edgelabel>kDiffuse</edgelabel>
+          <edgelabel>kAmbient</edgelabel>
+          <edgelabel>kSpecular</edgelabel>
+        </childnode>
+      </node>
+      <node id="366">
+        <label>float</label>
+      </node>
+      <node id="367">
+        <label>int</label>
+      </node>
+      <node id="364">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="365" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="367" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="368" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="374">
+        <label>unsigned</label>
+      </node>
+      <node id="368">
+        <label>bool</label>
+      </node>
+      <node id="365">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="366" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" line="28" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/Item.h" bodystart="27" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classCItem_1a517b7148c5d2371a83d17496c085989f" prot="public" virt="virtual"><scope>CItem</scope><name>calcBound</name></member>
+      <member refid="classCItem_1aa476a2d773330b4e6c0e8d33bd722185" prot="public" virt="non-virtual"><scope>CItem</scope><name>CItem</name></member>
+      <member refid="classCItem_1a3f3558da66e7aa5902ea8361d2ba1d73" prot="public" virt="non-virtual"><scope>CItem</scope><name>CItem</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CItem</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CItem</scope><name>CObj</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CItem</scope><name>getID</name></member>
+      <member refid="classCItem_1a34fe2ed773bb78cbed01aa373546c358" prot="public" virt="non-virtual"><scope>CItem</scope><name>getItem</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CItem</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CItem</scope><name>getMinBound</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CItem</scope><name>getRender</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CItem</scope><name>getRotate</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CItem</scope><name>getScale</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CItem</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CItem</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CItem</scope><name>ID</name></member>
+      <member refid="classCItem_1aa41f21d3d2557c575d65a4969a39e8f0" prot="private" virt="non-virtual"><scope>CItem</scope><name>item</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CItem</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CItem</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CItem</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CItem</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CItem</scope><name>scale</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CItem</scope><name>setRender</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CItem</scope><name>setRotateY</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CItem</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CItem</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CItem</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CItem</scope><name>translate</name></member>
+      <member refid="classCItem_1a00aeafeeaf647c7059b9d325ac5a1108" prot="public" virt="virtual"><scope>CItem</scope><name>~CItem</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CItem</scope><name>~CObj</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,7 @@
+<map id="MeshBuilder::GenerateTorus" name="MeshBuilder::GenerateTorus">
+<area shape="rect" id="node2" href="$namespaceMath.html#ac04b987cc6c574a059e68cb58f58c09a" title="Converts from degrees to radians. " alt="" coords="240,5,395,32"/>
+<area shape="rect" id="node3" href="$structVector3.html#aaef4f25a38878a640ab4a48002a7eff8" title="Normalize this vector and return a reference to it. " alt="" coords="251,56,384,83"/>
+<area shape="rect" id="node5" href="$structVector3.html#a9c25d604bd52b162cfcb56302ef032bb" title="Set the elements of this vector. " alt="" coords="270,107,365,133"/>
+<area shape="rect" id="node6" href="$structPosition.html#a2919b2441baf7a2f799791d65a1cfc15" title="Position::Set" alt="" coords="269,157,366,184"/>
+<area shape="rect" id="node4" href="$structVector3.html#a200024a8442329de9a625ed58ffe7075" title="Return length of vector. " alt="" coords="443,56,557,83"/>
+</map>

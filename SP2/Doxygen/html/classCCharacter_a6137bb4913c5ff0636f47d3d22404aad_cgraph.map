@@ -1,0 +1,6 @@
+<map id="CCharacter::UpdateMovement" name="CCharacter::UpdateMovement">
+<area shape="rect" id="node2" href="$classCCharacter.html#a4b4c0093c82dea16cb9bb2714f33866d" title="return bool if cannot continue to move " alt="" coords="248,5,427,32"/>
+<area shape="rect" id="node3" href="$classCCharacter.html#a2900d40f688adebadfcb75f95fff5e24" title="return movement of NPC leg " alt="" coords="251,56,423,83"/>
+<area shape="rect" id="node4" href="$classCCharacter.html#a358ed142a91cc5a8b4b331e8a0e61c20" title="setting if legs can continue to move /param MoveIsMax &#45; check if can continue to move ..." alt="" coords="248,107,427,133"/>
+<area shape="rect" id="node5" href="$classCCharacter.html#afd11e90227bf8b87ea9400512a4be88e" title="set movement of NPC movement leg " alt="" coords="251,157,423,184"/>
+</map>

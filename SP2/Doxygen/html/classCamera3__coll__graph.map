@@ -1,0 +1,5 @@
+<map id="Camera3" name="Camera3">
+<area shape="rect" id="node2" href="$classCamera.html" title="Defines the default values of the Camera&#39;s properties (position, target, up, view) and its various st..." alt="" coords="117,288,184,315"/>
+<area shape="rect" id="node3" href="$structVector3.html" title="Defines a 3D vector and its methods. " alt="" coords="117,124,184,151"/>
+<area shape="rect" id="node6" href="$classMtx44.html" title="A 4 by 4 matrix. " alt="" coords="203,191,261,217"/>
+</map>

@@ -2032,7 +2032,7 @@ void SP2::updateHuman(double dt)
 	{
 		if(objList[a]->getID() == GEO_HUMAN && floorNum == 1)
 		{
-			static_cast <CCharacter*>(objList[a])->UpdateMovement(90);
+			static_cast <CCharacter*>(objList[a])->UpdateMovement(45);
 			static_cast <CCharacter*>(objList[a])->WalkTo(static_cast <CCharacter*>(objList[a])->AiRouteLocation[static_cast <CCharacter*>(objList[a])->getRouteID()], objList);
 
 			if(static_cast<CCashier*>(objList[a])->getRole()==1) // Cashier

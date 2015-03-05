@@ -1,0 +1,4 @@
+<map id="Mesh" name="Mesh">
+<area shape="rect" id="node2" href="$structMaterial.html" title="Sets default values kAmbient, kDiffuse, kSpecular and kShiniess and uses those values to set Material..." alt="" coords="5,243,73,269"/>
+<area shape="rect" id="node4" href="$structComponent.html" title="Defines default values ( r , g , b ) and sets the color of Mesh. " alt="" coords="111,124,199,151"/>
+</map>

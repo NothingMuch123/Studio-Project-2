@@ -1,0 +1,6 @@
+<map id="CCharacter::setInteractionBound" name="CCharacter::setInteractionBound">
+<area shape="rect" id="node2" href="$classCCashier.html#a084746e56b7d02893fb29f6793403a07" title="CCashier overloaded constructor. " alt="" coords="248,5,384,32"/>
+<area shape="rect" id="node3" href="$classCPromoter.html#af1b97818ccca9ae1a8b3af7545635552" title="CPromoter overloaded constructror. " alt="" coords="239,56,393,83"/>
+<area shape="rect" id="node4" href="$classCSecurityGuard.html#a10fd5ed13acde874db6cca76487a7fe6" title="sets the CSecurityGuard NPC " alt="" coords="227,107,405,149"/>
+<area shape="rect" id="node5" href="$classCShopper.html#ac75078d3e7d073b744377f6e311a48ed" title="CShopper overloaded constructor. " alt="" coords="244,173,388,200"/>
+</map>

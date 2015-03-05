@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="classCShopper" kind="class" prot="public">
+    <compoundname>CShopper</compoundname>
+    <basecompoundref refid="classCCharacter" prot="public" virt="non-virtual">CCharacter</basecompoundref>
+    <includes refid="CShopper_8h" local="no">CShopper.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCShopper_1a956f92cdd2c53364867687d886bdb41a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CShopper::CShopper</definition>
+        <argsstring>(void)</argsstring>
+        <name>CShopper</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCShopper" kindref="compound">CShopper</ref> default constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.h" line="30" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.cpp" bodystart="9" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CShopper::CShopper</definition>
+        <argsstring>(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size, Vector3 camPosition, int radius)</argsstring>
+        <name>CShopper</name>
+        <param>
+          <type>int</type>
+          <declname>_ID</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_translate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_rotate</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>_size</declname>
+        </param>
+        <param>
+          <type><ref refid="structVector3" kindref="compound">Vector3</ref></type>
+          <declname>camPosition</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classCShopper" kindref="compound">CShopper</ref> overloaded constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_ID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the ID for Shopper NPC </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_translate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- translation of NPC </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_rotate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- rotation of NPC </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- scaling of the NPC </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the size of the human object model </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>camPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- camer position </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the radius of the interaction bound </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.h" line="31" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.cpp" bodystart="33" bodyend="42"/>
+        <references refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" compoundref="Obj_8h" startline="38">CObj::ID</references>
+        <references refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" compoundref="Obj_8h" startline="39">CObj::rotate</references>
+        <references refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" compoundref="Obj_8h" startline="39">CObj::scale</references>
+        <references refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" compoundref="Character_8cpp" startline="124" endline="134">CCharacter::setInteractionBound</references>
+        <references refid="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" compoundref="Character_8cpp" startline="110" endline="113">CCharacter::setRole</references>
+        <references refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" compoundref="Obj_8h" startline="41">CObj::size</references>
+        <references refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" compoundref="Obj_8h" startline="39">CObj::translate</references>
+      </memberdef>
+      <memberdef kind="function" id="classCShopper_1a915af6d114c243b82200399346f5e70c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>string</type>
+        <definition>string CShopper::updateScript</definition>
+        <argsstring>()</argsstring>
+        <name>updateScript</name>
+        <reimplements refid="classCCharacter_1a993d515a1764e3db2c3e982035364a97">updateScript</reimplements>
+        <briefdescription>
+<para>return the new script </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.h" line="32" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.cpp" bodystart="49" bodyend="104"/>
+        <references refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" compoundref="Character_8cpp" startline="183" endline="186">CCharacter::getScript</references>
+      </memberdef>
+      <memberdef kind="function" id="classCShopper_1a023a16accb8d90fe7789f3931786ebd4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CShopper::~CShopper</definition>
+        <argsstring>(void)</argsstring>
+        <name>~CShopper</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para><ref refid="classCShopper" kindref="compound">CShopper</ref> deconstructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.h" line="33" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.cpp" bodystart="111" bodyend="113"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines string (updateScript) </para>    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classCShopper" kindref="compound">CShopper</ref>: </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="458">
+        <label>CShopper</label>
+        <link refid="classCShopper"/>
+        <childnode refid="459" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="460">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+      </node>
+      <node id="459">
+        <label>CCharacter</label>
+        <link refid="classCCharacter"/>
+        <childnode refid="460" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="474">
+        <label>Component</label>
+        <link refid="structComponent"/>
+        <childnode refid="465" relation="usage">
+          <edgelabel>g</edgelabel>
+          <edgelabel>r</edgelabel>
+          <edgelabel>b</edgelabel>
+        </childnode>
+      </node>
+      <node id="471">
+        <label>vector&lt; Vector3 &gt;</label>
+      </node>
+      <node id="472">
+        <label>Mesh</label>
+        <link refid="classMesh"/>
+        <childnode refid="473" relation="usage">
+          <edgelabel>material</edgelabel>
+        </childnode>
+        <childnode refid="475" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+        <childnode refid="476" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="477" relation="usage">
+          <edgelabel>textureID</edgelabel>
+          <edgelabel>indexBuffer</edgelabel>
+          <edgelabel>indexSize</edgelabel>
+          <edgelabel>vertexBuffer</edgelabel>
+        </childnode>
+      </node>
+      <node id="461">
+        <label>CShopper</label>
+        <link refid="classCShopper"/>
+        <childnode refid="462" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="475">
+        <label>DRAW_MODE</label>
+      </node>
+      <node id="469">
+        <label>Camera</label>
+        <link refid="classCamera"/>
+        <childnode refid="464" relation="usage">
+          <edgelabel>target</edgelabel>
+          <edgelabel>view</edgelabel>
+          <edgelabel>position</edgelabel>
+          <edgelabel>up</edgelabel>
+        </childnode>
+      </node>
+      <node id="476">
+        <label>string</label>
+      </node>
+      <node id="473">
+        <label>Material</label>
+        <link refid="structMaterial"/>
+        <childnode refid="465" relation="usage">
+          <edgelabel>kShininess</edgelabel>
+        </childnode>
+        <childnode refid="474" relation="usage">
+          <edgelabel>kDiffuse</edgelabel>
+          <edgelabel>kAmbient</edgelabel>
+          <edgelabel>kSpecular</edgelabel>
+        </childnode>
+      </node>
+      <node id="465">
+        <label>float</label>
+      </node>
+      <node id="470">
+        <label>Mtx44</label>
+        <link refid="classMtx44"/>
+        <childnode refid="465" relation="usage">
+          <edgelabel>a</edgelabel>
+        </childnode>
+      </node>
+      <node id="468">
+        <label>Camera3</label>
+        <link refid="classCamera3"/>
+        <childnode refid="469" relation="public-inheritance">
+        </childnode>
+        <childnode refid="466" relation="usage">
+          <edgelabel>current</edgelabel>
+        </childnode>
+        <childnode refid="464" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>defaultTarget</edgelabel>
+          <edgelabel>defaultPosition</edgelabel>
+          <edgelabel>defaultUp</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>defaultView</edgelabel>
+        </childnode>
+        <childnode refid="470" relation="usage">
+          <edgelabel>rotation</edgelabel>
+        </childnode>
+      </node>
+      <node id="466">
+        <label>int</label>
+      </node>
+      <node id="463">
+        <label>CObj</label>
+        <link refid="classCObj"/>
+        <childnode refid="464" relation="usage">
+          <edgelabel>minBound</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>scale</edgelabel>
+          <edgelabel>maxBound</edgelabel>
+          <edgelabel>rotate</edgelabel>
+          <edgelabel>translate</edgelabel>
+        </childnode>
+        <childnode refid="466" relation="usage">
+          <edgelabel>ID</edgelabel>
+        </childnode>
+        <childnode refid="467" relation="usage">
+          <edgelabel>render</edgelabel>
+        </childnode>
+      </node>
+      <node id="462">
+        <label>CCharacter</label>
+        <link refid="classCCharacter"/>
+        <childnode refid="463" relation="public-inheritance">
+        </childnode>
+        <childnode refid="468" relation="usage">
+          <edgelabel>AICamera</edgelabel>
+        </childnode>
+        <childnode refid="471" relation="usage">
+          <edgelabel>AiRouteLocation</edgelabel>
+        </childnode>
+        <childnode refid="466" relation="usage">
+          <edgelabel>moveX</edgelabel>
+          <edgelabel>moveZ</edgelabel>
+          <edgelabel>Movement</edgelabel>
+          <edgelabel>Role</edgelabel>
+          <edgelabel>RouteID</edgelabel>
+          <edgelabel>Script</edgelabel>
+        </childnode>
+        <childnode refid="467" relation="usage">
+          <edgelabel>MoveIsMax</edgelabel>
+          <edgelabel>InteractionBound</edgelabel>
+          <edgelabel>IsControlled</edgelabel>
+        </childnode>
+        <childnode refid="472" relation="usage">
+          <edgelabel>Character</edgelabel>
+        </childnode>
+      </node>
+      <node id="477">
+        <label>unsigned</label>
+      </node>
+      <node id="467">
+        <label>bool</label>
+      </node>
+      <node id="464">
+        <label>Vector3</label>
+        <link refid="structVector3"/>
+        <childnode refid="465" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.h" line="25" column="1" bodyfile="C:/Users/Envy 15.Envy/Documents/School Work/Semester 2/Studio-Project-2.git/SP2/MyGraphics/Source/CShopper.h" bodystart="24" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classCCharacter_1a023d235cc1ca560545c5fe6b6943c0fb" prot="public" virt="non-virtual"><scope>CShopper</scope><name>AICamera</name></member>
+      <member refid="classCCharacter_1a6be580397e8e7410eda486a1ed6fb1ca" prot="public" virt="non-virtual"><scope>CShopper</scope><name>AiRouteLocation</name></member>
+      <member refid="classCObj_1a02c5f01fb81e29c019c175a7170fd0b1" prot="public" virt="virtual"><scope>CShopper</scope><name>calcBound</name></member>
+      <member refid="classCCharacter_1a0a45163210c01ba76eff3d79b2ec6e10" prot="public" virt="non-virtual"><scope>CShopper</scope><name>CCharacter</name></member>
+      <member refid="classCObj_1ab5cf46a3190bc4e64231bb3a0c7b6299" prot="public" virt="non-virtual"><scope>CShopper</scope><name>CObj</name></member>
+      <member refid="classCObj_1ae3967169281132dfb5148f061e72798a" prot="public" virt="non-virtual"><scope>CShopper</scope><name>CObj</name></member>
+      <member refid="classCShopper_1a956f92cdd2c53364867687d886bdb41a" prot="public" virt="non-virtual"><scope>CShopper</scope><name>CShopper</name></member>
+      <member refid="classCShopper_1ac75078d3e7d073b744377f6e311a48ed" prot="public" virt="non-virtual"><scope>CShopper</scope><name>CShopper</name></member>
+      <member refid="classCCharacter_1a47825085c9b1050d45063f9e7af82c08" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getCharacter</name></member>
+      <member refid="classCObj_1a20bb4b48824fc4832d02604aaf494ecd" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getID</name></member>
+      <member refid="classCCharacter_1a1b92d591b5ea09d5c4df21c92a487013" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getInteractionBound</name></member>
+      <member refid="classCObj_1ac1ce4bb52eeb099b1f8d628025dd701b" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getMaxBound</name></member>
+      <member refid="classCObj_1a74de75f4870da1e1377cf2e543744c81" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getMinBound</name></member>
+      <member refid="classCCharacter_1a4b4c0093c82dea16cb9bb2714f33866d" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getMoveIsMax</name></member>
+      <member refid="classCCharacter_1a2900d40f688adebadfcb75f95fff5e24" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getMovement</name></member>
+      <member refid="classCCharacter_1a46770a42f57b14937ae9abf30e38d500" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getmoveX</name></member>
+      <member refid="classCCharacter_1af9d119a351d5dd90d23d3833d88061d8" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getmoveZ</name></member>
+      <member refid="classCObj_1a3c4d14c8eda20a4aa02825c0cba0c177" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getRender</name></member>
+      <member refid="classCCharacter_1aa84d3b8ff304592ad39e14836b2b4825" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getRole</name></member>
+      <member refid="classCObj_1a6b79c9b9c8cb68b202fb0857c81988d6" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getRotate</name></member>
+      <member refid="classCCharacter_1adc03f408c0bcd843e6d91cee40686b1f" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getRouteID</name></member>
+      <member refid="classCObj_1ad99e86ab0a0b35ef43c607deb8901c2c" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getScale</name></member>
+      <member refid="classCCharacter_1a6c1e265787b592f1ea3c76e11fc4e29b" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getScript</name></member>
+      <member refid="classCObj_1ae65131b881c8fea9e41b20f11fa87c27" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getSize</name></member>
+      <member refid="classCObj_1aabc1461905ca5f5879b81cc536a62b0f" prot="public" virt="non-virtual"><scope>CShopper</scope><name>getTranslate</name></member>
+      <member refid="classCObj_1a0c68e8e8f4e74ba23668d6092cd395e6" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>ID</name></member>
+      <member refid="classCObj_1a930cb3b836730957c89a4d5fc6986a07" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>maxBound</name></member>
+      <member refid="classCObj_1a4e1328f3cadef4441b6fa85c57211f26" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>minBound</name></member>
+      <member refid="classCObj_1ae4c4bad8d85c2c6482f427f8ccbf0078" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>render</name></member>
+      <member refid="classCObj_1a048ff1c5256cda7a1327ae3a2b288874" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>rotate</name></member>
+      <member refid="classCObj_1abe0e9e0e5a5f7af0cdf7e7d632134bd1" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>scale</name></member>
+      <member refid="classCCharacter_1a24612446b31a1ffbca5263839d1afe3f" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setInteractionBound</name></member>
+      <member refid="classCCharacter_1a358ed142a91cc5a8b4b331e8a0e61c20" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setMoveIsMax</name></member>
+      <member refid="classCCharacter_1afd11e90227bf8b87ea9400512a4be88e" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setMovement</name></member>
+      <member refid="classCCharacter_1ad3f9883a464f42c7d39f598f8a41991d" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setmoveX</name></member>
+      <member refid="classCCharacter_1ac71975856654bb3bc3ecea2a70f533d5" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setmoveZ</name></member>
+      <member refid="classCObj_1a49c6900587972793886aa657315a1ce0" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setRender</name></member>
+      <member refid="classCCharacter_1ac1cd493a2eb5ac7a1d798f9f5ce2d36d" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setRole</name></member>
+      <member refid="classCObj_1a7a9c6a823c311f44bb9a3ca18c33a525" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setRotateY</name></member>
+      <member refid="classCCharacter_1a9053e02df6391f46a5bca5b4e541f87b" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setRouteID</name></member>
+      <member refid="classCCharacter_1a0352bb4afdc14f804c5d30b86a689a30" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setScript</name></member>
+      <member refid="classCObj_1a2273f89ec226972ceff644152eaed600" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setTranslate</name></member>
+      <member refid="classCObj_1a8a2487b555a5e3a8e8b597b51c5db786" prot="public" virt="non-virtual"><scope>CShopper</scope><name>setTranslateX</name></member>
+      <member refid="classCObj_1ad7b1d03aeb5c63216be5be0375bbb715" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>size</name></member>
+      <member refid="classCObj_1a4617e36d9aea2d2e16861725adbb8d8d" prot="protected" virt="non-virtual"><scope>CShopper</scope><name>translate</name></member>
+      <member refid="classCCharacter_1a6137bb4913c5ff0636f47d3d22404aad" prot="public" virt="non-virtual"><scope>CShopper</scope><name>UpdateMovement</name></member>
+      <member refid="classCShopper_1a915af6d114c243b82200399346f5e70c" prot="public" virt="virtual"><scope>CShopper</scope><name>updateScript</name></member>
+      <member refid="classCCharacter_1a46fbf9d876069c8200c94b7c6d80eb39" prot="public" virt="non-virtual"><scope>CShopper</scope><name>WalkTo</name></member>
+      <member refid="classCCharacter_1a6176ffa71d744eed17566ab6d61e37bf" prot="public" virt="non-virtual"><scope>CShopper</scope><name>~CCharacter</name></member>
+      <member refid="classCObj_1ae91204ead5104d927cf09d64385da46b" prot="public" virt="virtual"><scope>CShopper</scope><name>~CObj</name></member>
+      <member refid="classCShopper_1a023a16accb8d90fe7789f3931786ebd4" prot="public" virt="non-virtual"><scope>CShopper</scope><name>~CShopper</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

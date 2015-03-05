@@ -1,0 +1,15 @@
+<map id="LoadTGA" name="LoadTGA">
+<area shape="rect" id="node2" href="$classSP2.html#a8669c489b6a968f367a4610b254ac992" title="Init everything needed for the scene. " alt="" coords="520,265,592,292"/>
+<area shape="rect" id="node3" href="$classSP2.html#a063dbabf8ae6064a35aa583f120cfb77" title="Generate display cabinet obj and texture. " alt="" coords="341,37,457,64"/>
+<area shape="rect" id="node4" href="$classSP2.html#a525f39654448315484eff0ccac19d67d" title="Init security cameras and screens for security room. " alt="" coords="340,88,457,114"/>
+<area shape="rect" id="node5" href="$classSP2.html#a55323a792d3f8fa6f7bbde473e4a6f56" title="Generate car obj and texture and creating a car in scene. " alt="" coords="353,138,445,165"/>
+<area shape="rect" id="node6" href="$classSP2.html#ae1c61e3cd0a5edbd30d8981646ee75e6" title="Init values for game. " alt="" coords="345,189,452,216"/>
+<area shape="rect" id="node7" href="$classSP2.html#a2ed8ac060a941450531a26cab1910874" title="Init player&#39;s hand. " alt="" coords="344,240,453,266"/>
+<area shape="rect" id="node8" href="$classSP2.html#a7539be0f68626b236ff31f7d45607cb2" title="Generate NPC obj and texture and creating them into the scene. " alt="" coords="147,290,260,317"/>
+<area shape="rect" id="node9" href="$classSP2.html#a3d30faae9bbea42123473889d74639c3" title="Generate and load all item obj and texture (2D and 3D) " alt="" coords="151,341,255,368"/>
+<area shape="rect" id="node10" href="$classSP2.html#a45f900f7dd8033f3e3fe40619cc76125" title="Generate supermarket related obj and texture and create them on the first and second floor..." alt="" coords="325,341,472,368"/>
+<area shape="rect" id="node11" href="$classSP2.html#af3ecc3ac74d1ce4c5263dabff4772029" title="Init floor 1 map. " alt="" coords="155,442,252,469"/>
+<area shape="rect" id="node12" href="$classSP2.html#ac49274ba640cd39ea836e22e548cc1db" title="Generate skybox obj and texture and init values for skybox. " alt="" coords="129,493,277,520"/>
+<area shape="rect" id="node13" href="$classSP2.html#a845086c5ec12c7f6f84f700a39120ddd" title="Creates a wall patch for second floor. " alt="" coords="150,544,257,570"/>
+<area shape="rect" id="node14" href="$classSP2.html#a13def9dd43eab5fb9410369d3f7c3082" title="Generate obj and texture of items that will be placed on display cabinet. " alt="" coords="130,594,277,621"/>
+</map>

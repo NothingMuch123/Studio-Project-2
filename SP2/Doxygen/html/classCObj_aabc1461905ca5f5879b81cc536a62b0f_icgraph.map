@@ -1,0 +1,23 @@
+<map id="CObj::getTranslate" name="CObj::getTranslate">
+<area shape="rect" id="node2" href="$classSP2.html#a525f39654448315484eff0ccac19d67d" title="Init security cameras and screens for security room. " alt="" coords="465,10,583,37"/>
+<area shape="rect" id="node4" href="$classSP2.html#a845086c5ec12c7f6f84f700a39120ddd" title="Creates a wall patch for second floor. " alt="" coords="471,61,577,88"/>
+<area shape="rect" id="node5" href="$classSP2.html#a880986c5797ecf1e3a7712a727e4926f" title="Creates a shelf for floor 1. " alt="" coords="235,112,336,138"/>
+<area shape="rect" id="node7" href="$classSP2.html#a90159ea511cadcc99364c6f75d108a71" title="Render everything in the scene. " alt="" coords="476,344,572,370"/>
+<area shape="rect" id="node8" href="$classSP2.html#a238e22d024155bd4189af3d45422196c" title="Render display cabinet. " alt="" coords="218,213,353,240"/>
+<area shape="rect" id="node9" href="$classSP2.html#a6179d25019c59e2dfe3636165d422ab9" title="Render car. " alt="" coords="230,264,341,290"/>
+<area shape="rect" id="node10" href="$classSP2.html#a42f96f71d087ff72e859863bf14a6388" title="Render NPC. " alt="" coords="219,314,351,341"/>
+<area shape="rect" id="node11" href="$classSP2.html#a3488eb081d0bbfb10073fc1219e100dd" title="Render non&#45;moving security guard. " alt="" coords="184,366,387,407"/>
+<area shape="rect" id="node12" href="$classSP2.html#a23d935210fa416b1baae868a60052339" title="Render non&#45;moving shopper. " alt="" coords="184,432,387,458"/>
+<area shape="rect" id="node13" href="$classSP2.html#abf9d3833011ba1b5cf8cc1f5956dd658" title="Render shelf with its item. " alt="" coords="225,482,345,509"/>
+<area shape="rect" id="node14" href="$classSP2.html#a3b5d36a07d80b96c4d10821bc2be230f" title="Render items in display cabinet. " alt="" coords="202,533,369,560"/>
+<area shape="rect" id="node15" href="$classCCharacter.html#a24612446b31a1ffbca5263839d1afe3f" title="creates interaction bounds for NPC using NPC position and radius " alt="" coords="199,584,372,626"/>
+<area shape="rect" id="node20" href="$classSP2.html#a25319ffa1054b06ea5573dde21bf46c6" title="Door and lift interaction within the supermarket. " alt="" coords="201,650,369,677"/>
+<area shape="rect" id="node22" href="$classCCharacter.html#a46fbf9d876069c8200c94b7c6d80eb39" title="makes the NPC move towards the target locations " alt="" coords="216,701,355,728"/>
+<area shape="rect" id="node3" href="$classSP2.html#a8669c489b6a968f367a4610b254ac992" title="Init everything needed for the scene. " alt="" coords="661,61,733,88"/>
+<area shape="rect" id="node6" href="$classSP2.html#a45f900f7dd8033f3e3fe40619cc76125" title="Generate supermarket related obj and texture and create them on the first and second floor..." alt="" coords="451,112,597,138"/>
+<area shape="rect" id="node16" href="$classCCashier.html#a084746e56b7d02893fb29f6793403a07" title="CCashier overloaded constructor. " alt="" coords="456,482,592,509"/>
+<area shape="rect" id="node17" href="$classCPromoter.html#af1b97818ccca9ae1a8b3af7545635552" title="CPromoter overloaded constructror. " alt="" coords="447,533,601,560"/>
+<area shape="rect" id="node18" href="$classCSecurityGuard.html#a10fd5ed13acde874db6cca76487a7fe6" title="sets the CSecurityGuard NPC " alt="" coords="435,584,613,626"/>
+<area shape="rect" id="node19" href="$classCShopper.html#ac75078d3e7d073b744377f6e311a48ed" title="CShopper overloaded constructor. " alt="" coords="452,650,596,677"/>
+<area shape="rect" id="node21" href="$classSP2.html#a075edf39d3102610bf7f404ae3b8d38c" title="Update scene. " alt="" coords="476,701,572,728"/>
+</map>

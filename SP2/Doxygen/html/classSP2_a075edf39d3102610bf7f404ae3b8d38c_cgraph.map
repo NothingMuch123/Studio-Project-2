@@ -1,0 +1,40 @@
+<map id="SP2::Update" name="SP2::Update">
+<area shape="rect" id="node2" href="$classCObj.html#a20bb4b48824fc4832d02604aaf494ecd" title="return ID " alt="" coords="836,64,925,90"/>
+<area shape="rect" id="node3" href="$classCObj.html#ac1ce4bb52eeb099b1f8d628025dd701b" title="return maxBound values " alt="" coords="811,241,950,268"/>
+<area shape="rect" id="node4" href="$classCObj.html#a74de75f4870da1e1377cf2e543744c81" title="return minBound values " alt="" coords="813,342,948,369"/>
+<area shape="rect" id="node5" href="$classCObj.html#a3c4d14c8eda20a4aa02825c0cba0c177" title="return render state " alt="" coords="821,140,940,166"/>
+<area shape="rect" id="node6" href="$classApplication.html#a72cc9bba26506a7c0f54c346dfbd5cfe" title="Application::IsKeyPressed" alt="" coords="569,748,743,774"/>
+<area shape="rect" id="node7" href="$classCObj.html#a49c6900587972793886aa657315a1ce0" title="set render state " alt="" coords="174,596,293,622"/>
+<area shape="rect" id="node8" href="$classSP2.html#a63e8fc77b7ccf252b7c6804d8c8e59c2" title="Update security camera viewpoint. " alt="" coords="164,646,303,673"/>
+<area shape="rect" id="node26" href="$classSP2.html#a265be5921305015c6390757aa4bba8ee" title="Update the current car that is being droved. " alt="" coords="377,798,491,825"/>
+<area shape="rect" id="node28" href="$classSP2.html#a041380e35d3d9b6dda0cb4372d23c25b" title="Update game. " alt="" coords="369,190,499,217"/>
+<area shape="rect" id="node30" href="$classSP2.html#a5daf9c29ea7986261000430288d9e6c1" title="Update transformation for hand when player moves. " alt="" coords="168,748,299,774"/>
+<area shape="rect" id="node31" href="$classSP2.html#ac15aad28840943607def336ebe1009d1" title="NPC movement. " alt="" coords="166,849,301,876"/>
+<area shape="rect" id="node33" href="$classSP2.html#ab2632a9117e7d7414309a2d800985e10" title="Update character&#39;s position on minimap. " alt="" coords="174,900,293,926"/>
+<area shape="rect" id="node34" href="$classSP2.html#aa04c669fdd2436c94f202a0ac02d79d8" title="Check for interactions between player and shelf and updates it. " alt="" coords="172,950,295,977"/>
+<area shape="rect" id="node36" href="$classSP2.html#a25319ffa1054b06ea5573dde21bf46c6" title="Door and lift interaction within the supermarket. " alt="" coords="149,1102,317,1129"/>
+<area shape="rect" id="node39" href="$classSP2.html#a5969f5827de1d8ae56f9c2099ef1aca3" title="Update the trolley that is being pushed. " alt="" coords="368,1001,500,1028"/>
+<area shape="rect" id="node9" href="$classCamera3.html#ad1be9248d08c50b8ae40a11256d0d5da" title="Update the Camera&#39;s position, target, up and view location based on the time passed since the last up..." alt="" coords="373,596,495,622"/>
+<area shape="rect" id="node10" href="$classCamera3.html#a01319d0912d69baa1adcc6fad892d0de" title="check for camera&#39;s bound and returning if camera has hit anything from any of the objects from objLis..." alt="" coords="579,140,733,166"/>
+<area shape="rect" id="node11" href="$classCObj.html#a02c5f01fb81e29c019c175a7170fd0b1" title="Calculates bound based on translate, size and scale. " alt="" coords="596,1102,716,1129"/>
+<area shape="rect" id="node13" href="$structVector3.html#aa1cdc5357009b47fe585ddd61e263aad" title="Cross product of 2 vectors. " alt="" coords="601,444,711,470"/>
+<area shape="rect" id="node15" href="$structVector3.html#aaef4f25a38878a640ab4a48002a7eff8" title="Normalize this vector and return a reference to it. " alt="" coords="589,697,723,724"/>
+<area shape="rect" id="node17" href="$structVector3.html#a2da0f00c5529bced69763320dac9c414" title="Return a copy of this vector, normalized. " alt="" coords="586,798,726,825"/>
+<area shape="rect" id="node18" href="$namespaceMath.html#a1a1d364c850f9d66fda85cf71598bbe5" title="Converts from radians to degrees. " alt="" coords="579,494,733,521"/>
+<area shape="rect" id="node19" href="$classCamera3.html#a4b10106bcd89f21e3cf3e39f04d8c1cb" title="Reset the position, target, up and view coordinates and rotation to the default values. " alt="" coords="598,393,714,420"/>
+<area shape="rect" id="node22" href="$classCObj.html#a7a9c6a823c311f44bb9a3ca18c33a525" title="set rotation on y axis " alt="" coords="594,545,718,572"/>
+<area shape="rect" id="node23" href="$classMtx44.html#ac0587ffb5ff9fd58ad5768d28fc06574" title="Set Matrix to a rotation matrix about arbitrary axis. " alt="" coords="582,849,730,876"/>
+<area shape="rect" id="node25" href="$classCTrolley.html#a7805f67ab7781017e98e4171ae747a43" title="Update trolley&#39;s position based on where the new camera position is. " alt="" coords="575,596,737,622"/>
+<area shape="rect" id="node12" href="$structVector3.html#a9c25d604bd52b162cfcb56302ef032bb" title="Set the elements of this vector. " alt="" coords="833,1001,928,1028"/>
+<area shape="rect" id="node14" href="$structVector3.html#afa5e0c801fc2c8a820a54ea99302fe08" title="Vector3 default constructor. " alt="" coords="821,570,941,597"/>
+<area shape="rect" id="node16" href="$structVector3.html#a200024a8442329de9a625ed58ffe7075" title="Return length of vector. " alt="" coords="823,748,938,774"/>
+<area shape="rect" id="node20" href="$classMtx44.html#a3ac8a0afd66412e15e4246474b893da2" title="Set the matrix to an identity matrix (1&#39;s along the diagonal) " alt="" coords="809,393,952,420"/>
+<area shape="rect" id="node21" href="$classMtx44.html#a3aea63c08759ac98b8a4f23fdc0d6a28" title="Set this matrix to zero. " alt="" coords="1000,393,1125,420"/>
+<area shape="rect" id="node24" href="$namespaceMath.html#ac91173ab2efdf7313fe7aaeb6cb44cf6" title="Math::FAbs" alt="" coords="835,849,926,876"/>
+<area shape="rect" id="node27" href="$classCObj.html#a6b79c9b9c8cb68b202fb0857c81988d6" title="return rotate values " alt="" coords="599,950,713,977"/>
+<area shape="rect" id="node29" href="$classSP2.html#a75428836bed53345eb3b76178ace9857" title="Bound check for game 3. " alt="" coords="551,190,761,217"/>
+<area shape="rect" id="node32" href="$Character_8cpp.html#a02044e378b68f3daf3558c4e6fc74ce8" title="return coordinates for the NPC to move to " alt="" coords="401,849,467,876"/>
+<area shape="rect" id="node35" href="$classCObj.html#a2273f89ec226972ceff644152eaed600" title="set translation " alt="" coords="369,950,499,977"/>
+<area shape="rect" id="node37" href="$classCObj.html#a8a2487b555a5e3a8e8b597b51c5db786" title="set rotation on x axis " alt="" coords="365,1178,503,1205"/>
+<area shape="rect" id="node38" href="$classCObj.html#aabc1461905ca5f5879b81cc536a62b0f" title="return translate values " alt="" coords="369,1128,499,1154"/>
+</map>

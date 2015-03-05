@@ -1,0 +1,4 @@
+<map id="CPromoter" name="CPromoter">
+<area shape="rect" id="node2" href="$classCCharacter.html" title="Defines default values of CCharacter&#39;s properties, (IsControlled, InteractionBound, Script, Role, moveX, moveZ, RouteID, MoveIsMax, Movement) " alt="" coords="5,80,92,107"/>
+<area shape="rect" id="node3" href="$classCObj.html" title="Stores Item Data. " alt="" coords="23,5,74,32"/>
+</map>

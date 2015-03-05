@@ -1,0 +1,6 @@
+<map id="SP2::setLights" name="SP2::setLights">
+<area shape="rect" id="node2" href="$namespaceMath.html#ac04b987cc6c574a059e68cb58f58c09a" title="Converts from degrees to radians. " alt="" coords="161,5,316,32"/>
+<area shape="rect" id="node3" href="$structVector3.html#a9c25d604bd52b162cfcb56302ef032bb" title="Set the elements of this vector. " alt="" coords="191,56,286,83"/>
+<area shape="rect" id="node4" href="$structPosition.html#a2919b2441baf7a2f799791d65a1cfc15" title="Position::Set" alt="" coords="190,107,287,133"/>
+<area shape="rect" id="node5" href="$structColor.html#acc77e4e3583d3eca7e476952e51bfb80" title="Color::Set" alt="" coords="199,157,279,184"/>
+</map>
