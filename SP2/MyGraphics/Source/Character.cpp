@@ -1,32 +1,69 @@
 #include "Character.h"
 #include "SP2.h"
-
+/******************************************************************************/
+/*!
+\brief
+CCharacter default constructor.
+*/
+/******************************************************************************/
 CCharacter::CCharacter(void)
 {
 	this->setMoveIsMax(false);
 	this->setMovement(0);
 	this->IsControlled = false;
 }
-
+/******************************************************************************/
+/*!
+\brief
+setting if legs can continue to move
+/param MoveIsMax - 
+check if can continue to move
+*/
+/******************************************************************************/
 void CCharacter::setMoveIsMax(bool MoveIsMax)
 {
 	this->MoveIsMax = MoveIsMax;
 }
+/******************************************************************************/
+/*!
+\brief
+return bool if cannot continue to move
+*/
+/******************************************************************************/
 bool CCharacter::getMoveIsMax()
 {
 	return this->MoveIsMax;
 }
-
+/******************************************************************************/
+/*!
+\brief
+set movement of NPC movement leg
+\param Movement - 
+see if moving
+*/
+/******************************************************************************/
 void CCharacter::setMovement(int Movement)
 {
 	this->Movement = Movement;
 }
-
+/******************************************************************************/
+/*!
+\brief
+return movement of NPC leg
+*/
+/******************************************************************************/
 int CCharacter::getMovement()
 {
 	return this->Movement;
 }
-
+/******************************************************************************/
+/*!
+\brief
+update movement of NPC leg
+\param Max - 
+check if leg has hit max angle
+*/
+/******************************************************************************/
 void CCharacter::UpdateMovement(int Max)
 {
 	if(Movement>Max)
@@ -50,22 +87,40 @@ void CCharacter::UpdateMovement(int Max)
 		setMovement(temp);
 	}
 }
-
-
-void CCharacter::setIsControlled(bool Choice)
-{
-	this-> IsControlled = Choice;
-}
-
+/******************************************************************************/
+/*!
+\brief
+return coordinates for the NPC to move to 
+\param WalkToLocationd - 
+give NPC the coordinates to walk to 
+*/
+/******************************************************************************/
 Vector3 WalkTo(Vector3 WalkToLocation)
 {
 return WalkToLocation;
 }
+/******************************************************************************/
+/*!
+\brief
+Set role of the NPC 
+\param Role
+using int to set roles
+*/
+/******************************************************************************/
 void CCharacter::setRole(int Role)
 {
 	this-> Role = Role;
 }
-
+/******************************************************************************/
+/*!
+\brief
+creates interaction bounds for NPC using NPC position and radius 
+\param Position - 
+position of the NPC
+\param Radius - 
+the radius of the interaction bound from the NPC position
+*/
+/******************************************************************************/
 void CCharacter::setInteractionBound(Vector3 Position,int Radius)
 {
 	if(((this->getTranslate())-Position).Length()<Radius)
@@ -77,33 +132,64 @@ void CCharacter::setInteractionBound(Vector3 Position,int Radius)
 		this->InteractionBound = false;
 	}
 }
+/******************************************************************************/
+/*!
+\brief
+sets the script of the NPC
+\param Position - 
+choice set which script the NPC is reading off
+*/
+/******************************************************************************/
 void CCharacter::setScript(int choice)
 {
 	this->Script = choice;
 }
+/******************************************************************************/
+/*!
+\brief
+returns if camera is in interaction bounds for NPC
+*/
+/******************************************************************************/
 bool CCharacter::getInteractionBound()
 {
 	return InteractionBound;
 }
-
+/******************************************************************************/
+/*!
+\brief
+return character mesh pointer
+*/
+/******************************************************************************/
 Mesh* CCharacter::getCharacter()
 {
 	return Character;
 }
-bool CCharacter::getIsControlled()
-{
-	return this->IsControlled;
-}
+/******************************************************************************/
+/*!
+\brief
+return the role of the NPC
+*/
+/******************************************************************************/
 int CCharacter::getRole()
 {
 	return Role;
 }
-
+/******************************************************************************/
+/*!
+\brief
+return the script phrases
+*/
+/******************************************************************************/
 int CCharacter::getScript()
 {
 	return this->Script;
 }
-
+/******************************************************************************/
+/*!
+\brief
+updates and change the script
+*/
+/******************************************************************************/
 string CCharacter::updateScript()
 {
 	switch(this->getScript())
@@ -150,44 +236,91 @@ string CCharacter::updateScript()
 		}
 	}
 }
-
-void CCharacter::updateChar(bool getIsControlled,double dt)
-{
-}
-
+/******************************************************************************/
+/*!
+\brief
+make the NPC move along the x aixs
+\param moveX - 
+amount of x units to move 
+*/
+/******************************************************************************/
 void CCharacter::setmoveX(int moveX)
 {
 	this->moveX = moveX;
 }
+/******************************************************************************/
+/*!
+\brief
+returns the number of units to move along X
+*/
+/******************************************************************************/
 int CCharacter::getmoveX()
 {
 	return moveX;
 }
-
+/******************************************************************************/
+/*!
+\brief
+make the NPC move along the z aixs
+\param moveZ - 
+amount of z units to move 
+*/
+/******************************************************************************/
 void CCharacter::setmoveZ(int moveZ)
 {
 	this->moveZ = moveZ;
 }
-
+/******************************************************************************/
+/*!
+\brief
+returns the number of units to move along X
+*/
+/******************************************************************************/
 int CCharacter::getmoveZ()
 {
 	return moveZ;
 }
-
+/******************************************************************************/
+/*!
+\brief
+Sets the route for NPC
+\param RouteID - 
+the points of interest to the NPC
+*/
+/******************************************************************************/
 void CCharacter::setRouteID(int RouteID)
 {
 	this->RouteID = RouteID;
 }
-
+/******************************************************************************/
+/*!
+\brief
+returns points of interest
+*/
+/******************************************************************************/
 int CCharacter::getRouteID()
 {
 	return RouteID;
 }
-
+/******************************************************************************/
+/*!
+\brief
+CCharacter deconstructor
+*/
+/******************************************************************************/
 CCharacter::~CCharacter(void)
 {
 }
-
+/******************************************************************************/
+/*!
+\brief
+makes the NPC move towards the target locations
+\param TargetPos - 
+the target the NPC is moving towards
+\param _objList - 
+the objects on the first floor 
+*/
+/******************************************************************************/
 void CCharacter::WalkTo(Vector3 TargetPos, std::vector<CObj*> _objList)
 {
 	Vector3 tempPosition = getTranslate();
@@ -268,9 +401,3 @@ void CCharacter::WalkTo(Vector3 TargetPos, std::vector<CObj*> _objList)
 		}
 	}
 }
-//void CCharacter::calcBound()
-//{
-//	float offset = 5;
-//	maxBound.Set(translate.x + ((size.x * scale.x) / 2) + offset, translate.y + (size.y * scale.y) + offset, translate.z + ((size.z * scale.z) / 2) + offset);
-//	minBound.Set(translate.x - ((size.x * scale.x) / 2) - offset, 0, translate.z - ((size.z * scale.z) / 2) - offset);
-//}

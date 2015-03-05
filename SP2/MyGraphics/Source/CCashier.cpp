@@ -1,10 +1,20 @@
 #include "CCashier.h"
 
-
+/******************************************************************************/
+/*!
+\brief
+CCashier constructor
+*/
+/******************************************************************************/
 CCashier::CCashier(void) 
 {
 }
-
+/******************************************************************************/
+/*!
+\brief
+CCashier overloaded constructor.
+*/
+/******************************************************************************/
 CCashier::CCashier(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size,Vector3 camPosition, int radius)
 {
 	this-> setInteractionBound(camPosition,radius);
@@ -15,10 +25,15 @@ CCashier::CCashier(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale,
 	this-> scale = _scale;
 	this-> size = _size;
 }
-
+/******************************************************************************/
+/*!
+\brief
+updates and chooses which script is suppose to return
+*/
+/******************************************************************************/
 string CCashier::updateScript()
 {
-switch(this->getScript())
+	switch(this->getScript())
 	{
 	case 1:
 		{
@@ -73,12 +88,12 @@ switch(this->getScript())
 
 	}
 }
-
-/*
-void CCashier::updateChar(bool getIsControlled,double dt)
-{
-}
+/******************************************************************************/
+/*!
+\brief
+CCar deconstructor.
 */
+/******************************************************************************/
 CCashier::~CCashier(void)
 {
 }

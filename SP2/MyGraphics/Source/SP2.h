@@ -157,6 +157,7 @@ public:
 		//player
 		GEO_HAND,
 		GEO_MAP_1,
+		GEO_MAP_2,
 		GEO_MAP_PLAYER,
 
 		NUM_GEOMETRY,
@@ -304,6 +305,8 @@ private:
 	//Promoter Variables
 	Vector3 promoterMaxBound, promoterMinBound;
 
+	//AI Variables
+	bool isTalking;
 	//Lift variables
 	Vector3 supermarketLiftSize, supermarketLiftScale , supermarketLiftPosition;
 	Vector3 supermarketLiftMaxBound, supermarketLiftMinBound , supermarketLiftDoorMaxBound , supermarketLiftDoorMinBound;
@@ -361,6 +364,7 @@ private:
 	std::vector <CCharacter*> CharacterList;
 
 	bool mainmenu;
+	
 
 	// mini map variables
 	Vector3 mapMaxBound, mapMinBound;

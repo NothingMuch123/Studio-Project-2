@@ -537,6 +537,25 @@ void Camera3::Reset()
 	rotation.SetToIdentity();
 }
 
+
+/******************************************************************************/
+/*!
+\brief
+check for camera's bound and returning if camera has hit anything from any of the objects from objList and objList2
+\param &_outerSkyboxMaxBound - 
+the maximum value of X and z of the skybox occupy
+\param &_outerSkyboxMinBound - 
+the minimum value of x and z of the skybox occupy
+\param &_objList - 
+the list of objects that is on first floor of supermarket in scene
+\param **_hands
+used to check if player is using car or trolley
+\param flooNum - 
+which floor the camera is on
+\param &_objList2 - 
+the list of objects on 2nd floor
+*/
+/******************************************************************************/
 bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMinBound, std::vector<CObj*> &_objList, CObj **_hands, int floorNum, std::vector<CObj*> &_objList2)
 {
 	std::vector<CObj*> list;
@@ -559,9 +578,9 @@ bool Camera3::boundCheck(Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSkyboxMin
 				if (current == NULL) // Point check
 				{
 					if	(	// Skybox check
-						(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || /*position.y > _outerSkyboxMaxBound.y || position.y < _outerSkyboxMinBound.y ||*/ position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
+						(position.x > _outerSkyboxMaxBound.x || position.x < _outerSkyboxMinBound.x || position.z > _outerSkyboxMaxBound.z || position.z < _outerSkyboxMinBound.z) || 
 						// Obj check
-						(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && /*position.y < pObj->getMaxBound().y && position.y > pObj->getMinBound().y &&*/ position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
+						(position.x < pObj->getMaxBound().x && position.x > pObj->getMinBound().x && position.z < pObj->getMaxBound().z && position.z > pObj->getMinBound().z)
 						)
 					{
 						return true;

@@ -1,11 +1,35 @@
 #include "CShopper.h"
 
-
+/******************************************************************************/
+/*!
+\brief
+CShopper default constructor
+*/
+/******************************************************************************/
 CShopper::CShopper(void)
 {
 
 }
-
+/******************************************************************************/
+/*!
+\brief
+CShopper overloaded constructor
+\param _ID - 
+the ID for Shopper NPC
+\param _translate -
+translation of NPC
+\param _rotate - 
+rotation of NPC
+\param _scale - 
+scaling of the NPC
+\param _size - 
+the size of the human object model
+\param camPosition - 
+camer position
+\param radius 
+the radius of the interaction bound 
+*/
+/******************************************************************************/
 CShopper::CShopper(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size,Vector3 camPosition,int radius)
 {
 	this->setInteractionBound(camPosition,radius);
@@ -16,7 +40,12 @@ CShopper::CShopper(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale,
 	this-> scale = _scale;
 	this-> size = _size;
 }
-
+/******************************************************************************/
+/*!
+\brief
+return the new script
+*/
+/******************************************************************************/
 string CShopper::updateScript()
 {
 	switch(this->getScript())
@@ -73,12 +102,12 @@ string CShopper::updateScript()
 		}
 	}
 }
-
-/*
-void CShopper::updateChar(bool getIsControlled,double dt)
-{
-}
+/******************************************************************************/
+/*!
+\brief
+CShopper deconstructor
 */
+/******************************************************************************/
 CShopper::~CShopper(void)
 {
 }

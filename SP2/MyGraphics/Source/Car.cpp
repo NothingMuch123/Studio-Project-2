@@ -14,6 +14,16 @@ CCar::CCar(void)
 /*!
 \brief
 CCar overloaded constructor.
+\param _ID - 
+car ID 
+\param _translate - 
+Sets the translation of the car
+\param _rotate - 
+Set the rotation of the car
+\param _scale - 
+Set the scale of the car
+\param _size - 
+The size of the object car model
 */
 /******************************************************************************/
 CCar::CCar(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size) : CObj(_ID, _translate, _rotate, _scale, _size)
@@ -46,7 +56,7 @@ void CCar::calcBound()
 /******************************************************************************/
 /*!
 \brief
-Sets values for camera for position and target
+Sets values for camera for position and target when entered car
 */
 /******************************************************************************/
 void CCar::setCamera()

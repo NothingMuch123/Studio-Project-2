@@ -1,10 +1,35 @@
 #include "CSecurityGuard.h"
 
+/******************************************************************************/
+/*!
+\brief
+CsecurityGuard default constructor
+*/
+/******************************************************************************/
 CSecurityGuard::CSecurityGuard(void)
 {
 	
 }
-
+/******************************************************************************/
+/*!
+\brief
+sets the CSecurityGuard NPC
+\param _ID -
+NPC object human model ID
+\param _translate - 
+translation of the NPC 
+\param _rotate - 
+rotation of the NPC
+\param _scale - 
+scaling of the NPC
+\param _size - 
+the size of the human object model
+\param camPosition - 
+camera position
+\param radius - 
+the radius for the interaction bound
+*/
+/******************************************************************************/
 CSecurityGuard::CSecurityGuard(int _ID, Vector3 _translate, Vector3 _rotate, Vector3 _scale, Vector3 _size,Vector3 camPosition, int radius)
 {
 	this->setInteractionBound(camPosition,radius);
@@ -15,6 +40,12 @@ CSecurityGuard::CSecurityGuard(int _ID, Vector3 _translate, Vector3 _rotate, Vec
 	this-> scale = _scale;
 	this-> size = _size;
 }
+/******************************************************************************/
+/*!
+\brief
+return script of the security guard 
+*/
+/******************************************************************************/
 string CSecurityGuard::updateScript()
 {
 	switch(this->getScript())
@@ -72,12 +103,12 @@ string CSecurityGuard::updateScript()
 	
 	}
 }
-/*
-void CSecurityGuard::updateChar(bool getIsControlled,double dt)
-{
-}
+/******************************************************************************/
+/*!
+\brief
+CsecurityGuard deconstructor
 */
-
+/******************************************************************************/
 CSecurityGuard::~CSecurityGuard(void)
 {
 }

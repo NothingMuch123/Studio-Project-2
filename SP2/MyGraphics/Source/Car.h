@@ -15,11 +15,10 @@ Header file for car class
 
 /******************************************************************************/
 /*!
-	Class: Car
-\brief Defines the default values of the Car's properties (position, target, up, view) and its various function (calcbound, setCamera, updatePosition).
+		Class CCar:
+\brief	Defines the default values of the Car's properties (position, target, up, view), its various states (Init, Update, Reset) and calculates the bounds.
 */
 /******************************************************************************/
-
 class CCar : public CObj
 {
 public:

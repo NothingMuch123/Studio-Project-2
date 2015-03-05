@@ -101,6 +101,8 @@ void SP2::initMap()
 {
 	meshList[GEO_MAP_1] = MeshBuilder::GenerateQuad("map" , Color(1,1,1),TexCoord(1,1));
 	meshList[GEO_MAP_1]->textureID = LoadTGA("Image//map1.tga");
+	meshList[GEO_MAP_2] = MeshBuilder::GenerateQuad("map", Color(1,1,1),TexCoord(1,1));
+	meshList[GEO_MAP_2]->textureID = LoadTGA("Image//map2.tga");
 	meshList[GEO_MAP_PLAYER] = MeshBuilder::GenerateQuad("map", Color(1,1,1),TexCoord(1,1));
 	meshList[GEO_MAP_PLAYER]->textureID = LoadTGA("Image//legendPlayer.tga");
 	mapPositionX = 0, mapPositionZ = 0;
@@ -529,7 +531,7 @@ void SP2::initSuperMarket()
 	//paper bag - used for game 2 cashier
 	meshList[GEO_BAG] = MeshBuilder::GenerateOBJ("Bag" , "OBJ//bag.obj");
 	meshList[GEO_BAG]->textureID = LoadTGA ("Image//bagTex.tga");
-
+	
 	pObj = new CObj(GEO_SUPERMARKET_CEILING, Vector3(supermarketPosition.x, supermarketPosition.y + 10 * supermarketScale.y, supermarketPosition.z), Vector3(0,0,0), Vector3(supermarketScale.x,supermarketScale.y,supermarketScale.z), Vector3(1,1,1));
 	objList.push_back(pObj);
 	objList2.push_back(pObj);
@@ -2106,7 +2108,10 @@ void SP2::Render()
 
 void SP2::renderMap()
 {
-	Render2D(meshList[GEO_MAP_1],10,7.5,0.5);
+	if(floorNum == 1)
+		Render2D(meshList[GEO_MAP_1],10,7.5,0.5);
+	else
+		Render2D(meshList[GEO_MAP_2],10,7.5,0.5);
 	Render2D(meshList[GEO_MAP_PLAYER],4,18.75 + mapPositionX,1.2 + mapPositionZ);
 }
 
