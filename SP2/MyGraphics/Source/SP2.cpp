@@ -75,7 +75,7 @@ void SP2::Init()
 
 	srand(time(NULL));
 
-	for(int a = 0;a<200;a+=50)
+	for(int a = 0;a<10;a++)
 	{
 	initHuman(3,Vector3(a,0,300),Vector3(0,90,0),camera.position,60);	
 	}
