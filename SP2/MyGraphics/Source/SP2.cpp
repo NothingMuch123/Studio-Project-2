@@ -1791,7 +1791,7 @@ void SP2::updateHands(double dt)
 		{
 			rotateHandX -= ROTATE_SPEED*dt;
 		}
-		if(Application::IsKeyPressed('R') && (hands[0] == NULL || hands[0]->getID() != GEO_CAR || hands[0]->getID() != GEO_TROLLEY))
+		if(Application::IsKeyPressed('R') && (hands[0] == NULL || hands[0]->getID() != GEO_CAR || hands[0]->getID() != GEO_TROLLEY) && floorNum == 1)
 		{
 			rotateHandX = 0;
 			rotateHandY = 0;
@@ -2247,7 +2247,6 @@ void SP2::Render()
 		modelStack.PopMatrix();
 	}
 
-	RenderMesh(meshList[GEO_AXES], false);
 	if (floorNum == 1)
 	{
 		for (int i = 0; i < trolleyList.size(); ++i)

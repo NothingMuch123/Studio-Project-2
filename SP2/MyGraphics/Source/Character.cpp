@@ -374,7 +374,7 @@ void CCharacter::WalkTo(Vector3 TargetPos, std::vector<CObj*> _objList)
 		for (int i = 0; i < _objList.size(); ++i)
 		{
 			pObj = _objList[i];
-			if (minBound.x  < pObj->getMaxBound().x && maxBound.x > pObj->getMinBound().x && minBound.z < pObj->getMaxBound().z && maxBound.z > pObj->getMinBound().z && pObj->getID() == SP2::GEOMETRY_TYPE::GEO_TROLLEY)
+			if (minBound.x  < pObj->getMaxBound().x && maxBound.x > pObj->getMinBound().x && minBound.z < pObj->getMaxBound().z && maxBound.z > pObj->getMinBound().z && pObj->getID() == SP2::GEOMETRY_TYPE::GEO_TROLLEY && pObj->getID() == SP2::GEOMETRY_TYPE::GEO_CAR)
 			{
 				setTranslate(tempPosition);
 				calcBound();

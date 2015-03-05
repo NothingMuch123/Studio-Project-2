@@ -516,7 +516,7 @@ void Camera3::Update(double dt, Vector3 &_outerSkyboxMaxBound, Vector3 &_outerSk
 		}
 	}
 
-	if(Application::IsKeyPressed('R') && current == 0)
+	if(Application::IsKeyPressed('R') && current == 0 && floorNum == 1)
 	{
 		Reset();
 	}
